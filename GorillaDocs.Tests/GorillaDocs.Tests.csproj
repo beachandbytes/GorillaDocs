@@ -42,10 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyHelperTests.cs" />
+    <Compile Include="CollectionHelperTests.cs" />
+    <Compile Include="InternationalAddressFormatsTests.cs" />
+    <Compile Include="IOHelperTests.cs" />
+    <Compile Include="ObjectHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GorillaDocs\GorillaDocs.csproj">
+      <Project>{1eb8b9cc-0d78-4b5c-8ae5-4ffe07914d69}</Project>
+      <Name>GorillaDocs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
