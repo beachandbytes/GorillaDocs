@@ -7,5 +7,6 @@ namespace GorillaDocs
 {
     class test
     {
+        const string ASmallChange = "";
     }
 }
