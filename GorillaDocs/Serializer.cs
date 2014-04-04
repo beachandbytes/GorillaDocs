@@ -28,8 +28,7 @@ namespace GorillaDocs
         public static string SerializeToString<T>(T serializableObject)
         {
             XmlSerializer serializer = new XmlSerializer(serializableObject.GetType());
-            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
+            XmlSerializerNamespaces ns = ClearDefaultNamespacesForOfficeCustomXmlParts();
             using (TextWriter textWriter = new StringWriter())
             {
                 serializer.Serialize(textWriter, serializableObject, ns);
@@ -39,8 +38,6 @@ namespace GorillaDocs
         public static XDocument SerializeToXDocument<T>(T serializableObject)
         {
             var serializer = new DataContractSerializer(serializableObject.GetType());
-            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
             XDocument doc = new XDocument();
             using (var writer = doc.CreateWriter())
             {
@@ -51,11 +48,9 @@ namespace GorillaDocs
         public static XmlDocument SerializeToXmlDocument<T>(T serializableObject)
         {
             XmlSerializer serializer = new XmlSerializer(serializableObject.GetType());
-            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
             using (TextWriter textWriter = new StringWriter())
             {
-                serializer.Serialize(textWriter, serializableObject, ns);
+                serializer.Serialize(textWriter, serializableObject);
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(textWriter.ToString());
                 return doc;
@@ -93,6 +88,16 @@ namespace GorillaDocs
             XmlSerializer deserializer = new XmlSerializer(typeof(T));
             using (TextReader textReader = new StringReader(value.ToString()))
                 return (T)deserializer.Deserialize(textReader);
+        }
+        
+        static XmlSerializerNamespaces ClearDefaultNamespacesForOfficeCustomXmlParts()
+        {
+            // Office CustomXmlParts don't work if the following namespaces are included
+            // xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            // xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            var ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            return ns;
         }
     }
 }
