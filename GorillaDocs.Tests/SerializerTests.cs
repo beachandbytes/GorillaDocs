@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using GorillaDocs;
-using System.Xml.Linq;
-using System.Xml;
 
 namespace GorillaDocs.Tests
 {
     [TestFixture]
     public class SerializerTests
     {
-        Person person = new Person() { FirstName = "John", LastName = "Smith" };
-        string personXml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<Person>\r\n  <FirstName>John</FirstName>\r\n  <LastName>Smith</LastName>\r\n</Person>";
+        readonly Person person = new Person() { FirstName = "John", LastName = "Smith" };
+        const string personXml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<Person>\r\n  <FirstName>John</FirstName>\r\n  <LastName>Smith</LastName>\r\n</Person>";
 
         [SetUp]
         public void setup() { }
