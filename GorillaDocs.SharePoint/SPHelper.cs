@@ -91,23 +91,5 @@ namespace GorillaDocs.SharePoint
                 }
             });
         }
-
-        public void Test()
-        {
-            //https://portal.macroview.com.au/_api/web/lists/getByTitle('Precedents')/items
-            string accessToken = String.Empty;
-            const string url = "https://portal.macroview.com.au/_api/web/lists";
-            const string lib = "_api/web/lists/getByTitle('Precedents')/";
-            const string docs = "_api/web/lists/getByTitle('Precedents')/items";
-            const string docs2 = "https://portal.macroview.com.au/_api/web/GetFolderByServerRelativeUrl('/Precedents')/Files/";
-            var request = (HttpWebRequest)HttpWebRequest.Create(url);
-            request.Method = "GET";
-            request.Accept = "application/json;odata=verbose";
-            //endpointRequest.Headers.Add("Authorization", "Bearer " + accessToken);
-            request.Credentials = new NetworkCredential("mjf", "timnmvid7");
-            var endpointResponse = (HttpWebResponse)request.GetResponse();
-
-            // Returned as AtomPub extended by OData or JSON if 'accept: application/json;odata=verbose'
-        }
     }
 }

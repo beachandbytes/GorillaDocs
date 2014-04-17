@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.SharePoint", "G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.IntegrationTests", "GorillaDocs.IntegrationTests\GorillaDocs.IntegrationTests.csproj", "{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.Word", "GorillaDocs.Word\GorillaDocs.Word.csproj", "{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
