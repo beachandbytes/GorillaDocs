@@ -74,6 +74,13 @@ namespace GorillaDocs.Word
             pageSetup.BottomMargin = bottomMargin;
         }
 
+        public static void ReJigRightMarginObjects(this Wd.Section section, float narrowMargin, float wideMargin)
+        {
+            if (section.PageSetup.RightMargin == narrowMargin)
+                section.ReJigRightMarginObjects();
+            else
+                section.ReJigRightMarginObjects(wideMargin - narrowMargin);
+        }
         public static void ReJigRightMarginObjects(this Wd.Section section, float offset = 0)
         {
             foreach (Wd.HeaderFooter header in section.Headers)
@@ -113,19 +120,11 @@ namespace GorillaDocs.Word
 
         public static void ContinueNumbering(this Wd.Section section)
         {
-            Wd.Document doc = section.Application.ActiveDocument;
-            if (section.Index == doc.Sections.Count)
-                throw new InvalidOperationException("Can not set ContinueNumberingAtSection for the last section");
-
             if (section.Index != 1)
             {
                 Wd.HeaderFooter hf = section.Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary];
                 hf.PageNumbers.RestartNumberingAtSection = false;
                 hf.PageNumbers.StartingNumber = 0;
-
-                Wd.HeaderFooter hf_Next = doc.Sections[section.Index + 1].Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary];
-                hf_Next.PageNumbers.RestartNumberingAtSection = false;
-                hf_Next.PageNumbers.StartingNumber = 0;
             }
         }
 
@@ -179,12 +178,41 @@ namespace GorillaDocs.Word
                     return false;
             return true;
         }
-
         public static bool AreHeaderFootersEmpty(this Wd.Section section)
         {
             foreach (Wd.HeaderFooter header in section.Headers)
                 if (header.Range.Characters.Count != 1)
                     return false;
+            foreach (Wd.HeaderFooter footer in section.Footers)
+                if (footer.Range.Characters.Count != 1)
+                    return false;
+            return true;
+        }
+
+        public static bool AreHeadersEmpty(this Wd.Sections sections)
+        {
+            foreach (Wd.Section section in sections)
+                if (!section.AreHeadersEmpty())
+                    return false;
+            return true;
+        }
+        public static bool AreHeadersEmpty(this Wd.Section section)
+        {
+            foreach (Wd.HeaderFooter header in section.Headers)
+                if (header.Range.Characters.Count != 1 || header.ContainsShapes())
+                    return false;
+            return true;
+        }
+
+        public static bool AreFootersEmpty(this Wd.Sections sections)
+        {
+            foreach (Wd.Section section in sections)
+                if (!section.AreFootersEmpty())
+                    return false;
+            return true;
+        }
+        public static bool AreFootersEmpty(this Wd.Section section)
+        {
             foreach (Wd.HeaderFooter footer in section.Footers)
                 if (footer.Range.Characters.Count != 1)
                     return false;
@@ -204,10 +232,53 @@ namespace GorillaDocs.Word
         public static bool ContainsShapeNamed(this Wd.Section section, string name)
         {
             var doc = (Wd.Document)section.Parent;
-            for (int i = 1; i < doc.Shapes.Count + 1; i++)
+            if (section.Range.ContainsShapeNamed(doc.Shapes, name))
+                return true;
+
+            foreach (Wd.HeaderFooter header in section.Headers)
+                if (header.Range.ContainsShapeNamed(header.Shapes, name))
+                    return true;
+
+            foreach (Wd.HeaderFooter footer in section.Footers)
+                if (footer.Range.ContainsShapeNamed(footer.Shapes, name))
+                    return true;
+
+            return false;
+        }
+        static bool ContainsShapeNamed(this Wd.Range range, Wd.Shapes shapes, string name)
+        {
+            for (int i = 1; i < shapes.Count + 1; i++)
             {
-                var shape = doc.Shapes[i];
-                if (shape.Anchor.InRange(section.Range) && shape.Name == name)
+                var shape = shapes[i];
+                if (shape.Anchor.InRange(range) && shape.Name == name)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool ContainsShapeWithTitle(this Wd.Section section, string title)
+        {
+            var doc = (Wd.Document)section.Parent;
+            if (section.Range.ContainsShapeWithTitle(doc.Shapes, title))
+                return true;
+
+            foreach (Wd.HeaderFooter header in section.Headers)
+                if (header.Range.ContainsShapeWithTitle(header.Shapes, title))
+                    return true;
+
+            foreach (Wd.HeaderFooter footer in section.Footers)
+                if (footer.Range.ContainsShapeWithTitle(footer.Shapes, title))
+                    return true;
+
+            return false;
+        }
+        static bool ContainsShapeWithTitle(this Wd.Range range, Wd.Shapes shapes, string title)
+        {
+            for (int i = 1; i < shapes.Count + 1; i++)
+            {
+                var shape = shapes[i];
+                if (shape.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox &&
+                    shape.Anchor.InRange(range) && shape.Title == title)
                     return true;
             }
             return false;

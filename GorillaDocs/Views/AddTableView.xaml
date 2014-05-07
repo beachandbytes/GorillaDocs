@@ -7,7 +7,8 @@
         GV:DialogCloser.DialogResult="{Binding Path=DialogResult, Mode=TwoWay}"
         FocusManager.FocusedElement="{Binding ElementName=NumberOfColumns}"
         Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" 
-        Title="{Binding Source={x:Static prop:Resources.AddTableView_Caption}}" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" 
+        Title="{Binding Source={x:Static prop:Resources.AddTableView_Caption}}" 
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" 
         WindowStyle="SingleBorderWindow" MinHeight="100" MinWidth="250">
     <Window.Resources>
         <Style TargetType="Label">

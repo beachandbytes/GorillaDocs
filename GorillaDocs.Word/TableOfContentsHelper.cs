@@ -8,8 +8,20 @@ namespace GorillaDocs.Word
 {
     public static class TableOfContentsHelper
     {
+        const string Bookmark_TOCRange = "TOCRange";
+        private const string Appendix_Style = "Appendix";
+
+        public static Wd.TableOfContents Add(this Wd.TablesOfContents tocs, Wd.Range range)
+        {
+            range.Fields.Add(range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\b ""{0}"" \o ""1-1"" \h \z ", Bookmark_TOCRange), false);
+            Wd.TableOfContents toc = tocs[tocs.Count];
+            toc.TabLeader = Wd.WdTabLeader.wdTabLeaderDots;
+            return toc;
+        }
+
         public static void Refresh(this Wd.TablesOfContents tocs, Wd.WdTabLeader tabLeader = Wd.WdTabLeader.wdTabLeaderDots, float Toc2LeftTab = 0)
         {
+            UpdateTocBookmark(tocs);
             Wd.Document doc = tocs.Parent;
             doc.UpdateAllFields();
             tocs.UpdateListSeparators();
@@ -113,15 +125,69 @@ namespace GorillaDocs.Word
 
         public static void UpdateOneLevel(this Wd.TableOfContents toc)
         {
-            toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, @"\o ""1-1"" \h \z ", false);
+            toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\b ""{0}"" \o ""1-1"" \h \z ", Bookmark_TOCRange), false);
         }
         public static void UpdateTwoLevels(this Wd.TableOfContents toc)
         {
-            toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, @"\o ""1-2"" \h \z ", false);
+            toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\b ""{0}"" \o ""1-2"" \h \z ", Bookmark_TOCRange), false);
         }
         public static void UpdateThreeLevels(this Wd.TableOfContents toc)
         {
-            toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, @"\o ""1-3"" \h \z ", false);
+            toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\b ""{0}"" \o ""1-3"" \h \z ", Bookmark_TOCRange), false);
+        }
+        static void UpdateTocBookmark(Wd.TablesOfContents tocs)
+        {
+            var doc = (Wd.Document)tocs.Parent;
+            if (tocs.Count > 0)
+            {
+                Wd.Range range = tocs.End();
+                Wd.Range appendix = FindAppendix(doc, range);
+                if (appendix != null && appendix.Find.Found)
+                    range.End = appendix.Start;
+                else
+                    range.End = doc.Range().End;
+                doc.Bookmarks.Add(Bookmark_TOCRange, range);
+            }
+        }
+        static Wd.Range FindAppendix(Wd.Document doc, Wd.Range range)
+        {
+            if (doc.Styles.Exists(Appendix_Style))
+            {
+                Wd.Range search = range.Duplicate;
+                search.End = doc.Range().End;
+                return search.Find(null, doc.Styles[Appendix_Style]);
+            }
+            return null;
+        }
+
+        public static bool AppendixExists(this Wd.TablesOfContents tocs)
+        {
+            foreach (Wd.TableOfContents toc in tocs)
+            {
+                Wd.Field field = toc.Range.Fields[1];
+                if (field.Code.Text.Contains("appendix", StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            return false;
+        }
+
+        public static void RemoveAppendix(this Wd.TablesOfContents tocs)
+        {
+            foreach (Wd.TableOfContents toc in tocs)
+            {
+                Wd.Field field = toc.Range.Fields[1];
+                if (field.Code.Text.Contains("appendix", StringComparison.OrdinalIgnoreCase))
+                    toc.Delete();
+            }
+        }
+
+        public static void AddAppendix(this Wd.TablesOfContents tocs)
+        {
+            if (tocs.Count > 0)
+            {
+                Wd.Range range = tocs.End();
+                range.Fields.Add(range, Wd.WdFieldType.wdFieldTOC, @"\h \z \t ""Appendix,1""", false);
+            }
         }
     }
 }

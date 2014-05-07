@@ -15,5 +15,14 @@ namespace GorillaDocs
         {
             return source.IndexOf(toCheck, comparison) >= 0;
         }
+
+        public static List<int> ToIntList(this string value, char split)
+        {
+            string[] parts = value.Split(split);
+            List<int> list = new List<int>();
+            foreach (string part in parts)
+                list.Add(int.Parse(part));
+            return list;
+        }
     }
 }

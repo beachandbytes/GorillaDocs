@@ -46,6 +46,42 @@ namespace GorillaDocs.Word
         }
 
         [System.Diagnostics.DebuggerStepThrough]
+        public static string GetDocProp(this Wd.Template template, string name)
+        {
+            var props = template.CustomDocumentProperties;
+            Type typeProps = props.GetType();
+
+            try
+            {
+                object prop = typeProps.InvokeMember("Item", BindingFlags.Default | BindingFlags.GetProperty, null, props, new object[] { name });
+                Type typeProp = prop.GetType();
+                return typeProp.InvokeMember("Value", BindingFlags.Default | BindingFlags.GetProperty, null, prop, new object[] { }).ToString();
+            }
+            catch
+            {
+                // Property doesn't exist
+                return string.Empty;
+            }
+        }
+        [System.Diagnostics.DebuggerStepThrough]
+        public static void SetDocProp(this Wd.Template template, string name, string value)
+        {
+            var props = template.CustomDocumentProperties;
+            Type typeProps = props.GetType();
+            object prop = null;
+            try
+            {
+                prop = typeProps.InvokeMember("Item", BindingFlags.Default | BindingFlags.GetProperty, null, props, new object[] { name });
+                typeProps.InvokeMember("Item", BindingFlags.Default | BindingFlags.SetProperty, null, props, new object[] { name, value });
+            }
+            catch
+            {
+                object[] oArgs = { name, false, O.MsoDocProperties.msoPropertyTypeString, value };
+                typeProps.InvokeMember("Add", BindingFlags.Default | BindingFlags.InvokeMethod, null, props, oArgs);
+            }
+        }
+
+        [System.Diagnostics.DebuggerStepThrough]
         public static string GetBuiltInProp(this Wd.Document doc, string name)
         {
             var props = doc.BuiltInDocumentProperties;

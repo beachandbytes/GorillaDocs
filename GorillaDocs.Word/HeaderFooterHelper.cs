@@ -18,5 +18,16 @@ namespace GorillaDocs.Word
             }
             return shapes;
         }
+
+        public static bool ContainsShapes(this Wd.HeaderFooter headerfooter)
+        {
+            for (int i = 1; i < headerfooter.Shapes.Count + 1; i++)
+            {
+                var shape = headerfooter.Shapes[i];
+                if (shape.Anchor.InRange(headerfooter.Range))
+                    return true;
+            }
+            return false;
+        }
     }
 }
