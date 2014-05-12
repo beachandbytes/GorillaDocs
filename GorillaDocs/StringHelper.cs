@@ -24,5 +24,14 @@ namespace GorillaDocs
                 list.Add(int.Parse(part));
             return list;
         }
+
+        public static int ToVal(this string value)
+        {
+            int returnValue;
+            if (int.TryParse(value, out returnValue))
+                return returnValue;
+            else
+                return 0;
+        }
     }
 }

@@ -84,5 +84,26 @@ namespace GorillaDocs.Word
                 searchRange.Application.ActiveWindow.ActivePane.View.ShowAll = showall;
             }
         }
+
+        public static bool IsCollapsed(this Wd.Range range)
+        {
+            return range.Start == range.End;
+        }
+
+        public static void DeleteParagraphFromRange(this Wd.Range range)
+        {
+            Wd.Range prev = range.Duplicate;
+            try
+            {
+                range.Expand(Wd.WdUnits.wdParagraph);
+                if (!range.ContainsTableCell())
+                    range.Delete();
+            }
+            catch
+            {
+                prev.Delete();
+            }
+        }
+
     }
 }

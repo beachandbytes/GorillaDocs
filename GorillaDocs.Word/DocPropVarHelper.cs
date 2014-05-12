@@ -117,6 +117,20 @@ namespace GorillaDocs.Word
             }
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
+        public static void DeleteDocProp(this Wd.Document doc, string name)
+        {
+            var props = doc.CustomDocumentProperties;
+            Type typeProps = props.GetType();
+            object prop = typeProps.InvokeMember("Item", BindingFlags.Default | BindingFlags.GetProperty, null, props, new object[] { name });
+            typeProps.InvokeMember("Delete", BindingFlags.Default | BindingFlags.InvokeMethod, null, prop, null);
+        }
+
+        public static bool DocPropExists(this Wd.Document doc, string name)
+        {
+            return !string.IsNullOrEmpty(doc.GetDocProp(name));
+        }
+
         public static string GetDocVar(this Wd.Document doc, string name)
         {
             foreach (Wd.Variable var in doc.Variables)

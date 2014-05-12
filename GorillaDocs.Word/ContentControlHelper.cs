@@ -1,0 +1,296 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
+using Wd = Microsoft.Office.Interop.Word;
+
+namespace GorillaDocs.Word
+{
+    public static class ContentControlHelper
+    {
+        static List<Wd.ContentControl> GetContentControls(Wd.ContentControls ContentControls)
+        {
+            var contentControls = new List<Wd.ContentControl>();
+            foreach (Wd.ContentControl control in ContentControls)
+                contentControls.Add(control);
+            return contentControls;
+        }
+
+        public static Wd.ContentControl[] FindAll(this Wd.ContentControls controls, string Tag)
+        {
+            return GetContentControls(controls).FindAll(x => x.Tag == Tag).ToArray();
+        }
+        public static Wd.ContentControl[] FindAllX(this Wd.ContentControls controls, string TagPattern)
+        {
+            return GetContentControls(controls).FindAll(x => Regex.IsMatch(x.Tag, TagPattern)).ToArray();
+        }
+
+        public static Wd.ContentControl Find(this Wd.ContentControls controls, string Tag)
+        {
+            return GetContentControls(controls).Find(x => x.Tag == Tag);
+        }
+        public static Wd.ContentControl FindX(this Wd.ContentControls controls, string TagPattern)
+        {
+            return GetContentControls(controls).Find(x => Regex.IsMatch(x.Tag, TagPattern));
+        }
+
+        public static bool InContentControl(this Wd.Range range)
+        {
+            return range.GetSurroundingContentControl() != null;
+        }
+
+        public static void MoveOutOfContentControl(this Wd.Range range, Wd.WdCollapseDirection collapse = Wd.WdCollapseDirection.wdCollapseEnd)
+        {
+            Wd.ContentControl control = range.GetSurroundingContentControl();
+            if (control != null)
+                if (collapse == Wd.WdCollapseDirection.wdCollapseStart)
+                {
+                    if (range.Start >= control.Range.Start)
+                        range.Start = control.Range.Start - 1;
+                    if (range.End >= control.Range.Start)
+                        range.End = control.Range.Start - 1;
+                }
+                else
+                {
+                    range.Start = control.Range.End;
+                    if (range.Start <= control.Range.End)
+                        range.Start = control.Range.End + 1;
+                    if (range.End <= control.Range.End)
+                        range.End = control.Range.End + 1;
+                }
+        }
+
+        public static Wd.ContentControl GetSurroundingContentControl(this Wd.Range range)
+        {
+            Wd.Range expanded = range.Duplicate;
+            Wd.Document doc = range.Parent;
+            expanded.Start = expanded.Document.Content.Start;
+            int controlCount = expanded.ContentControls.Count;
+            if (controlCount > 0)
+                if (range.InRange(doc.ContentControls[controlCount].Range))
+                    return doc.ContentControls[controlCount];
+                else
+                {
+                    range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
+                    if (range.Text == null || range.Text.Length == 0)
+                        return doc.ContentControls[controlCount];
+                }
+            return null;
+        }
+
+        public static void DeleteEmpty(this Wd.ContentControls controls)
+        {
+            foreach (Wd.ContentControl control in controls)
+                if (string.IsNullOrEmpty(control.Range.Text) || control.ShowingPlaceholderText)
+                    control.DeleteLine();
+        }
+
+        public static void FormatDates(this Wd.ContentControls controls, CultureInfo culture, string LongDateFormat, string expectedValue)
+        {
+            foreach (Wd.ContentControl control in controls)
+                if (control.Type == Wd.WdContentControlType.wdContentControlDate)
+                    FormatDateControl(LongDateFormat, culture, control, expectedValue);
+        }
+        public static void FormatDates(this Wd.ContentControls controls, CultureInfo culture, string LongDateFormat, string Tag, string expectedValue)
+        {
+            foreach (Wd.ContentControl control in controls)
+                if (control.Type == Wd.WdContentControlType.wdContentControlDate)
+                    if (control.Tag == Tag)
+                        FormatDateControl(LongDateFormat, culture, control, expectedValue);
+        }
+
+        static BackgroundWorker worker;
+        static void FormatDateControl(string LongDateFormat, CultureInfo culture, Wd.ContentControl control, string expectedValue)
+        {
+            try
+            {
+                control.DateDisplayLocale = (Wd.WdLanguageID)culture.LCID;
+                control.DateDisplayFormat = LongDateFormat;
+            }
+            catch
+            {
+                // Not sure why, but sometimes error occurs when setting value from Content Control event. The worker should be fine, because it is not in the event.
+            }
+
+            if (!string.IsNullOrEmpty(expectedValue) && !string.Equals(control.Range.Text, expectedValue))
+            {
+                worker = new BackgroundWorker();
+                worker.DoWork += WaitUntilThreadFreesDateControlThenSetFormat;
+                worker.RunWorkerAsync(new List<object> { control, LongDateFormat, expectedValue });
+            }
+        }
+        static void WaitUntilThreadFreesDateControlThenSetFormat(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                int i = 0;
+                List<object> args = (List<object>)e.Argument;
+                Wd.ContentControl control = (Wd.ContentControl)args[0];
+                string dateFormat = (string)args[1];
+                string expectedValue = (string)args[2];
+                while (i < 5 && !string.Equals(control.Range.Text, expectedValue))
+                {
+                    Thread.Sleep(250);
+                    string tmp = control.XMLMapping.CustomXMLNode.Text;
+                    if (tmp == "[Update]")
+                        continue; // Other thread has set value to [Update] so continue.
+                    control.XMLMapping.CustomXMLNode.Text = "[Update]";
+                    control.XMLMapping.CustomXMLNode.Text = tmp;
+                    control.DateDisplayFormat = dateFormat;
+                    i++;
+                }
+            }
+            catch
+            {
+                // Log and ignore - the control may have been deleted by the time this code runs
+            }
+        }
+
+        public static List<string> Unlock(this Wd.ContentControls controls)
+        {
+            var unlockedControls = new List<string>();
+            foreach (Wd.ContentControl control in controls)
+                if (control.LockContents)
+                {
+                    unlockedControls.Add(control.ID);
+                    control.LockContents = false;
+                }
+            return unlockedControls;
+        }
+
+        public static void Add(this Wd.ContentControlListEntries ListEntries, ObservableCollection<string> items)
+        {
+            ListEntries.Clear();
+            foreach (string item in items)
+                if (!string.IsNullOrEmpty(item))
+                    ListEntries.Add(item, item);
+        }
+
+        public static bool IsNamed(this Wd.ContentControl control, string name)
+        {
+            return Regex.IsMatch(control.Tag, name);
+        }
+
+        public static void Delete(this Wd.ContentControl control, bool DeleteContents, string BookmarkName)
+        {
+            if (control != null)
+            {
+                Wd.Range range = control.Range;
+                control.Delete(DeleteContents);
+                range.Bookmarks.Add(BookmarkName, range);
+            }
+        }
+
+        public static void DeleteControlAndSpace(this Wd.ContentControl control)
+        {
+            if (control != null)
+            {
+                Wd.Range range = control.Range;
+                control.Delete(true);
+                range.Delete();
+            }
+        }
+
+        public static void DeleteRow(this Wd.ContentControl control)
+        {
+            control.Range.Rows[1].Delete();
+        }
+
+        public static void DeleteRows(this Wd.ContentControl control, int count = 1)
+        {
+            Wd.Range range = control.Range;
+            for (int i = 0; i < count; i++)
+                range.Rows[1].Delete();
+        }
+
+        public static void DeleteParagraph(this Wd.ContentControl control)
+        {
+            if (control != null)
+                control.Range.Paragraphs[1].Range.Delete();
+        }
+
+        public static void DeleteParagraph(this Wd.ContentControl control, string BookmarkName)
+        {
+            if (control != null)
+            {
+                Wd.Range range = control.Range;
+                control.DeleteParagraph();
+                range.Bookmarks.Add(BookmarkName, range);
+            }
+        }
+
+        public static void DeleteLine(this Wd.ContentControl control)
+        {
+            var range = control.Range.Paragraphs[1].Range;
+            if (range.Text.Contains("\a"))
+            {
+                range = control.Range;
+                control.Delete(true);
+                range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
+                range.MoveStart(Wd.WdUnits.wdCharacter, -1);
+                if (!range.Text.Contains("\a"))
+                    range.Delete();
+            }
+            else
+                range.Delete();
+        }
+
+        public static void DeleteLine(this Wd.ContentControl control, string BookmarkName)
+        {
+            if (control != null)
+            {
+                Wd.Range range = control.Range;
+                control.DeleteLine();
+                range.Bookmarks.Add(BookmarkName, range);
+            }
+        }
+
+        public static void DeleteAndTrim(this Wd.ContentControl control)
+        {
+            var range = control.Range.Paragraphs[1].Range;
+            control.Delete(true);
+            if (range.Characters.Count == 1)
+                range.Delete();
+        }
+
+        public static string GetParentXPath(this Wd.ContentControl control)
+        {
+            string path = control.XMLMapping.XPath;
+            path = path.Substring(0, path.LastIndexOf('/'));
+            return path;
+        }
+
+        public static Wd.ContentControlListEntry SelectedItem(this Wd.ContentControlListEntries items)
+        {
+            foreach (Wd.ContentControlListEntry item in items)
+            {
+                var control = (Wd.ContentControl)items.Parent;
+                if (item.Text.ToLower() == control.Range.Text.ToLower())
+                    return item;
+            }
+            return null;
+        }
+
+        public static void DeleteParagraphAndRowIfEmpty(this Wd.ContentControl control)
+        {
+            Wd.Range range = control.Range;
+            range.Paragraphs[1].Range.Delete();
+            if (string.IsNullOrEmpty(range.Rows[1].Range.Text.Remove("\r\a")))
+                range.Rows[1].Delete();
+        }
+
+        public static void UpdateLanguageId(this Wd.ContentControls controls, Wd.WdLanguageID LanguageID)
+        {
+            foreach (Wd.ContentControl control in controls)
+            {
+                control.Range.LanguageID = Wd.WdLanguageID.wdEnglishUS; // Set the default for Asian languages when typing in English
+                control.Range.LanguageID = LanguageID;
+            }
+        }
+
+    }
+}

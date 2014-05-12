@@ -122,6 +122,14 @@ namespace GorillaDocs.Word
                     return true;
             return false;
         }
+        public static bool IsFourLevels(this Wd.TableOfContents toc)
+        {
+            Wd.Field field = toc.Range.Fields[1];
+            if (field.Type == Wd.WdFieldType.wdFieldTOC)
+                if (field.Code.Text.Contains("1-4"))
+                    return true;
+            return false;
+        }
 
         public static void UpdateOneLevel(this Wd.TableOfContents toc)
         {
@@ -134,6 +142,10 @@ namespace GorillaDocs.Word
         public static void UpdateThreeLevels(this Wd.TableOfContents toc)
         {
             toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\b ""{0}"" \o ""1-3"" \h \z ", Bookmark_TOCRange), false);
+        }
+        public static void UpdateFourLevels(this Wd.TableOfContents toc)
+        {
+            toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\b ""{0}"" \o ""1-4"" \h \z ", Bookmark_TOCRange), false);
         }
         static void UpdateTocBookmark(Wd.TablesOfContents tocs)
         {
