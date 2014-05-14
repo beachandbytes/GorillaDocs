@@ -292,5 +292,10 @@ namespace GorillaDocs.Word
             }
         }
 
+        public static void SetIndex(this Wd.ContentControl control, int Index)
+        {
+            if (control != null)
+                control.DropdownListEntries[Index].Select();
+        }
     }
 }

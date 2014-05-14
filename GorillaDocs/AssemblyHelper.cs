@@ -20,10 +20,9 @@ namespace GorillaDocs
 
         public static string Path(this Assembly assembly)
         {
-            Uri uri = new Uri(assembly.CodeBase);
-            string path = uri.LocalPath;
-            return path.Substring(0, path.LastIndexOf("\\"));
+            UriBuilder uri = new UriBuilder(assembly.CodeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+            return System.IO.Path.GetDirectoryName(path);
         }
-
     }
 }

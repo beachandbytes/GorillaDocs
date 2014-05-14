@@ -37,6 +37,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SecurityManager.2005, Version=6.2.3017.2005, Culture=neutral, PublicKeyToken=aa42cad61af07cf4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Aspose\SecurityManager.2005.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -50,12 +54,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyHelper.cs" />
+    <Compile Include="DecimalHelper.cs" />
     <Compile Include="ClipboardHelper.cs" />
     <Compile Include="CollectionHelper.cs" />
+    <Compile Include="DateTimeHelper.cs" />
     <Compile Include="InternationalAddressFormats.cs" />
     <Compile Include="IOHelper.cs" />
     <Compile Include="ObjectHelper.cs" />
     <Compile Include="OpenXml.cs" />
+    <Compile Include="OutlookSecurityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -68,6 +75,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Serializer.cs" />
+    <Compile Include="StringCollectionEnumerable.cs" />
+    <Compile Include="StringEnumeratorWrapper.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -97,8 +106,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="libs\Aspose\secman.dll" />
+    <Content Include="libs\Aspose\secman64.dll" />
+    <Content Include="libs\Aspose\SecurityManager.2005.dll" />
     <Content Include="libs\OpenXml\DocumentFormat.OpenXml.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

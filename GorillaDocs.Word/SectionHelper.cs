@@ -7,6 +7,30 @@ namespace GorillaDocs.Word
 {
     public static class SectionHelper
     {
+        public static Wd.Section AddSection(this Wd.Range range, Wd.WdBreakType BreakType = Wd.WdBreakType.wdSectionBreakNextPage)
+        {
+            range.InsertBreak(BreakType);
+            Wd.Section section = range.Sections[1];
+            foreach (Wd.HeaderFooter header in section.Headers)
+                header.LinkToPrevious = false;
+            foreach (Wd.HeaderFooter footer in section.Footers)
+                footer.LinkToPrevious = false;
+            return section;
+        }
+        public static Wd.Section AddSection(this Wd.Selection selection, Wd.WdBreakType BreakType = Wd.WdBreakType.wdSectionBreakNextPage)
+        {
+            return selection.Range.AddSection(BreakType);
+        }
+
+        public static bool IsStartOfSection(this Wd.Selection selection)
+        {
+            if (selection.Characters.First.Start == selection.Document.Characters.First.Start)
+                return true;
+            if (selection.Characters.First.Sections[1].Index != selection.Characters.First.Previous().Sections[1].Index)
+                return true;
+            return false;
+        }
+
         public static void Delete(this Wd.Section section)
         {
             var doc = section.Range.Document;
@@ -35,6 +59,10 @@ namespace GorillaDocs.Word
                 section.RestartNumbering();
                 section.Range.Delete();
             }
+        }
+        public static void DeleteSection(this Wd.Document doc, int i)
+        {
+            doc.Sections[i].Delete();
         }
 
         public static void RestartNumbering(this Wd.Section section)
@@ -72,6 +100,16 @@ namespace GorillaDocs.Word
             pageSetup.LeftMargin = leftMargin;
             pageSetup.RightMargin = rightMargin;
             pageSetup.BottomMargin = bottomMargin;
+        }
+
+        public static void ToggleOrientation(this Wd.Section section, float wideMargin, float narrowMargin)
+        {
+            section.ToggleOrientation();
+            Wd.PageSetup pageSetup = section.PageSetup;
+            if (pageSetup.RightMargin == wideMargin)
+                section.ReJigRightMarginObjects(wideMargin - narrowMargin);
+            else
+                section.ReJigRightMarginObjects();
         }
 
         public static void ReJigRightMarginObjects(this Wd.Section section, float narrowMargin, float wideMargin)

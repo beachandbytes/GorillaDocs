@@ -20,6 +20,11 @@ namespace GorillaDocs.Word
                 selection.set_Style(ref style);
             }
         }
+        public static void SetStyle(this Wd.Paragraph para, string styleName)
+        {
+            object style = para.Range.Document.Styles[styleName];
+            para.set_Style(ref style);
+        }
 
         public static void SetStyle(this Wd.Range range, object styleType)
         {
@@ -29,7 +34,16 @@ namespace GorillaDocs.Word
         {
             selection.set_Style(ref styleType);
         }
+        public static void SetStyle(this Wd.Paragraph para, object styleType)
+        {
+            para.set_Style(ref styleType);
+        }
 
+        public static bool IsStyle(this Wd.Paragraph para, string styleName)
+        {
+            Wd.Style style = (Wd.Style)para.get_Style();
+            return style.NameLocal == styleName;
+        }
         public static bool IsStyle(this Wd.Range range, string styleName)
         {
             Wd.Style style = (Wd.Style)range.get_Style();

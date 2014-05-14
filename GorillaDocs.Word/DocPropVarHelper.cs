@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Wd = Microsoft.Office.Interop.Word;
 using System.Reflection;
 using O = Microsoft.Office.Core;
+using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {

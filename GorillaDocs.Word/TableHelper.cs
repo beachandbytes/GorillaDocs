@@ -35,17 +35,17 @@ namespace GorillaDocs.Word
                 table.set_Style(style);
             if (Shaded)
             {
-                if (styles.Exists("Table Headings White"))
-                    table.Rows[1].Range.SetStyle("Table Headings White");
+                if (styles.Exists("Table Heading White"))
+                    table.Rows[1].Range.SetStyle("Table Heading White");
             }
             else
             {
-                if (styles.Exists("Table Headings"))
-                    table.Rows[1].Range.SetStyle("Table Headings");
+                if (styles.Exists("Table Heading"))
+                    table.Rows[1].Range.SetStyle("Table Heading");
             }
-            if (styles.Exists("Table Copy"))
+            if (styles.Exists("Table Text"))
                 for (int i = 2; i <= table.Rows.Count; i++)
-                    table.Rows[i].Range.SetStyle("Table Copy");
+                    table.Rows[i].Range.SetStyle("Table Text");
         }
         static void FormatVerticalTable(Wd.Table table, bool Shaded)
         {
@@ -57,20 +57,20 @@ namespace GorillaDocs.Word
                 table.set_Style(style);
             if (Shaded)
             {
-                if (styles.Exists("Table Headings White"))
+                if (styles.Exists("Table Heading White"))
                     foreach (Wd.Cell cell in table.Columns[1].Cells)
-                        cell.Range.SetStyle("Table Headings White");
+                        cell.Range.SetStyle("Table Heading White");
             }
             else
             {
-                if (styles.Exists("Table Headings"))
+                if (styles.Exists("Table Heading"))
                     foreach (Wd.Cell cell in table.Columns[1].Cells)
-                        cell.Range.SetStyle("Table Headings");
+                        cell.Range.SetStyle("Table Heading");
             }
-            if (styles.Exists("Table Copy"))
+            if (styles.Exists("Table Text"))
                 for (int i = 2; i <= table.Columns.Count; i++)
                     foreach (Wd.Cell cell in table.Columns[i].Cells)
-                        cell.Range.SetStyle("Table Copy");
+                        cell.Range.SetStyle("Table Text");
         }
 
         delegate void FormatTable(Wd.Table table, bool Shaded);
@@ -93,8 +93,8 @@ namespace GorillaDocs.Word
             {
                 range.InsertParagraphBefore();
                 range.Text = tableHeading + "\n";
-                if (range.Document.Styles.Exists("Table Heading"))
-                    range.SetStyle("Table Heading");
+                if (range.Document.Styles.Exists("Table Heading - External"))
+                    range.SetStyle("Table Heading - External");
                 range.InsertParagraphAfter();
                 range = range.Characters.Last;
             }
@@ -114,6 +114,15 @@ namespace GorillaDocs.Word
         public static bool ContainsTableCell(this Wd.Range range)
         {
             return range.Text.Contains("\r\a");
+        }
+
+        public static void SetAutoFit(this Wd.Tables tables)
+        {
+            foreach (Wd.Table table in tables)
+            {
+                table.AutoFitBehavior(Wd.WdAutoFitBehavior.wdAutoFitWindow);
+                table.AllowAutoFit = false;
+            }
         }
     }
 }

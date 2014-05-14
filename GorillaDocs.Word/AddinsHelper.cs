@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using O = Microsoft.Office.Core;
+using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
-    public static class COMAddinsHelper
+    public static class AddinsHelper
     {
         public static bool IsLoaded(this O.COMAddIns commAddins, string name)
         {
@@ -26,6 +27,20 @@ namespace GorillaDocs.Word
                 if (item.ProgId.Contains(name, StringComparison.OrdinalIgnoreCase))
                     return item;
             return null;
+        }
+
+        public static void Disable(this Wd.AddIns addins, string name)
+        {
+            foreach (Wd.AddIn addin in addins)
+                if (addin.Name == name)
+                    addin.Installed = false;
+        }
+
+        public static void Enable(this Wd.AddIns addins, string name)
+        {
+            foreach (Wd.AddIn addin in addins)
+                if (addin.Name == name)
+                    addin.Installed = true;
         }
     }
 }
