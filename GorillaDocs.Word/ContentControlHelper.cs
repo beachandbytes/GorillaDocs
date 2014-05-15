@@ -38,12 +38,25 @@ namespace GorillaDocs.Word
             return GetContentControls(controls).Find(x => Regex.IsMatch(x.Tag, TagPattern));
         }
 
+        public static Wd.ContentControl Add_Safely(this Wd.ContentControls controls, Wd.WdContentControlType type = Wd.WdContentControlType.wdContentControlRichText)
+        {
+            Handle_stupid_Word_bug_where_error_occurs_if_selection_is_in_control(controls);
+            return controls.Add(type);
+        }
+        
+        static void Handle_stupid_Word_bug_where_error_occurs_if_selection_is_in_control(Wd.ContentControls controls)
+        {
+            var selection = controls.Application.Selection;
+            if (selection.Range.InContentControl())
+                selection.Range.MoveOutOfContentControl().Select();
+        }
+
         public static bool InContentControl(this Wd.Range range)
         {
             return range.GetSurroundingContentControl() != null;
         }
 
-        public static void MoveOutOfContentControl(this Wd.Range range, Wd.WdCollapseDirection collapse = Wd.WdCollapseDirection.wdCollapseEnd)
+        public static Wd.Range MoveOutOfContentControl(this Wd.Range range, Wd.WdCollapseDirection collapse = Wd.WdCollapseDirection.wdCollapseEnd)
         {
             Wd.ContentControl control = range.GetSurroundingContentControl();
             if (control != null)
@@ -62,10 +75,26 @@ namespace GorillaDocs.Word
                     if (range.End <= control.Range.End)
                         range.End = control.Range.End + 1;
                 }
+            if (range.ContainsTableCell())
+                range.MoveEnd(Wd.WdUnits.wdCharacter, -1);
+            return range;
+        }
+
+        public static Wd.ContentControl First(this Wd.ContentControls controls)
+        {
+            return controls[1];
+        }
+        public static Wd.ContentControl Last(this Wd.ContentControls controls)
+        {
+            return controls[controls.Count];
         }
 
         public static Wd.ContentControl GetSurroundingContentControl(this Wd.Range range)
         {
+            // Word does some weird stuff with ranges and Content Controls
+            // If range is collapsed, then the control count ==0
+            // Also, If Range is exactly the same as the ContentControl.Range, the control count == 0. 
+            // So need to do some expand range weirdness..
             Wd.Range expanded = range.Duplicate;
             Wd.Document doc = range.Parent;
             expanded.Start = expanded.Document.Content.Start;
@@ -76,10 +105,10 @@ namespace GorillaDocs.Word
                 else
                 {
                     range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
-                    if (range.Text == null || range.Text.Length == 0)
-                        return doc.ContentControls[controlCount];
+                    return doc.ContentControls[controlCount];
                 }
-            return null;
+            else
+                return null;
         }
 
         public static void DeleteEmpty(this Wd.ContentControls controls)

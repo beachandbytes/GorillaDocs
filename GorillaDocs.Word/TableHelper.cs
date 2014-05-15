@@ -113,7 +113,7 @@ namespace GorillaDocs.Word
 
         public static bool ContainsTableCell(this Wd.Range range)
         {
-            return range.Text.Contains("\r\a");
+            return string.IsNullOrEmpty(range.Text) ? false : range.Text.Contains("\r\a");
         }
 
         public static void SetAutoFit(this Wd.Tables tables)
