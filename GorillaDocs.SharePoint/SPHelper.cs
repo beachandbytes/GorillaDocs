@@ -8,29 +8,59 @@ namespace GorillaDocs.SharePoint
 {
     public class SPHelper
     {
-        public delegate void GetLibrariesSuccessCallback(List<string> libraries);
+        public delegate void GetLibrariesSuccessCallback(List<SPLibrary> libraries);
         public delegate void GetFilesSuccessCallback(List<SPFile> files);
         public delegate void FailureCallback(AggregateException ae);
 
-        public static List<string> GetLibraries(string webUrl)
+        public static List<SPLibrary> GetLibraries(string webUrl)
         {
             var context = new ClientContext(webUrl);
             var web = context.Web;
             context.Load(web, w => w.Title, w => w.Description);
-            var query = from list in web.Lists.Include(l => l.Title)
+            var query = from list in web.Lists.Include(l => l.Title, l => l.Id)
                         where list.Hidden == false && list.BaseType == BaseType.DocumentLibrary
                         select list;
             var lists = context.LoadQuery(query);
             context.ExecuteQuery();
-            var libraries = new List<string>();
+
+            var libraries = new List<SPLibrary>();
             foreach (var list in lists)
-                libraries.Add(list.Title);
+                libraries.Add(new SPLibrary()
+                {
+                    Title = list.Title,
+                    Id = list.Id,
+                    WebUrl = webUrl
+                });
             return libraries;
+        }
+
+        public static SPLibrary GetLibrary(string webUrl, string Title)
+        {
+            var context = new ClientContext(webUrl);
+            var web = context.Web;
+            context.Load(web, w => w.Title, w => w.Description);
+            var query = from list in web.Lists.Include(l => l.Title, l => l.Id)
+                        where list.Hidden == false
+                            && list.BaseType == BaseType.DocumentLibrary
+                            && list.Title == Title
+                        select list;
+            var lists = context.LoadQuery(query);
+            context.ExecuteQuery();
+
+            if (lists.Count() == 1)
+                return new SPLibrary()
+                {
+                    Title = lists.First().Title,
+                    Id = lists.First().Id,
+                    WebUrl = webUrl
+                };
+            else
+                return null;
         }
 
         public static void GetLibraries_Async(string webUrl, GetLibrariesSuccessCallback SuccessCallback, FailureCallback FailureCallback)
         {
-            Task<List<string>> T = Task.Factory.StartNew(() =>
+            Task<List<SPLibrary>> T = Task.Factory.StartNew(() =>
                 {
                     return GetLibraries(webUrl);
                 });
@@ -55,7 +85,7 @@ namespace GorillaDocs.SharePoint
 
             var list = web.Lists.GetByTitle(libraryTitle);
             var files = list.RootFolder.Files;
-            context.Load(files, fs => fs.Include(f => f.Name));
+            context.Load(files, fs => fs.Include(f => f.Name, f => f.ETag, f => f.ServerRelativeUrl));
             context.ExecuteQuery();
 
             var items = new List<SPFile>();
@@ -65,9 +95,10 @@ namespace GorillaDocs.SharePoint
                     {
                         Name = file.Name.Substring(0, file.Name.LastIndexOf('.')),
                         Extension = file.Name.Substring(file.Name.LastIndexOf('.')),
-                        HashCode = file.GetHashCode()
+                        ETag = file.ETag,
+                        RemoteUrl = webUrl + file.ServerRelativeUrl
                     });
-            return items;
+            return new List<SPFile>(items.OrderBy(f => f.Name));
         }
 
         public static void GetFiles_Async(string webUrl, string libraryTitle, GetFilesSuccessCallback SuccessCallback, FailureCallback FailureCallback)

@@ -69,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeHelpers.cs" />
     <Compile Include="SectionHelper.cs" />
+    <Compile Include="ShapeHelper.cs" />
     <Compile Include="StyleHelpers.cs" />
     <Compile Include="TableHelper.cs" />
     <Compile Include="TableOfContentsHelper.cs" />

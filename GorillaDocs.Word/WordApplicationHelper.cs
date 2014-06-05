@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
@@ -33,7 +34,7 @@ namespace GorillaDocs.Word
         static Wd.Application CreateWordApp()
         {
             var wordApp = new Wd.Application() { Visible = true };
-            wordApp.Activate();
+            wordApp.Activate(true);
             return wordApp;
         }
 
@@ -44,6 +45,27 @@ namespace GorillaDocs.Word
                     return true;
             return false;
         }
+    }
 
+    public static class WordApplicationExtensionMethods
+    {
+        public static void Activate(this Wd.Application app, bool WaitIfBusy = false, int RetryAttempt = 0)
+        {
+            try
+            {
+                app.Activate();
+            }
+            catch (COMException ex)
+            {
+                if (ex.ErrorCode == -2146823687) // Cannot activate application
+                    if (WaitIfBusy && RetryAttempt < 10)
+                    {
+                        System.Threading.Thread.Sleep(2000);
+                        app.Activate(WaitIfBusy, ++RetryAttempt);
+                    }
+                    else
+                        throw ex;
+            }
+        }
     }
 }

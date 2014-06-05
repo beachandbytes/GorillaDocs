@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using GorillaDocs.SharePoint;
 using System.Threading;
+using System.IO;
 
 namespace GorillaDocs.IntegrationTests
 {
@@ -31,7 +32,7 @@ namespace GorillaDocs.IntegrationTests
             SPHelper.GetLibraries_Async(webUrl, GetLibrariesSuccessMethod, null);
             WaitForCallback();
         }
-        void GetLibrariesSuccessMethod(List<string> libraries)
+        void GetLibrariesSuccessMethod(List<SPLibrary> libraries)
         {
             ReturnedToCallback = true;
             Assert.That(libraries.Count > 0);
@@ -63,6 +64,21 @@ namespace GorillaDocs.IntegrationTests
         {
             var files = SPHelper.GetFiles(webUrl, "Precedents", new String[] { ".doc", ".docx", ".dot", ".dotx" });
             Assert.That(files != null);
+        }
+
+        [Test]
+        public void That_no_errors_occur_when_downloading_a_file()
+        {
+            var files = SPHelper.GetFiles(webUrl, "Precedents", new String[] { ".doc", ".docx", ".dot", ".dotx" });
+            files.First().Download(new DirectoryInfo(Path.GetTempPath() + "\\GorillaDocs"));
+        }
+
+        [Test]
+        public void That_the_files_list_serializes()
+        {
+            var files = SPHelper.GetFiles(webUrl, "Precedents", new String[] { ".doc", ".docx", ".dot", ".dotx" });
+            var result = Serializer.SerializeToString(files);
+            Assert.That(!string.IsNullOrEmpty(result));
         }
 
         [Test]
@@ -101,5 +117,7 @@ namespace GorillaDocs.IntegrationTests
                     return;
             }
         }
+
+
     }
 }

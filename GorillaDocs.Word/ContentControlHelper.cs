@@ -43,17 +43,24 @@ namespace GorillaDocs.Word
             Handle_stupid_Word_bug_where_error_occurs_if_selection_is_in_control(controls);
             return controls.Add(type);
         }
-        
+
         static void Handle_stupid_Word_bug_where_error_occurs_if_selection_is_in_control(Wd.ContentControls controls)
         {
             var selection = controls.Application.Selection;
-            if (selection.Range.InContentControl())
+            if (selection.Range.InContentControlOrContainsControls())
                 selection.Range.MoveOutOfContentControl().Select();
         }
 
         public static bool InContentControl(this Wd.Range range)
         {
-            return range.GetSurroundingContentControl() != null;
+            Wd.Document doc = range.Parent;
+            Wd.ContentControl control = doc.GetControlInRange(range);
+            return control != null;
+        }
+
+        public static bool InContentControlOrContainsControls(this Wd.Range range)
+        {
+            return range.ContentControls.Count > 0 || range.InContentControl();
         }
 
         public static Wd.Range MoveOutOfContentControl(this Wd.Range range, Wd.WdCollapseDirection collapse = Wd.WdCollapseDirection.wdCollapseEnd)
@@ -91,24 +98,38 @@ namespace GorillaDocs.Word
 
         public static Wd.ContentControl GetSurroundingContentControl(this Wd.Range range)
         {
-            // Word does some weird stuff with ranges and Content Controls
-            // If range is collapsed, then the control count ==0
-            // Also, If Range is exactly the same as the ContentControl.Range, the control count == 0. 
-            // So need to do some expand range weirdness..
-            Wd.Range expanded = range.Duplicate;
             Wd.Document doc = range.Parent;
-            expanded.Start = expanded.Document.Content.Start;
-            int controlCount = expanded.ContentControls.Count;
+            var controlCount = range.ContentControls.Count;
             if (controlCount > 0)
-                if (range.InRange(doc.ContentControls[controlCount].Range))
-                    return doc.ContentControls[controlCount];
-                else
-                {
-                    range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
-                    return doc.ContentControls[controlCount];
-                }
+                return range.ContentControls[controlCount];
             else
+                return GetControlInRange(doc, range);
+        }
+
+        public static Wd.ContentControl GetControlInRange(this Wd.Document doc, Wd.Range range)
+        {
+            // Use Temporary rage so that range is not modified by this routine.
+            Wd.Range temp = range.Duplicate;
+            Wd.Range selection = doc.Application.Selection.Range;
+            try
+            {
+                ModifyRangeIfCollapsedBecauseTestBelowOnlyWorksIfControlIsEmpty(temp);
+                temp.Select(); // Word Bug: The condition below does not always work if the range has not first been selected.
+                foreach (Wd.ContentControl control in doc.ContentControls)
+                    if (doc.Application.Selection.Range.InRange(control.Range))
+                        return control;
                 return null;
+            }
+            finally
+            {
+                selection.Select();
+            }
+        }
+
+        static void ModifyRangeIfCollapsedBecauseTestBelowOnlyWorksIfControlIsEmpty(Wd.Range range)
+        {
+            if (range.Start == range.End)
+                range.MoveStart(Wd.WdUnits.wdCharacter, -1);
         }
 
         public static void DeleteEmpty(this Wd.ContentControls controls)

@@ -23,7 +23,7 @@ namespace GorillaDocs.Word
 
         public static Wd.Range InsertFromTemplate(this Wd.Range range, string BookmarkName)
         {
-            if (range.IsCollapsed() && range.InContentControl())
+            if (range.IsCollapsed() && range.InContentControlOrContainsControls())
                 range.MoveOutOfContentControl();
 
             ((Wd.Document)range.Parent).Bookmarks.Delete(BookmarkName);
@@ -49,7 +49,7 @@ namespace GorillaDocs.Word
 
         public static Wd.Range InsertFromFile(this Wd.Range range, string Path, string BookmarkName)
         {
-            if (range.IsCollapsed() && range.InContentControl())
+            if (range.IsCollapsed() && range.InContentControlOrContainsControls())
                 range.MoveOutOfContentControl();
 
             ((Wd.Document)range.Parent).Bookmarks.Delete(BookmarkName);
