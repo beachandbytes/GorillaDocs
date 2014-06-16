@@ -1,4 +1,5 @@
 ﻿using Microsoft.SharePoint.Client;
+using Microsoft.SharePoint.Client.Taxonomy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,19 +86,23 @@ namespace GorillaDocs.SharePoint
 
             var list = web.Lists.GetByTitle(libraryTitle);
             var files = list.RootFolder.Files;
-            context.Load(files, fs => fs.Include(f => f.Name, f => f.ETag, f => f.ServerRelativeUrl));
+            context.Load(files, fs => fs.Include(f => f.Name, f => f.ETag, f => f.ServerRelativeUrl, f => f.ListItemAllFields));
             context.ExecuteQuery();
 
             var items = new List<SPFile>();
             foreach (File file in files)
                 if (extensions == null || extensions.Any(ext => file.Name.EndsWith(ext)))
+                {
+                    var listitem = file.ListItemAllFields;
                     items.Add(new SPFile()
                     {
                         Name = file.Name.Substring(0, file.Name.LastIndexOf('.')),
                         Extension = file.Name.Substring(file.Name.LastIndexOf('.')),
                         ETag = file.ETag,
-                        RemoteUrl = webUrl + file.ServerRelativeUrl
+                        RemoteUrl = webUrl + file.ServerRelativeUrl,
+                        Category = Convert.ToString(listitem.FieldValues["Category"])
                     });
+                }
             return new List<SPFile>(items.OrderBy(f => f.Name));
         }
 
@@ -105,7 +110,7 @@ namespace GorillaDocs.SharePoint
         {
             Task<List<SPFile>> T = Task.Factory.StartNew(() =>
             {
-                return GetFiles(webUrl, libraryTitle);
+                return GetFiles(webUrl, libraryTitle, null);
             });
 
             T.ContinueWith((antecedent) =>
@@ -120,5 +125,45 @@ namespace GorillaDocs.SharePoint
                 }
             });
         }
+
+        public static TermStoreCollection GetTaxonomyTermStores(string webUrl)
+        {
+            var context = new ClientContext(webUrl);
+            var termStores = TaxonomySession.GetTaxonomySession(context).TermStores;
+            context.Load(termStores);
+            context.ExecuteQuery();
+            return termStores;
+        }
+
+        public static TermGroupCollection GetTaxonomyTermGroups(string webUrl, Guid termStoreId)
+        {
+            var context = new ClientContext(webUrl);
+            var termStores = TaxonomySession.GetTaxonomySession(context).TermStores;
+            context.Load(termStores);
+            context.ExecuteQuery();
+            var termStore = termStores.Where(t => t.Id == termStoreId).FirstOrDefault();
+            var termGroups = termStore.Groups;
+            context.Load(termGroups);
+            context.ExecuteQuery();
+            return termGroups;
+        }
+
+        public static TermSetCollection GetTaxonomyTermSets(string webUrl, Guid termStoreId, Guid groupId)
+        {
+            var context = new ClientContext(webUrl);
+            var termStores = TaxonomySession.GetTaxonomySession(context).TermStores;
+            context.Load(termStores);
+            context.ExecuteQuery();
+            var termStore = termStores.Where(t => t.Id == termStoreId).FirstOrDefault();
+            var termGroups = termStore.Groups;
+            context.Load(termGroups);
+            context.ExecuteQuery();
+            var termGroup = termGroups.Where(t => t.Id == groupId).FirstOrDefault();
+            var termSets = termGroup.TermSets;
+            context.Load(termSets);
+            context.ExecuteQuery();
+            return termSets;
+        }
+
     }
 }

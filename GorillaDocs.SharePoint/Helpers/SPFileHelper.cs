@@ -9,11 +9,14 @@ namespace GorillaDocs.SharePoint
 {
     public static class SPFileHelper
     {
-        public static void Download(this SPFile file, DirectoryInfo folder)
+        public static void Download(this SPFile file, DirectoryInfo folder, ICredentials credentials = null)
         {
             using (var client = new WebClient())
             {
-                client.UseDefaultCredentials = true;
+                if (credentials == null)
+                    client.UseDefaultCredentials = true;
+                else
+                    client.Credentials = credentials;
                 file.SetLocalFullName(folder);
                 client.DownloadFile(file.RemoteUrl, file.LocalFullName);
             }
