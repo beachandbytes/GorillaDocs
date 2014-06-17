@@ -89,6 +89,11 @@
     <Compile Include="StringCollectionEnumerable.cs" />
     <Compile Include="StringEnumeratorWrapper.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="strings\strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GenericCommand.cs" />
@@ -109,6 +114,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="strings\strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="strings\strings.zh-CHS.resx" />
+    <EmbeddedResource Include="strings\strings.zh-CHT.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
