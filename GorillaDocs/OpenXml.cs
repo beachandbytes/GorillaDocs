@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GorillaDocs.libs.PostSharp;
 using System.IO;
-using System.Linq;
-using OX = DocumentFormat.OpenXml;
-using System.Xml.Linq;
 using System.Xml;
+using System.Xml.Linq;
+using OX = DocumentFormat.OpenXml;
 
 namespace GorillaDocs
 {
+    [Log]
     public class OpenXml
     {
         public static XElement GetCustomXML(FileInfo file, string ns)

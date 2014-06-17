@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public static class RangeHelpers
     {
         public static void Remove(this Wd.Range range, string value)

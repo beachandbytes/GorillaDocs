@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Globalization;
-using System.Linq;
 
 namespace GorillaDocs
 {
+    [Log]
     public static class DateTimeHelper
     {
         public static DateTime? AsNullableDateTime(this string value, CultureInfo culture)

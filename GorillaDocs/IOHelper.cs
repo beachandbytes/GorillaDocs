@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace GorillaDocs
 {
+    // No LOG Attribute - Can not log because this code is called by the logging code
     public static class IOHelper
     {
         public static string NameWithoutExtension(this FileInfo file)

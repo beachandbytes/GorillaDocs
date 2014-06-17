@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
 namespace GorillaDocs.ViewModels
 {
+    [Log]
     public class AddTableViewModel : BaseViewModel
     {
         public AddTableViewModel()

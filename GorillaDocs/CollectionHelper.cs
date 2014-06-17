@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GorillaDocs
 {
+    [Log]
     public static class CollectionHelper
     {
         public static T ReplaceAndReturn<T>(this IList<T> collection, T find, T replace)

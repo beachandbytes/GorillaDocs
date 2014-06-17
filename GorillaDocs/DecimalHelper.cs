@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
 namespace GorillaDocs
 {
+    [Log]
     public static class DecimalHelper
     {
         public static string AsDecimalString(this string value, CultureInfo culture)

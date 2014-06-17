@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace GorillaDocs
 {
+    [Log]
     public class ClipboardHelper
     {
         [DllImport("user32.dll", EntryPoint = "OpenClipboard", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]

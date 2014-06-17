@@ -1,8 +1,10 @@
-﻿using O = Microsoft.Office.Core;
+﻿using GorillaDocs.libs.PostSharp;
+using O = Microsoft.Office.Core;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public static class FieldsHelper
     {
         public static void UpdateFields(this Wd.HeaderFooter headerfooter)

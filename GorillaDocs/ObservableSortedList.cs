@@ -1,20 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
 namespace GorillaDocs
 {
-    /// <summary>
-    ///     Implements an observable collection which maintains its items in sorted order. In particular, items remain sorted
-    ///     when changes are made to their properties: they are reordered automatically when necessary to keep them sorted.</summary>
-    /// <remarks>
-    ///     <para>This class currently requires <typeparamref name="T" /> to be a reference type. This is because a couple of
-    ///     methods operate on the basis of reference equality instead of the comparison used for sorting. As implemented,
-    ///     their behaviour for value types would be somewhat unexpected.</para>
-    ///     <para>The INotifyCollectionChange interface is fairly complicated and relatively poorly documented (see
-    ///     http://stackoverflow.com/a/5883947/33080 for example), increasing the likelihood of bugs. And there are currently
-    ///     no unit tests. There could well be bugs in this code.</para></remarks>
+    [Log]
     public class ObservableSortedList<T> : IList<T>,
         INotifyPropertyChanged,
         INotifyCollectionChanged

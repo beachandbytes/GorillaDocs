@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using O = Microsoft.Office.Core;
@@ -6,6 +7,7 @@ using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public static class BuildingBlockHelper
     {
         public static Wd.Range Insert(this Wd.BuildingBlock buildingblock, Wd.Range Where, object RichText, O.MsoLanguageID cultureID)

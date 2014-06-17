@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace GorillaDocs.SharePoint
 {
+    [Log]
     public static class SPFileHelper
     {
         public static void Download(this SPFile file, DirectoryInfo folder, ICredentials credentials = null)

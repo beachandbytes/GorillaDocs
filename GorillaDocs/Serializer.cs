@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Xml.Serialization;
 
 namespace GorillaDocs
 {
+    [Log]
     public class Serializer
     {
         /// <summary>

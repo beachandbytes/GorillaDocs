@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +8,7 @@ using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public class WordApplicationHelper
     {
         public static Wd.Application GetWordApplication()
@@ -47,6 +49,7 @@ namespace GorillaDocs.Word
         }
     }
 
+    [Log]
     public static class WordApplicationExtensionMethods
     {
         public static void Activate(this Wd.Application app, bool WaitIfBusy = false, int RetryAttempt = 0)

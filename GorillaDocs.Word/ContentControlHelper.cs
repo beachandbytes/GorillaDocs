@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public static class ContentControlHelper
     {
         static List<Wd.ContentControl> GetContentControls(Wd.ContentControls ContentControls)

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
 namespace GorillaDocs
 {
+    [Log]
     public class InternationalAddressFormats
     {
         //http://msdn.microsoft.com/en-us/library/cc195167.aspx

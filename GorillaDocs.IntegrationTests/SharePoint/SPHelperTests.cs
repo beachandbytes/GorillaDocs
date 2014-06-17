@@ -15,7 +15,7 @@ namespace GorillaDocs.IntegrationTests
     [TestFixture]
     public class SPHelperTests
     {
-        const string webUrl = "https://portal.macroview.com.au";
+        const string webUrl = "http://mvsp13.macroview.com.au";
         const string Wrong_Url = "http://somesite.com";
         const string Wrong_Title = "Wrong_Title";
         bool ReturnedToCallback = false;

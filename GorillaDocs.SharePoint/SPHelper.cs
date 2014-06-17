@@ -1,4 +1,5 @@
-﻿using Microsoft.SharePoint.Client;
+﻿using GorillaDocs.libs.PostSharp;
+using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Taxonomy;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace GorillaDocs.SharePoint
 {
+    [Log]
     public class SPHelper
     {
         public delegate void GetLibrariesSuccessCallback(List<SPLibrary> libraries);

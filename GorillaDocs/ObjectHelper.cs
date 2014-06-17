@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace GorillaDocs
 {
+    // No LOG Attribute - Can not log because this code is called by the logging code
     public static class ObjectHelper
     {
         public static Type NullableGetType(this Object obj)

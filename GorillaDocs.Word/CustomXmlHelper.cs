@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -6,6 +7,7 @@ using O = Microsoft.Office.Core;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public static class CustomXmlHelper
     {
         public static DateTime GetNodeDate(this O.CustomXMLPart part, string NodeName, CultureInfo culture)

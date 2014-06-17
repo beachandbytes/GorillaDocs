@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
 namespace GorillaDocs.Views
 {
+    [Log]
     public static class DialogCloser
     {
         public static readonly DependencyProperty DialogResultProperty =

@@ -1,3 +1,4 @@
+using GorillaDocs.libs.PostSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -5,6 +6,7 @@ using System.Linq;
 
 namespace GorillaDocs
 {
+    [Log]
     public class StringCollectionEnumerable : IEnumerable<string>
     {
         readonly StringCollection underlyingCollection;

@@ -8,6 +8,7 @@ using System.Windows;
 
 namespace GorillaDocs
 {
+    // No LOG Attribute - Can not log because this code is called by the logging code
     public class Message
     {
         public static void Configure(FileInfo ConfigFile, string LogLevel)

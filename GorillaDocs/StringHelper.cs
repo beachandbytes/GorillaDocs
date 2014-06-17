@@ -1,9 +1,11 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace GorillaDocs
 {
+    [Log]
     public static class StringHelper
     {
         public static string ToRoman(this int number)

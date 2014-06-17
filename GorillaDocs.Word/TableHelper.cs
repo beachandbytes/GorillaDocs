@@ -1,4 +1,5 @@
-﻿using GorillaDocs.ViewModels;
+﻿using GorillaDocs.libs.PostSharp;
+using GorillaDocs.ViewModels;
 using GorillaDocs.Views;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public static class TableHelper
     {
         public static void InsertTableHorizontal(this Wd.Range range)

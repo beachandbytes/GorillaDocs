@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GorillaDocs.libs.PostSharp;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
 namespace GorillaDocs
 {
+    [Log]
     public class StringEnumeratorWrapper : IEnumerator<string>
     {
         readonly StringEnumerator underlyingEnumerator;
