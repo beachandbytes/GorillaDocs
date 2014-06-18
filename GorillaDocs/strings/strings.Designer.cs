@@ -61,884 +61,281 @@ namespace GorillaDocs.strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agenda.
-        /// </summary>
-        public static string Agenda_Agenda {
-            get {
-                return ResourceManager.GetString("Agenda_Agenda", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date/Time.
-        /// </summary>
-        public static string Agenda_DateTime {
-            get {
-                return ResourceManager.GetString("Agenda_DateTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Item.
-        /// </summary>
-        public static string Agenda_Item {
-            get {
-                return ResourceManager.GetString("Agenda_Item", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Speaker.
-        /// </summary>
-        public static string Agenda_Speaker {
-            get {
-                return ResourceManager.GetString("Agenda_Speaker", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Agreement.
-        /// </summary>
-        public static string Agreement_Agreement {
-            get {
-                return ResourceManager.GetString("Agreement_Agreement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to and.
-        /// </summary>
-        public static string Agreement_And {
-            get {
-                return ResourceManager.GetString("Agreement_And", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Annexure.
-        /// </summary>
-        public static string Agreement_Annexure {
-            get {
-                return ResourceManager.GetString("Agreement_Annexure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ARTICLE.
-        /// </summary>
-        public static string Agreement_Article {
-            get {
-                return ResourceManager.GetString("Agreement_Article", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to as a deed.
-        /// </summary>
-        public static string Agreement_AsADeed {
-            get {
-                return ResourceManager.GetString("Agreement_AsADeed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to as an agreement.
-        /// </summary>
-        public static string Agreement_AsAnAgreement {
-            get {
-                return ResourceManager.GetString("Agreement_AsAnAgreement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Between.
-        /// </summary>
-        public static string Agreement_Between {
-            get {
-                return ResourceManager.GetString("Agreement_Between", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to between.
-        /// </summary>
-        public static string Agreement_Between_Lower {
-            get {
-                return ResourceManager.GetString("Agreement_Between_Lower", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to By.
-        /// </summary>
-        public static string Agreement_By_ExecutionSignoff {
-            get {
-                return ResourceManager.GetString("Agreement_By_ExecutionSignoff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to by.
-        /// </summary>
-        public static string Agreement_By_Lower {
-            get {
-                return ResourceManager.GetString("Agreement_By_Lower", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to By.
-        /// </summary>
-        public static string Agreement_By_Upper {
-            get {
-                return ResourceManager.GetString("Agreement_By_Upper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert consideration language.
-        /// </summary>
-        public static string Agreement_ConsiderationLanguage {
-            get {
-                return ResourceManager.GetString("Agreement_ConsiderationLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to dated.
-        /// </summary>
-        public static string Agreement_Dated {
-            get {
-                return ResourceManager.GetString("Agreement_Dated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Deed.
-        /// </summary>
-        public static string Agreement_Deed {
-            get {
-                return ResourceManager.GetString("Agreement_Deed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Draft.
-        /// </summary>
-        public static string Agreement_Draft {
-            get {
-                return ResourceManager.GetString("Agreement_Draft", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Executed.
-        /// </summary>
-        public static string Agreement_Executed {
-            get {
-                return ResourceManager.GetString("Agreement_Executed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Execution.
-        /// </summary>
-        public static string Agreement_Execution {
-            get {
-                return ResourceManager.GetString("Agreement_Execution", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Execution Counterpart.
-        /// </summary>
-        public static string Agreement_ExecutionCounterpart {
-            get {
-                return ResourceManager.GetString("Agreement_ExecutionCounterpart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert execution language and signoff.
-        /// </summary>
-        public static string Agreement_ExecutionLanguage {
-            get {
-                return ResourceManager.GetString("Agreement_ExecutionLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exhibit.
-        /// </summary>
-        public static string Agreement_Exhibit {
-            get {
-                return ResourceManager.GetString("Agreement_Exhibit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert Agreement Title.
-        /// </summary>
-        public static string Agreement_InsertAgreementTitle {
-            get {
-                return ResourceManager.GetString("Agreement_InsertAgreementTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert appropriate execution clause for each party here.
-        /// </summary>
-        public static string Agreement_InsertAppropriateAttestationClauseForEachPartyHere {
-            get {
-                return ResourceManager.GetString("Agreement_InsertAppropriateAttestationClauseForEachPartyHere", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert Date.
-        /// </summary>
-        public static string Agreement_InsertDate {
-            get {
-                return ResourceManager.GetString("Agreement_InsertDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert transaction role.
-        /// </summary>
-        public static string Agreement_InsertPartyDescription {
-            get {
-                return ResourceManager.GetString("Agreement_InsertPartyDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to INSERT FULL ENTITY/INDIVIDUAL NAME.
-        /// </summary>
-        public static string Agreement_InsertPartyName {
-            get {
-                return ResourceManager.GetString("Agreement_InsertPartyName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        public static string Agreement_Name {
-            get {
-                return ResourceManager.GetString("Agreement_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Number.
-        /// </summary>
-        public static string Agreement_Number {
-            get {
-                return ResourceManager.GetString("Agreement_Number", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Operative provisions.
-        /// </summary>
-        public static string Agreement_OperativeProvisions {
-            get {
-                return ResourceManager.GetString("Agreement_OperativeProvisions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Parties.
-        /// </summary>
-        public static string Agreement_Parties {
-            get {
-                return ResourceManager.GetString("Agreement_Parties", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert defined name.
-        /// </summary>
-        public static string Agreement_PreambleInsertPartyDefined {
-            get {
-                return ResourceManager.GetString("Agreement_PreambleInsertPartyDefined", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert identifying information.
-        /// </summary>
-        public static string Agreement_PreambleInsertPartyInfo {
-            get {
-                return ResourceManager.GetString("Agreement_PreambleInsertPartyInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert full entity/individual name.
-        /// </summary>
-        public static string Agreement_PreambleInsertPartyName {
-            get {
-                return ResourceManager.GetString("Agreement_PreambleInsertPartyName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recitals.
-        /// </summary>
-        public static string Agreement_Recitals {
-            get {
-                return ResourceManager.GetString("Agreement_Recitals", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Schedule.
-        /// </summary>
-        public static string Agreement_Schedule {
-            get {
-                return ResourceManager.GetString("Agreement_Schedule", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Table of contents.
-        /// </summary>
-        public static string Agreement_TableOfContents {
-            get {
-                return ResourceManager.GetString("Agreement_TableOfContents", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This.
-        /// </summary>
-        public static string Agreement_This {
-            get {
-                return ResourceManager.GetString("Agreement_This", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;This Agreement&lt;/b&gt; is dated.
-        /// </summary>
-        public static string Agreement_ThisAgreementIsDated {
-            get {
-                return ResourceManager.GetString("Agreement_ThisAgreementIsDated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (this &quot;&lt;b&gt;Agreement&lt;/b&gt;&quot;) is dated.
-        /// </summary>
-        public static string Agreement_ThisAgreementIsDated_WithParenthesis {
-            get {
-                return ResourceManager.GetString("Agreement_ThisAgreementIsDated_WithParenthesis", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Title.
-        /// </summary>
-        public static string Agreement_Title {
-            get {
-                return ResourceManager.GetString("Agreement_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date.
-        /// </summary>
-        public static string AusAgreement_Date {
-            get {
-                return ResourceManager.GetString("AusAgreement_Date", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Attention:.
-        /// </summary>
-        public static string Corr_Attention {
-            get {
-                return ResourceManager.GetString("Corr_Attention", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bcc:.
-        /// </summary>
-        public static string Corr_BCC {
-            get {
-                return ResourceManager.GetString("Corr_BCC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Begin typing here.
-        /// </summary>
-        public static string Corr_BeginTypingHere {
-            get {
-                return ResourceManager.GetString("Corr_BeginTypingHere", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cc:.
-        /// </summary>
-        public static string Corr_CC {
-            get {
-                return ResourceManager.GetString("Corr_CC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date:.
-        /// </summary>
-        public static string Corr_Date {
-            get {
-                return ResourceManager.GetString("Corr_Date", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dear .
-        /// </summary>
-        public static string Corr_Dear {
-            get {
-                return ResourceManager.GetString("Corr_Dear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recipient.
-        /// </summary>
-        public static string Corr_Delivery {
-            get {
-                return ResourceManager.GetString("Corr_Delivery", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to :.
-        /// </summary>
-        public static string Corr_DeliveryColon {
-            get {
-                return ResourceManager.GetString("Corr_DeliveryColon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Encl.
-        /// </summary>
-        public static string Corr_Encl {
-            get {
-                return ResourceManager.GetString("Corr_Encl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Facsimile Transmission.
-        /// </summary>
-        public static string Corr_FacsimileTransmission {
-            get {
-                return ResourceManager.GetString("Corr_FacsimileTransmission", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fax:.
-        /// </summary>
-        public static string Corr_Fax {
-            get {
-                return ResourceManager.GetString("Corr_Fax", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to From:.
-        /// </summary>
-        public static string Corr_From {
-            get {
-                return ResourceManager.GetString("Corr_From", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Memorandum.
-        /// </summary>
-        public static string Corr_Memorandum {
-            get {
-                return ResourceManager.GetString("Corr_Memorandum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Other contact:.
-        /// </summary>
-        public static string Corr_OtherContact {
-            get {
-                return ResourceManager.GetString("Corr_OtherContact", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Our ref: .
-        /// </summary>
-        public static string Corr_OurRef {
-            get {
-                return ResourceManager.GetString("Corr_OurRef", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pages (w/cover):.
-        /// </summary>
-        public static string Corr_Pages {
-            get {
-                return ResourceManager.GetString("Corr_Pages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Re:.
-        /// </summary>
-        public static string Corr_Re {
-            get {
-                return ResourceManager.GetString("Corr_Re", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ref:.
-        /// </summary>
-        public static string Corr_Ref {
-            get {
-                return ResourceManager.GetString("Corr_Ref", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tel:.
-        /// </summary>
-        public static string Corr_Tel {
-            get {
-                return ResourceManager.GetString("Corr_Tel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To:.
-        /// </summary>
-        public static string Corr_To {
-            get {
-                return ResourceManager.GetString("Corr_To", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your ref: .
-        /// </summary>
-        public static string Corr_YourRef {
-            get {
-                return ResourceManager.GetString("Corr_YourRef", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Address.
-        /// </summary>
-        public static string CV_Address {
-            get {
-                return ResourceManager.GetString("CV_Address", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Areas of expertise.
-        /// </summary>
-        public static string CV_AreasOfExpertise {
-            get {
-                return ResourceManager.GetString("CV_AreasOfExpertise", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Awards and rankings.
-        /// </summary>
-        public static string CV_AwardsAndRankings {
-            get {
-                return ResourceManager.GetString("CV_AwardsAndRankings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Baker &amp; McKenzie.
-        /// </summary>
-        public static string CV_BakerAndMcKenzie {
-            get {
-                return ResourceManager.GetString("CV_BakerAndMcKenzie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country.
-        /// </summary>
-        public static string CV_Country {
-            get {
-                return ResourceManager.GetString("CV_Country", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Education and admission.
-        /// </summary>
-        public static string CV_EducationAndAdmission {
-            get {
-                return ResourceManager.GetString("CV_EducationAndAdmission", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fax.
-        /// </summary>
-        public static string CV_Fax {
-            get {
-                return ResourceManager.GetString("CV_Fax", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Global areas of practice.
-        /// </summary>
-        public static string CV_GlobalAreas {
-            get {
-                return ResourceManager.GetString("CV_GlobalAreas", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert photo here.
-        /// </summary>
-        public static string CV_InsertPhotoHere {
-            get {
-                return ResourceManager.GetString("CV_InsertPhotoHere", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Languages.
-        /// </summary>
-        public static string CV_Languages {
-            get {
-                return ResourceManager.GetString("CV_Languages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Office.
-        /// </summary>
-        public static string CV_Office {
-            get {
-                return ResourceManager.GetString("CV_Office", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phone.
-        /// </summary>
-        public static string CV_Phone {
-            get {
-                return ResourceManager.GetString("CV_Phone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Practice description.
-        /// </summary>
-        public static string CV_PracticeDescription {
-            get {
-                return ResourceManager.GetString("CV_PracticeDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Practice focus.
-        /// </summary>
-        public static string CV_PracticeFocus {
-            get {
-                return ResourceManager.GetString("CV_PracticeFocus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pro bono and community involvement.
-        /// </summary>
-        public static string CV_ProBonoAndCommunityInvolvement {
-            get {
-                return ResourceManager.GetString("CV_ProBonoAndCommunityInvolvement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Professional affiliations.
-        /// </summary>
-        public static string CV_ProfessionalAffiliations {
-            get {
-                return ResourceManager.GetString("CV_ProfessionalAffiliations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Publications, presentations and articles.
-        /// </summary>
-        public static string CV_PublicationsPresentationsAndArticles {
-            get {
-                return ResourceManager.GetString("CV_PublicationsPresentationsAndArticles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Representative clients, cases or matters.
-        /// </summary>
-        public static string CV_RepresentativeClientsCasesOrMatters {
-            get {
-                return ResourceManager.GetString("CV_RepresentativeClientsCasesOrMatters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Title.
-        /// </summary>
-        public static string CV_Title {
-            get {
-                return ResourceManager.GetString("CV_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type text.
-        /// </summary>
-        public static string CV_TypeText {
-            get {
-                return ResourceManager.GetString("CV_TypeText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Baker &amp; McKenzie International is a Swiss Verein with member law firms around the world.  In accordance with the common terminology used in professional service organizations, reference to a &quot;partner&quot; means a person who is a partner, or equivalent, in such a law firm.  Similarly, reference to an &quot;office&quot; means an office of any such law firm..
-        /// </summary>
-        public static string Generic_Marketing_Disclaimer {
-            get {
-                return ResourceManager.GetString("Generic_Marketing_Disclaimer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to All rights reserved..
         /// </summary>
-        public static string Pitch_AllRightsReserved {
+        public static string All_rights_reserved {
             get {
-                return ResourceManager.GetString("Pitch_AllRightsReserved", resourceCulture);
+                return ResourceManager.GetString("All_rights_reserved", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Appendix.
         /// </summary>
-        public static string Pitch_Appendix {
+        public static string Appendix {
             get {
-                return ResourceManager.GetString("Pitch_Appendix", resourceCulture);
+                return ResourceManager.GetString("Appendix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attention:.
+        /// </summary>
+        public static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bcc:.
+        /// </summary>
+        public static string BCC {
+            get {
+                return ResourceManager.GetString("BCC", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Begin typing here.
         /// </summary>
-        public static string Pitch_BeginTypingHere {
+        public static string Begin_typing_here {
             get {
-                return ResourceManager.GetString("Pitch_BeginTypingHere", resourceCulture);
+                return ResourceManager.GetString("Begin_typing_here", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to © {0} {1}.
+        ///   Looks up a localized string similar to Cc:.
         /// </summary>
-        public static string Pitch_Copyright {
+        public static string CC {
             get {
-                return ResourceManager.GetString("Pitch_Copyright", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Executive summary.
-        /// </summary>
-        public static string Pitch_ExecutiveSummary {
-            get {
-                return ResourceManager.GetString("Pitch_ExecutiveSummary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Table of contents.
-        /// </summary>
-        public static string Pitch_TableOfContents {
-            get {
-                return ResourceManager.GetString("Pitch_TableOfContents", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type.
-        /// </summary>
-        public static string Pitch_Type {
-            get {
-                return ResourceManager.GetString("Pitch_Type", resourceCulture);
+                return ResourceManager.GetString("CC", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Clause.
         /// </summary>
-        public static string TOC_Clause {
+        public static string Clause {
             get {
-                return ResourceManager.GetString("TOC_Clause", resourceCulture);
+                return ResourceManager.GetString("Clause", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Clause Number.
         /// </summary>
-        public static string TOC_ClauseNumber {
+        public static string ClauseNumber {
             get {
-                return ResourceManager.GetString("TOC_ClauseNumber", resourceCulture);
+                return ResourceManager.GetString("ClauseNumber", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Contents.
         /// </summary>
-        public static string TOC_Contents {
+        public static string Contents {
             get {
-                return ResourceManager.GetString("TOC_Contents", resourceCulture);
+                return ResourceManager.GetString("Contents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to © {0} {1}.
+        /// </summary>
+        public static string Copyright {
+            get {
+                return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date:.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dear .
+        /// </summary>
+        public static string Dear {
+            get {
+                return ResourceManager.GetString("Dear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipient.
+        /// </summary>
+        public static string Delivery {
+            get {
+                return ResourceManager.GetString("Delivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encl.
+        /// </summary>
+        public static string Encl {
+            get {
+                return ResourceManager.GetString("Encl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executive summary.
+        /// </summary>
+        public static string Executive_summary {
+            get {
+                return ResourceManager.GetString("Executive_summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facsimile Transmission.
+        /// </summary>
+        public static string Facsimile_transmission {
+            get {
+                return ResourceManager.GetString("Facsimile_transmission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fax:.
+        /// </summary>
+        public static string Fax {
+            get {
+                return ResourceManager.GetString("Fax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From:.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Heading.
         /// </summary>
-        public static string TOC_Heading {
+        public static string Heading {
             get {
-                return ResourceManager.GetString("TOC_Heading", resourceCulture);
+                return ResourceManager.GetString("Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memorandum.
+        /// </summary>
+        public static string Memorandum {
+            get {
+                return ResourceManager.GetString("Memorandum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other contact:.
+        /// </summary>
+        public static string Other_contact {
+            get {
+                return ResourceManager.GetString("Other_contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our ref:.
+        /// </summary>
+        public static string OurRef {
+            get {
+                return ResourceManager.GetString("OurRef", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
-        public static string TOC_Page {
+        public static string Page {
             get {
-                return ResourceManager.GetString("TOC_Page", resourceCulture);
+                return ResourceManager.GetString("Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages (w/cover):.
+        /// </summary>
+        public static string Pages {
+            get {
+                return ResourceManager.GetString("Pages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Re:.
+        /// </summary>
+        public static string Re {
+            get {
+                return ResourceManager.GetString("Re", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref:.
+        /// </summary>
+        public static string Ref {
+            get {
+                return ResourceManager.GetString("Ref", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of contents.
+        /// </summary>
+        public static string Table_of_contents {
+            get {
+                return ResourceManager.GetString("Table_of_contents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tel:.
+        /// </summary>
+        public static string Tel {
+            get {
+                return ResourceManager.GetString("Tel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To:.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your ref:.
+        /// </summary>
+        public static string YourRef {
+            get {
+                return ResourceManager.GetString("YourRef", resourceCulture);
             }
         }
     }

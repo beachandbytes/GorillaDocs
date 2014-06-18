@@ -117,256 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Agenda_Agenda" xml:space="preserve">
-    <value>议程</value>
-  </data>
-  <data name="Agenda_DateTime" xml:space="preserve">
-    <value>日期/时间</value>
-  </data>
-  <data name="Agenda_Item" xml:space="preserve">
-    <value>项目</value>
-  </data>
-  <data name="Agenda_Speaker" xml:space="preserve">
-    <value>发言人</value>
-  </data>
-  <data name="Agreement_And" xml:space="preserve">
-    <value>和</value>
-  </data>
-  <data name="Agreement_Annexure" xml:space="preserve">
-    <value>附件</value>
-  </data>
-  <data name="Agreement_Article" xml:space="preserve">
-    <value>第 {0} 条</value>
-  </data>
-  <data name="Agreement_AsADeed" xml:space="preserve">
-    <value>本契[据\约]已由[双/各]方或其授权代表于页首书明日期正式签署，以资证明。</value>
-  </data>
-  <data name="Agreement_AsAnAgreement" xml:space="preserve">
-    <value>本协议已由[双/各]方或其授权代表于页首书明日期正式签署，以资证明。</value>
-  </data>
-  <data name="Agreement_Between" xml:space="preserve">
-    <value>协议方</value>
-  </data>
-  <data name="Agreement_Between_Lower" xml:space="preserve">
-    <value>协议方</value>
-  </data>
-  <data name="Agreement_By_ExecutionSignoff" xml:space="preserve">
-    <value>签署</value>
-  </data>
-  <data name="Agreement_By_Lower" xml:space="preserve">
-    <value>协议方</value>
-  </data>
-  <data name="Agreement_By_Upper" xml:space="preserve">
-    <value>签署</value>
-  </data>
-  <data name="Agreement_Dated" xml:space="preserve">
-    <value>日期</value>
-  </data>
-  <data name="Agreement_Draft" xml:space="preserve">
-    <value>草稿</value>
-  </data>
-  <data name="Agreement_Executed" xml:space="preserve">
-    <value>签署</value>
-  </data>
-  <data name="Agreement_Execution" xml:space="preserve">
-    <value>签署页</value>
-  </data>
-  <data name="Agreement_ExecutionCounterpart" xml:space="preserve">
-    <value>签署文本</value>
-  </data>
-  <data name="Agreement_Exhibit" xml:space="preserve">
-    <value>附录</value>
-  </data>
-  <data name="Agreement_InsertAppropriateAttestationClauseForEachPartyHere" xml:space="preserve">
-    <value>插入每一方的适当见证条款</value>
-  </data>
-  <data name="Agreement_InsertDate" xml:space="preserve">
-    <value>Insert Date</value>
-  </data>
-  <data name="Agreement_Name" xml:space="preserve">
-    <value>姓名</value>
-  </data>
-  <data name="Agreement_OperativeProvisions" xml:space="preserve">
-    <value>主体条款</value>
-  </data>
-  <data name="Agreement_Parties" xml:space="preserve">
-    <value>[双/各]方</value>
-  </data>
-  <data name="Agreement_Recitals" xml:space="preserve">
-    <value>前言 \ 引言 \ 叙文</value>
-  </data>
-  <data name="Agreement_Schedule" xml:space="preserve">
-    <value>附表</value>
-  </data>
-  <data name="Agreement_TableOfContents" xml:space="preserve">
+  <data name="Table_of_contents" xml:space="preserve">
     <value>目录</value>
   </data>
-  <data name="Agreement_This" xml:space="preserve">
-    <value>本</value>
-  </data>
-  <data name="Agreement_ThisAgreementIsDated" xml:space="preserve">
-    <value>&lt;b&gt;本协议&lt;/b&gt;签署日期为</value>
-  </data>
-  <data name="Agreement_ThisAgreementIsDated_WithParenthesis" xml:space="preserve">
-    <value>（本“&lt;b&gt;协议&lt;/b&gt;”）签署日期为</value>
-  </data>
-  <data name="Agreement_Title" xml:space="preserve">
-    <value>职务</value>
-  </data>
-  <data name="Corr_Attention" xml:space="preserve">
+  <data name="Attention" xml:space="preserve">
     <value>致:</value>
   </data>
-  <data name="Corr_BCC" xml:space="preserve">
+  <data name="BCC" xml:space="preserve">
     <value>密件抄送:</value>
   </data>
-  <data name="Corr_BeginTypingHere" xml:space="preserve">
+  <data name="Begin_typing_here" xml:space="preserve">
     <value>开始正文</value>
   </data>
-  <data name="Corr_CC" xml:space="preserve">
+  <data name="CC" xml:space="preserve">
     <value>抄送:</value>
   </data>
-  <data name="Corr_Date" xml:space="preserve">
+  <data name="Date" xml:space="preserve">
     <value>日期:</value>
   </data>
-  <data name="Corr_Dear" xml:space="preserve">
+  <data name="Dear" xml:space="preserve">
     <value>敬启者 </value>
   </data>
-  <data name="Corr_Delivery" xml:space="preserve">
+  <data name="Delivery" xml:space="preserve">
     <value>交付</value>
   </data>
-  <data name="Corr_Encl" xml:space="preserve">
+  <data name="Encl" xml:space="preserve">
     <value>附件：</value>
   </data>
-  <data name="Corr_FacsimileTransmission" xml:space="preserve">
+  <data name="Facsimile_transmission" xml:space="preserve">
     <value>传真发送</value>
   </data>
-  <data name="Corr_Fax" xml:space="preserve">
+  <data name="Fax" xml:space="preserve">
     <value>传真号码:</value>
   </data>
-  <data name="Corr_From" xml:space="preserve">
+  <data name="From" xml:space="preserve">
     <value>发件人:</value>
   </data>
-  <data name="Corr_Memorandum" xml:space="preserve">
+  <data name="Memorandum" xml:space="preserve">
     <value>备忘录</value>
   </data>
-  <data name="Corr_OtherContact" xml:space="preserve">
+  <data name="Other_contact" xml:space="preserve">
     <value>其他联络人:</value>
   </data>
-  <data name="Corr_OurRef" xml:space="preserve">
+  <data name="OurRef" xml:space="preserve">
     <value>参考编号: </value>
   </data>
-  <data name="Corr_Pages" xml:space="preserve">
+  <data name="Pages" xml:space="preserve">
     <value>总页数 (含首页):</value>
   </data>
-  <data name="Corr_Re" xml:space="preserve">
+  <data name="Re" xml:space="preserve">
     <value>关于:</value>
   </data>
-  <data name="Corr_Ref" xml:space="preserve">
+  <data name="Ref" xml:space="preserve">
     <value>文号:</value>
   </data>
-  <data name="Corr_Regards" xml:space="preserve">
+  <data name="Regards" xml:space="preserve">
     <value>顺颂商祺</value>
   </data>
-  <data name="Corr_Tel" xml:space="preserve">
+  <data name="Tel" xml:space="preserve">
     <value>电话:</value>
   </data>
-  <data name="Corr_To" xml:space="preserve">
+  <data name="To" xml:space="preserve">
     <value>收件人:</value>
   </data>
-  <data name="Corr_YourRef" xml:space="preserve">
+  <data name="YourRef" xml:space="preserve">
     <value>[贵行/贵方]参考编号: </value>
   </data>
-  <data name="CV_Address" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="CV_AreasOfExpertise" xml:space="preserve">
-    <value>Areas of expertise</value>
-  </data>
-  <data name="CV_AwardsAndRankings" xml:space="preserve">
-    <value>Awards and rankings</value>
-  </data>
-  <data name="CV_BakerAndMcKenzie" xml:space="preserve">
-    <value>Baker &amp; McKenzie</value>
-  </data>
-  <data name="CV_Country" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="CV_EducationAndAdmission" xml:space="preserve">
-    <value>Education and admission</value>
-  </data>
-  <data name="CV_Fax" xml:space="preserve">
-    <value>Fax</value>
-  </data>
-  <data name="CV_GlobalAreas" xml:space="preserve">
-    <value>Global areas of practice</value>
-  </data>
-  <data name="CV_InsertPhotoHere" xml:space="preserve">
-    <value>Insert photo here</value>
-  </data>
-  <data name="CV_Languages" xml:space="preserve">
-    <value>Languages</value>
-  </data>
-  <data name="CV_LegalServices" xml:space="preserve">
-    <value>Legal services</value>
-  </data>
-  <data name="CV_Office" xml:space="preserve">
-    <value>Office</value>
-  </data>
-  <data name="CV_Phone" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="CV_PracticeDescription" xml:space="preserve">
-    <value>Practice description</value>
-  </data>
-  <data name="CV_PracticeFocus" xml:space="preserve">
-    <value>Practice focus</value>
-  </data>
-  <data name="CV_ProBonoAndCommunityInvolvement" xml:space="preserve">
-    <value>Pro bono and community involvement</value>
-  </data>
-  <data name="CV_ProfessionalAffiliations" xml:space="preserve">
-    <value>Professional affiliations</value>
-  </data>
-  <data name="CV_PublicationsPresentationsAndArticles" xml:space="preserve">
-    <value>Publications, presentations and articles</value>
-  </data>
-  <data name="CV_RepresentativeClientsCasesOrMatters" xml:space="preserve">
-    <value>Representative clients, cases or matters</value>
-  </data>
-  <data name="CV_Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="CV_TypeText" xml:space="preserve">
-    <value>Type text</value>
-  </data>
-  <data name="Pitch_AllRightsReserved" xml:space="preserve">
-    <value>All rights reserved.</value>
-  </data>
-  <data name="Pitch_Appendix" xml:space="preserve">
-    <value>Appendix</value>
-  </data>
-  <data name="Pitch_BeginTypingHere" xml:space="preserve">
-    <value>Begin typing here</value>
-  </data>
-  <data name="Pitch_ExecutiveSummary" xml:space="preserve">
-    <value>Executive summary</value>
-  </data>
-  <data name="Pitch_TableOfContents" xml:space="preserve">
-    <value>Table of contents</value>
-  </data>
-  <data name="Pitch_Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="TOC_Clause" xml:space="preserve">
+  <data name="Clause" xml:space="preserve">
     <value>条款</value>
   </data>
-  <data name="TOC_Contents" xml:space="preserve">
+  <data name="Contents" xml:space="preserve">
     <value>目录</value>
   </data>
-  <data name="TOC_Heading" xml:space="preserve">
+  <data name="Heading" xml:space="preserve">
     <value>标题</value>
   </data>
-  <data name="TOC_Page" xml:space="preserve">
+  <data name="Page" xml:space="preserve">
     <value>第[ ]页</value>
   </data>
 </root>

@@ -117,300 +117,97 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Agenda_Agenda" xml:space="preserve">
-    <value>Agenda</value>
-  </data>
-  <data name="Agenda_DateTime" xml:space="preserve">
-    <value>Date/Time</value>
-  </data>
-  <data name="Agenda_Item" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="Agenda_Speaker" xml:space="preserve">
-    <value>Speaker</value>
-  </data>
-  <data name="Agreement_Agreement" xml:space="preserve">
-    <value>Agreement</value>
-  </data>
-  <data name="Agreement_And" xml:space="preserve">
-    <value>and</value>
-  </data>
-  <data name="Agreement_Annexure" xml:space="preserve">
-    <value>Annexure</value>
-  </data>
-  <data name="Agreement_Article" xml:space="preserve">
-    <value>ARTICLE</value>
-  </data>
-  <data name="Agreement_AsADeed" xml:space="preserve">
-    <value>as a deed</value>
-  </data>
-  <data name="Agreement_AsAnAgreement" xml:space="preserve">
-    <value>as an agreement</value>
-  </data>
-  <data name="Agreement_Between" xml:space="preserve">
-    <value>Between</value>
-  </data>
-  <data name="Agreement_Between_Lower" xml:space="preserve">
-    <value>between</value>
-  </data>
-  <data name="Agreement_By_ExecutionSignoff" xml:space="preserve">
-    <value>By</value>
-  </data>
-  <data name="Agreement_By_Lower" xml:space="preserve">
-    <value>by</value>
-  </data>
-  <data name="Agreement_By_Upper" xml:space="preserve">
-    <value>By</value>
-  </data>
-  <data name="Agreement_ConsiderationLanguage" xml:space="preserve">
-    <value>Insert consideration language</value>
-  </data>
-  <data name="Agreement_Dated" xml:space="preserve">
-    <value>dated</value>
-  </data>
-  <data name="Agreement_Deed" xml:space="preserve">
-    <value>Deed</value>
-  </data>
-  <data name="Agreement_Draft" xml:space="preserve">
-    <value>Draft</value>
-  </data>
-  <data name="Agreement_Executed" xml:space="preserve">
-    <value>Executed</value>
-  </data>
-  <data name="Agreement_Execution" xml:space="preserve">
-    <value>Execution</value>
-  </data>
-  <data name="Agreement_ExecutionCounterpart" xml:space="preserve">
-    <value>Execution Counterpart</value>
-  </data>
-  <data name="Agreement_ExecutionLanguage" xml:space="preserve">
-    <value>Insert execution language and signoff</value>
-  </data>
-  <data name="Agreement_Exhibit" xml:space="preserve">
-    <value>Exhibit</value>
-  </data>
-  <data name="Agreement_InsertAgreementTitle" xml:space="preserve">
-    <value>Insert Agreement Title</value>
-  </data>
-  <data name="Agreement_InsertAppropriateAttestationClauseForEachPartyHere" xml:space="preserve">
-    <value>Insert appropriate execution clause for each party here</value>
-  </data>
-  <data name="Agreement_InsertDate" xml:space="preserve">
-    <value>Insert Date</value>
-  </data>
-  <data name="Agreement_InsertPartyDescription" xml:space="preserve">
-    <value>Insert transaction role</value>
-  </data>
-  <data name="Agreement_InsertPartyName" xml:space="preserve">
-    <value>INSERT FULL ENTITY/INDIVIDUAL NAME</value>
-  </data>
-  <data name="Agreement_Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Agreement_Number" xml:space="preserve">
-    <value>Number</value>
-  </data>
-  <data name="Agreement_OperativeProvisions" xml:space="preserve">
-    <value>Operative provisions</value>
-  </data>
-  <data name="Agreement_Parties" xml:space="preserve">
-    <value>Parties</value>
-  </data>
-  <data name="Agreement_PreambleInsertPartyDefined" xml:space="preserve">
-    <value>Insert defined name</value>
-  </data>
-  <data name="Agreement_PreambleInsertPartyInfo" xml:space="preserve">
-    <value>Insert identifying information</value>
-  </data>
-  <data name="Agreement_PreambleInsertPartyName" xml:space="preserve">
-    <value>Insert full entity/individual name</value>
-  </data>
-  <data name="Agreement_Recitals" xml:space="preserve">
-    <value>Recitals</value>
-  </data>
-  <data name="Agreement_Schedule" xml:space="preserve">
-    <value>Schedule</value>
-  </data>
-  <data name="Agreement_TableOfContents" xml:space="preserve">
-    <value>Table of contents</value>
-  </data>
-  <data name="Agreement_This" xml:space="preserve">
-    <value>This</value>
-  </data>
-  <data name="Agreement_ThisAgreementIsDated" xml:space="preserve">
-    <value>&lt;b&gt;This Agreement&lt;/b&gt; is dated</value>
-  </data>
-  <data name="Agreement_ThisAgreementIsDated_WithParenthesis" xml:space="preserve">
-    <value>(this "&lt;b&gt;Agreement&lt;/b&gt;") is dated</value>
-  </data>
-  <data name="Agreement_Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="AusAgreement_Date" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="Corr_Attention" xml:space="preserve">
+  <data name="Attention" xml:space="preserve">
     <value>Attention:</value>
   </data>
-  <data name="Corr_BCC" xml:space="preserve">
+  <data name="BCC" xml:space="preserve">
     <value>Bcc:</value>
   </data>
-  <data name="Corr_BeginTypingHere" xml:space="preserve">
-    <value>Begin typing here</value>
-  </data>
-  <data name="Corr_CC" xml:space="preserve">
+  <data name="CC" xml:space="preserve">
     <value>Cc:</value>
   </data>
-  <data name="Corr_Date" xml:space="preserve">
+  <data name="Date" xml:space="preserve">
     <value>Date:</value>
   </data>
-  <data name="Corr_Dear" xml:space="preserve">
+  <data name="Dear" xml:space="preserve">
     <value>Dear </value>
   </data>
-  <data name="Corr_Delivery" xml:space="preserve">
+  <data name="Delivery" xml:space="preserve">
     <value>Recipient</value>
   </data>
-  <data name="Corr_DeliveryColon" xml:space="preserve">
-    <value>:</value>
-  </data>
-  <data name="Corr_Encl" xml:space="preserve">
+  <data name="Encl" xml:space="preserve">
     <value>Encl</value>
   </data>
-  <data name="Corr_FacsimileTransmission" xml:space="preserve">
+  <data name="Facsimile_transmission" xml:space="preserve">
     <value>Facsimile Transmission</value>
   </data>
-  <data name="Corr_Fax" xml:space="preserve">
+  <data name="Fax" xml:space="preserve">
     <value>Fax:</value>
   </data>
-  <data name="Corr_From" xml:space="preserve">
+  <data name="From" xml:space="preserve">
     <value>From:</value>
   </data>
-  <data name="Corr_Memorandum" xml:space="preserve">
+  <data name="Memorandum" xml:space="preserve">
     <value>Memorandum</value>
   </data>
-  <data name="Corr_OtherContact" xml:space="preserve">
+  <data name="Other_contact" xml:space="preserve">
     <value>Other contact:</value>
   </data>
-  <data name="Corr_OurRef" xml:space="preserve">
-    <value>Our ref: </value>
-    <comment>Space intentionally inserted after colon</comment>
+  <data name="OurRef" xml:space="preserve">
+    <value>Our ref:</value>
   </data>
-  <data name="Corr_Pages" xml:space="preserve">
+  <data name="Pages" xml:space="preserve">
     <value>Pages (w/cover):</value>
   </data>
-  <data name="Corr_Re" xml:space="preserve">
+  <data name="Re" xml:space="preserve">
     <value>Re:</value>
   </data>
-  <data name="Corr_Ref" xml:space="preserve">
+  <data name="Ref" xml:space="preserve">
     <value>Ref:</value>
   </data>
-  <data name="Corr_Tel" xml:space="preserve">
+  <data name="Tel" xml:space="preserve">
     <value>Tel:</value>
   </data>
-  <data name="Corr_To" xml:space="preserve">
+  <data name="To" xml:space="preserve">
     <value>To:</value>
   </data>
-  <data name="Corr_YourRef" xml:space="preserve">
-    <value>Your ref: </value>
-    <comment>Space intentionally inserted after colon</comment>
+  <data name="YourRef" xml:space="preserve">
+    <value>Your ref:</value>
   </data>
-  <data name="CV_Address" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="CV_AreasOfExpertise" xml:space="preserve">
-    <value>Areas of expertise</value>
-  </data>
-  <data name="CV_AwardsAndRankings" xml:space="preserve">
-    <value>Awards and rankings</value>
-  </data>
-  <data name="CV_BakerAndMcKenzie" xml:space="preserve">
-    <value>Baker &amp; McKenzie</value>
-  </data>
-  <data name="CV_Country" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="CV_EducationAndAdmission" xml:space="preserve">
-    <value>Education and admission</value>
-  </data>
-  <data name="CV_Fax" xml:space="preserve">
-    <value>Fax</value>
-  </data>
-  <data name="CV_GlobalAreas" xml:space="preserve">
-    <value>Global areas of practice</value>
-  </data>
-  <data name="CV_InsertPhotoHere" xml:space="preserve">
-    <value>Insert photo here</value>
-  </data>
-  <data name="CV_Languages" xml:space="preserve">
-    <value>Languages</value>
-  </data>
-  <data name="CV_Office" xml:space="preserve">
-    <value>Office</value>
-  </data>
-  <data name="CV_Phone" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="CV_PracticeDescription" xml:space="preserve">
-    <value>Practice description</value>
-  </data>
-  <data name="CV_PracticeFocus" xml:space="preserve">
-    <value>Practice focus</value>
-  </data>
-  <data name="CV_ProBonoAndCommunityInvolvement" xml:space="preserve">
-    <value>Pro bono and community involvement</value>
-  </data>
-  <data name="CV_ProfessionalAffiliations" xml:space="preserve">
-    <value>Professional affiliations</value>
-  </data>
-  <data name="CV_PublicationsPresentationsAndArticles" xml:space="preserve">
-    <value>Publications, presentations and articles</value>
-  </data>
-  <data name="CV_RepresentativeClientsCasesOrMatters" xml:space="preserve">
-    <value>Representative clients, cases or matters</value>
-  </data>
-  <data name="CV_Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="CV_TypeText" xml:space="preserve">
-    <value>Type text</value>
-  </data>
-  <data name="Generic_Marketing_Disclaimer" xml:space="preserve">
-    <value>Baker &amp; McKenzie International is a Swiss Verein with member law firms around the world.  In accordance with the common terminology used in professional service organizations, reference to a "partner" means a person who is a partner, or equivalent, in such a law firm.  Similarly, reference to an "office" means an office of any such law firm.</value>
-  </data>
-  <data name="Pitch_AllRightsReserved" xml:space="preserve">
+  <data name="All_rights_reserved" xml:space="preserve">
     <value>All rights reserved.</value>
   </data>
-  <data name="Pitch_Appendix" xml:space="preserve">
+  <data name="Appendix" xml:space="preserve">
     <value>Appendix</value>
   </data>
-  <data name="Pitch_BeginTypingHere" xml:space="preserve">
+  <data name="Begin_typing_here" xml:space="preserve">
     <value>Begin typing here</value>
   </data>
-  <data name="Pitch_Copyright" xml:space="preserve">
+  <data name="Copyright" xml:space="preserve">
     <value>© {0} {1}</value>
   </data>
-  <data name="Pitch_ExecutiveSummary" xml:space="preserve">
+  <data name="Executive_summary" xml:space="preserve">
     <value>Executive summary</value>
   </data>
-  <data name="Pitch_TableOfContents" xml:space="preserve">
+  <data name="Table_of_contents" xml:space="preserve">
     <value>Table of contents</value>
   </data>
-  <data name="Pitch_Type" xml:space="preserve">
+  <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="TOC_Clause" xml:space="preserve">
+  <data name="Clause" xml:space="preserve">
     <value>Clause</value>
   </data>
-  <data name="TOC_ClauseNumber" xml:space="preserve">
+  <data name="ClauseNumber" xml:space="preserve">
     <value>Clause Number</value>
   </data>
-  <data name="TOC_Contents" xml:space="preserve">
+  <data name="Contents" xml:space="preserve">
     <value>Contents</value>
   </data>
-  <data name="TOC_Heading" xml:space="preserve">
+  <data name="Heading" xml:space="preserve">
     <value>Heading</value>
   </data>
-  <data name="TOC_Page" xml:space="preserve">
+  <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
 </root>

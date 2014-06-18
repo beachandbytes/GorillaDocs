@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyHelper.cs" />
+    <Compile Include="CultureHelpers.cs" />
     <Compile Include="DecimalHelper.cs" />
     <Compile Include="ClipboardHelper.cs" />
     <Compile Include="CollectionHelper.cs" />

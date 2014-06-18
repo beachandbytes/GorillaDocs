@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AssemblyHelperTests.cs" />
     <Compile Include="CollectionHelperTests.cs" />
+    <Compile Include="CultureTests.cs" />
     <Compile Include="InternationalAddressFormatsTests.cs" />
     <Compile Include="IOHelperTests.cs" />
     <Compile Include="ObjectHelperTests.cs" />
