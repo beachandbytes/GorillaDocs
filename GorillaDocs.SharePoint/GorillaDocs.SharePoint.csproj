@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\FieldValuesHelper.cs" />
     <Compile Include="Helpers\SPFileHelper.cs" />
     <Compile Include="SPFile.cs" />
     <Compile Include="SPHelper.cs" />

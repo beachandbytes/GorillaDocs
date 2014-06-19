@@ -95,6 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="UriHelper.cs" />
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GenericCommand.cs" />

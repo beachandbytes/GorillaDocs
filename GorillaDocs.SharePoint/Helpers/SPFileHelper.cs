@@ -11,16 +11,21 @@ namespace GorillaDocs.SharePoint
     [Log]
     public static class SPFileHelper
     {
-        public static void Download(this SPFile file, DirectoryInfo folder, ICredentials credentials = null)
+        public static void Download(this SPFile file, DirectoryInfo folder)
         {
-            using (var client = new WebClient())
+            try
             {
-                if (credentials == null)
+                using (var client = new WebClient())
+                {
                     client.UseDefaultCredentials = true;
-                else
-                    client.Credentials = credentials;
-                file.SetLocalFullName(folder);
-                client.DownloadFile(file.RemoteUrl, file.LocalFullName);
+                    file.SetLocalFullName(folder);
+                    Uri uri = new Uri(file.RemoteUrl);
+                    client.DownloadFile(uri, file.LocalFullName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Message.LogError(ex);
             }
         }
 

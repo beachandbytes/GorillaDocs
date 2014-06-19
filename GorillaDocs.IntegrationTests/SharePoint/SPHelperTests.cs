@@ -82,9 +82,29 @@ namespace GorillaDocs.IntegrationTests
         }
 
         [Test]
+        public void That_no_errors_occur_when_downloading_a_file_with_spaces_in_the_name()
+        {
+            var file = new SPFile()
+            {
+                RemoteUrl = "http://mvsp13.macroview.com.au/sites/Products/Manuals/Alison Campbell_23Apr12 13.16.45_DMF issue log.msg",
+                Name = "Alison Campbell_23Apr12 13.16.45_DMF issue log",
+                Extension = ".msg"
+            };
+            file.Download(new DirectoryInfo("C:\\Users\\Matthew\\AppData\\Local\\Temp\\MacroView.Office\\3486fefb-85f7-4bd6-bc37-1b418bd0d7e4"));
+        }
+
+        [Test]
         public void That_the_files_list_serializes()
         {
             var files = SPHelper.GetFiles(webUrl, "Precedents", new String[] { ".doc", ".docx", ".dot", ".dotx" });
+            var result = Serializer.SerializeToString(files);
+            Assert.That(!string.IsNullOrEmpty(result));
+        }
+
+        [Test]
+        public void That_a_library_without_Category_works()
+        {
+            var files = SPHelper.GetFiles(webUrl + "/sites/products", "Manuals", new String[] { ".doc", ".docx", ".dot", ".dotx" });
             var result = Serializer.SerializeToString(files);
             Assert.That(!string.IsNullOrEmpty(result));
         }

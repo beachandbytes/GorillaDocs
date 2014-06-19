@@ -101,8 +101,8 @@ namespace GorillaDocs.SharePoint
                         Name = file.Name.Substring(0, file.Name.LastIndexOf('.')),
                         Extension = file.Name.Substring(file.Name.LastIndexOf('.')),
                         ETag = file.ETag,
-                        RemoteUrl = webUrl + file.ServerRelativeUrl,
-                        Category = Convert.ToString(listitem.FieldValues["Category"])
+                        RemoteUrl = new Uri(webUrl).Server() + file.ServerRelativeUrl,
+                        Category = listitem.FieldValues.GetValue("Category")
                     });
                 }
             return new List<SPFile>(items.OrderBy(f => f.Name));
