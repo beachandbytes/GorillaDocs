@@ -41,17 +41,10 @@ namespace GorillaDocs.Word
 
             if (section.Index == doc.Sections.Count)
             {
-                // TODO: Bookmarks in the second last header are deleted when the last section takes over. Need some way of copying them between?
                 foreach (Wd.HeaderFooter hf in section.Headers)
-                {
                     hf.LinkToPrevious = true;
-                    hf.LinkToPrevious = false;
-                }
                 foreach (Wd.HeaderFooter hf in section.Footers)
-                {
                     hf.LinkToPrevious = true;
-                    hf.LinkToPrevious = false;
-                }
                 Wd.Range rng = section.Range;
                 rng.MoveStart(Wd.WdUnits.wdCharacter, -1);
                 rng.Delete();
@@ -324,15 +317,15 @@ namespace GorillaDocs.Word
             return false;
         }
 
-        public static void WrapInNewSection(this Wd.Range range)
+        public static void WrapInNewSection(this Wd.Range range, Wd.WdBreakType breakType = Wd.WdBreakType.wdSectionBreakContinuous)
         {
             if (!range.IsStartOfSection())
             {
-                range.Document.Range(range.Start, range.Start).InsertBreak(Wd.WdBreakType.wdSectionBreakContinuous);
+                range.Document.Range(range.Start, range.Start).InsertBreak(breakType);
                 range.Start++;
             }
             if (!range.IsEndOfSection())
-                range.Document.Range(range.End, range.End).InsertBreak(Wd.WdBreakType.wdSectionBreakContinuous);
+                range.Document.Range(range.End, range.End).InsertBreak(breakType);
         }
 
         public static bool IsStartOfSection(this Wd.Range range)
@@ -344,7 +337,13 @@ namespace GorillaDocs.Word
         }
         public static bool IsEndOfSection(this Wd.Range range)
         {
-            return range.Document.Range(range.End, range.End + 1).Characters[1].Text == ((char)12).ToString();
+            return range.IsEndOfDocument() ||
+                (range.Document.Range(range.End, range.End + 1).Characters[1].Text == ((char)12).ToString());
+        }
+
+        public static bool IsEndOfDocument(this Wd.Range range)
+        {
+            return range.End + 1 == range.Document.Range().End;
         }
     }
 }

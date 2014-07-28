@@ -42,5 +42,10 @@ namespace GorillaDocs.Word
             else
                 return table.Range;
         }
+
+        public static string NameWithoutExtension(this Wd.Document doc)
+        {
+            return doc.Name.Substring(0, doc.Name.LastIndexOf('.'));
+        }
     }
 }

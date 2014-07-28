@@ -119,6 +119,19 @@ namespace GorillaDocs.Word
             }
         }
 
+        public static string GetBuiltInProp(this Wd.Document doc, Wd.WdBuiltInProperty name)
+        {
+            var props = (O.DocumentProperties)doc.BuiltInDocumentProperties;
+            var prop = props[name];
+            return Convert.ToString(prop.Value);
+        }
+        public static void SetBuiltInProp(this Wd.Document doc, Wd.WdBuiltInProperty name, string value)
+        {
+            var props = (O.DocumentProperties)doc.BuiltInDocumentProperties;
+            var prop = props[name];
+            prop.Value = value;
+        }
+
         [System.Diagnostics.DebuggerStepThrough]
         public static void DeleteDocProp(this Wd.Document doc, string name)
         {

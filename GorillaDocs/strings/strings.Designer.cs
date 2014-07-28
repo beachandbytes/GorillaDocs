@@ -160,6 +160,15 @@ namespace GorillaDocs.strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dated.
+        /// </summary>
+        public static string Dated {
+            get {
+                return ResourceManager.GetString("Dated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dear .
         /// </summary>
         public static string Dear {
@@ -183,6 +192,24 @@ namespace GorillaDocs.strings {
         public static string Encl {
             get {
                 return ResourceManager.GetString("Encl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executed.
+        /// </summary>
+        public static string Executed {
+            get {
+                return ResourceManager.GetString("Executed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Execution.
+        /// </summary>
+        public static string Execution {
+            get {
+                return ResourceManager.GetString("Execution", resourceCulture);
             }
         }
         
@@ -232,11 +259,29 @@ namespace GorillaDocs.strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert appropriate execution clause for each party here.
+        /// </summary>
+        public static string Insert_appropriate_execution_clause_for_each_party_here {
+            get {
+                return ResourceManager.GetString("Insert_appropriate_execution_clause_for_each_party_here", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Memorandum.
         /// </summary>
         public static string Memorandum {
             get {
                 return ResourceManager.GetString("Memorandum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operative provisions.
+        /// </summary>
+        public static string Operative_provisions {
+            get {
+                return ResourceManager.GetString("Operative_provisions", resourceCulture);
             }
         }
         
@@ -277,11 +322,29 @@ namespace GorillaDocs.strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parties.
+        /// </summary>
+        public static string Parties {
+            get {
+                return ResourceManager.GetString("Parties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Re:.
         /// </summary>
         public static string Re {
             get {
                 return ResourceManager.GetString("Re", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recitals.
+        /// </summary>
+        public static string Recitals {
+            get {
+                return ResourceManager.GetString("Recitals", resourceCulture);
             }
         }
         
@@ -309,6 +372,15 @@ namespace GorillaDocs.strings {
         public static string Tel {
             get {
                 return ResourceManager.GetString("Tel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

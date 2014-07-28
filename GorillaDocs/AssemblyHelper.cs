@@ -24,5 +24,13 @@ namespace GorillaDocs
             string path = Uri.UnescapeDataString(uri.Path);
             return System.IO.Path.GetDirectoryName(path);
         }
+
+        public static string FullPath(this Assembly assembly)
+        {
+            UriBuilder uri = new UriBuilder(assembly.CodeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+            return String.Format("{0}\\{1}", System.IO.Path.GetDirectoryName(path), assembly.ManifestModule.Name);
+        }
+        
     }
 }

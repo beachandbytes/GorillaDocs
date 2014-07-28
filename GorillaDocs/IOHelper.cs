@@ -18,7 +18,15 @@ namespace GorillaDocs
         }
         public static bool ContainsFiles(this DirectoryInfo folder, string searchPattern)
         {
-            return folder.GetFiles(searchPattern).Count() > 0;
+            return folder.GetFiles(searchPattern).Where(x => !x.Name.StartsWith("~$")).Count() > 0;
+        }
+
+        public static List<FileInfo> GetFilesList(this DirectoryInfo folder, string searchPattern)
+        {
+            return folder.GetFiles(searchPattern, SearchOption.AllDirectories)
+                .Where(x => !x.Name.StartsWith("~$"))
+                .OrderBy(x => x.Name)
+                .ToList();
         }
     }
 }

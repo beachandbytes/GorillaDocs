@@ -24,13 +24,13 @@ namespace GorillaDocs
         {
             StackTrace stackTrace = new StackTrace();
             MethodBase method = stackTrace.GetFrame(1).GetMethod();
-            MessageBox.Show(ex.Message, String.Format("{0} {1}", Assembly.GetExecutingAssembly().Title(), Assembly.GetExecutingAssembly().FileVersion()), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show(ex.Message, String.Format("{0} {1}", Assembly.GetCallingAssembly().Title(), Assembly.GetCallingAssembly().FileVersion()), MessageBoxButton.OK, MessageBoxImage.Exclamation);
             LogError(method, ex);
         }
 
         public static void ShowInformation(string message)
         {
-            MessageBox.Show(message, String.Format("{0} {1}", Assembly.GetExecutingAssembly().Title(), Assembly.GetExecutingAssembly().FileVersion()), MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(message, String.Format("{0} {1}", Assembly.GetCallingAssembly().Title(), Assembly.GetCallingAssembly().FileVersion()), MessageBoxButton.OK, MessageBoxImage.Information);
             LogInfo(message);
         }
 

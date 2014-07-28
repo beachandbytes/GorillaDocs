@@ -210,4 +210,28 @@
   <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
+  <data name="Dated" xml:space="preserve">
+    <value>Dated</value>
+  </data>
+  <data name="Executed" xml:space="preserve">
+    <value>Executed</value>
+  </data>
+  <data name="Execution" xml:space="preserve">
+    <value>Execution</value>
+  </data>
+  <data name="Insert_appropriate_execution_clause_for_each_party_here" xml:space="preserve">
+    <value>Insert appropriate execution clause for each party here</value>
+  </data>
+  <data name="Operative_provisions" xml:space="preserve">
+    <value>Operative provisions</value>
+  </data>
+  <data name="Parties" xml:space="preserve">
+    <value>Parties</value>
+  </data>
+  <data name="Recitals" xml:space="preserve">
+    <value>Recitals</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
 </root>

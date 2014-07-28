@@ -349,5 +349,14 @@ namespace GorillaDocs.Word
             if (control != null)
                 control.DropdownListEntries[Index].Select();
         }
+
+        public static string GetValue(this Wd.ContentControl Control)
+        {
+            if (Control.Type == Wd.WdContentControlType.wdContentControlComboBox)
+                foreach (Wd.ContentControlListEntry item in Control.DropdownListEntries)
+                    if (item.Value.Equals(Control.Range.Text, StringComparison.OrdinalIgnoreCase))
+                        return item.Value;
+            return Control.Range.Text;
+        }
     }
 }

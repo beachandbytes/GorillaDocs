@@ -220,5 +220,36 @@ namespace GorillaDocs.Word
                 range.Delete();
         }
 
+        public static Wd.Range MoveOutOfTable(this Wd.Range value, Wd.WdCollapseDirection collapse = Wd.WdCollapseDirection.wdCollapseStart)
+        {
+            Wd.Range range = value.Duplicate;
+            if (collapse == Wd.WdCollapseDirection.wdCollapseStart)
+            {
+                if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
+                {
+                    range = range.Tables[1].Range;
+                    range.Collapse(Wd.WdCollapseDirection.wdCollapseStart);
+                }
+                if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
+                {
+                    range.Select();
+                    Wd.Selection selection = range.Application.Selection;
+                    selection.InsertRowsAbove();
+                    range = range.Tables[1].Split(2).Range;
+                    range.MoveStart(Wd.WdUnits.wdCharacter,-2);
+                    range.Collapse(Wd.WdCollapseDirection.wdCollapseStart);
+                    range = range.Tables[1].Range;
+                    range.Tables[1].Delete();
+                }
+                return range;
+            }
+            else
+                throw new NotImplementedException();
+        }
+
+        public static void ScrollIntoView(this Wd.Range range, bool start = true)
+        {
+            range.Application.ActiveWindow.ScrollIntoView(range, start);
+        }
     }
 }

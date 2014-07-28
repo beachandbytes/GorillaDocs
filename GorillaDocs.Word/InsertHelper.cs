@@ -53,11 +53,41 @@ namespace GorillaDocs.Word
         {
             if (range.IsCollapsed() && range.InContentControlOrContainsControls())
                 range.MoveOutOfContentControl();
+            if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
+                range.MoveOutOfTable();
 
             ((Wd.Document)range.Parent).Bookmarks.Delete(BookmarkName);
             range.InsertFile(Path, BookmarkName);
             range = range.Bookmarks[BookmarkName].Range;
             range.Bookmarks.Delete(BookmarkName);
+            return range;
+        }
+
+        /// <summary>
+        /// Inserts a file at the given range.
+        /// Note: 
+        /// If you want to insert Headers and Footers with the file, then a trailing section break is required.
+        /// If you want to different margins or page layout, then a leading section break is required.
+        /// </summary>
+        /// <param name="range"></param>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public static Wd.Range InsertFromFile(this Wd.Range range, string Path, bool AsNewSection = false)
+        {
+            if (range.IsCollapsed() && range.InContentControlOrContainsControls())
+                range.MoveOutOfContentControl();
+            if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
+                range.MoveOutOfTable();
+
+            bool IsEndOfSection = range.IsEndOfSection();
+            if (AsNewSection && !range.IsStartOfSection())
+                range.AddSection();
+
+            range.InsertFile(Path);
+
+            if (AsNewSection && IsEndOfSection)
+                range.Sections.Last.Next().Delete();
+
             return range;
         }
     }
