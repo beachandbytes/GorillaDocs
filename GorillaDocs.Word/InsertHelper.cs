@@ -49,17 +49,22 @@ namespace GorillaDocs.Word
             return null;
         }
 
-        public static Wd.Range InsertFromFile(this Wd.Range range, string Path, string BookmarkName)
+        public static Wd.Range InsertFromFile(this Wd.Range range, string Path, string BookmarkName = null)
         {
             if (range.IsCollapsed() && range.InContentControlOrContainsControls())
                 range.MoveOutOfContentControl();
             if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
                 range.MoveOutOfTable();
 
-            ((Wd.Document)range.Parent).Bookmarks.Delete(BookmarkName);
-            range.InsertFile(Path, BookmarkName);
-            range = range.Bookmarks[BookmarkName].Range;
-            range.Bookmarks.Delete(BookmarkName);
+            if (string.IsNullOrEmpty(BookmarkName))
+                range.InsertFile(Path, BookmarkName);
+            else
+            {
+                ((Wd.Document)range.Parent).Bookmarks.Delete(BookmarkName);
+                range.InsertFile(Path, BookmarkName);
+                range = range.Bookmarks[BookmarkName].Range;
+                range.Bookmarks.Delete(BookmarkName);
+            }
             return range;
         }
 
@@ -68,11 +73,12 @@ namespace GorillaDocs.Word
         /// Note: 
         /// If you want to insert Headers and Footers with the file, then a trailing section break is required.
         /// If you want to different margins or page layout, then a leading section break is required.
+        /// When inserting AsNewSection a bookmark MUST be used to avoid trouble with the last paragraph mark in the document.
         /// </summary>
         /// <param name="range"></param>
         /// <param name="Path"></param>
         /// <returns></returns>
-        public static Wd.Range InsertFromFile(this Wd.Range range, string Path, bool AsNewSection = false)
+        public static Wd.Range InsertSectionFromFile(this Wd.Range range, string Path, bool AsNewSection = true)
         {
             if (range.IsCollapsed() && range.InContentControlOrContainsControls())
                 range.MoveOutOfContentControl();
@@ -80,11 +86,16 @@ namespace GorillaDocs.Word
                 range.MoveOutOfTable();
 
             bool IsEndOfSection = range.IsEndOfSection();
-            if (AsNewSection && !range.IsStartOfSection())
-                range.AddSection();
+            bool IsStartOfSection = range.IsStartOfSection();
+            Wd.Section AddedSection = null;
+            if (AsNewSection)
+                AddedSection = range.AddSection();
 
-            range.InsertFile(Path);
+            range.InsertFile(Path, "Section");
+            range.Document.Bookmarks["Section"].Delete();
 
+            if (AsNewSection && IsStartOfSection)
+                AddedSection.Delete();
             if (AsNewSection && IsEndOfSection)
                 range.Sections.Last.Next().Delete();
 

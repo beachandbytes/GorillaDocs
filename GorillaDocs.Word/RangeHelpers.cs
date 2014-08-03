@@ -107,6 +107,18 @@ namespace GorillaDocs.Word
             range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
             return range;
         }
+        public static Wd.Range Start(this Wd.Paragraph paragraph)
+        {
+            Wd.Range range = paragraph.Range;
+            range.Collapse(Wd.WdCollapseDirection.wdCollapseStart);
+            return range;
+        }
+        public static Wd.Range End(this Wd.Paragraph paragraph)
+        {
+            Wd.Range range = paragraph.Range;
+            range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
+            return range;
+        }
 
         public static void RemoveFromEnd(this Wd.Range range, string value)
         {

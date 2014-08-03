@@ -30,6 +30,24 @@ namespace GorillaDocs.Word
             }
         }
         [System.Diagnostics.DebuggerStepThrough]
+        public static bool GetDocPropBool(this Wd.Document doc, string name)
+        {
+            var props = doc.CustomDocumentProperties;
+            Type typeProps = props.GetType();
+
+            try
+            {
+                object prop = typeProps.InvokeMember("Item", BindingFlags.Default | BindingFlags.GetProperty, null, props, new object[] { name });
+                Type typeProp = prop.GetType();
+                return Convert.ToBoolean(typeProp.InvokeMember("Value", BindingFlags.Default | BindingFlags.GetProperty, null, prop, new object[] { }));
+            }
+            catch
+            {
+                // Property doesn't exist
+                return false;
+            }
+        }
+        [System.Diagnostics.DebuggerStepThrough]
         public static void SetDocProp(this Wd.Document doc, string name, string value)
         {
             var props = doc.CustomDocumentProperties;

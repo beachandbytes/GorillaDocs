@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -59,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Word\SectionTests.cs" />
     <Compile Include="Helpers\IOHelpers.cs" />
     <Compile Include="Word\ContentControlTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +71,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Word\SampleData\Sections\Appendix.docx" />
+    <None Include="Word\SampleData\Sections\Back Cover.docx" />
+    <None Include="Word\SampleData\Sections\Blue Divider.docx" />
     <None Include="Word\SampleData\ContentControls.docx" />
+    <None Include="Word\SampleData\Sections\Executive Summary.docx" />
+    <None Include="Word\SampleData\Sections\Front Cover.docx" />
+    <None Include="Word\SampleData\Sections\Landscape.docx" />
+    <None Include="Word\SampleData\Sections\Portrait.docx" />
+    <None Include="Word\SampleData\Empty Sections.docx" />
+    <None Include="Word\SampleData\Sections\Table of Contents.docx" />
+    <None Include="Word\SampleData\Sections\White Divider.docx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GorillaDocs.SharePoint\GorillaDocs.SharePoint.csproj">

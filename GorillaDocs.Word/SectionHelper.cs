@@ -17,7 +17,7 @@ namespace GorillaDocs.Word
                 header.LinkToPrevious = false;
             foreach (Wd.HeaderFooter footer in section.Footers)
                 footer.LinkToPrevious = false;
-            return section;
+            return section.Previous();
         }
         public static Wd.Section AddSection(this Wd.Selection selection, Wd.WdBreakType BreakType = Wd.WdBreakType.wdSectionBreakNextPage)
         {
@@ -42,9 +42,19 @@ namespace GorillaDocs.Word
             if (section.Index == doc.Sections.Count)
             {
                 foreach (Wd.HeaderFooter hf in section.Headers)
-                    hf.LinkToPrevious = true;
+                    try
+                    {
+                        hf.LinkToPrevious = true;
+                        hf.LinkToPrevious = false;
+                    }
+                    catch (Exception ex) { Message.LogError(ex); }
                 foreach (Wd.HeaderFooter hf in section.Footers)
-                    hf.LinkToPrevious = true;
+                    try
+                    {
+                        hf.LinkToPrevious = true;
+                        hf.LinkToPrevious = false;
+                    }
+                    catch (Exception ex) { Message.LogError(ex); }
                 Wd.Range rng = section.Range;
                 rng.MoveStart(Wd.WdUnits.wdCharacter, -1);
                 rng.Delete();
