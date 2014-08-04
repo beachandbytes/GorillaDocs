@@ -22,6 +22,7 @@ namespace GorillaDocs.Word
             return contentControls;
         }
 
+
         public static Wd.ContentControl[] FindAll(this Wd.ContentControls controls, string Tag)
         {
             return GetContentControls(controls).FindAll(x => x.Tag == Tag).ToArray();
@@ -29,6 +30,14 @@ namespace GorillaDocs.Word
         public static Wd.ContentControl[] FindAllX(this Wd.ContentControls controls, string TagPattern)
         {
             return GetContentControls(controls).FindAll(x => Regex.IsMatch(x.Tag, TagPattern)).ToArray();
+        }
+        public static Wd.ContentControl[] FindAllByMappingX(this Wd.ContentControls controls, string MappingPattern)
+        {
+            return GetContentControls(controls).FindAll(x => x.XMLMapping != null && Regex.IsMatch(x.XMLMapping.XPath, MappingPattern)).ToArray();
+        }
+        public static Wd.ContentControl[] FindAllByNamespace(this Wd.ContentControls controls, string Namespace)
+        {
+            return GetContentControls(controls).FindAll(x => x.XMLMapping != null && x.XMLMapping.CustomXMLPart != null && x.XMLMapping.CustomXMLPart.NamespaceURI == Namespace).ToArray();
         }
 
         public static Wd.ContentControl Find(this Wd.ContentControls controls, string Tag)
@@ -357,6 +366,19 @@ namespace GorillaDocs.Word
                     if (item.Value.Equals(Control.Range.Text, StringComparison.OrdinalIgnoreCase))
                         return item.Value;
             return Control.Range.Text;
+        }
+
+        public static void DeleteUnMapped(this Wd.ContentControls controls)
+        {
+            var list = new List<Wd.ContentControl>();
+            foreach (Wd.ContentControl control in controls)
+                if (control.XMLMapping != null && !control.XMLMapping.IsMapped)
+                    list.Add(control);
+            foreach (Wd.ContentControl control in list)
+                if (control.Range.Paragraphs[1].Range.ContentControls.Count > 1)
+                    control.Delete(true);
+                else
+                    control.DeleteLine();
         }
     }
 }
