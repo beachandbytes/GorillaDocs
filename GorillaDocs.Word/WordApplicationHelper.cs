@@ -52,6 +52,7 @@ namespace GorillaDocs.Word
     [Log]
     public static class WordApplicationExtensionMethods
     {
+        [System.Diagnostics.DebuggerStepThrough]
         public static void Activate(this Wd.Application app, bool WaitIfBusy = false, int RetryAttempt = 0)
         {
             try

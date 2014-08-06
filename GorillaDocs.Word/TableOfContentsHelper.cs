@@ -157,7 +157,7 @@ namespace GorillaDocs.Word
                 Wd.Range range = tocs.End();
                 Wd.Range appendix = FindAppendix(doc, range);
                 if (appendix != null && appendix.Find.Found)
-                    range.End = appendix.Start;
+                    range.End = appendix.CollapseStart().Start - 2; // In case the Appendix starts with a content control
                 else
                     range.End = doc.Range().End;
                 doc.Bookmarks.Add(Bookmark_TOCRange, range);

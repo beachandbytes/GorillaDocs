@@ -78,28 +78,75 @@ namespace GorillaDocs.Word
         /// <param name="range"></param>
         /// <param name="Path"></param>
         /// <returns></returns>
-        public static Wd.Range InsertSectionFromFile(this Wd.Range range, string Path, bool AsNewSection = true)
+        public static Wd.Range InsertSectionFromFile(this Wd.Range range, string Path)
         {
             if (range.IsCollapsed() && range.InContentControlOrContainsControls())
                 range.MoveOutOfContentControl();
             if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
                 range.MoveOutOfTable();
 
-            bool IsEndOfSection = range.IsEndOfSection();
-            bool IsStartOfSection = range.IsStartOfSection();
-            Wd.Section AddedSection = null;
-            if (AsNewSection)
-                AddedSection = range.AddSection();
-
-            range.InsertFile(Path, "Section");
+            if (range.IsStartOfSection())
+                range = range.InsertSectionAtStartOfSection(Path);
+            else if (range.IsEndOfDocument())
+                range = range.InsertSectionAtEndOfDocument(Path);
+            else if (range.IsEndOfSection())
+                range = range.InsertSectionAtEndOfSection(Path);
+            else
+                range = range.InsertSectionInMiddldOfSection(Path);
             range.Document.Bookmarks["Section"].Delete();
 
-            if (AsNewSection && IsStartOfSection)
-                AddedSection.Delete();
-            if (AsNewSection && IsEndOfSection)
-                range.Sections.Last.Next().Delete();
+            //bool IsEndOfDocument = range.IsEndOfDocument();
+            //bool IsEndOfSection = range.IsEndOfSection();
+            //bool IsStartOfSection = range.IsStartOfSection();
+            //Wd.Section AddedSection = null;
+            //if (AsNewSection)
+            //    AddedSection = range.AddSection();
+
+            //range.InsertFile(Path, "Section");
+
+            //if (AsNewSection && IsStartOfSection)
+            //    AddedSection.Delete();
+            //if (AsNewSection && IsEndOfSection )
+            //    range.Sections.Last.Next().Delete();
+            //if (IsEndOfDocument)
+            //    range.Document.Sections.Last.Delete();
 
             return range;
         }
+
+        static Wd.Range InsertSectionAtStartOfSection(this Wd.Range range, string Path)
+        {
+            range.InsertFile(Path, "Section");
+            range.Sections[1].Delete();
+            return range;
+        }
+
+        static Wd.Range InsertSectionInMiddldOfSection(this Wd.Range range, string Path)
+        {
+            var AddedSection = range.AddSection();
+            range.InsertFile(Path, "Section");
+            AddedSection.Next().Delete();
+            return range;
+        }
+
+        static Wd.Range InsertSectionAtEndOfSection(this Wd.Range range, string Path)
+        {
+            var NextSection = range.Sections[1].Next();
+            var AddedSection = range.AddSection();
+            range.InsertFile(Path, "Section");
+            AddedSection.Next().Delete();
+            NextSection.Previous().Delete();
+            return range;
+        }
+
+        static Wd.Range InsertSectionAtEndOfDocument(this Wd.Range range, string Path)
+        {
+            var AddedSection = range.AddSection();
+            range.InsertFile(Path, "Section");
+            AddedSection.Next().Delete();
+            range.Document.Sections.Last.Delete();
+            return range;
+        }
+
     }
 }

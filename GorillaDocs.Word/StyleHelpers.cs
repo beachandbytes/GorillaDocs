@@ -74,6 +74,11 @@ namespace GorillaDocs.Word
         {
             template.Application.OrganizerCopy(path, template.FullName, template.Application.ActiveDocument.Styles[style].NameLocal, Wd.WdOrganizerObject.wdOrganizerObjectStyles);
         }
-        
+
+        public static void Hide(this Wd.Style style)
+        {
+            style.Visibility = true;
+            style.UnhideWhenUsed = false;
+        }
     }
 }

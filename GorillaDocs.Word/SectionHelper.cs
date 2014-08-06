@@ -33,11 +33,26 @@ namespace GorillaDocs.Word
             return false;
         }
 
+        public static void ApplyPreviousPageSetup(this Wd.Section section)
+        {
+            //TODO: Add more settings as they are needed
+            if (section.Index != 1)
+            {
+                section.PageSetup.TopMargin = section.Previous().PageSetup.TopMargin;
+                section.PageSetup.LeftMargin = section.Previous().PageSetup.LeftMargin;
+                section.PageSetup.RightMargin = section.Previous().PageSetup.RightMargin;
+                section.PageSetup.BottomMargin = section.Previous().PageSetup.BottomMargin;
+                section.PageSetup.VerticalAlignment = section.Previous().PageSetup.VerticalAlignment;
+            }
+        }
+
         public static void Delete(this Wd.Section section)
         {
             var doc = section.Range.Document;
             if (doc.Sections.Count == 1)
                 throw new InvalidOperationException("This document only has one section. You can not delete it.");
+
+            section.ApplyPreviousPageSetup();
 
             if (section.Index == doc.Sections.Count)
             {
@@ -174,6 +189,11 @@ namespace GorillaDocs.Word
         public static bool IsArabicNumbering(this Wd.Section section)
         {
             return section.Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary].PageNumbers.NumberStyle == Wd.WdPageNumberStyle.wdPageNumberStyleArabic;
+        }
+        public static bool IsRomanNumbering(this Wd.Section section)
+        {
+            return section.Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary].PageNumbers.NumberStyle == Wd.WdPageNumberStyle.wdPageNumberStyleLowercaseRoman ||
+                section.Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary].PageNumbers.NumberStyle == Wd.WdPageNumberStyle.wdPageNumberStyleUppercaseRoman;
         }
 
         public static Wd.Section Previous(this Wd.Section section)
