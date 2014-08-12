@@ -50,12 +50,20 @@
     <PostSharpConstraintVerificationEnabled Condition="'$(PostSharpConstraintVerificationEnabled)'==''">True</PostSharpConstraintVerificationEnabled>
     <SkipPostSharp Condition="'$(SkipPostSharp)'==''">False</SkipPostSharp>
     <PostSharpChangeAppConfigDisabled Condition="'$(PostSharpChangeAppConfigDisabled)'==''">False</PostSharpChangeAppConfigDisabled>
-
-    <!-- Sets the tool directory in PostSharp's own development environment -->
-    <PostSharp30ToolDirectory Condition="'$(PostSharp30ToolDirectory)'=='' AND Exists('$(MSBuildThisFileDirectory)\bin.$(PostSharpBuild)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll')">$(MSBuildThisFileDirectory)</PostSharp30ToolDirectory>
-    
   </PropertyGroup>
 
+  <PropertyGroup>
+    <_PostSharp30BinDirectoryName>bin.$(PostSharpBuild)</_PostSharp30BinDirectoryName>
+    <_PostSharp30MSBuildAssemblyName>PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll</_PostSharp30MSBuildAssemblyName>
+    <_PostSharp30MSBuildAssemblyInternalPath>$(MSBuildThisFileDirectory)\$(_PostSharp30BinDirectoryName)\$(_PostSharp30MSBuildAssemblyName)</_PostSharp30MSBuildAssemblyInternalPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(PostSharp30ToolDirectory)'=='' AND Exists('$(_PostSharp30MSBuildAssemblyInternalPath)')">
+    <!-- Sets the tool directory in PostSharp's own development environment -->
+    <PostSharp30ToolDirectory>$(MSBuildThisFileDirectory)</PostSharp30ToolDirectory>
+    <PostSharp30MSBuildAssemblyPath>$(_PostSharp30MSBuildAssemblyInternalPath)</PostSharp30MSBuildAssemblyPath>
+  </PropertyGroup>
+  
   <PropertyGroup Condition="'$(PostSharp30ToolDirectory)'==''">
     <!--Set extract directory for Windows Vista and later -->
     <PostSharpExtractDirectory Condition="'$(PostSharpExtractDirectory)'=='' AND '$(PROGRAMDATA)'!=''">$(PROGRAMDATA)</PostSharpExtractDirectory>
@@ -65,22 +73,25 @@
     <PostSharpExtractDirectory Condition="'$(PostSharpExtractDirectory)'==''">$(TEMP)</PostSharpExtractDirectory>
     <_PostSharpExtractDirectory>$(PostSharpExtractDirectory)\PostSharp\$(PostSharp30Version)</_PostSharpExtractDirectory>
     <PostSharp30ToolDirectory>$(_PostSharpExtractDirectory)</PostSharp30ToolDirectory>
-  </PropertyGroup>
+    <!--The MSBuild assembly is located in the same directory as this file -->
+    <PostSharp30MSBuildAssemblyPath>$(PostSharp30ToolDirectory)\$(_PostSharp30BinDirectoryName)\$(_PostSharp30MSBuildAssemblyName)</PostSharp30MSBuildAssemblyPath>
+</PropertyGroup>
 
   <PropertyGroup>
-    <PostSharp30BinDirectory>$(PostSharp30ToolDirectory)\bin.$(PostSharpBuild)</PostSharp30BinDirectory>
+    <PostSharp30BinDirectory>$(PostSharp30ToolDirectory)\$(_PostSharp30BinDirectoryName)</PostSharp30BinDirectory>
   </PropertyGroup>
 
 
   <!-- Import tasks -->
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30" />
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30TouchWithDelay" />
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30CheckPfx" />
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30GetDirectory" />
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30MoveWithRetry"/>
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30CopyWithRetry"/>
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30Shutdown"/>
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30ParseAssemblyNames"/>
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30InstallVsx"/>
-  <UsingTask	AssemblyFile="$(PostSharp30BinDirectory)\PostSharp.MSBuild.v$(PostSharp30Version).$(PostSharpBuild).dll" TaskName="PostSharp.MSBuild.PostSharp30ChangeAppConfig"/>
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30ExtractTools" />
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30" />
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30TouchWithDelay" />
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30CheckPfx" />
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30GetDirectory" />
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30MoveWithRetry"/>
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30CopyWithRetry"/>
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30Shutdown"/>
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30ParseAssemblyNames"/>
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30InstallVsx"/>
+  <UsingTask	AssemblyFile="$(PostSharp30MSBuildAssemblyPath)" TaskName="PostSharp.MSBuild.PostSharp30ChangeAppConfig"/>
 </Project>

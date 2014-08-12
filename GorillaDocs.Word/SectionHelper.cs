@@ -85,24 +85,6 @@ namespace GorillaDocs.Word
             doc.Sections[i].Delete();
         }
 
-        public static void RestartNumbering(this Wd.Section section)
-        {
-            var doc = section.Range.Document;
-            if (section.Index == doc.Sections.Count)
-                throw new InvalidOperationException("Can not set RestartNumberingAtSection for the last section");
-
-            if (section.Index != 1)
-            {
-                var footer = section.Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary];
-                var footer_Next = doc.Sections[section.Index + 1].Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary];
-                if (footer.PageNumbers.RestartNumberingAtSection && !footer_Next.PageNumbers.RestartNumberingAtSection)
-                {
-                    footer_Next.PageNumbers.RestartNumberingAtSection = true;
-                    footer_Next.PageNumbers.StartingNumber = 1;
-                }
-            }
-        }
-
         public static void ToggleOrientation(this Wd.Section section)
         {
             Wd.PageSetup pageSetup = section.PageSetup;
@@ -176,6 +158,12 @@ namespace GorillaDocs.Word
             }
         }
 
+        public static void RestartNumbering(this Wd.Section section)
+        {
+            var footer = section.Footers[Wd.WdHeaderFooterIndex.wdHeaderFooterPrimary];
+            footer.PageNumbers.RestartNumberingAtSection = true;
+            footer.PageNumbers.StartingNumber = 1;
+        }
         public static void ContinueNumbering(this Wd.Section section)
         {
             if (section.Index != 1)

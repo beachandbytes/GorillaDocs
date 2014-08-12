@@ -11,7 +11,10 @@ namespace GorillaDocs.Word
     public static class TableOfContentsHelper
     {
         const string Bookmark_TOCRange = "TOCRange";
-        private const string Appendix_Style = "Appendix";
+        const string Annexure_Style = "Annexure";
+        const string Appendix_Style = "Appendix";
+        const string Exhibit_Style = "Exhibit";
+        const string Schedule_Style = "Schedule";
 
         public static Wd.TableOfContents Add(this Wd.TablesOfContents tocs, Wd.Range range)
         {
@@ -155,52 +158,75 @@ namespace GorillaDocs.Word
             if (tocs.Count > 0)
             {
                 Wd.Range range = tocs.End();
-                Wd.Range appendix = FindAppendix(doc, range);
-                if (appendix != null && appendix.Find.Found)
-                    range.End = appendix.CollapseStart().Start - 2; // In case the Appendix starts with a content control
+                Wd.Range attachment = FindFirstAttachmentStyle(doc, range);
+                if (attachment != null && attachment.Find.Found)
+                    range.End = attachment.CollapseStart().Start - 2; // In case the Appendix starts with a content control
                 else
                     range.End = doc.Range().End;
                 doc.Bookmarks.Add(Bookmark_TOCRange, range);
             }
         }
-        static Wd.Range FindAppendix(Wd.Document doc, Wd.Range range)
+        static Wd.Range FindFirstAttachmentStyle(Wd.Document doc, Wd.Range range)
         {
-            if (doc.Styles.Exists(Appendix_Style))
-            {
-                Wd.Range search = range.Duplicate;
-                search.End = doc.Range().End;
-                return search.Find(null, doc.Styles[Appendix_Style]);
-            }
-            return null;
+            Wd.Range result = null;
+            result = FindFirstAttachmentStyleByName(doc, range, result, Annexure_Style);
+            result = FindFirstAttachmentStyleByName(doc, range, result, Appendix_Style);
+            result = FindFirstAttachmentStyleByName(doc, range, result, Exhibit_Style);
+            result = FindFirstAttachmentStyleByName(doc, range, result, Schedule_Style);
+            return result == null || !result.Find.Found ? null : result;
         }
 
-        public static bool AppendixExists(this Wd.TablesOfContents tocs)
+        static Wd.Range FindFirstAttachmentStyleByName(Wd.Document doc, Wd.Range range, Wd.Range result, string style)
+        {
+            if (doc.Styles.Exists(style))
+            {
+                Wd.Range search = range.Duplicate;
+                if (result == null || !result.Find.Found)
+                    search.End = doc.Range().End;
+                else
+                    search.End = result.Start;
+
+                Wd.Range result_temp = search.Find(null, doc.Styles[style]);
+
+                if (result_temp.Find.Found && (result == null || result.Start > result_temp.Start))
+                    return result_temp;
+            }
+            return result;
+        }
+
+        public static bool AttachmentExists(this Wd.TablesOfContents tocs)
         {
             foreach (Wd.TableOfContents toc in tocs)
             {
                 Wd.Field field = toc.Range.Fields[1];
-                if (field.Code.Text.Contains("appendix", StringComparison.OrdinalIgnoreCase))
+                if (field.Code.Text.Contains(Annexure_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Appendix_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Exhibit_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Schedule_Style, StringComparison.OrdinalIgnoreCase))
                     return true;
             }
             return false;
         }
 
-        public static void RemoveAppendix(this Wd.TablesOfContents tocs)
+        public static void RemoveAttachment(this Wd.TablesOfContents tocs)
         {
             foreach (Wd.TableOfContents toc in tocs)
             {
                 Wd.Field field = toc.Range.Fields[1];
-                if (field.Code.Text.Contains("appendix", StringComparison.OrdinalIgnoreCase))
+                if (field.Code.Text.Contains(Annexure_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Appendix_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Exhibit_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Schedule_Style, StringComparison.OrdinalIgnoreCase))
                     toc.Delete();
             }
         }
 
-        public static void AddAppendix(this Wd.TablesOfContents tocs)
+        public static void AddAttachment(this Wd.TablesOfContents tocs)
         {
             if (tocs.Count > 0)
             {
                 Wd.Range range = tocs.End();
-                range.Fields.Add(range, Wd.WdFieldType.wdFieldTOC, @"\h \z \t ""Appendix,1""", false);
+                range.Fields.Add(range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\h \z \t ""{0},1,{1},1,{2},1,{3},1""", Annexure_Style, Appendix_Style, Exhibit_Style, Schedule_Style), false);
             }
         }
     }

@@ -246,12 +246,8 @@ namespace GorillaDocs.Word
                 {
                     range.Select();
                     Wd.Selection selection = range.Application.Selection;
-                    selection.InsertRowsAbove();
-                    range = range.Tables[1].Split(2).Range;
-                    range.MoveStart(Wd.WdUnits.wdCharacter,-2);
-                    range.Collapse(Wd.WdCollapseDirection.wdCollapseStart);
-                    range = range.Tables[1].Range;
-                    range.Tables[1].Delete();
+                    selection.SplitTable();
+                    range = selection.Range;
                 }
                 return range;
             }

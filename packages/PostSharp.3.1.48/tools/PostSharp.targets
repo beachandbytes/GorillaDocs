@@ -476,10 +476,15 @@
     <PostSharp30CopyWithRetry SourceFiles="@(_PostSharpCompanionFiles)"  DestinationFolder="$(PostSharpBackupDirectory)" UseHardLink="$(PostSharpUseHardLink)"/>
 
   </Target>
+  
+  <Target Name="PostSharp30CopyMSBuildAssembly" Condition="!Exists($(PostSharp30MSBuildAssemblyPath))">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)\$(_PostSharp30MSBuildAssemblyName)" DestinationFiles="$(PostSharp30MSBuildAssemblyPath)" />
+  </Target>
 
-  <Target Name="PostSharp30ExtractBinaries" Condition="'$(_PostSharpExtractDirectory)'!='' And !Exists('$(_PostSharpExtractDirectory)\bin.$(PostSharpBuild)\PostSharp.Sdk.dll')">
-    <MakeDir Directories="$(_PostSharpExtractDirectory)" />
-    <Exec Command="&quot;$(MSbuildThisFileDirectory)PostSharp-Tools.exe&quot; -o&quot;$(_PostSharpExtractDirectory)&quot; -y"/>
+  <Target Name="PostSharp30ExtractBinaries" Condition="'$(_PostSharpExtractDirectory)'!=''" DependsOnTargets="PostSharp30CopyMSBuildAssembly">
+    <PostSharp30ExtractTools ToolPath="$(MSbuildThisFileDirectory)" 
+                             KeyFile="$(_PostSharpExtractDirectory)\bin.$(PostSharpBuild)\PostSharp.Sdk.dll" 
+                             OutputPath="$(_PostSharpExtractDirectory)" />
   </Target>
 
   <Target Name="PostSharp30ChangeAppConfig" DependsOnTargets="CopyFilesToOutputDirectory" Condition="( '$(OutputType)'=='exe' OR '$(OutputType)'=='winexe' ) AND '$(PostSharpChangeAppConfigDisabled)' == 'False'">

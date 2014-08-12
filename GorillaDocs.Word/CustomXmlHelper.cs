@@ -127,5 +127,11 @@ namespace GorillaDocs.Word
                 if (attribute.BaseName == AttributeName)
                     attribute.NodeValue = value;
         }
+
+        public static void DeleteByNamespace(this O.CustomXMLParts parts, string Namespace)
+        {
+            foreach (O.CustomXMLPart customXMLPart in parts.SelectByNamespace(Namespace))
+                customXMLPart.Delete();
+        }
     }
 }

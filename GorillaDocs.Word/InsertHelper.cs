@@ -57,7 +57,7 @@ namespace GorillaDocs.Word
                 range.MoveOutOfTable();
 
             if (string.IsNullOrEmpty(BookmarkName))
-                range.InsertFile(Path, BookmarkName);
+                range.InsertFile(Path);
             else
             {
                 ((Wd.Document)range.Parent).Bookmarks.Delete(BookmarkName);
@@ -93,23 +93,12 @@ namespace GorillaDocs.Word
                 range = range.InsertSectionAtEndOfSection(Path);
             else
                 range = range.InsertSectionInMiddldOfSection(Path);
-            range.Document.Bookmarks["Section"].Delete();
 
-            //bool IsEndOfDocument = range.IsEndOfDocument();
-            //bool IsEndOfSection = range.IsEndOfSection();
-            //bool IsStartOfSection = range.IsStartOfSection();
-            //Wd.Section AddedSection = null;
-            //if (AsNewSection)
-            //    AddedSection = range.AddSection();
-
-            //range.InsertFile(Path, "Section");
-
-            //if (AsNewSection && IsStartOfSection)
-            //    AddedSection.Delete();
-            //if (AsNewSection && IsEndOfSection )
-            //    range.Sections.Last.Next().Delete();
-            //if (IsEndOfDocument)
-            //    range.Document.Sections.Last.Delete();
+            if (range.Document.Bookmarks.Exists("Section"))
+            {
+                range = range.Document.Bookmarks["Section"].Range;
+                range.Document.Bookmarks["Section"].Delete();
+            }
 
             return range;
         }

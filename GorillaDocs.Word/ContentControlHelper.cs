@@ -22,7 +22,6 @@ namespace GorillaDocs.Word
             return contentControls;
         }
 
-
         public static Wd.ContentControl[] FindAll(this Wd.ContentControls controls, string Tag)
         {
             return GetContentControls(controls).FindAll(x => x.Tag == Tag).ToArray();
