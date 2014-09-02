@@ -60,7 +60,7 @@ namespace GorillaDocs.Views
             }
             catch (System.ComponentModel.Win32Exception ex)
             {
-                //Message.LogWarning(ex);
+                Message.LogWarning(ex);
                 //this.Topmost = true;
                 var helper = new WindowInteropHelper(this);
                 using (Process currentProcess = Process.GetCurrentProcess())
