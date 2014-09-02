@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GorillaDocs.SharePoint35")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Microsoft VSTO helper library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GorillaDocs.SharePoint35")]

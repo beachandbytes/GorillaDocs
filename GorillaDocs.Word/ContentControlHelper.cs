@@ -94,6 +94,12 @@ namespace GorillaDocs.Word
                 }
             if (range.ContainsTableCell())
                 range.MoveEnd(Wd.WdUnits.wdCharacter, -1);
+
+            //if (range.InContentControlOrContainsControls()) // Then it's because the Content Control is the first thing in the document
+            //{
+            //    range.Application.Selection.HomeKey(Wd.WdUnits.wdStory);
+            //    range = range.Application.Selection.Range;
+            //}
             return range;
         }
 

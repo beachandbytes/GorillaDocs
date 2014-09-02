@@ -1,9 +1,8 @@
 ﻿using GorillaDocs.libs.PostSharp;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
@@ -21,14 +20,14 @@ namespace GorillaDocs.Word
             {
                 try
                 {
-                    return (Wd.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Word.Application");
+                    return (Wd.Application)Marshal.GetActiveObject("Word.Application");
                 }
                 catch
                 {
                     if (i > 10)
                         throw new InvalidOperationException("Unable to start Word Application.");
                     i++;
-                    System.Threading.Thread.Sleep(1000);
+                    Thread.Sleep(1000);
                 }
             }
         }

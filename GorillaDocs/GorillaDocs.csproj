@@ -147,6 +147,7 @@
     <Content Include="libs\Aspose\secman64.dll" />
     <Content Include="libs\Aspose\SecurityManager.2005.dll" />
     <Content Include="libs\OpenXml\DocumentFormat.OpenXml.dll" />
+    <None Include="Resources\GorillaDocs.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

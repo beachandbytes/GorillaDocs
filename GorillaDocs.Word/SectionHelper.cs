@@ -11,7 +11,11 @@ namespace GorillaDocs.Word
     {
         public static Wd.Section AddSection(this Wd.Range range, Wd.WdBreakType BreakType = Wd.WdBreakType.wdSectionBreakNextPage)
         {
+            for (int i = 0; i < 100; i++)
+                System.Windows.Forms.Application.DoEvents();
             range.InsertBreak(BreakType);
+            for (int i = 0; i < 100; i++)
+                System.Windows.Forms.Application.DoEvents();
             Wd.Section section = range.Sections[1];
             foreach (Wd.HeaderFooter header in section.Headers)
                 header.LinkToPrevious = false;

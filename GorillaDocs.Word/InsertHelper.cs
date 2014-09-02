@@ -69,6 +69,16 @@ namespace GorillaDocs.Word
         }
 
         /// <summary>
+        /// Prevents strange errors when the range is near a Content Control
+        /// </summary>
+        public static void InsertFile_Safe(this Wd.Range range, string FileName, string Bookmark = "")
+        {
+            range.Text = ".";
+            range.Delete();
+            range.InsertFile(FileName, Bookmark);
+        }
+
+        /// <summary>
         /// Inserts a file at the given range.
         /// Note: 
         /// If you want to insert Headers and Footers with the file, then a trailing section break is required.
@@ -80,8 +90,8 @@ namespace GorillaDocs.Word
         /// <returns></returns>
         public static Wd.Range InsertSectionFromFile(this Wd.Range range, string Path)
         {
-            if (range.IsCollapsed() && range.InContentControlOrContainsControls())
-                range.MoveOutOfContentControl();
+            if (range.InContentControlOrContainsControls())
+                range.MoveOutOfContentControl(Wd.WdCollapseDirection.wdCollapseStart);
             if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
                 range.MoveOutOfTable();
 
@@ -105,7 +115,7 @@ namespace GorillaDocs.Word
 
         static Wd.Range InsertSectionAtStartOfSection(this Wd.Range range, string Path)
         {
-            range.InsertFile(Path, "Section");
+            range.InsertFile_Safe(Path, "Section");
             range.Sections[1].Delete();
             return range;
         }

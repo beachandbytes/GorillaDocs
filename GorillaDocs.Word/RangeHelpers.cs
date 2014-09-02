@@ -28,8 +28,17 @@ namespace GorillaDocs.Word
             range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
         }
 
+        public static Wd.Range EndOfCell(this Wd.Range value)
+        {
+            Wd.Range range = value.Duplicate;
+            range.CollapseEnd().Move(Wd.WdUnits.wdCharacter, -1);
+            return range;
+        }
+
         public static Wd.Table FindTable(this Wd.Range range, string description)
         {
+            if (range.Application.Version.StartsWith("12"))
+                throw new InvalidOperationException("This document must be in the Word 2010 DOCX file format. Create the document again if you want to use this functionality.");
             if (range.Document.CompatibilityMode < 14)
                 throw new InvalidOperationException("This document must be in the Word 2010 DOCX file format. Create the document again if you want to use this functionality.");
             foreach (Wd.Table table in range.Tables)
@@ -191,6 +200,22 @@ namespace GorillaDocs.Word
             {
                 searchRange.Application.ActiveWindow.ActivePane.View.ShowAll = showall;
             }
+        }
+
+        public static Wd.Range FindHighlight(this Wd.Range searchRange)
+        {
+            var range = searchRange.Duplicate;
+            range.Find.ClearFormatting();
+            range.Find.Highlight = -1;
+            range.Find.Forward = true;
+            range.Find.Wrap = Wd.WdFindWrap.wdFindStop;
+            range.Find.Format = true;
+            range.Find.MatchCase = false;
+            range.Find.MatchWholeWord = false;
+            range.Find.MatchSoundsLike = false;
+            range.Find.MatchAllWordForms = false;
+            range.Find.Execute();
+            return range;
         }
 
         public static bool IsCollapsed(this Wd.Range range)

@@ -158,5 +158,15 @@ namespace GorillaDocs.Properties {
                 return ResourceManager.GetString("AddTableView_TableSource", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap GorillaDocs {
+            get {
+                object obj = ResourceManager.GetObject("GorillaDocs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

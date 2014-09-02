@@ -17,9 +17,19 @@ namespace GorillaDocs.Word
         public static void SetPaperSize(this Wd.PageSetup pageSetup, Wd.WdPaperSize paperSize)
         {
             Wd.WdOrientation orientation = pageSetup.Orientation;
-            pageSetup.PaperSize = paperSize;
-            if (pageSetup.Orientation != orientation)
-                pageSetup.Orientation = orientation;
+            if (pageSetup.PaperSize != paperSize)
+            {
+                pageSetup.PaperSize = paperSize;
+                if (pageSetup.Orientation != orientation)
+                {
+                    pageSetup.Orientation = orientation;
+                    var temp = pageSetup.TopMargin;
+                    pageSetup.TopMargin = pageSetup.LeftMargin;
+                    pageSetup.LeftMargin = pageSetup.BottomMargin;
+                    pageSetup.BottomMargin = pageSetup.RightMargin;
+                    pageSetup.RightMargin = temp;
+                }
+            }
         }
     }
 }

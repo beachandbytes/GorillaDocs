@@ -63,10 +63,12 @@
   <ItemGroup>
     <Compile Include="BookmarksHelper.cs" />
     <Compile Include="BuildingBlockHelper.cs" />
+    <Compile Include="CloneHelper.cs" />
     <Compile Include="ContentControlHelper.cs" />
     <Compile Include="ColumnsHelper.cs" />
     <Compile Include="AddinsHelper.cs" />
     <Compile Include="CustomXmlHelper.cs" />
+    <Compile Include="DialogHelper.cs" />
     <Compile Include="DocPropVarHelper.cs" />
     <Compile Include="DocumentHelper.cs" />
     <Compile Include="FieldsHelper.cs" />
