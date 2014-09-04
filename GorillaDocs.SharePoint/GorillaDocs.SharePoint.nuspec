@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>GorillaDocs.SharePoint</id>
+    <version>1.0.0.0</version>
+    <title>GorillaDocs.SharePoint</title>
+    <authors>Matthew Fitzmaurice</authors>
+    <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/matthewfitzmaurice/GorillaDocs/master/GorillaDocs/Resources/GorillaDocs.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A Microsoft VSTO helper library</description>
+    <tags>VSTO Microsoft Office Word</tags>
+    <dependencies>
+      <dependency id="GorillaDocs" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\GorillaDocs.SharePoint.dll" target="lib\net40\GorillaDocs.SharePoint.dll" />
+    <file src="..\libs\Microsoft\Microsoft.SharePoint.Client.dll" target="lib\net40\Microsoft.SharePoint.Client.dll" />
+    <file src="..\libs\Microsoft\Microsoft.SharePoint.Client.Runtime.dll" target="lib\net40\Microsoft.SharePoint.Client.Runtime.dll" />
+    <file src="..\libs\Microsoft\Microsoft.SharePoint.Client.Taxonomy.dll" target="lib\net40\Microsoft.SharePoint.Client.Taxonomy.dll" />
+  </files>
+</package>

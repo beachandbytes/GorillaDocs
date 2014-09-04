@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\OpenXml\DocumentFormat.OpenXml.dll</HintPath>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
@@ -48,7 +48,7 @@
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="SecurityManager.2005, Version=6.2.3017.2005, Culture=neutral, PublicKeyToken=aa42cad61af07cf4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\Aspose\SecurityManager.2005.dll</HintPath>
+      <HintPath>..\libs\Aspose\SecurityManager.2005.dll</HintPath>
     </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -149,10 +149,6 @@
     <None Include="_CreateNewNuGetPackage\RunMeToUploadNuGetPackage.cmd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="libs\Aspose\secman.dll" />
-    <Content Include="libs\Aspose\secman64.dll" />
-    <Content Include="libs\Aspose\SecurityManager.2005.dll" />
-    <Content Include="libs\OpenXml\DocumentFormat.OpenXml.dll" />
     <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
     <None Include="Resources\GorillaDocs.png" />
   </ItemGroup>

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace GorillaDocs
 {
     public class AppConfig
     {
-        public static FileInfo GetFile()
+        public static FileInfo GetFile(Assembly assembly = null)
         {
-            string path = ConvertFromFileProtocol(Assembly.GetCallingAssembly().CodeBase);
+            if (assembly == null)
+                assembly = Assembly.GetCallingAssembly();
+            string path = ConvertFromFileProtocol(assembly.CodeBase);
             path = path + ".config";
             return new FileInfo(path);
         }
