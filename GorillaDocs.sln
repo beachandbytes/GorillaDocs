@@ -22,8 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.IntegrationTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.Word", "GorillaDocs.Word\GorillaDocs.Word.csproj", "{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.SharePoint35", "GorillaDocs.SharePoint35\GorillaDocs.SharePoint35.csproj", "{983ADD3E-ED60-4084-9BC2-CCF4ED6C624C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.Console", "GorillaDocs.Console\GorillaDocs.Console.csproj", "{66C8E7A0-A4B1-410D-9E73-ECEDA0A9DD10}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7} = {A4B9784B-C873-4E3D-B2E1-7503EF9551F7}
@@ -60,10 +58,6 @@ Global
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{983ADD3E-ED60-4084-9BC2-CCF4ED6C624C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{983ADD3E-ED60-4084-9BC2-CCF4ED6C624C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{983ADD3E-ED60-4084-9BC2-CCF4ED6C624C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{983ADD3E-ED60-4084-9BC2-CCF4ED6C624C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{66C8E7A0-A4B1-410D-9E73-ECEDA0A9DD10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66C8E7A0-A4B1-410D-9E73-ECEDA0A9DD10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66C8E7A0-A4B1-410D-9E73-ECEDA0A9DD10}.Release|Any CPU.ActiveCfg = Release|Any CPU
