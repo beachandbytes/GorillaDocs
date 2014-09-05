@@ -11,11 +11,16 @@ namespace GorillaDocs
     // No LOG Attribute - Can not log because this code is called by the logging code
     public class Message
     {
-        public static void Configure(FileInfo ConfigFile, string LogLevel)
+        public static void Configure(FileInfo ConfigFile, string LogName, string AppVersion, string LogLevel = null)
         {
+            GlobalContext.Properties["LogName"] = LogName;
+            GlobalContext.Properties["AppVersion"] = AppVersion;
             log4net.Config.XmlConfigurator.Configure(ConfigFile);
+
             var repository = ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository());
-            repository.Root.Level = repository.LevelMap[LogLevel];
+            if (LogLevel != null)
+                repository.Root.Level = repository.LevelMap[LogLevel];
+
             repository.RaiseConfigurationChanged(EventArgs.Empty);
         }
 
