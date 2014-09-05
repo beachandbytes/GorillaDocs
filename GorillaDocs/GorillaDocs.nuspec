@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>GorillaDocs</id>
-        <version>1.0.1.0</version>
+        <version>1.0.2.0</version>
         <title>GorillaDocs</title>
         <authors>Matthew Fitzmaurice</authors>
         <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
@@ -30,5 +30,6 @@ Specifically:
         <file src="bin\Release\zh-CHT\GorillaDocs.resources.dll" target="lib\net40\zh-CHT\GorillaDocs.resources.dll" />
         <file src="bin\Release\GorillaDocs.dll" target="lib\net40\GorillaDocs.dll" />
         <file src="bin\Release\SecurityManager.2005.dll" target="lib\net40\SecurityManager.2005.dll" />
+        <file src="app.config.transform" target="content\app.config.transform" />
     </files>
 </package>

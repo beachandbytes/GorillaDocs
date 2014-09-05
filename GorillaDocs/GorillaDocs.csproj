@@ -136,6 +136,7 @@
     <EmbeddedResource Include="strings\strings.zh-CHT.resx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config.transform" />
     <None Include="GorillaDocs.nuspec" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
