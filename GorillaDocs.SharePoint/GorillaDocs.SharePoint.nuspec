@@ -8,10 +8,17 @@
     <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/matthewfitzmaurice/GorillaDocs/master/GorillaDocs/Resources/GorillaDocs.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A Microsoft VSTO helper library</description>
-    <tags>VSTO Microsoft Office Word</tags>
+    <description>GorillaDocs is a collection of assemblies that makes working with Microsoft VSTO easier.
+
+      This package contains the code that applies to the Microsoft SharePoint Client Object Model CSOM.
+
+      Specifically:
+      - Viewing files inside document libraries
+      - Downloading files from document libraries
+    </description>
+    <tags>VSTO Microsoft Office SharePoint CSOM</tags>
     <dependencies>
-      <dependency id="GorillaDocs" version="1.0.0" />
+      <dependency id="GorillaDocs" version="1.0.1" />
     </dependencies>
   </metadata>
   <files>
