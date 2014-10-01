@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>GorillaDocs.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -77,6 +83,7 @@
     <Compile Include="PageSetupHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeHelpers.cs" />
+    <Compile Include="SearchHelper.cs" />
     <Compile Include="SectionHelper.cs" />
     <Compile Include="SelectionHelper.cs" />
     <Compile Include="ShapeHelper.cs" />
@@ -92,6 +99,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="GorillaDocs.snk" />
     <None Include="GorillaDocs.Word.nuspec" />
     <None Include="packages.config" />
     <None Include="_CreateNewNuGetPackage\Config.ps1" />
