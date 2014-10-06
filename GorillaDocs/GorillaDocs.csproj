@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
     <Compile Include="AssemblyHelper.cs" />
+    <Compile Include="BooleanExpression.cs" />
     <Compile Include="CultureHelpers.cs" />
     <Compile Include="DecimalHelper.cs" />
     <Compile Include="ClipboardHelper.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="ObjectHelper.cs" />
     <Compile Include="ObservableSortedList.cs" />
     <Compile Include="OpenXml.cs" />
+    <Compile Include="OptionalCondition.cs" />
     <Compile Include="OutlookSecurityManager.cs" />
     <Compile Include="PictureConverter.cs">
       <SubType>Component</SubType>
@@ -117,6 +119,7 @@
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GenericCommand.cs" />
+    <Compile Include="ViewModels\Notify.cs" />
     <Compile Include="Views\AddTableView.xaml.cs">
       <DependentUpon>AddTableView.xaml</DependentUpon>
     </Compile>

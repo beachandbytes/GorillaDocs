@@ -45,7 +45,15 @@ namespace GorillaDocs.Word
 
         public static string NameWithoutExtension(this Wd.Document doc)
         {
-            return doc.Name.Substring(0, doc.Name.LastIndexOf('.'));
+            if (doc.Name.LastIndexOf('.') == 0)
+                return doc.Name;
+            else
+                return doc.Name.Substring(0, doc.Name.LastIndexOf('.'));
+        }
+
+        public static bool IsTemplate(this Wd.Document doc)
+        {
+            return doc.FullName == doc.get_AttachedTemplate().Fullname;
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Xml.Linq;
 using O = Microsoft.Office.Core;
 
 namespace GorillaDocs.Word
@@ -132,6 +133,11 @@ namespace GorillaDocs.Word
         {
             foreach (O.CustomXMLPart customXMLPart in parts.SelectByNamespace(Namespace))
                 customXMLPart.Delete();
+        }
+
+        public static XDocument AsXDocument(this O.CustomXMLPart part)
+        {
+            return XDocument.Parse(part.XML);
         }
     }
 }

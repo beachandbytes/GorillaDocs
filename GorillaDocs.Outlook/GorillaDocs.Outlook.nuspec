@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>GorillaDocs.Word</id>
-    <version>1.0.3.0</version>
-    <title>GorillaDocs.Word</title>
+    <id>GorillaDocs.Outlook</id>
+    <version>1.0.0.0</version>
+    <title>GorillaDocs.Outlook</title>
     <authors>Matthew Fitzmaurice</authors>
     <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/matthewfitzmaurice/GorillaDocs/master/GorillaDocs/Resources/GorillaDocs.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>GorillaDocs is a collection of assemblies that makes working with Microsoft VSTO easier.
 
-      This package contains the code that applies to Microsoft Word.
+      This package contains the code that applies to Microsoft Outlook.
 
       Specifically:
-      - Extension methods
+      - Support Emails
     </description>
-    <tags>VSTO Microsoft Office Word</tags>
+    <tags>VSTO Microsoft Office Outlook</tags>
     <dependencies>
       <dependency id="GorillaDocs" version="1.0.4" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\GorillaDocs.Word.dll" target="lib\net40\GorillaDocs.Word.dll" />
+    <file src="bin\Release\GorillaDocs.Outlook.dll" target="lib\net40\GorillaDocs.Outlook.dll" />
   </files>
 </package>

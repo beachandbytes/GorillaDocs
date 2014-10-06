@@ -25,32 +25,109 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{04CC33B0-F
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GorillaDocs.Wix", "GorillaDocs.Wix", "{17C74F84-270B-4471-93DB-1652E87BBA6D}"
+	ProjectSection(SolutionItems) = preProject
+		GorillaDocs.Wix\Config.wxi.pp = GorillaDocs.Wix\Config.wxi.pp
+		GorillaDocs.Wix\GorillaDocs.Wix.nuspec = GorillaDocs.Wix\GorillaDocs.Wix.nuspec
+		GorillaDocs.Wix\PowerPoint.wxs.pp = GorillaDocs.Wix\PowerPoint.wxs.pp
+		GorillaDocs.Wix\Product.wxs.pp = GorillaDocs.Wix\Product.wxs.pp
+		GorillaDocs.Wix\README.txt = GorillaDocs.Wix\README.txt
+		GorillaDocs.Wix\Word.wxs.pp = GorillaDocs.Wix\Word.wxs.pp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "binary", "binary", "{025E654A-192D-4212-964B-FCFB62617A74}"
+	ProjectSection(SolutionItems) = preProject
+		GorillaDocs.Wix\binary\EULA.rtf = GorillaDocs.Wix\binary\EULA.rtf
+		GorillaDocs.Wix\binary\exclamation.ico = GorillaDocs.Wix\binary\exclamation.ico
+		GorillaDocs.Wix\binary\Generic_Document.ico = GorillaDocs.Wix\binary\Generic_Document.ico
+		GorillaDocs.Wix\binary\information.ico = GorillaDocs.Wix\binary\information.ico
+		GorillaDocs.Wix\binary\newfldr.ico = GorillaDocs.Wix\binary\newfldr.ico
+		GorillaDocs.Wix\binary\signtool.exe = GorillaDocs.Wix\binary\signtool.exe
+		GorillaDocs.Wix\binary\upfldr.ico = GorillaDocs.Wix\binary\upfldr.ico
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x64", "x64", "{7287FE8E-CB15-4C69-BE5B-28A6E8EB1463}"
+	ProjectSection(SolutionItems) = preProject
+		GorillaDocs.Wix\binary\x64\MacroView.WindowsInstaller.Actions.CA.dll = GorillaDocs.Wix\binary\x64\MacroView.WindowsInstaller.Actions.CA.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{4606E7DB-27F1-4BBC-9DDF-3595CDC2D633}"
+	ProjectSection(SolutionItems) = preProject
+		GorillaDocs.Wix\binary\x86\MacroView.WindowsInstaller.Actions.CA.dll = GorillaDocs.Wix\binary\x86\MacroView.WindowsInstaller.Actions.CA.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.Outlook", "GorillaDocs.Outlook\GorillaDocs.Outlook.csproj", "{73A7E7D5-5320-4CC4-B409-2EA165D2949E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}.Release|x86.ActiveCfg = Release|Any CPU
 		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6F82FE27-698B-403F-91E6-E0D84265FA0D}.Release|x86.ActiveCfg = Release|Any CPU
 		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{20DD4ADF-7C29-4ECA-BB67-538A0B4C0814}.Release|x86.ActiveCfg = Release|Any CPU
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E}.Release|x86.ActiveCfg = Release|Any CPU
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A4B9784B-C873-4E3D-B2E1-7503EF9551F7}.Release|x86.ActiveCfg = Release|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +135,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6F82FE27-698B-403F-91E6-E0D84265FA0D} = {9B34F906-ED5B-4ADC-8CC8-0F4FABD45E60}
 		{5FE8E566-CD5A-46E7-A03F-1264FC1EF89E} = {9B34F906-ED5B-4ADC-8CC8-0F4FABD45E60}
+		{025E654A-192D-4212-964B-FCFB62617A74} = {17C74F84-270B-4471-93DB-1652E87BBA6D}
+		{7287FE8E-CB15-4C69-BE5B-28A6E8EB1463} = {025E654A-192D-4212-964B-FCFB62617A74}
+		{4606E7DB-27F1-4BBC-9DDF-3595CDC2D633} = {025E654A-192D-4212-964B-FCFB62617A74}
 	EndGlobalSection
 EndGlobal

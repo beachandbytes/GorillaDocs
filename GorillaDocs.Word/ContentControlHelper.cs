@@ -385,5 +385,52 @@ namespace GorillaDocs.Word
                 else
                     control.DeleteLine();
         }
+
+        public static bool IsMappedComboWithValueSelected(this Wd.ContentControl control)
+        {
+            return control.Type == Wd.WdContentControlType.wdContentControlComboBox && control.XMLMapping.IsMapped && control.ShowingPlaceholderText == false;
+        }
+
+        public static Wd.ContentControl SelectOrDefault(this Wd.ContentControls controls, int i)
+        {
+            try { return controls[i]; }
+            catch { return null; }
+        }
+
+        public static bool ContainsSelection(this Wd.ContentControl control)
+        {
+            return control.Application.Selection.InRange(control.Range);
+        }
+
+        public static void ConvertMappedWithValueToText(this Wd.ContentControls controls)
+        {
+            foreach (Wd.ContentControl control in controls)
+                if (control.XMLMapping.IsMapped && control.ShowingPlaceholderText == false)
+                    control.Delete();
+        }
+
+        public static Wd.ContentControl MoveToNextContentControl(this Wd.Selection selection)
+        {
+            foreach (Wd.ContentControl control in selection.Document.ContentControls)
+                if (control.Range.Start > selection.Range.End)
+                {
+                    control.Range.Select();
+                    return control;
+                }
+            return null;
+        }
+        public static Wd.ContentControl MoveToPreviousContentControl(this Wd.Selection selection)
+        {
+            for (int i = selection.Document.ContentControls.Count; i > 0; i--)
+            {
+                Wd.ContentControl control = selection.Document.ContentControls[i];
+                if (control.Range.End < selection.Range.Start)
+                {
+                    control.Range.Select();
+                    return control;
+                }
+            }
+            return null;
+        }
     }
 }

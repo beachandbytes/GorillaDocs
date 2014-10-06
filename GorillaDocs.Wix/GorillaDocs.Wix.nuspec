@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>GorillaDocs.Wix</id>
+        <version>1.0.0.0</version>
+        <title>GorillaDocs.Wix</title>
+        <authors>Matthew Fitzmaurice</authors>
+        <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/matthewfitzmaurice/GorillaDocs/master/GorillaDocs/Resources/GorillaDocs.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>GorillaDocs is a collection of assemblies that makes working with Microsoft VSTO easier.
+
+This package adds files to a Wix installer package.</description>
+        <tags>VSTO Microsoft Office</tags>
+    </metadata>
+    <files>
+        <file src="binary\x64\MacroView.WindowsInstaller.Actions.CA.dll" target="content\binary\x64\MacroView.WindowsInstaller.Actions.CA.dll" />
+        <file src="binary\x86\MacroView.WindowsInstaller.Actions.CA.dll" target="content\binary\x86\MacroView.WindowsInstaller.Actions.CA.dll" />
+        <file src="binary\EULA.rtf" target="content\binary\EULA.rtf" />
+        <file src="binary\exclamation.ico" target="content\binary\exclamation.ico" />
+        <file src="binary\Generic_Document.ico" target="content\binary\Generic_Document.ico" />
+        <file src="binary\information.ico" target="content\binary\information.ico" />
+        <file src="binary\newfldr.ico" target="content\binary\newfldr.ico" />
+        <file src="binary\signtool.exe" target="content\binary\signtool.exe" />
+        <file src="binary\upfldr.ico" target="content\binary\upfldr.ico" />
+        <file src="Config.wxi.pp" target="content\Config.wxi.pp" />
+        <file src="Product.wxs.pp" target="content\Product.wxs.pp" />
+        <file src="PowerPoint.wxs.pp" target="content\PowerPoint.wxs.pp" />
+        <file src="Word.wxs.pp" target="content\Word.wxs.pp" />
+        <file src="..\..\..\Program Files (x86)\WiX Toolset v3.8\bin\WixNetFxExtension.dll" target="lib\WixNetFxExtension.dll" />
+        <file src="..\..\..\Program Files (x86)\WiX Toolset v3.8\bin\WixUIExtension.dll" target="lib\WixUIExtension.dll" />
+        <file src="..\..\..\Program Files (x86)\WiX Toolset v3.8\bin\WixUtilExtension.dll" target="lib\WixUtilExtension.dll" />
+    </files>
+</package>
