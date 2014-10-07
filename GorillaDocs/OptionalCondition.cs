@@ -13,7 +13,7 @@ namespace GorillaDocs
 
         public OptionalCondition(string value, XDocument data)
         {
-            var args = value.Split(new string[] { "or", "OR", "Or", "oR", "||" }, StringSplitOptions.RemoveEmptyEntries);
+            var args = value.Split(new string[] { " or ", " OR ", " Or ", " oR ", "||" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string arg in args)
                 expressions.Push(new BooleanExpression(arg, data));
         }
@@ -29,7 +29,7 @@ namespace GorillaDocs
                     return null;
                 // Keep evaluating
             }
-            return null;
+            return false;
         }
     }
 }

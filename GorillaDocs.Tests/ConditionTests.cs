@@ -65,6 +65,20 @@ namespace GorillaDocs.Tests
             Assert.That(result == true);
         }
 
-        static XDocument GetGradeData() { return XDocument.Parse("<root><Grade>5</Grade></root>"); }
+        [Test]
+        public void Or_when_false()
+        {
+            var result = new OptionalCondition("Grade = 7 OR Grade = 8 || Grade = 9", GetGradeData()).Evaluate();
+            Assert.That(result == false);
+        }
+
+        [Test]
+        public void Null_Manager()
+        {
+            var result = new OptionalCondition("Manager != Test", GetGradeData()).Evaluate();
+            Assert.That(result == true);
+        }
+
+        static XDocument GetGradeData() { return XDocument.Parse("<root><Grade>5</Grade><Manager/></root>"); }
     }
 }

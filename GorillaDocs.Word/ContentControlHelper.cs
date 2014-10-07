@@ -279,6 +279,14 @@ namespace GorillaDocs.Word
                 control.Range.Paragraphs[1].Range.Delete();
         }
 
+        public static void DeleteParagraphIfEmpty(this Wd.ContentControl control)
+        {
+            Wd.Range range = control.Range;
+            control.Delete(true);
+            if (range.Paragraphs[1].IsEmpty())
+                range.Paragraphs[1].Range.Delete();
+        }
+
         public static void DeleteParagraph(this Wd.ContentControl control, string BookmarkName)
         {
             if (control != null)

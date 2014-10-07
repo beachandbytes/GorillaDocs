@@ -284,5 +284,10 @@ namespace GorillaDocs.Word
         {
             range.Application.ActiveWindow.ScrollIntoView(range, start);
         }
+
+        public static bool IsEmpty(this Wd.Paragraph paragraph)
+        {
+            return paragraph.Range.Text == "\r";
+        }
     }
 }
