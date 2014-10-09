@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -37,14 +36,14 @@ namespace GorillaDocs
                 return textWriter.ToString();
             }
         }
-        public static XDocument SerializeToXDocument<T>(T serializableObject)
+        public static string SerializeToString<T>(T serializableObject, string Namespace = null)
         {
-            var serializer = new DataContractSerializer(serializableObject.GetType());
-            XDocument doc = new XDocument();
-            using (var writer = doc.CreateWriter())
+            var serializer = new XmlSerializer(serializableObject.GetType());
+            var ns = ClearDefaultNamespacesForOfficeCustomXmlParts(Namespace);
+            using (TextWriter textWriter = new StringWriter())
             {
-                serializer.WriteObject(writer, serializableObject);
-                return doc;
+                serializer.Serialize(textWriter, serializableObject, ns);
+                return textWriter.ToString();
             }
         }
         public static XmlDocument SerializeToXmlDocument<T>(T serializableObject)
@@ -91,14 +90,14 @@ namespace GorillaDocs
             using (TextReader textReader = new StringReader(value.ToString()))
                 return (T)deserializer.Deserialize(textReader);
         }
-        
-        static XmlSerializerNamespaces ClearDefaultNamespacesForOfficeCustomXmlParts()
+
+        static XmlSerializerNamespaces ClearDefaultNamespacesForOfficeCustomXmlParts(string Namespace = null)
         {
             // Office CustomXmlParts don't work if the following namespaces are included
             // xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             // xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             var ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
+            ns.Add("", string.IsNullOrEmpty(Namespace) ? "" : Namespace);
             return ns;
         }
     }

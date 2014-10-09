@@ -425,7 +425,7 @@ namespace GorillaDocs.Word
                     control.Range.Select();
                     return control;
                 }
-            return null;
+            throw new InvalidOperationException("There are no more content controls.");
         }
         public static Wd.ContentControl MoveToPreviousContentControl(this Wd.Selection selection)
         {
@@ -438,7 +438,7 @@ namespace GorillaDocs.Word
                     return control;
                 }
             }
-            return null;
+            throw new InvalidOperationException("There are no more content controls.");
         }
     }
 }

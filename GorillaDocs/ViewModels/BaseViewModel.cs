@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ComponentModel;
-using GorillaDocs.libs.PostSharp;
+﻿using GorillaDocs.libs.PostSharp;
+using System.Xml.Serialization;
 
 namespace GorillaDocs.ViewModels
 {
@@ -12,6 +9,7 @@ namespace GorillaDocs.ViewModels
         public BaseViewModel() { }
 
         bool? dialogResult;
+        [XmlIgnore]
         public bool? DialogResult
         {
             get { return this.dialogResult; }
