@@ -1,7 +1,6 @@
 ﻿using GorillaDocs.libs.PostSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using O = Microsoft.Office.Core;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
@@ -54,6 +53,16 @@ namespace GorillaDocs.Word
         public static bool IsTemplate(this Wd.Document doc)
         {
             return doc.FullName == doc.get_AttachedTemplate().Fullname;
+        }
+
+        public static O.CustomXMLPart CustomXmlPart(this Wd.Document Doc, string Namespace)
+        {
+            var parts = Doc.CustomXMLParts.SelectByNamespace(Namespace);
+            if (parts.Count == 0)
+                throw new InvalidOperationException(string.Format("Unable to find CustomXmlPart with Namespace '{0}'", Namespace));
+            if (parts.Count > 1)
+                throw new InvalidOperationException(string.Format("There are more than 1 CustomXmlPart with Namespace '{0}'", Namespace));
+            return parts[1];
         }
     }
 }
