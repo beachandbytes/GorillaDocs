@@ -205,7 +205,7 @@
     <Property Id="TARGETDIR" Secure="yes" />
     <Property Id="USERNAME" Secure="yes" />
     <Property Id="ROOTDRIVE" Secure="yes" />
-    <Property Id="MacroViewPublicKey"><![CDATA[<RSAKeyValue><Modulus>kBgVJI1GmvWIAQO6LrBBNa2PCO9P3r842LO+Dk8fVT5y7z5EwsjsnJ6DqemRhtuXQf2sHJUPT0N6O9vqVQD97ddF3Qlbfj8Ko7eq3oqDglNsiMnh4pdQy1KtCQkZqazLU3V+NtJTQKNbIEXBNHOvrGOdo3P0NrRw/rvJxBWJqeJlSEI2dtRxhsMeA16IiGf/W0nME5KxLO3eSdwhO4viRsNl/l/6g02ES6i/3Hp7YF31Up9FIMoiV9VTzbWD1YUYzv9aJCF5IejY5RiBlll/50FdbfoR/rR5KCtAXfVyh649kQm5ejJwVQxhmkCqrAPANmc2hUV/7X6zHeLDhZIJ1w==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>]]></Property>
+    <Property Id="MacroViewPublicKey"><![CDATA[]]></Property>
 
     <!--<PropertyRef Id="NETFRAMEWORK4_LEVEL"/>-->
 

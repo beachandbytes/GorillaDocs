@@ -28,5 +28,17 @@ namespace GorillaDocs
                 .OrderBy(x => x.Name)
                 .ToList();
         }
+
+        public static bool IsPowerPoint(this FileInfo file)
+        {
+            return (file.Extension.ToLower() == ".pot" || file.Extension.ToLower() == ".potx" || file.Extension.ToLower() == ".potm" ||
+                file.Extension.ToLower() == ".ppt" || file.Extension.ToLower() == ".pptx" || file.Extension.ToLower() == ".pptm" ||
+                file.Extension.ToLower() == ".pps" || file.Extension.ToLower() == ".ppsx" || file.Extension.ToLower() == ".ppsm");
+        }
+        public static bool IsWord(this FileInfo file)
+        {
+            return (file.Extension.ToLower() == ".doc" || file.Extension.ToLower() == ".docx" || file.Extension.ToLower() == ".docm" ||
+                file.Extension.ToLower() == ".dot" || file.Extension.ToLower() == ".dotx" || file.Extension.ToLower() == ".dotm");
+        }
     }
 }

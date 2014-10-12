@@ -46,6 +46,7 @@
     <Compile Include="CollectionHelperTests.cs" />
     <Compile Include="ConditionTests.cs" />
     <Compile Include="CultureTests.cs" />
+    <Compile Include="DrawingTests.cs" />
     <Compile Include="InternationalAddressFormatsTests.cs" />
     <Compile Include="IOHelperTests.cs" />
     <Compile Include="ObjectHelperTests.cs" />

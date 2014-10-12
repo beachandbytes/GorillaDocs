@@ -83,6 +83,8 @@
     <Compile Include="ClipboardHelper.cs" />
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="DateTimeHelper.cs" />
+    <Compile Include="DrawingHelper.cs" />
+    <Compile Include="IconHelper.cs" />
     <Compile Include="InternationalAddressFormats.cs" />
     <Compile Include="IOHelper.cs" />
     <Compile Include="libs\PostSharp\LogAttribute.cs" />
