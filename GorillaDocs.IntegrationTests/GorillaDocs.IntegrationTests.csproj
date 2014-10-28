@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SharePoint\CheckInTests.cs" />
     <Compile Include="Word\CloneTests.cs" />
     <Compile Include="Word\SectionTests.cs" />
     <Compile Include="Helpers\IOHelpers.cs" />

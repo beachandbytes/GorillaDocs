@@ -149,21 +149,21 @@ namespace GorillaDocs.IntegrationTests
         [Test]
         public void Get_the_Term_Stores()
         {
-            var termStores = SPHelper.GetTaxonomyTermStores("http://mvuatsp13.macroview.com.au/");
+            var termStores = TaxonomyHelper.GetTaxonomyTermStores("http://mvuatsp13.macroview.com.au/");
             Assert.That(termStores != null);
         }
 
         [Test]
         public void Get_the_Term_Groups()
         {
-            var termGroups = SPHelper.GetTaxonomyTermGroups("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"));
+            var termGroups = TaxonomyHelper.GetTaxonomyTermGroups("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"));
             Assert.That(termGroups != null);
         }
 
         [Test]
         public void Get_the_Term_Sets()
         {
-            var termSets = SPHelper.GetTaxonomyTermSets("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"), new Guid("edde64cc-6116-4e86-b509-2b9a05aeb57d"));
+            var termSets = TaxonomyHelper.GetTaxonomyTermSets("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"), new Guid("edde64cc-6116-4e86-b509-2b9a05aeb57d"));
             Assert.That(termSets != null);
         }
     }

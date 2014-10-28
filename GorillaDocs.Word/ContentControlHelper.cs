@@ -1,10 +1,9 @@
 ﻿using GorillaDocs.libs.PostSharp;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Wd = Microsoft.Office.Interop.Word;
@@ -210,9 +209,10 @@ namespace GorillaDocs.Word
                     i++;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 // Log and ignore - the control may have been deleted by the time this code runs
+                Message.LogWarning(ex);
             }
         }
 
@@ -228,7 +228,7 @@ namespace GorillaDocs.Word
             return unlockedControls;
         }
 
-        public static void Add(this Wd.ContentControlListEntries ListEntries, ObservableCollection<string> items)
+        public static void Add(this Wd.ContentControlListEntries ListEntries, IList<string> items)
         {
             ListEntries.Clear();
             foreach (string item in items)
@@ -306,7 +306,7 @@ namespace GorillaDocs.Word
                 control.Delete(true);
                 range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
                 range.MoveStart(Wd.WdUnits.wdCharacter, -1);
-                if (!range.Text.Contains("\a"))
+                if (range.Text != null && !range.Text.Contains("\a"))
                     range.Delete();
             }
             else
@@ -440,5 +440,14 @@ namespace GorillaDocs.Word
             }
             throw new InvalidOperationException("There are no more content controls.");
         }
+
+        public static void ClearControlAndLock(this Wd.ContentControl control)
+        {
+            control.LockContents = false;
+            control.SetPlaceholderText(null, null, "");
+            control.Range.Text = "";
+            control.LockContents = true;
+        }
+
     }
 }

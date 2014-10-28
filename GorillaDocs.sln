@@ -58,6 +58,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{4606E7DB-27F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.Outlook", "GorillaDocs.Outlook\GorillaDocs.Outlook.csproj", "{73A7E7D5-5320-4CC4-B409-2EA165D2949E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.CodedUITests", "GorillaDocs.CodedUITests\GorillaDocs.CodedUITests.csproj", "{C1F04F48-937F-454D-9890-293C1628A962}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,16 @@ Global
 		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{73A7E7D5-5320-4CC4-B409-2EA165D2949E}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C1F04F48-937F-454D-9890-293C1628A962}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,5 +150,6 @@ Global
 		{025E654A-192D-4212-964B-FCFB62617A74} = {17C74F84-270B-4471-93DB-1652E87BBA6D}
 		{7287FE8E-CB15-4C69-BE5B-28A6E8EB1463} = {025E654A-192D-4212-964B-FCFB62617A74}
 		{4606E7DB-27F1-4BBC-9DDF-3595CDC2D633} = {025E654A-192D-4212-964B-FCFB62617A74}
+		{C1F04F48-937F-454D-9890-293C1628A962} = {9B34F906-ED5B-4ADC-8CC8-0F4FABD45E60}
 	EndGlobalSection
 EndGlobal

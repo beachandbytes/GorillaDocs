@@ -57,22 +57,42 @@ namespace GorillaDocs.Word
             return style.NameLocal == styleName;
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         public static bool Exists(this Wd.Styles styles, string name)
         {
-            foreach (Wd.Style style in styles)
-                if (style.NameLocal == name)
-                    return true;
-            return false;
+            try
+            {
+                Wd.Style style = styles[name];
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static void ImportStyle(this Wd.Template template, string style, string path)
         {
-            template.Application.OrganizerCopy(path, template.FullName, style, Wd.WdOrganizerObject.wdOrganizerObjectStyles);
+            try
+            {
+                template.Application.OrganizerCopy(path, template.FullName, style, Wd.WdOrganizerObject.wdOrganizerObjectStyles);
+            }
+            catch
+            {
+                Message.LogWarning("Unable to import style '{0}'", style);
+            }
         }
 
         public static void ImportStyle(this Wd.Template template, Wd.WdBuiltinStyle style, string path)
         {
-            template.Application.OrganizerCopy(path, template.FullName, template.Application.ActiveDocument.Styles[style].NameLocal, Wd.WdOrganizerObject.wdOrganizerObjectStyles);
+            try
+            {
+                template.Application.OrganizerCopy(path, template.FullName, template.Application.ActiveDocument.Styles[style].NameLocal, Wd.WdOrganizerObject.wdOrganizerObjectStyles);
+            }
+            catch
+            {
+                Message.LogWarning("Unable to import style '{0}'", style);
+            }
         }
 
         public static void Hide(this Wd.Style style)

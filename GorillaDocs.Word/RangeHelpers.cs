@@ -131,13 +131,18 @@ namespace GorillaDocs.Word
 
         public static void RemoveFromEnd(this Wd.Range range, string value)
         {
-            Wd.Range r = range.Duplicate;
-            if (r.Text.EndsWith(value + "\r"))
+            if (range.Text.EndsWith(value))
             {
-                r.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
-                r.Move(Wd.WdUnits.wdCharacter, -1);
-                r.MoveStart(Wd.WdUnits.wdCharacter, -value.Length);
-                r.Delete();
+                range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
+                range.MoveStart(Wd.WdUnits.wdCharacter, -value.Length);
+                range.Delete();
+            }
+            else if (range.Text.EndsWith(value + "\a") || range.Text.EndsWith(value + "\r\a"))
+            {
+                range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
+                range.Move(Wd.WdUnits.wdCharacter, -1);
+                range.MoveStart(Wd.WdUnits.wdCharacter, -value.Length);
+                range.Delete();
             }
         }
 
@@ -250,9 +255,7 @@ namespace GorillaDocs.Word
         public static void DeleteLine(this Wd.Range range)
         {
             if (range.Text.EndsWith("\a"))
-            {
                 range.MoveEnd(Wd.WdUnits.wdCharacter, -1);
-            }
             if (!range.Text.EndsWith("\a"))
                 range.Delete();
         }

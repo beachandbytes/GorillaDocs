@@ -75,6 +75,7 @@
     <Compile Include="AddinsHelper.cs" />
     <Compile Include="CustomXmlHelper.cs" />
     <Compile Include="DialogHelper.cs" />
+    <Compile Include="DmfHelper.cs" />
     <Compile Include="DocPropVarHelper.cs" />
     <Compile Include="DocumentHelper.cs" />
     <Compile Include="FieldsHelper.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Precedent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeHelpers.cs" />
+    <Compile Include="RibbonHelper.cs" />
     <Compile Include="SearchHelper.cs" />
     <Compile Include="SectionHelper.cs" />
     <Compile Include="SelectionHelper.cs" />

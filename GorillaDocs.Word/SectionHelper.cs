@@ -28,6 +28,18 @@ namespace GorillaDocs.Word
             return selection.Range.AddSection(BreakType);
         }
 
+        /// <summary>
+        /// Prevents strange errors when selection is at the end of a document
+        /// </summary>
+        public static void InsertBreak_Safe(this Wd.Selection selection, Wd.WdBreakType BreakType = Wd.WdBreakType.wdSectionBreakNextPage)
+        {
+            var range = selection.Range;
+            range.Text = "[Temp]";
+            selection.InsertBreak(BreakType);
+            range.MoveStart(Wd.WdUnits.wdCharacter, 1);
+            range.Delete();
+        }
+
         public static bool IsStartOfSection(this Wd.Selection selection)
         {
             if (selection.Characters.First.Start == selection.Document.Characters.First.Start)
