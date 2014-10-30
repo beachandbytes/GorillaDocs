@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>GorillaDocs.Excel</id>
+    <version>1.0.0.0</version>
+    <title>GorillaDocs.Excel</title>
+    <authors>Matthew Fitzmaurice</authors>
+    <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/matthewfitzmaurice/GorillaDocs/master/GorillaDocs/Resources/GorillaDocs.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>GorillaDocs is a collection of assemblies that makes working with Microsoft VSTO easier.
+
+      This package contains the code that applies to Microsoft Excel.
+
+      Specifically:
+      - Extension methods
+    </description>
+    <tags>VSTO Microsoft Office Excel</tags>
+    <dependencies>
+      <dependency id="GorillaDocs" version="1.0.12" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\GorillaDocs.Excel.dll" target="lib\net40\GorillaDocs.Excel.dll" />
+  </files>
+</package>
