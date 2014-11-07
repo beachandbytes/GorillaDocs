@@ -9,10 +9,23 @@ namespace GorillaDocs.CodedUITests
     [CodedUITest]
     public class RibbonTests
     {
+        [TestInitialize]
+        public void Initialise()
+        {
+            ApplicationUnderTest.Launch(@"C:\Program Files (x86)\Microsoft Office\Office15\WinWord.exe");
+        }
+
         [TestMethod]
         public void CodedUITestMethod1()
         {
-            ApplicationUnderTest.Launch(@"C:\Program Files (x86)\Microsoft Office\Office15\WinWord.exe");
+            OpenDocument("c:\\Repos\\GorillaDocs\\GorillaDocs.CodedUITests\\Sample data\\Blank.docx");
+            var fileNoteButton = GetFileNoteButton();
+            Assert.IsTrue(fileNoteButton.Exists);
+        }
+
+        [TestMethod]
+        public void CodedUITestMethod2()
+        {
             OpenDocument("c:\\Repos\\GorillaDocs\\GorillaDocs.CodedUITests\\Sample data\\Blank.docx");
 
             var fileNoteButton = GetFileNoteButton();

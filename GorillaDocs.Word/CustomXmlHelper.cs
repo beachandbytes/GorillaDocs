@@ -135,6 +135,14 @@ namespace GorillaDocs.Word
                 customXMLPart.Delete();
         }
 
+        public static void Replace<T>(this O.CustomXMLParts partsCollection, string Namespace, T objectToSerialize)
+        {
+            var parts = partsCollection.SelectByNamespace(Namespace);
+            foreach (O.CustomXMLPart part in parts)
+                part.Delete();
+            partsCollection.Add(Serializer.SerializeToString<T>(objectToSerialize, Namespace));
+        }
+
         public static XDocument AsXDocument(this O.CustomXMLPart part)
         {
             return XDocument.Parse(part.XML);

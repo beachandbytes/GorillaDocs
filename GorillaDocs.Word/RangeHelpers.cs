@@ -35,18 +35,6 @@ namespace GorillaDocs.Word
             return range;
         }
 
-        public static Wd.Table FindTable(this Wd.Range range, string description)
-        {
-            if (range.Application.Version.StartsWith("12"))
-                throw new InvalidOperationException("This document must be in the Word 2010 DOCX file format. Create the document again if you want to use this functionality.");
-            if (range.Document.CompatibilityMode < 14)
-                throw new InvalidOperationException("This document must be in the Word 2010 DOCX file format. Create the document again if you want to use this functionality.");
-            foreach (Wd.Table table in range.Tables)
-                if (table.Descr == description)
-                    return table;
-            return null;
-        }
-
         public static Wd.Range CollapseStart(this Wd.Range range)
         {
             range.Collapse(Wd.WdCollapseDirection.wdCollapseStart);

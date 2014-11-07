@@ -25,11 +25,13 @@ namespace GorillaDocs
         }
 
         //See http://logging.apache.org/log4net/index.html
-        public static void ShowError(Exception ex)
+        public static void ShowError(Exception ex, Assembly assembly = null)
         {
+            if (assembly==null)
+                assembly=Assembly.GetCallingAssembly();
             StackTrace stackTrace = new StackTrace();
             MethodBase method = stackTrace.GetFrame(1).GetMethod();
-            MessageBox.Show(ex.Message, String.Format("{0} {1}", Assembly.GetCallingAssembly().Title(), Assembly.GetCallingAssembly().FileVersion()), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show(ex.Message, String.Format("{0} {1}", assembly.Title(), assembly.FileVersion()), MessageBoxButton.OK, MessageBoxImage.Exclamation);
             LogError(method, ex);
         }
 

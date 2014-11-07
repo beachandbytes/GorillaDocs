@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using OL = Microsoft.Office.Interop.Outlook;
 
@@ -20,5 +21,6 @@ namespace GorillaDocs.Outlook
                 mail.Attachments.Add(LogFileFullName);
             mail.Display(false);
         }
+        public static void SendEmail(FileInfo logfile) { SendEmail(null, null, null, logfile.FullName); }
     }
 }

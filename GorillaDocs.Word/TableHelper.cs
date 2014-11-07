@@ -113,6 +113,45 @@ namespace GorillaDocs.Word
             }
         }
 
+
+        public static Wd.Table FindTable(this Wd.Document doc, string description)
+        {
+            var table = doc.Range().FindTable(description);
+            if (table != null)
+                return table;
+
+            foreach (Wd.Section section in doc.Sections)
+            {
+                foreach (Wd.HeaderFooter header in section.Headers)
+                {
+                    table = header.Range.FindTable(description);
+                    if (table != null)
+                        return table;
+                }
+
+                foreach (Wd.HeaderFooter footer in section.Footers)
+                {
+                    table = footer.Range.FindTable(description);
+                    if (table != null)
+                        return table;
+                }
+            }
+
+            return null;
+        }
+
+        public static Wd.Table FindTable(this Wd.Range range, string description)
+        {
+            if (range.Application.Version.StartsWith("12"))
+                throw new InvalidOperationException("This document must be in the Word 2010 DOCX file format. Create the document again if you want to use this functionality.");
+            if (range.Document.CompatibilityMode < 14)
+                throw new InvalidOperationException("This document must be in the Word 2010 DOCX file format. Create the document again if you want to use this functionality.");
+            foreach (Wd.Table table in range.Tables)
+                if (table.Descr == description)
+                    return table;
+            return null;
+        }
+
         public static bool ContainsTableCell(this Wd.Range range)
         {
             return string.IsNullOrEmpty(range.Text) ? false : range.Text.Contains("\r\a");
