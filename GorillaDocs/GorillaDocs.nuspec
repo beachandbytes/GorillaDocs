@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>GorillaDocs</id>
-        <version>1.0.18.0</version>
+        <version>1.0.25.0</version>
         <title>GorillaDocs</title>
         <authors>Matthew Fitzmaurice</authors>
         <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
@@ -20,16 +20,13 @@ Specifically:
         <dependencies>
             <dependency id="PostSharp" version="3.1.49" />
             <dependency id="log4net" version="2.0.3" />
-            <!--<dependency id="DocumentFormat.OpenXml" version="2.5" />-->
+            <dependency id="Fluent.Ribbon" version="3.0.3" />
         </dependencies>
     </metadata>
     <files>
-        <!--<file src="..\libs\Aspose\secman.dll" target="Aspose\secman.dll" />-->
-        <!--<file src="..\libs\Aspose\secman64.dll" target="Aspose\secman64.dll" />-->
         <file src="bin\Release\zh-CHS\GorillaDocs.resources.dll" target="lib\net40\zh-CHS\GorillaDocs.resources.dll" />
         <file src="bin\Release\zh-CHT\GorillaDocs.resources.dll" target="lib\net40\zh-CHT\GorillaDocs.resources.dll" />
         <file src="bin\Release\GorillaDocs.dll" target="lib\net40\GorillaDocs.dll" />
-        <!--<file src="bin\Release\SecurityManager.2005.dll" target="lib\net40\SecurityManager.2005.dll" />-->
         <file src="app.config.transform" target="content\app.config.transform" />
     </files>
 </package>

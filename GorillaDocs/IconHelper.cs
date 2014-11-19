@@ -7,10 +7,7 @@ namespace GorillaDocs
     public class IconHelper
     {
         readonly string fullname;
-        public IconHelper(string fullname)
-        {
-            this.fullname = fullname;
-        }
+        public IconHelper(string fullname) { this.fullname = fullname; }
 
         public void SaveAsPng(string outputPath)
         {

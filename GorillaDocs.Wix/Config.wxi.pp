@@ -2,6 +2,11 @@
 <Include>
   <?define Property_ProductVersion = "!(bind.FileVersion.[Enter assembly that MSI version should linked])" ?>
   <?define Property_AssemblyPath = "..\[Folder]\bin\$(var.Configuration)" ?>
+  <?define Property_ClientName = "" ?>
+  <?define Property_AssemblyPath = "..\[]\bin\$(var.Configuration)" ?>
+  <?define Property_WordPath = "..\[].Word\bin\$(var.Configuration)" ?>
+  <?define Property_PowerPointPath = "..\[].PowerPoint\bin\$(var.Configuration)" ?>
+  <?define Property_UpgradeGUID = "" ?>
   <!-- Platform variables -->
   <?if $(var.Platform) = x64 ?>
   <?define Property_ProductName = "[Enter Product Name]" ?>

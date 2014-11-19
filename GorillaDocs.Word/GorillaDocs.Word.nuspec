@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>GorillaDocs.Word</id>
-    <version>1.0.12.0</version>
+    <version>1.0.14.0</version>
     <title>GorillaDocs.Word</title>
     <authors>Matthew Fitzmaurice</authors>
     <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
@@ -17,7 +17,7 @@
     </description>
     <tags>VSTO Microsoft Office Word</tags>
     <dependencies>
-      <dependency id="GorillaDocs" version="1.0.13" />
+      <dependency id="GorillaDocs" version="1.0.25" />
     </dependencies>
   </metadata>
   <files>

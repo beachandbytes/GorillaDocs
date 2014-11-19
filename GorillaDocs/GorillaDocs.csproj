@@ -37,8 +37,14 @@
     <AssemblyOriginatorKeyFile>GorillaDocs.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fluent">
+      <HintPath>..\packages\Fluent.Ribbon.3.0.3\lib\net40\Fluent.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\packages\Fluent.Ribbon.3.0.3\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
     <Reference Include="PostSharp, Version=3.1.49.9, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -58,6 +64,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fluent.Ribbon.3.0.3\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,6 +79,7 @@
     <Compile Include="AppConfig.cs" />
     <Compile Include="AssemblyHelper.cs" />
     <Compile Include="BooleanExpression.cs" />
+    <Compile Include="ContactHelper.cs" />
     <Compile Include="CultureHelpers.cs" />
     <Compile Include="DecimalHelper.cs" />
     <Compile Include="ClipboardHelper.cs" />
@@ -83,6 +93,14 @@
     <Compile Include="libs\PostSharp\LoudRibbonExceptionHandlerAttribute.cs" />
     <Compile Include="libs\PostSharp\QuietRibbonExceptionHandlerAttribute.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Models\Favourites.cs" />
+    <Compile Include="Models\FileInfoWithCategory.cs" />
+    <Compile Include="Models\FileWithCategoryCollection.cs" />
+    <Compile Include="Models\MicrosoftApplication.cs" />
+    <Compile Include="Models\MicrosoftPowerPointApplication.cs" />
+    <Compile Include="Models\MicrosoftWordApplication.cs" />
+    <Compile Include="Models\Outlook.cs" />
+    <Compile Include="Models\RecentFilesCollection.cs" />
     <Compile Include="ObjectHelper.cs" />
     <Compile Include="ObservableSortedList.cs" />
     <Compile Include="OptionalCondition.cs" />
@@ -114,12 +132,23 @@
     <Compile Include="UriHelper.cs" />
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Contact.cs" />
+    <Compile Include="ViewModels\ContactCollection.cs" />
+    <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\GenericCommand.cs" />
+    <Compile Include="ViewModels\ListBoxContact.cs" />
+    <Compile Include="ViewModels\ListBoxContacts.cs" />
     <Compile Include="ViewModels\Notify.cs" />
+    <Compile Include="ViewModels\SenderViewModel.cs" />
     <Compile Include="Views\AddTableView.xaml.cs">
       <DependentUpon>AddTableView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Behaviours\ExpanderState.cs" />
+    <Compile Include="Views\Behaviours\ExpanderStates.cs" />
+    <Compile Include="Views\Behaviours\PersistGroupExpandedStateBehavior.cs" />
+    <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
     <Compile Include="Views\DialogCloser.cs" />
+    <Compile Include="Views\FocusExtension.cs" />
     <Compile Include="Views\OfficeHelper.cs" />
     <Compile Include="XmlHelpers.cs" />
   </ItemGroup>
@@ -142,12 +171,15 @@
     <EmbeddedResource Include="strings\strings.zh-CHT.resx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="app.config.transform" />
-    <None Include="GorillaDocs.nuspec" />
+    <None Include="GorillaDocs.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GorillaDocs.snk" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="_CreateNewNuGetPackage\Config.ps1" />
@@ -162,6 +194,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\GorillaDocs_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\action_add_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_back_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_Forward_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_Previous_16xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImportOrLoad_8600.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Office1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_003_16xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerPointTemplate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SharePoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sharepointfoundation16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StatusAnnotations_Complete_and_ok_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Symbols_Blocked_32xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Symbols_Complete_and_ok_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Symbols_Critical_32xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WordTemplate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

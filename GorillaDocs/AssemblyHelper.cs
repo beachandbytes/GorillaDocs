@@ -31,6 +31,5 @@ namespace GorillaDocs
             string path = Uri.UnescapeDataString(uri.Path);
             return String.Format("{0}\\{1}", System.IO.Path.GetDirectoryName(path), assembly.ManifestModule.Name);
         }
-        
     }
 }
