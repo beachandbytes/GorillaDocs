@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>GorillaDocs.OutlookSecurity</id>
-        <version>1.0.2.0</version>
-        <title>GorillaDocs.OutlookSecurity</title>
+        <id>GorillaDocs.PowerPoint</id>
+        <version>1.0.1.0</version>
+        <title>GorillaDocs.PowerPoint</title>
         <authors>Matthew Fitzmaurice</authors>
         <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
         <iconUrl>https://raw.githubusercontent.com/matthewfitzmaurice/GorillaDocs/master/GorillaDocs/Resources/GorillaDocs.png</iconUrl>
@@ -15,15 +15,12 @@ This package contains the code that applies to all Microsoft Office applications
 Specifically:
 - Extension methods
 </description>
-        <tags>VSTO Microsoft Office Outlook</tags>
+        <tags>VSTO Microsoft Office PowerPoint</tags>
         <dependencies>
           <dependency id="GorillaDocs" version="1.0.25" />
         </dependencies>
     </metadata>
     <files>
-        <file src="..\libs\Aspose\secman.dll" target="Aspose\secman.dll" />
-        <file src="..\libs\Aspose\secman64.dll" target="Aspose\secman64.dll" />
-        <file src="bin\Release\GorillaDocs.OutlookSecurity.dll" target="lib\net40\GorillaDocs.OutlookSecurity.dll" />
-        <file src="bin\Release\SecurityManager.2005.dll" target="lib\net40\SecurityManager.2005.dll" />
+        <file src="bin\Release\GorillaDocs.PowerPoint.dll" target="lib\net40\GorillaDocs.PowerPoint.dll" />
     </files>
 </package>

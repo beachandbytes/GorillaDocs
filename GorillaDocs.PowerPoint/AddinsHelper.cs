@@ -1,13 +1,11 @@
-﻿using GorillaDocs.libs.PostSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using O = Microsoft.Office.Core;
-using Wd = Microsoft.Office.Interop.Word;
+using PP = Microsoft.Office.Interop.PowerPoint;
 
-namespace GorillaDocs.Word
+namespace GorillaDocs.PowerPoint
 {
-    [Log]
     public static class AddinsHelper
     {
         public static bool IsLoaded(this O.COMAddIns commAddins, string name)
@@ -23,23 +21,25 @@ namespace GorillaDocs.Word
         public static O.COMAddIn Find(this O.COMAddIns comAddins, string name)
         {
             foreach (O.COMAddIn item in comAddins)
-                if (item.ProgId.Contains(name, StringComparison.OrdinalIgnoreCase))
+                if (Contains(item.ProgId, name, StringComparison.OrdinalIgnoreCase))
                     return item;
             return null;
         }
 
-        public static void Disable(this Wd.AddIns addins, string name)
+        static bool Contains(string source, string toCheck, StringComparison comparison) { return source.IndexOf(toCheck, comparison) >= 0; }
+
+        public static void Disable(this PP.AddIns addins, string name)
         {
-            foreach (Wd.AddIn addin in addins)
+            foreach (PP.AddIn addin in addins)
                 if (addin.Name == name)
-                    addin.Installed = false;
+                    addin.Loaded = O.MsoTriState.msoFalse;
         }
 
-        public static void Enable(this Wd.AddIns addins, string name)
+        public static void Enable(this PP.AddIns addins, string name)
         {
-            foreach (Wd.AddIn addin in addins)
+            foreach (PP.AddIn addin in addins)
                 if (addin.Name == name)
-                    addin.Installed = true;
+                    addin.Loaded = O.MsoTriState.msoTrue;
         }
     }
 }

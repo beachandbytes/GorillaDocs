@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
   <?define Property_ProductVersion = "!(bind.FileVersion.[Enter assembly that MSI version should linked])" ?>
+  <?define Property_WordAssemblyName = "MacroView.Word" ?>
+  <?define Property_PowerPointAssemblyName = "MacroView.PowerPoint" ?>
   <?define Property_AssemblyPath = "..\[Folder]\bin\$(var.Configuration)" ?>
   <?define Property_ClientName = "" ?>
   <?define Property_AssemblyPath = "..\[]\bin\$(var.Configuration)" ?>

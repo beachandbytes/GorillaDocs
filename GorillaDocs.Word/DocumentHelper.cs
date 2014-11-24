@@ -47,6 +47,7 @@ namespace GorillaDocs.Word
             return doc.Name.Contains(".") ? doc.Name.Substring(0, doc.Name.LastIndexOf('.')) : doc.Name;
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         public static bool IsTemplate(this Wd.Document doc)
         {
             return doc.FullName == doc.get_AttachedTemplate().Fullname;

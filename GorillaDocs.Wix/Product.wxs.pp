@@ -40,129 +40,62 @@
               <CreateFolder Directory="PRODUCTLOCATION" />
             </Component>
             <Component Id="MacroView.Office.dll" Guid="[GUID]">
-              <File Id="MacroView.Office.dll" Name="MacroView.Office.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="..\MacroView.Office\bin\MacroView.Office.dll" />
-              <File Id="MacroView.Office.dll.config" Name="MacroView.Office.dll.config" Vital="yes" DiskId="1" Source="..\MacroView.Office\bin\MacroView.Office.dll.config" />
+              <File Id="MacroView.Office.dll" Name="MacroView.Office.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\MacroView.Office.dll" />
+              <File Id="MacroView.Office.dll.config" Name="MacroView.Office.dll.config" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\MacroView.Office.dll.config" />
             </Component>
             <Component Id="MacroView.Word.Common.dll" Guid="[GUID]">
-              <File Id="MacroView.Word.Common.dll" Name="MacroView.Word.Common.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="..\MacroView.Word.Common\bin\MacroView.Word.Common.dll" />
+              <File Id="MacroView.Word.Common.dll" Name="MacroView.Word.Common.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\MacroView.Word.Common.dll" />
             </Component>
             <Component Id="log4net" Guid="[GUID]" KeyPath="yes" Win64="$(var.Property_Win64)">
-              <File Id="log4net.dll" Name="log4net.dll" Source="..\[Addin]\bin\log4net.dll" Vital="yes" DiskId="1" />
+              <File Id="log4net.dll" Name="log4net.dll" Source="$(var.Property_WordPath)\log4net.dll" Vital="yes" DiskId="1" />
             </Component>
             <Component Id="PostSharp" Guid="[GUID]">
-              <File Id="PostSharp.dll" Name="PostSharp.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="..\[Addin]\bin\PostSharp.dll" />
+              <File Id="PostSharp.dll" Name="PostSharp.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\PostSharp.dll" />
             </Component>
             <Component Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Guid="[GUID]">
               <File Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Name="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="C:\Program Files\Reference Assemblies\Microsoft\VSTO40\v4.0.Framework\Microsoft.Office.Tools.Common.v4.0.Utilities.dll" />
             </Component>
             <Component Id="GorillaDocs" Guid="[GUID]">
-              <File Id="GorillaDocs.dll" Name="GorillaDocs.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="..\[Addin]\bin\GorillaDocs.dll" />
-              <File Id="GorillaDocs.Word.dll" Name="GorillaDocs.Word.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\GorillaDocs.Word.dll" />
-              <File Id="GorillaDocs.SharePoint.dll" Name="GorillaDocs.SharePoint.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\GorillaDocs.SharePoint.dll" />
-              <File Id="Microsoft.SharePoint.Client.dll" Name="Microsoft.SharePoint.Client.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\Microsoft.SharePoint.Client.dll" />
-              <File Id="Microsoft.SharePoint.Client.Runtime.dll" Name="Microsoft.SharePoint.Client.Runtime.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\Microsoft.SharePoint.Client.Runtime.dll" />
-              <File Id="DocumentFormat.OpenXml.dll" Name="DocumentFormat.OpenXml.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\DocumentFormat.OpenXml.dll" />
-              <File Id="SecurityManager.2005.dll" Name="SecurityManager.2005.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\SecurityManager.2005.dll" />
+              <File Id="GorillaDocs.dll" Name="GorillaDocs.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\GorillaDocs.dll" />
+              <File Id="GorillaDocs.Word.dll" Name="GorillaDocs.Word.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\GorillaDocs.Word.dll" />
+              <File Id="GorillaDocs.SharePoint.dll" Name="GorillaDocs.SharePoint.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\GorillaDocs.SharePoint.dll" />
+              <File Id="Microsoft.SharePoint.Client.dll" Name="Microsoft.SharePoint.Client.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\Microsoft.SharePoint.Client.dll" />
+              <File Id="Microsoft.SharePoint.Client.Runtime.dll" Name="Microsoft.SharePoint.Client.Runtime.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\Microsoft.SharePoint.Client.Runtime.dll" />
+              <File Id="DocumentFormat.OpenXml.dll" Name="DocumentFormat.OpenXml.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\DocumentFormat.OpenXml.dll" />
+              <File Id="SecurityManager.2005.dll" Name="SecurityManager.2005.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\SecurityManager.2005.dll" />
             </Component>
             <Component Id="Fluent" Guid="[GUID]">
-              <File Id="Fluent.dll" Name="Fluent.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="..\packages\Fluent.Ribbon.2.0.2\lib\net40\Fluent.dll" />
-              <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\System.Windows.Interactivity.dll" />
+              <File Id="Fluent.dll" Name="Fluent.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\Fluent.dll" />
+              <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\System.Windows.Interactivity.dll" />
             </Component>
 
             <Directory Id="ChineseSimplified" Name="zh-CHS">
               <Component Id="GorillaDocs.LanguageCHS" Guid="[GUID]">
-                <File Id="GorillaDocs.resources.dll.chs" Name="GorillaDocs.resources.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="..\[Addin]\bin\zh-CHS\GorillaDocs.resources.dll" />
-                <File Id="MacroView.Office.resources.dll.chs" Name="MacroView.Office.resources.dll" Vital="yes" DiskId="1" Source="..\[Addin]\bin\zh-CHS\MacroView.Office.resources.dll" />
+                <File Id="GorillaDocs.resources.dll.chs" Name="GorillaDocs.resources.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\zh-CHS\GorillaDocs.resources.dll" />
+                <File Id="MacroView.Office.resources.dll.chs" Name="MacroView.Office.resources.dll" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\zh-CHS\MacroView.Office.resources.dll" />
               </Component>
             </Directory>
 
             <Directory Id="ChineseTraditional" Name="zh-CHT">
               <Component Id="GorillaDocs.LanguageCHT" Guid="[GUID]">
-                <File Id="GorillaDocs.resources.dll.cht" Name="GorillaDocs.resources.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="..\[Addin]\bin\zh-CHT\GorillaDocs.resources.dll" />
+                <File Id="GorillaDocs.resources.dll.cht" Name="GorillaDocs.resources.dll" KeyPath="yes" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\zh-CHT\GorillaDocs.resources.dll" />
               </Component>
             </Directory>
 
             <Directory Id="OfficeFilesDir" Name="Office Files">
               <Directory Id="ElementsDir" Name="Elements">
                 <Component Id="Elements" Guid="[GUID]">
-                  <File Id="MacroViewLogo.jpg" Name="MacroViewLogo.jpg" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\MacroViewLogo.jpg" />
-                  <File Id="Callouts.docx" Name="Callouts.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Callouts.docx" />
-                  <File Id="MacroView.thmx" Name="MacroView.thmx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\MacroView.thmx" />
-                  <File Id="Styles.dotx" Name="Styles.dotx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Styles.dotx" />
+                  <File Id="MacroViewLogo.jpg" Name="MacroViewLogo.jpg" Vital="yes" DiskId="1" Source="$(var.Property_AssemblyPath)\Office Files\Elements\MacroViewLogo.jpg" />
+                  <File Id="Callouts.docx" Name="Callouts.docx" Vital="yes" DiskId="1" Source="$(var.Property_AssemblyPath)\Office Files\Elements\Callouts.docx" />
+                  <File Id="MacroView.thmx" Name="MacroView.thmx" Vital="yes" DiskId="1" Source="$(var.Property_AssemblyPath)\Office Files\Elements\MacroView.thmx" />
+                  <File Id="Styles.dotx" Name="Styles.dotx" Vital="yes" DiskId="1" Source="$(var.Property_AssemblyPath)\Office Files\Elements\Styles.dotx" />
                 </Component>
-
-                <Directory Id="HeaderFooterDir" Name="HeaderFooter">
-                  <Component Id="HeaderFooters" Guid="[GUID]">
-                    <File Id="FooterPartnerLogo.docx" Name="Footer - Partner logo.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\HeaderFooter\Footer - Partner logo.docx" />
-                    <File Id="FooterWebAddress.docx" Name="Footer - Web address.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\HeaderFooter\Footer - Web address.docx" />
-                    <File Id="HeaderBlueLine.docx" Name="Header - Blue line.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\HeaderFooter\Header - Blue line.docx" />
-                    <File Id="HeaderFirmAddress.docx" Name="Header - Firm address.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\HeaderFooter\Header - Firm address.docx" />
-                  </Component>
-                </Directory>
-
-                <Directory Id="MockDataDir" Name="MockData">
-                  <Component Id="MockData" Guid="[GUID]">
-                    <File Id="LetterDetails.xml" Name="LetterDetails.xml" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\MockData\LetterDetails.xml" />
-                    <File Id="AgreementDetails.xml" Name="AgreementDetails.xml" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\MockData\AgreementDetails.xml" />
-                    <File Id="DocumentBuilderDetails.xml" Name="DocumentBuilderDetails.xml" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\MockData\DocumentBuilderDetails.xml" />
-                  </Component>
-                </Directory>
-
-                <Directory Id="SectionsDir" Name="Sections">
-                  <Component Id="Sections" Guid="[GUID]">
-                    <File Id="AgreementBody.docx" Name="Agreement Body.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Agreement Body.docx" />
-                    <File Id="AgreementFrontCover.docx" Name="Agreement Front Cover.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Agreement Front Cover.docx" />
-                    <File Id="AgreementTableofContents.docx" Name="Agreement Table of Contents.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Agreement Table of Contents.docx" />
-                    <File Id="Annexure.docx" Name="Annexure.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Annexure.docx" />
-                    <File Id="Appendix.docx" Name="Appendix.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Appendix.docx" />
-                    <File Id="BackCover.docx" Name="Back Cover.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Back Cover.docx" />
-                    <File Id="BlueDivider.docx" Name="Blue Divider.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Blue Divider.docx" />
-                    <File Id="ExecutiveSummary.docx" Name="Executive Summary.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Executive Summary.docx" />
-                    <File Id="Exhibit.docx" Name="Exhibit.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Exhibit.docx" />
-                    <File Id="FrontCover.docx" Name="Front Cover.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Front Cover.docx" />
-                    <File Id="Landscape.docx" Name="Landscape.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Landscape.docx" />
-                    <File Id="Portrait.docx" Name="Portrait.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Portrait.docx" />
-                    <File Id="Schedule.docx" Name="Schedule.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Schedule.docx" />
-                    <File Id="TableofContents.docx" Name="Table of Contents.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\Table of Contents.docx" />
-                    <File Id="WhiteDivider.docx" Name="White Divider.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Sections\White Divider.docx" />
-                  </Component>
-                </Directory>
-                <Directory Id="SignoffsDir" Name="Signoffs">
-                  <Component Id="Signoffs" Guid="[GUID]">
-                    <File Id="SignoffDouble.docx" Name="Signoff Double.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Signoffs\Signoff Double.docx" />
-                    <File Id="SignoffLHS.docx" Name="Signoff LHS.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Signoffs\Signoff LHS.docx" />
-                    <File Id="SignoffRHS.docx" Name="Signoff RHS.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Elements\Signoffs\Signoff RHS.docx" />
-                  </Component>
-                </Directory>
-
               </Directory>
               <Directory Id="TemplatesDir" Name="Templates">
-                <Directory Id="AgreementsDir" Name="Agreements">
-                  <Component Id="Agreements" Guid="[GUID]">
-                    <File Id="Agreement.dotx" Name="Agreement.dotx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Agreements\Agreement.dotx" />
-                  </Component>
-                </Directory>
                 <Directory Id="CorrespondenceDir" Name="Correspondence">
                   <Component Id="Correspondence" Guid="[GUID]">
-                    <File Id="Letter.dotx" Name="Letter.dotx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Correspondence\Letter.dotx" />
-                    <File Id="Blank.docx" Name="Blank Document.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Correspondence\Blank Document.docx" />
-                  </Component>
-                </Directory>
-                <Directory Id="BusinessDevelopmentDir" Name="Business Development">
-                  <Component Id="BusinessDevelopment" Guid="BFAC88F3-E6E0-49B6-897E-59ACC68367FB">
-                    <!--<File Id="Quotation.docx" Name="Quotation.docx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Business Development\Quotation.docx" />-->
-                    <File Id="DocumentBuilder.dotx" Name="Document Builder.dotx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Business Development\Document Builder.dotx" />
-                  </Component>
-                </Directory>
-                <!--<Directory Id="PoliciesAndProceduresDir" Name="Policies and Procedures">
-                  <Component Id="PoliciesAndProcedures" Guid="[GUID]">
-                    <File Id="LeaveRequest.dotx" Name="LeaveRequest.dotx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Policies and Procedures\Leave Request.dotx" />
-                  </Component>
-                </Directory>-->
-                <Directory Id="PresentationsDir" Name="Presentations">
-                  <Component Id="Presentations" Guid="[GUID]">
-                    <File Id="MacroViewPresentation.potx" Name="MacroView Presentation.potx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Presentations\MacroView Presentation.potx" />
-                    <File Id="BlankPresentation.pptx" Name="Blank Presentation.pptx" Vital="yes" DiskId="1" Source="..\MacroView.Office\Office Files\Templates\Presentations\Blank Presentation.pptx" />
+                    <File Id="Letter.dotx" Name="Letter.dotx" Vital="yes" DiskId="1" Source="$(var.Property_AssemblyPath)\Office Files\Templates\Correspondence\Letter.dotx" />
+                    <File Id="Blank.docx" Name="Blank Document.docx" Vital="yes" DiskId="1" Source="$(var.Property_AssemblyPath)\Office Files\Templates\Correspondence\Blank Document.docx" />
                   </Component>
                 </Directory>
               </Directory>
@@ -243,14 +176,7 @@
       <ComponentRef Id="SecManDlls"/>
       <ComponentRef Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" />
       <ComponentRef Id="Elements"/>
-      <ComponentRef Id="HeaderFooters"/>
-      <ComponentRef Id="MockData"/>
-      <ComponentRef Id="Sections"/>
-      <ComponentRef Id="Signoffs"/>
-      <ComponentRef Id="Agreements"/>
       <ComponentRef Id="Correspondence"/>
-      <ComponentRef Id="BusinessDevelopment"/>
-      <ComponentRef Id="Presentations"/>
     </Feature>
 
     <InstallExecuteSequence>

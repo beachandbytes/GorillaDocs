@@ -1,38 +1,38 @@
-﻿using GorillaDocs.libs.PostSharp;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Wd = Microsoft.Office.Interop.Word;
+using PP = Microsoft.Office.Interop.PowerPoint;
+using O = Microsoft.Office.Core;
 
-namespace GorillaDocs.Word
+namespace GorillaDocs.PowerPoint
 {
-    [Log]
-    public class WordApplicationHelper
+    public class PowerPointApplicationHelper
     {
         [DllImport("user32.dll")]
         static extern bool SetForegroundWindow(IntPtr hWnd);
-        const string ProcessName = "WINWORD";
+        const string ProcessName = "POWERPNT";
 
-        public static Wd.Application GetApplication()
+        public static PP.Application GetApplication()
         {
             try
             {
-                if (!IsWordRunning())
-                    return CreateWordApp();
+                if (!IsPowerPointRunning())
+                    return CreatePowerPointApp();
 
                 int i = 0;
                 while (true)
                 {
                     try
                     {
-                        return (Wd.Application)Marshal.GetActiveObject("Word.Application");
+                        return (PP.Application)Marshal.GetActiveObject("PowerPoint.Application");
                     }
                     catch
                     {
                         if (i > 10)
-                            throw new InvalidOperationException("Unable to start Word Application.");
+                            throw new InvalidOperationException("Unable to start PowerPoint Application.");
                         i++;
                         Thread.Sleep(1000);
                     }
@@ -44,20 +44,20 @@ namespace GorillaDocs.Word
             }
         }
 
-        static Wd.Application CreateWordApp()
+        static PP.Application CreatePowerPointApp()
         {
-            var app = new Wd.Application() { Visible = true };
+            var app = new PP.Application() { Visible = O.MsoTriState.msoTrue };
             app.Activate(true);
             return app;
         }
 
-        static bool IsWordRunning() { return Process.GetProcessesByName(ProcessName).Any(); }
+        static bool IsPowerPointRunning() { return Process.GetProcessesByName(ProcessName).Any(); }
     }
 
-    public static class WordApplicationExtensionMethods
+    public static class PowerPointApplicationExtensionMethods
     {
         [System.Diagnostics.DebuggerStepThrough]
-        public static void Activate(this Wd.Application app, bool WaitIfBusy = false, int RetryAttempt = 0)
+        public static void Activate(this PP.Application app, bool WaitIfBusy = false, int RetryAttempt = 0)
         {
             try
             {

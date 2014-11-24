@@ -18,7 +18,7 @@ namespace GorillaDocs.IntegrationTests
         [SetUp]
         public void setup()
         {
-            wordApp = WordApplicationHelper.GetWordApplication();
+            wordApp = WordApplicationHelper.GetApplication();
             TestSectionFile = IOHelpers.BlueDividerSection.FullName;
         }
 

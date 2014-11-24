@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs", "GorillaDocs\GorillaDocs.csproj", "{1EB8B9CC-0D78-4B5C-8AE5-4FFE07914D69}"
 EndProject
@@ -65,6 +65,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.OpenXml", "GorillaDocs.OpenXml\GorillaDocs.OpenXml.csproj", "{69A38FEB-E2C6-4749-9138-376AAD755E5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.OutlookSecurity", "GorillaDocs.OutlookSecurity\GorillaDocs.OutlookSecurity.csproj", "{B6D42E37-10EE-42AB-AAA5-33CF81AEA598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaDocs.PowerPoint", "GorillaDocs.PowerPoint\GorillaDocs.PowerPoint.csproj", "{26D8F453-DBB0-41C7-B2E0-5A9825955407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -176,6 +178,16 @@ Global
 		{B6D42E37-10EE-42AB-AAA5-33CF81AEA598}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B6D42E37-10EE-42AB-AAA5-33CF81AEA598}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B6D42E37-10EE-42AB-AAA5-33CF81AEA598}.Release|x86.ActiveCfg = Release|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{26D8F453-DBB0-41C7-B2E0-5A9825955407}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

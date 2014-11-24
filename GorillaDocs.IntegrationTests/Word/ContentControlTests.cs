@@ -17,7 +17,7 @@ namespace GorillaDocs.IntegrationTests
         [SetUp]
         public void setup()
         {
-            this.wordApp = WordApplicationHelper.GetWordApplication();
+            this.wordApp = WordApplicationHelper.GetApplication();
             this.doc = this.wordApp.Documents.Open(IOHelpers.ContentControlsData.FullName);
         }
 

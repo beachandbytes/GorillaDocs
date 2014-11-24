@@ -20,7 +20,7 @@ namespace GorillaDocs.IntegrationTests.Word
         [SetUp]
         public void setup()
         {
-            wordApp = WordApplicationHelper.GetWordApplication();
+            wordApp = WordApplicationHelper.GetApplication();
             Thread.Sleep(3000);
         }
 
