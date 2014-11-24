@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -24,6 +25,8 @@ namespace GorillaDocs
             string path = Uri.UnescapeDataString(uri.Path);
             return System.IO.Path.GetDirectoryName(path);
         }
+
+        public static DirectoryInfo Folder(this Assembly assembly) { return new DirectoryInfo(assembly.Path()); }
 
         public static string FullPath(this Assembly assembly)
         {

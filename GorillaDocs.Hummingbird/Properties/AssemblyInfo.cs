@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GorillaDocs")]
-[assembly: AssemblyDescription("A Microsoft VSTO helper library")]
+[assembly: AssemblyTitle("GorillaDocs.Hummingbird")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GorillaDocs")]
+[assembly: AssemblyProduct("GorillaDocs.Hummingbird")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d28926a3-345d-4e8a-b691-c8bb46a9e6f3")]
+[assembly: Guid("8e7bc289-fca1-4081-8af8-ef2da07850ed")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.26.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
