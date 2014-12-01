@@ -16,11 +16,14 @@ namespace GorillaDocs.ViewModels
         //http://stackoverflow.com/questions/1315621/implementing-inotifypropertychanged-does-a-better-way-exist
         //https://github.com/Fody/PropertyChanged
         string _Initials;
-        string _Fullname;
+        string _FullName;
         string _FirstName;
         string _LastName;
+        string _Salutation;
+        string _Qualifications;
         string _Title;
         string _CompanyName;
+        string _Department;
         string _PhoneNumber;
         string _FaxNumber;
         string _EmailAddress;
@@ -37,13 +40,13 @@ namespace GorillaDocs.ViewModels
                 NotifyPropertyChanged("Initials");
             }
         }
-        public string Fullname
+        public string FullName
         {
-            get { return _Fullname; }
+            get { return _FullName; }
             set
             {
-                _Fullname = value;
-                NotifyPropertyChanged("Fullname");
+                _FullName = value;
+                NotifyPropertyChanged("FullName");
             }
         }
         public string FirstName
@@ -64,6 +67,24 @@ namespace GorillaDocs.ViewModels
                 NotifyPropertyChanged("LastName");
             }
         }
+        public string Salutation
+        {
+            get { return _Salutation; }
+            set
+            {
+                _Salutation = value;
+                NotifyPropertyChanged("Salutation");
+            }
+        }
+        public string Qualifications
+        {
+            get { return _Qualifications; }
+            set
+            {
+                _Qualifications = value;
+                NotifyPropertyChanged("Qualifications");
+            }
+        }
         public string Title
         {
             get { return _Title; }
@@ -80,6 +101,15 @@ namespace GorillaDocs.ViewModels
             {
                 _CompanyName = value;
                 NotifyPropertyChanged("CompanyName");
+            }
+        }
+        public string Department
+        {
+            get { return _Department; }
+            set
+            {
+                _Department = value;
+                NotifyPropertyChanged("Department");
             }
         }
         public string PhoneNumber
@@ -179,15 +209,21 @@ namespace GorillaDocs.ViewModels
         {
             if (!string.IsNullOrEmpty(Initials))
                 return false;
-            if (!string.IsNullOrEmpty(Fullname))
+            if (!string.IsNullOrEmpty(FullName))
                 return false;
             if (!string.IsNullOrEmpty(FirstName))
                 return false;
             if (!string.IsNullOrEmpty(LastName))
                 return false;
+            if (!string.IsNullOrEmpty(Salutation))
+                return false;
+            if (!string.IsNullOrEmpty(Qualifications))
+                return false;
             if (!string.IsNullOrEmpty(Title))
                 return false;
             if (!string.IsNullOrEmpty(CompanyName))
+                return false;
+            if (!string.IsNullOrEmpty(Department))
                 return false;
             if (!string.IsNullOrEmpty(PhoneNumber))
                 return false;
@@ -207,11 +243,14 @@ namespace GorillaDocs.ViewModels
         public void Clear()
         {
             Initials = string.Empty;
-            Fullname = string.Empty;
+            FullName = string.Empty;
             FirstName = string.Empty;
             LastName = string.Empty;
+            Salutation = string.Empty;
+            Qualifications = string.Empty;
             Title = string.Empty;
             CompanyName = string.Empty;
+            Department = string.Empty;
             PhoneNumber = string.Empty;
             FaxNumber = string.Empty;
             EmailAddress = string.Empty;
@@ -222,11 +261,14 @@ namespace GorillaDocs.ViewModels
         public void Copy(Contact from)
         {
             Initials = from.Initials;
-            Fullname = from.Fullname;
+            FullName = from.FullName;
             FirstName = from.FirstName;
             LastName = from.LastName;
+            Salutation = from.Salutation;
+            Qualifications = from.Qualifications;
             Title = from.Title;
             CompanyName = from.CompanyName;
+            Department = from.Department;
             PhoneNumber = from.PhoneNumber;
             FaxNumber = from.FaxNumber;
             EmailAddress = from.EmailAddress;
@@ -245,6 +287,6 @@ namespace GorillaDocs.ViewModels
 
         public override bool Equals(object obj) { return Equals(obj as Contact); }
 
-        public override string ToString() { return Fullname; }
+        public override string ToString() { return FullName; }
     }
 }

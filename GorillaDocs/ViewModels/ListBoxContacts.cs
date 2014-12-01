@@ -14,8 +14,8 @@ namespace GorillaDocs.ViewModels
             Contacts = new ObservableCollection<Contact>();
             AddCommand = new GenericCommand(AddPressed);
 
-            Contacts.Add(new ListBoxContact(this) { FirstName = "Matthew", LastName = "Fitzmaurice", Fullname = "Matthew Fitzmaurice" });
-            Contacts.Add(new ListBoxContact(this) { FirstName = "Marcia", LastName = "Fitzmaurice", Fullname = "Marcia Fitzmaurice" });
+            Contacts.Add(new ListBoxContact(this) { FirstName = "Matthew", LastName = "Fitzmaurice", FullName = "Matthew Fitzmaurice" });
+            Contacts.Add(new ListBoxContact(this) { FirstName = "Marcia", LastName = "Fitzmaurice", FullName = "Marcia Fitzmaurice" });
         }
 
         public string Title { get; set; }

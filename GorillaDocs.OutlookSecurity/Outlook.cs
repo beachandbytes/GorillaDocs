@@ -104,9 +104,9 @@ namespace GorillaDocs.Word
             var contact = new Contact();
             //contact.Office = this.office;
             contact.Initials = item.Initials;
-            contact.Fullname = item.FullName;
-            if (contact.Fullname.Contains(','))
-                contact.Fullname = string.Format("{0} {1}", item.FirstName, item.LastName);
+            contact.FullName = item.FullName;
+            if (contact.FullName.Contains(','))
+                contact.FullName = string.Format("{0} {1}", item.FirstName, item.LastName);
             contact.FirstName = item.FirstName;
             contact.LastName = item.LastName;
             contact.Title = item.JobTitle;
@@ -128,9 +128,9 @@ namespace GorillaDocs.Word
             if (user == null)
                 throw new NullReferenceException("Unable to find address entry in Exchange for user " + recipient.Name);
             contact.Initials = GetGALProperty(user, PR_INITIALS);
-            contact.Fullname = user.Name;
-            if (contact.Fullname.Contains(','))
-                contact.Fullname = string.Format("{0} {1}", user.FirstName, user.LastName);
+            contact.FullName = user.Name;
+            if (contact.FullName.Contains(','))
+                contact.FullName = string.Format("{0} {1}", user.FirstName, user.LastName);
             contact.FirstName = user.FirstName;
             contact.LastName = user.LastName;
             contact.Title = user.JobTitle;

@@ -49,7 +49,7 @@ namespace GorillaDocs.ViewModels
             get { return contact; }
             set
             {
-                if (contact != null && value != null && contact.Fullname == value.Fullname)
+                if (contact != null && value != null && contact.FullName == value.FullName)
                     return;
 
                 if (value == null)
@@ -72,7 +72,7 @@ namespace GorillaDocs.ViewModels
             {
                 var list = Contacts.ToList();
                 list.RemoveAll(x => x.IsEmpty());
-                int current = list.FindIndex(x => x.Fullname == Contact.Fullname) + 1;
+                int current = list.FindIndex(x => x.FullName == Contact.FullName) + 1;
                 int count = list.Count();
                 if (current == 0)
                     return string.Format("{0} of {0}", count + 1);
@@ -119,7 +119,7 @@ namespace GorillaDocs.ViewModels
                 }
                 else
                 {
-                    Contacts.RemoveAll(x => x.Fullname == this.Contact.Fullname);
+                    Contacts.RemoveAll(x => x.FullName == this.Contact.FullName);
                     Contact = Contacts[i];
                 }
             }
@@ -221,7 +221,7 @@ namespace GorillaDocs.ViewModels
         public Visibility RemoveFavouriteVisibility { get { return IsEnabled ? Visibility.Collapsed : Visibility.Visible; } }
         int IndexOf(Contact contact)
         {
-            return Contacts.ToList().FindIndex(x => x.Fullname == contact.Fullname);
+            return Contacts.ToList().FindIndex(x => x.FullName == contact.FullName);
         }
     }
 }

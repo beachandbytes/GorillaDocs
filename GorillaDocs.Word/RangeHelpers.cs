@@ -278,7 +278,7 @@ namespace GorillaDocs.Word
 
         public static bool IsEmpty(this Wd.Paragraph paragraph)
         {
-            return paragraph.Range.Text == "\r";
+            return paragraph.Range.Text == "\r" && paragraph.Range.Tables.Count == 0;
         }
     }
 }

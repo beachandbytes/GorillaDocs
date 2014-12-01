@@ -84,7 +84,7 @@ namespace GorillaDocs.ViewModels
         public ICommand AddFavouriteCommand { get; set; }
         public bool CanAddFavourite()
         {
-            return this.Contact != null && !string.IsNullOrEmpty(this.Contact.Fullname);
+            return this.Contact != null && !string.IsNullOrEmpty(this.Contact.FullName);
         }
         public void AddFavouritePressed()
         {

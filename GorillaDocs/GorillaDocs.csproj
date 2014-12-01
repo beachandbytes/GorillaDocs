@@ -86,6 +86,7 @@
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="DateTimeHelper.cs" />
     <Compile Include="DrawingHelper.cs" />
+    <Compile Include="Fakes\Outlook.cs" />
     <Compile Include="IconHelper.cs" />
     <Compile Include="InternationalAddressFormats.cs" />
     <Compile Include="IOHelper.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Models\Favourites.cs" />
     <Compile Include="Models\FileInfoWithCategory.cs" />
     <Compile Include="Models\FileWithCategoryCollection.cs" />
+    <Compile Include="Models\IContact.cs" />
     <Compile Include="Models\MicrosoftApplication.cs" />
     <Compile Include="Models\MicrosoftPowerPointApplication.cs" />
     <Compile Include="Models\MicrosoftWordApplication.cs" />
@@ -190,61 +192,61 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
-    <None Include="Resources\GorillaDocs.png" />
+    <Resource Include="Resources\GorillaDocs.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GorillaDocs_sml.png" />
+    <Resource Include="Resources\GorillaDocs_sml.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\action_add_16xMD.png" />
+    <Resource Include="Resources\action_add_16xMD.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_back_16xLG.png" />
+    <Resource Include="Resources\arrow_back_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_Forward_16xLG.png" />
+    <Resource Include="Resources\arrow_Forward_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_Previous_16xLG_color.png" />
+    <Resource Include="Resources\arrow_Previous_16xLG_color.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ImportOrLoad_8600.png" />
+    <Resource Include="Resources\ImportOrLoad_8600.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Office1.png" />
+    <Resource Include="Resources\Office1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pencil_003_16xMD.png" />
+    <Resource Include="Resources\pencil_003_16xMD.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PowerPointTemplate.png" />
+    <Resource Include="Resources\PowerPointTemplate.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save_16xLG.png" />
+    <Resource Include="Resources\save_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SharePoint.png" />
+    <Resource Include="Resources\SharePoint.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sharepointfoundation16.png" />
+    <Resource Include="Resources\sharepointfoundation16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\StatusAnnotations_Complete_and_ok_16xLG.png" />
+    <Resource Include="Resources\StatusAnnotations_Complete_and_ok_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Symbols_Blocked_32xLG.png" />
+    <Resource Include="Resources\Symbols_Blocked_32xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Symbols_Complete_and_ok_16xLG.png" />
+    <Resource Include="Resources\Symbols_Complete_and_ok_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Symbols_Critical_32xLG.png" />
+    <Resource Include="Resources\Symbols_Critical_32xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\user_32xLG.png" />
+    <Resource Include="Resources\user_32xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\WordTemplate.png" />
+    <Resource Include="Resources\WordTemplate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

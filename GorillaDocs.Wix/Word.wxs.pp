@@ -17,7 +17,7 @@
         <File Id="$(var.Property_WordAssemblyName).dll.manifest" Name="$(var.Property_WordAssemblyName).dll.manifest" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\$(var.Property_WordAssemblyName).dll.manifest" />
         <File Id="$(var.Property_WordAssemblyName).dll.config" Name="$(var.Property_WordAssemblyName).dll.config" Vital="yes" DiskId="1" Source="$(var.Property_WordPath)\$(var.Property_WordAssemblyName).dll.config" />
 
-        <RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Microsoft\Office\[WORDVERSIONKEYNAME]\User Settings\$(var.Property_WordAssemblyName)\Create\Software\Microsoft\Office\Word\Addins\[Property_ProductName]" Root="HKLM">
+        <RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Microsoft\Office\[WORDVERSIONKEYNAME]\User Settings\$(var.Property_WordAssemblyName)\Create\Software\Microsoft\Office\Word\Addins\$(var.Property_ProductName)" Root="HKLM">
           <RegistryValue Name="CommandLineSafe" Value="1" Type="integer" />
           <RegistryValue Name="LoadBehavior" Value="3" Type="integer" />
           <RegistryValue Name="FriendlyName" Value="$(var.Property_ClientName) Word Addin" Type="string" />

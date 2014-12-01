@@ -22,9 +22,18 @@ namespace GorillaDocs
         {
             if (serializableObject == null) { return; }
 
-            XmlSerializer serializer = new XmlSerializer(serializableObject.GetType());
+            var serializer = new XmlSerializer(serializableObject.GetType());
             using (TextWriter textWriter = new StreamWriter(fileName))
                 serializer.Serialize(textWriter, serializableObject);
+        }
+        public static void SerializeToFile<T>(T serializableObject, string fileName, string Namespace = null)
+        {
+            if (serializableObject == null) { return; }
+
+            var serializer = new XmlSerializer(serializableObject.GetType());
+            var ns = ClearDefaultNamespacesForOfficeCustomXmlParts(Namespace);
+            using (TextWriter textWriter = new StreamWriter(fileName))
+                serializer.Serialize(textWriter, serializableObject, ns);
         }
         public static string SerializeToString<T>(T serializableObject)
         {

@@ -17,7 +17,7 @@
         <File Id="$(var.Property_PowerPointAssemblyName).dll.manifest" Name="$(var.Property_PowerPointAssemblyName).dll.manifest" Vital="yes" DiskId="1" Source="$(var.Property_PowerPointPath)\$(var.Property_PowerPointAssemblyName).dll.manifest" />
         <File Id="$(var.Property_PowerPointAssemblyName).dll.config" Name="$(var.Property_PowerPointAssemblyName).dll.config" Vital="yes" DiskId="1" Source="$(var.Property_PowerPointPath)\$(var.Property_PowerPointAssemblyName).dll.config" />
 
-        <RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Microsoft\Office\[POWERPOINTVERSIONKEYNAME]\User Settings\$(var.Property_PowerPointAssemblyName)\Create\Software\Microsoft\Office\PowerPoint\Addins\[Property_ProductName]" Root="HKLM">
+        <RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Microsoft\Office\[POWERPOINTVERSIONKEYNAME]\User Settings\$(var.Property_PowerPointAssemblyName)\Create\Software\Microsoft\Office\PowerPoint\Addins\$(var.Property_ProductName)" Root="HKLM">
           <RegistryValue Name="CommandLineSafe" Value="1" Type="integer" />
           <RegistryValue Name="LoadBehavior" Value="3" Type="integer" />
           <RegistryValue Name="FriendlyName" Value="$(var.Property_ClientName) PowerPoint Addin" Type="string" />

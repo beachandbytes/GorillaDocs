@@ -154,13 +154,13 @@ namespace GorillaDocs.Word
                     control.DeleteLine();
         }
 
-        public static void FormatDates(this Wd.ContentControls controls, CultureInfo culture, string LongDateFormat, string expectedValue)
+        public static void FormatDates(this Wd.ContentControls controls, CultureInfo culture, string LongDateFormat, string expectedValue = null)
         {
             foreach (Wd.ContentControl control in controls)
                 if (control.Type == Wd.WdContentControlType.wdContentControlDate)
                     FormatDateControl(LongDateFormat, culture, control, expectedValue);
         }
-        public static void FormatDates(this Wd.ContentControls controls, CultureInfo culture, string LongDateFormat, string Tag, string expectedValue)
+        public static void FormatDates(this Wd.ContentControls controls, CultureInfo culture, string LongDateFormat, string Tag, string expectedValue = null)
         {
             foreach (Wd.ContentControl control in controls)
                 if (control.Type == Wd.WdContentControlType.wdContentControlDate)
@@ -169,7 +169,7 @@ namespace GorillaDocs.Word
         }
 
         static BackgroundWorker worker;
-        static void FormatDateControl(string LongDateFormat, CultureInfo culture, Wd.ContentControl control, string expectedValue)
+        static void FormatDateControl(string LongDateFormat, CultureInfo culture, Wd.ContentControl control, string expectedValue = null)
         {
             try
             {
@@ -209,7 +209,7 @@ namespace GorillaDocs.Word
                     i++;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 // Log and ignore - the control may have been deleted by the time this code runs
                 Message.LogWarning(ex);
