@@ -171,7 +171,7 @@ namespace GorillaDocs.ViewModels
         public bool CanAddFavourite()
         {
             return false;
-            //return this.Contact != null && !string.IsNullOrEmpty(this.Contact.Fullname);
+            //return this.Contact != null && !string.IsNullOrEmpty(this.Contact.FullName);
         }
         public void AddFavouritePressed()
         {

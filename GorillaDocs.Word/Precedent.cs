@@ -37,12 +37,12 @@ namespace GorillaDocs.Word
 
             T.ContinueWith((antecedent) =>
             {
-                if (Doc.IsTemplate()) return;
-
                 dispatcher.Invoke(new Action(() =>
                 {
                     try
                     {
+                        if (Doc.IsTemplate()) return;
+
                         DisableEvents = true;
                         if (control.IsMappedComboWithValueSelected())
                         {

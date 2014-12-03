@@ -65,15 +65,15 @@ namespace GorillaDocs.ViewModels
         public ICommand ClearCommand { get; set; }
         public bool CanClear()
         {
-            return !this.Contact.IsNullOrEmpty();
+            return !Contact.IsNullOrEmpty();
         }
         public void ClearPressed()
         {
             try
             {
-                if (this.Favourites.Contains(Contact))
-                    this.Contact = new Contact();
-                this.Contact.Clear();
+                if (Favourites.Contains(Contact))
+                    Contact = new Contact();
+                Contact.Clear();
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace GorillaDocs.ViewModels
         public ICommand AddFavouriteCommand { get; set; }
         public bool CanAddFavourite()
         {
-            return this.Contact != null && !string.IsNullOrEmpty(this.Contact.FullName);
+            return Contact != null && !string.IsNullOrEmpty(Contact.FullName);
         }
         public void AddFavouritePressed()
         {

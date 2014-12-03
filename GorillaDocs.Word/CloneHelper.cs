@@ -11,12 +11,12 @@ namespace GorillaDocs.Word
     [Log]
     public static class CloneHelper
     {
-        public static Wd.Document CloneFrom(this Wd.Document target, string Fullname)
+        public static Wd.Document CloneFrom(this Wd.Document target, string FullName)
         {
-            target.CopyStylesFromTemplate(Fullname);
-            target.ApplyDocumentTheme(Fullname);
+            target.CopyStylesFromTemplate(FullName);
+            target.ApplyDocumentTheme(FullName);
 
-            var source = target.Application.Documents.Open(Fullname, Type.Missing, true, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, false);
+            var source = target.Application.Documents.Open(FullName, Type.Missing, true, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, false);
             try
             {
                 AttachTemplate(target, source);

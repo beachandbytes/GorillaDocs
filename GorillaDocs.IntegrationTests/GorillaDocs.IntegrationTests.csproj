@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="SharePoint\CheckInTests.cs" />
     <Compile Include="Word\CloneTests.cs" />
+    <Compile Include="Word\FirmAddressTests.cs" />
     <Compile Include="Word\SectionTests.cs" />
     <Compile Include="Helpers\IOHelpers.cs" />
     <Compile Include="Word\ContentControlTests.cs" />

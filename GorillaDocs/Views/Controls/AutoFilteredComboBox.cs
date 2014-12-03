@@ -12,7 +12,7 @@ namespace GorillaDocs.Views.Controls
     /// <summary>
     /// http://weblogs.asp.net/okloeten/archive/2007/11/12/5088649.aspx
     ///                 <TextBox Name="EditableTextBox"/>
-    ///                <h:AutoFilteredComboBox x:Name="Name" Text="{Binding Path=Contact.Fullname}" ItemsSource="{Binding Favourites}" />
+    ///                <h:AutoFilteredComboBox x:Name="Name" Text="{Binding Path=Contact.FullName}" ItemsSource="{Binding Favourites}" />
     /// </summary>
     public class AutoFilteredComboBox : ComboBox
     {

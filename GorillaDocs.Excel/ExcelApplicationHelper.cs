@@ -46,7 +46,7 @@ namespace GorillaDocs.Excel
         static XL.Application CreateExcelApp()
         {
             var app = new XL.Application() { Visible = true };
-            app.Activate(true);
+            //app.Activate(true);
             return app;
         }
 
@@ -58,6 +58,7 @@ namespace GorillaDocs.Excel
         [System.Diagnostics.DebuggerStepThrough]
         public static void Activate(this XL.Application app, bool WaitIfBusy = false, int RetryAttempt = 0)
         {
+            throw new NotImplementedException("There's a stack overflow error in this routine!");
             try
             {
                 app.Activate();
