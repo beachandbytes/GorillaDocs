@@ -4,7 +4,6 @@ using System.Linq;
 using Wd = Microsoft.Office.Interop.Word;
 using O = Microsoft.Office.Core;
 using System.IO;
-using System.Linq.Expressions;
 
 namespace GorillaDocs.Word
 {
@@ -12,13 +11,25 @@ namespace GorillaDocs.Word
     {
         const string TagAndBookmark = "FirmAddress";
 
-        public static void UpdateFirmAddressesControls<T>(this Wd.Document doc, T Office, string Namespace, FileInfo FirmAddress)
+        public static void UpdateFirmAddressesControls(this Wd.HeadersFooters headersfooters, FileInfo FirmAddress)
+        {
+            foreach (Wd.HeaderFooter hf in headersfooters)
+                hf.Range.UpdateFirmAddressesControls(FirmAddress);
+        }
+
+        public static void UpdateFirmAddressesControls(this Wd.Shapes shapes, FileInfo FirmAddress)
+        {
+            foreach (Wd.Shape shape in shapes)
+                if (shape.Type == O.MsoShapeType.msoTextBox)
+                    shape.TextFrame.TextRange.UpdateFirmAddressesControls(FirmAddress);
+        }
+
+        public static void UpdateFirmAddressesControls(this Wd.Range range, FileInfo FirmAddress)
         {
             try
             {
-                doc.UpdateFirmAddressPart(Office, Namespace);
-                doc.FirmAddressControls(x => x.ReinsertFromFile(FirmAddress, TagAndBookmark));
-                doc.FirmAddressControls(x => x.Range.ContentControls.DeleteUnMapped());
+                range.FirmAddressControls(x => x.ReinsertFromFile(FirmAddress, TagAndBookmark));
+                range.FirmAddressControls(x => x.Range.ContentControls.DeleteEmptyMappedControls());
             }
             catch (Exception ex)
             {
@@ -27,18 +38,20 @@ namespace GorillaDocs.Word
             }
         }
 
-        static void FirmAddressControls(this Wd.Document doc, Action<Wd.ContentControl> action)
+        static void FirmAddressControls(this Wd.Range range, Action<Wd.ContentControl> action)
         {
-            foreach (Wd.ContentControl control in doc.ContentControls)
-                if (control.Tag == TagAndBookmark)
-                    action(control);
+
+            foreach (Wd.ContentControl control in range.ContentControls.FindAll(TagAndBookmark))
+                action(control);
         }
 
         static void ReinsertFromFile(this Wd.ContentControl control, FileInfo FirmAddress, string Bookmark)
         {
             Wd.Range range = control.Range;
-            range.Delete();
-            range.InsertFromFile(FirmAddress.FullName, Bookmark);
+            control.DeleteParagraphIfEmpty();
+            range.InsertFile_Safe(FirmAddress.FullName, Bookmark);
+            if (range.Bookmarks.Exists(Bookmark))
+                range.Bookmarks[Bookmark].Delete();
         }
 
         public static void UpdateFirmAddressPart<T>(this Wd.Document doc, T Office, string Namespace)
@@ -56,5 +69,5 @@ namespace GorillaDocs.Word
                 Message.LogError(ex);
             }
         }
-   }
+    }
 }

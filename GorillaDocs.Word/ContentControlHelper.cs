@@ -273,6 +273,7 @@ namespace GorillaDocs.Word
                 range.Rows[1].Delete();
         }
 
+        [Obsolete("This routine only deletes the first paragraph in a document. Use DeleteParagraphIfEmpty instead.")]
         public static void DeleteParagraph(this Wd.ContentControl control)
         {
             if (control != null)
@@ -392,6 +393,20 @@ namespace GorillaDocs.Word
                     control.Delete(true);
                 else
                     control.DeleteLine();
+        }
+
+        public static void DeleteEmptyMappedControls(this Wd.ContentControls controls)
+        {
+            // Have to delete in reverse order because of Word bug.
+            // foreach worked fine in body of document
+            // foreach does not work when controls are in header of document
+            //foreach (Wd.ContentControl control in controls)
+            for (int i = controls.Count; i > 0; i--)
+            {
+                var control = controls[i];
+                if (control.XMLMapping.IsMapped && control.ShowingPlaceholderText == true)
+                    control.Delete();
+            }
         }
 
         public static bool IsMappedComboWithValueSelected(this Wd.ContentControl control)

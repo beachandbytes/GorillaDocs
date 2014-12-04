@@ -1,11 +1,11 @@
 ﻿using GorillaDocs.libs.PostSharp;
 using System;
+using System.IO;
 using O = Microsoft.Office.Core;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
-    [Log]
     public static class DocumentHelper
     {
         public static bool ActiveDocumentExists(this Wd.Application application)
@@ -61,6 +61,22 @@ namespace GorillaDocs.Word
             if (parts.Count > 1)
                 throw new InvalidOperationException(string.Format("There are more than 1 CustomXmlPart with Namespace '{0}'", Namespace));
             return parts[1];
+        }
+
+        public static bool Exists(this Wd.Documents documents, FileInfo file)
+        {
+            foreach (Wd.Document doc in documents)
+                if (doc.FullName == file.FullName)
+                    return true;
+            return false;
+        }
+
+        public static Wd.Document First(this Wd.Documents documents, FileInfo file)
+        {
+            foreach (Wd.Document doc in documents)
+                if (doc.FullName == file.FullName)
+                    return doc;
+            return null;
         }
     }
 }

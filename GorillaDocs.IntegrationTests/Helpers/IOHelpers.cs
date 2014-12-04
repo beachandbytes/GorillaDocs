@@ -7,6 +7,8 @@ namespace GorillaDocs.IntegrationTests.Helpers
     public static class IOHelpers
     {
         public static FileInfo ContentControlsData { get { return Word_SampleData.GetFiles("ContentControls.docx")[0]; } }
+        public static FileInfo FirmAddressData { get { return Word_SampleData.GetFiles("Firm Address.docx")[0]; } }
+        public static FileInfo FirmAddressTestData { get { return Word_SampleData.GetFiles("Firm Address Test.docx")[0]; } }
         public static FileInfo EmptySectionsData { get { return Word_SampleData.GetFiles("Empty Sections.docx")[0]; } }
         public static FileInfo AppendixSection { get { return Word_Sections.GetFiles("Appendix.docx")[0]; } }
         public static FileInfo BackCoverSection { get { return Word_Sections.GetFiles("Back Cover.docx")[0]; } }

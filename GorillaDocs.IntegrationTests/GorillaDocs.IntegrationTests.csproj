@@ -81,6 +81,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Word\SampleData\Firm Address.docx" />
+    <None Include="Word\SampleData\Firm Address Test.docx" />
     <None Include="Word\SampleData\Sections\Appendix.docx" />
     <None Include="Word\SampleData\Sections\Back Cover.docx" />
     <None Include="Word\SampleData\Sections\Blue Divider.docx" />
