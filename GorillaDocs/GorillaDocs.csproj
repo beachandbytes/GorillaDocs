@@ -88,6 +88,7 @@
     <Compile Include="DrawingHelper.cs" />
     <Compile Include="Fakes\Outlook.cs" />
     <Compile Include="IconHelper.cs" />
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="InternationalAddressFormats.cs" />
     <Compile Include="IOHelper.cs" />
     <Compile Include="libs\PostSharp\LogAttribute.cs" />
@@ -247,6 +248,105 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WordTemplate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BT.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BTI.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DiscardChanges.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DP.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H5.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H6.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IN.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItalicD.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S5.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S6.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SH.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ToggleLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
