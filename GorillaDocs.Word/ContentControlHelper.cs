@@ -273,7 +273,6 @@ namespace GorillaDocs.Word
                 range.Rows[1].Delete();
         }
 
-        [Obsolete("This routine only deletes the first paragraph in a document. Use DeleteParagraphIfEmpty instead.")]
         public static void DeleteParagraph(this Wd.ContentControl control)
         {
             if (control != null)

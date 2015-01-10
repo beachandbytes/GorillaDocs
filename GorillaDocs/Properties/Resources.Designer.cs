@@ -509,6 +509,16 @@ namespace GorillaDocs.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Landscape {
+            get {
+                object obj = ResourceManager.GetObject("Landscape", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Office1 {
             get {
                 object obj = ResourceManager.GetObject("Office1", resourceCulture);
@@ -522,6 +532,16 @@ namespace GorillaDocs.Properties {
         public static System.Drawing.Bitmap pencil_003_16xMD {
             get {
                 object obj = ResourceManager.GetObject("pencil_003_16xMD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Portrait {
+            get {
+                object obj = ResourceManager.GetObject("Portrait", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

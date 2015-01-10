@@ -165,6 +165,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="strings\strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -347,6 +348,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ToggleLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Landscape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Portrait.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

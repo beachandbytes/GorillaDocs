@@ -73,6 +73,10 @@ namespace GorillaDocs
                     return PictureConverter.ImageToPictureDisp(Properties.Resources.ToggleLogo);
                 case "IN":
                     return PictureConverter.ImageToPictureDisp(Properties.Resources.IN);
+                case "Landscape":
+                    return PictureConverter.ImageToPictureDisp(Properties.Resources.Landscape);
+                case "Portrait":
+                    return PictureConverter.ImageToPictureDisp(Properties.Resources.Portrait);
                 default:
                     throw new ArgumentException(string.Format("'{0}' does not exist.", imageName));
             }

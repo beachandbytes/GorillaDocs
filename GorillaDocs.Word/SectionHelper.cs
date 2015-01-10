@@ -101,6 +101,25 @@ namespace GorillaDocs.Word
             doc.Sections[i].Delete();
         }
 
+        public static void InsertLandscapeSection(this Wd.Selection selection)
+        {
+            if (selection.PageSetup.Orientation == Wd.WdOrientation.wdOrientPortrait)
+            {
+                Wd.Section section = selection.AddSection();
+                section.ToggleOrientation();
+            }
+            else
+                throw new InvalidOperationException("This section is already in Landscape orientation.");
+        }
+
+        public static void ConvertToPortrait(this Wd.Section section)
+        {
+            if (section.PageSetup.Orientation == Wd.WdOrientation.wdOrientLandscape)
+                section.ToggleOrientation();
+            else
+                throw new InvalidOperationException("This section is alread in Portrait orientation.");
+        }
+
         public static void ToggleOrientation(this Wd.Section section)
         {
             Wd.PageSetup pageSetup = section.PageSetup;
