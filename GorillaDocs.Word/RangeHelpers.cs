@@ -278,7 +278,7 @@ namespace GorillaDocs.Word
 
         public static bool IsEmpty(this Wd.Paragraph paragraph)
         {
-            return paragraph.Range.Text == "\r" && paragraph.Range.Tables.Count == 0;
+            return paragraph.Range.Text == "\r" /* && paragraph.Range.Tables.Count == 0 */; // Table check always returns true if the paragraph is contained in a Table. The check intended to only determine whether a table is in the paragraph.
         }
     }
 }
