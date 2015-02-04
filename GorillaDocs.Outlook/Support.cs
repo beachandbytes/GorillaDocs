@@ -21,6 +21,6 @@ namespace GorillaDocs.Outlook
                 mail.Attachments.Add(LogFileFullName);
             mail.Display(false);
         }
-        public static void SendEmail(FileInfo logfile) { SendEmail(null, null, null, logfile.FullName); }
+        public static void SendEmail(FileInfo logfile, string To = null) { SendEmail(To, null, null, logfile.FullName); }
     }
 }

@@ -113,7 +113,6 @@ namespace GorillaDocs.Word
             }
         }
 
-
         public static Wd.Table FindTable(this Wd.Document doc, string description)
         {
             var table = doc.Range().FindTable(description);

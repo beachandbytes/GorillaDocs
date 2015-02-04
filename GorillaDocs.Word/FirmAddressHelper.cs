@@ -38,14 +38,13 @@ namespace GorillaDocs.Word
             }
         }
 
-        static void FirmAddressControls(this Wd.Range range, Action<Wd.ContentControl> action)
+        public static void FirmAddressControls(this Wd.Range range, Action<Wd.ContentControl> action)
         {
-
             foreach (Wd.ContentControl control in range.ContentControls.FindAll(TagAndBookmark))
                 action(control);
         }
 
-        static void ReinsertFromFile(this Wd.ContentControl control, FileInfo FirmAddress, string Bookmark)
+        public static void ReinsertFromFile(this Wd.ContentControl control, FileInfo FirmAddress, string Bookmark)
         {
             Wd.Range range = control.Range;
             control.DeleteParagraphIfEmpty();

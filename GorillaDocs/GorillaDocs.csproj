@@ -98,7 +98,6 @@
     <Compile Include="Models\Favourites.cs" />
     <Compile Include="Models\FileInfoWithCategory.cs" />
     <Compile Include="Models\FileWithCategoryCollection.cs" />
-    <Compile Include="Models\IContact.cs" />
     <Compile Include="Models\MicrosoftApplication.cs" />
     <Compile Include="Models\MicrosoftPowerPointApplication.cs" />
     <Compile Include="Models\MicrosoftWordApplication.cs" />

@@ -62,6 +62,7 @@ namespace GorillaDocs.Word
             }
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         public static void Delete(this Wd.Section section)
         {
             var doc = section.Range.Document;
