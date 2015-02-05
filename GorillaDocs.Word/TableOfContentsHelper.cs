@@ -230,13 +230,13 @@ namespace GorillaDocs.Word
             }
         }
 
-        public static void Update(this List<Wd.TableOfContents> tocs)
+        public static void Update(this IList<Wd.TableOfContents> tocs)
         {
             foreach (Wd.TableOfContents toc in tocs)
                 toc.Update();
         }
 
-        public static List<Wd.TableOfContents> TablesOfContents(this Wd.Document doc)
+        public static IList<Wd.TableOfContents> TablesOfContents(this Wd.Document doc)
         {
             var tocs = new List<Wd.TableOfContents>();
             foreach (Wd.TableOfContents toc in doc.TablesOfContents)

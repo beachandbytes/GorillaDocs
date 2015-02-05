@@ -32,7 +32,7 @@ namespace GorillaDocs.Word
             return false;
         }
 
-        public static List<Wd.HeaderFooter> Headers(this Wd.Sections sections)
+        public static IList<Wd.HeaderFooter> Headers(this Wd.Sections sections)
         {
             var headers = new List<Wd.HeaderFooter>();
             foreach (Wd.Section section in sections)
@@ -40,7 +40,7 @@ namespace GorillaDocs.Word
                     headers.Add(header);
             return headers;
         }
-        public static List<Wd.HeaderFooter> Footers(this Wd.Sections sections)
+        public static IList<Wd.HeaderFooter> Footers(this Wd.Sections sections)
         {
             var footers = new List<Wd.HeaderFooter>();
             foreach (Wd.Section section in sections)
@@ -49,7 +49,7 @@ namespace GorillaDocs.Word
             return footers;
         }
 
-        public static List<Wd.Field> Fields(this List<Wd.HeaderFooter> headersFooters)
+        public static IList<Wd.Field> Fields(this IList<Wd.HeaderFooter> headersFooters)
         {
             var fields = new List<Wd.Field>();
             foreach (Wd.HeaderFooter headerFooter in headersFooters)

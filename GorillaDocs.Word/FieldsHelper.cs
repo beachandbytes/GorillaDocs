@@ -188,13 +188,13 @@ namespace GorillaDocs.Word
         static void UpdateField(Wd.Field field) { field.Update(); }
         static void UnlinkField(Wd.Field field) { field.Unlink(); }
 
-        public static void Update(this List<Wd.Field> fields)
+        public static void Update(this IList<Wd.Field> fields)
         {
             foreach (Wd.Field field in fields)
                 field.Update();
         }
 
-        public static List<Wd.Field> Fields(this Wd.Document doc)
+        public static IList<Wd.Field> Fields(this Wd.Document doc)
         {
             var fields = new List<Wd.Field>();
             foreach (Wd.Field field in doc.Fields)
