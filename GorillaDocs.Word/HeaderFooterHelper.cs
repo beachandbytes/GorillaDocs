@@ -32,30 +32,34 @@ namespace GorillaDocs.Word
             return false;
         }
 
-        public static IList<Wd.HeaderFooter> Headers(this Wd.Sections sections)
+        public static IList<Wd.HeaderFooter> Headers(this Wd.Sections sections, Func<dynamic, bool> predicate = null)
         {
             var headers = new List<Wd.HeaderFooter>();
             foreach (Wd.Section section in sections)
                 foreach (Wd.HeaderFooter header in section.Headers)
-                    headers.Add(header);
+                    if (predicate == null || predicate(header))
+                        headers.Add(header);
             return headers;
         }
-        public static IList<Wd.HeaderFooter> Footers(this Wd.Sections sections)
+        public static IList<Wd.HeaderFooter> Footers(this Wd.Sections sections, Func<dynamic, bool> predicate = null)
         {
             var footers = new List<Wd.HeaderFooter>();
             foreach (Wd.Section section in sections)
                 foreach (Wd.HeaderFooter footer in section.Footers)
-                    footers.Add(footer);
+                    if (predicate == null || predicate(footer))
+                        footers.Add(footer);
             return footers;
         }
 
-        public static IList<Wd.Field> Fields(this IList<Wd.HeaderFooter> headersFooters)
+        public static IList<Wd.Field> Fields(this IList<Wd.HeaderFooter> headersFooters, Func<dynamic, bool> predicate = null)
         {
             var fields = new List<Wd.Field>();
             foreach (Wd.HeaderFooter headerFooter in headersFooters)
                 foreach (Wd.Field field in headerFooter.Range.Fields)
-                    fields.Add(field);
+                    if (predicate == null || predicate(field))
+                        fields.Add(field);
             return fields;
         }
+
     }
 }

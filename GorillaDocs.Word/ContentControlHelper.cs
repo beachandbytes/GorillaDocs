@@ -463,5 +463,34 @@ namespace GorillaDocs.Word
             control.LockContents = true;
         }
 
+        public static IList<Wd.ContentControl> ContentControls(this Wd.Range range, Func<Wd.ContentControl, bool> predicate)
+        {
+            var contentControls = new List<Wd.ContentControl>();
+            foreach (Wd.ContentControl control in range.ContentControls)
+                if (predicate == null || predicate(control))
+                    contentControls.Add(control);
+            return contentControls;
+        }
+        public static IList<Wd.ContentControl> ContentControls(this IList<Wd.HeaderFooter> headersFooters, Func<dynamic, bool> predicate)
+        {
+            var contentControls = new List<Wd.ContentControl>();
+            foreach (Wd.HeaderFooter headerFooter in headersFooters)
+                foreach (Wd.ContentControl control in headerFooter.Range.ContentControls)
+                    if (predicate == null || predicate(control))
+                        contentControls.Add(control);
+            return contentControls;
+        }
+
+        public static void Delete(this IList<Wd.ContentControl> controls, bool DeleteContents = true)
+        {
+            foreach (Wd.ContentControl control in controls)
+                control.Delete(DeleteContents);
+        }
+
+        public static void DeleteParagraph(this IList<Wd.ContentControl> controls)
+        {
+            foreach (Wd.ContentControl control in controls)
+                control.DeleteParagraph();
+        }
     }
 }
