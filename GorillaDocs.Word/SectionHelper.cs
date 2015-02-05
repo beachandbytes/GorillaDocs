@@ -58,6 +58,8 @@ namespace GorillaDocs.Word
                 section.PageSetup.LeftMargin = section.Previous().PageSetup.LeftMargin;
                 section.PageSetup.RightMargin = section.Previous().PageSetup.RightMargin;
                 section.PageSetup.BottomMargin = section.Previous().PageSetup.BottomMargin;
+                section.PageSetup.FooterDistance = section.Previous().PageSetup.FooterDistance;
+                section.PageSetup.HeaderDistance = section.Previous().PageSetup.HeaderDistance;
                 section.PageSetup.VerticalAlignment = section.Previous().PageSetup.VerticalAlignment;
             }
         }

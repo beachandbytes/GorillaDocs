@@ -229,5 +229,19 @@ namespace GorillaDocs.Word
                 range.Fields.Add(range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\h \z \t ""{0},1,{1},1,{2},1,{3},1""", Annexure_Style, Appendix_Style, Exhibit_Style, Schedule_Style), false);
             }
         }
+
+        public static void Update(this List<Wd.TableOfContents> tocs)
+        {
+            foreach (Wd.TableOfContents toc in tocs)
+                toc.Update();
+        }
+
+        public static List<Wd.TableOfContents> TablesOfContents(this Wd.Document doc)
+        {
+            var tocs = new List<Wd.TableOfContents>();
+            foreach (Wd.TableOfContents toc in doc.TablesOfContents)
+                tocs.Add(toc);
+            return tocs;
+        }
     }
 }

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="BookmarksHelper.cs" />
     <Compile Include="BuildingBlockHelper.cs" />
+    <Compile Include="CaptionHelper.cs" />
     <Compile Include="ChartHelper.cs" />
     <Compile Include="CloneHelper.cs" />
     <Compile Include="ContentControlHelper.cs" />

@@ -34,5 +34,18 @@ namespace GorillaDocs
             string path = Uri.UnescapeDataString(uri.Path);
             return String.Format("{0}\\{1}", System.IO.Path.GetDirectoryName(path), assembly.ManifestModule.Name);
         }
+
+        public static bool IsFileVersionGreater(this Assembly assembly, string version)
+        {
+            if (string.IsNullOrEmpty(version))
+                return true;
+
+            var fileVersionValues = assembly.FileVersion().ToIntList('.');
+            var versionValues = version.ToIntList('.');
+            for (int i = 0; i < 4; i++)
+                if (fileVersionValues[i] > versionValues[i])
+                    return true;
+            return false;
+        }
     }
 }
