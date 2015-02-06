@@ -55,5 +55,7 @@ namespace GorillaDocs
             else
                 return 0;
         }
+
+        public static bool IsIn(this string x, string[] ControlNames) { return Array.IndexOf(ControlNames, x) >= 0; }
     }
 }

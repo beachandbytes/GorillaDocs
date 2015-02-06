@@ -71,11 +71,21 @@ namespace GorillaDocs.Word
         /// <summary>
         /// Prevents strange errors when the range is near a Content Control
         /// </summary>
-        public static void InsertFile_Safe(this Wd.Range range, string FileName, string Bookmark = "")
+        public static Wd.Range InsertFile_Safe(this Wd.Range range, string FileName, string Bookmark = "")
         {
+            ((Wd.Document)range.Parent).Bookmarks.DeleteIfExists(Bookmark);
             range.Text = ".";
             range.Delete();
             range.InsertFile(FileName, Bookmark);
+            range = range.Bookmarks[Bookmark].Range;
+            range.Bookmarks.Delete(Bookmark);
+            return range;
+        }
+       
+        public static void DeleteIfExists(this Wd.Bookmarks bookmarks, string Name)
+        {
+            if (bookmarks.Exists(Name))
+                bookmarks[Name].Delete();
         }
 
         /// <summary>

@@ -109,7 +109,12 @@ namespace GorillaDocs.Word
             if (selection.PageSetup.Orientation == Wd.WdOrientation.wdOrientPortrait)
             {
                 Wd.Section section = selection.AddSection();
-                section.ToggleOrientation();
+                selection.AddSection();
+                section.Next().ToggleOrientation();
+                section.Next().PageSetup.DifferentFirstPageHeaderFooter = 0;
+                section.Next().ContinueNumbering();
+                section.Next().Next().PageSetup.DifferentFirstPageHeaderFooter = 0;
+                section.Next().Next().ContinueNumbering();
             }
             else
                 throw new InvalidOperationException("This section is already in Landscape orientation.");

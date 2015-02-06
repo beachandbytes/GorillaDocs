@@ -78,5 +78,11 @@ namespace GorillaDocs.Word
                     return doc;
             return null;
         }
+
+        public static FileInfo Template(this Wd.Document doc)
+        {
+            Wd.Template template = doc.get_AttachedTemplate();
+            return new FileInfo(template.FullName);
+        }
     }
 }

@@ -463,7 +463,15 @@ namespace GorillaDocs.Word
             control.LockContents = true;
         }
 
-        public static IList<Wd.ContentControl> ContentControls(this Wd.Range range, Func<Wd.ContentControl, bool> predicate)
+        public static IList<Wd.ContentControl> ContentControls(this Wd.Document doc, Func<dynamic, bool> predicate = null)
+        {
+            var contentControls = new List<Wd.ContentControl>();
+            foreach (Wd.ContentControl control in doc.ContentControls)
+                if (predicate == null || predicate(control))
+                    contentControls.Add(control);
+            return contentControls;
+        }
+        public static IList<Wd.ContentControl> ContentControls(this Wd.Range range, Func<dynamic, bool> predicate = null)
         {
             var contentControls = new List<Wd.ContentControl>();
             foreach (Wd.ContentControl control in range.ContentControls)
@@ -471,7 +479,7 @@ namespace GorillaDocs.Word
                     contentControls.Add(control);
             return contentControls;
         }
-        public static IList<Wd.ContentControl> ContentControls(this IList<Wd.HeaderFooter> headersFooters, Func<dynamic, bool> predicate)
+        public static IList<Wd.ContentControl> ContentControls(this IList<Wd.HeaderFooter> headersFooters, Func<dynamic, bool> predicate = null)
         {
             var contentControls = new List<Wd.ContentControl>();
             foreach (Wd.HeaderFooter headerFooter in headersFooters)
@@ -492,5 +500,51 @@ namespace GorillaDocs.Word
             foreach (Wd.ContentControl control in controls)
                 control.DeleteParagraph();
         }
+
+        public static void DeleteIncluding(this IList<Wd.ContentControl> controls, Wd.WdUnits Unit, int Count)
+        {
+            foreach (Wd.ContentControl control in controls)
+            {
+                var range = control.Range;
+                control.Delete(true);
+                range.MoveStart(Unit, Count);
+                range.Delete();
+            }
+        }
+
+        public static IList<Wd.ContentControl> ChildControls(this IList<Wd.ContentControl> parentControls, Func<dynamic, bool> predicate = null)
+        {
+            var controls = new List<Wd.ContentControl>();
+            foreach (Wd.ContentControl parent in parentControls)
+                foreach (Wd.ContentControl control in parent.Range.ContentControls)
+                    if (predicate == null || predicate(control))
+                        controls.Add(control);
+            return controls;
+        }
+        public static IList<Wd.ContentControl> ChildControls(this Wd.ContentControl parent, Func<dynamic, bool> predicate = null)
+        {
+            var controls = new List<Wd.ContentControl>();
+            foreach (Wd.ContentControl control in parent.Range.ContentControls)
+                if (predicate == null || predicate(control))
+                    controls.Add(control);
+            return controls;
+        }
+
+        public static void DeleteParagraphOfEmptyControls(this IList<Wd.ContentControl> controls)
+        {
+            // Have to delete in reverse order because of Word bug.
+            // foreach worked fine in body of document
+            // foreach does not work when controls are in header of document
+            //foreach (Wd.ContentControl control in controls)
+            //for (int i = controls.Count; i > 0; i--)
+            //{
+            //    var control = controls[i];
+
+            foreach (Wd.ContentControl control in controls)
+                if (control.ShowingPlaceholderText == true)
+                    control.Range.Paragraphs[1].Range.Delete();
+        }
+
+
     }
 }

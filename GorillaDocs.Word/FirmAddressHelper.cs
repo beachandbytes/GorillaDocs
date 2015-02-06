@@ -44,6 +44,12 @@ namespace GorillaDocs.Word
                 action(control);
         }
 
+        public static void ReinsertFromFile(this IList<Wd.ContentControl> controls, FileInfo FirmAddress, string Bookmark)
+        {
+            foreach (Wd.ContentControl control in controls)
+                control.ReinsertFromFile(FirmAddress, Bookmark);
+        }
+
         public static void ReinsertFromFile(this Wd.ContentControl control, FileInfo FirmAddress, string Bookmark)
         {
             Wd.Range range = control.Range;
