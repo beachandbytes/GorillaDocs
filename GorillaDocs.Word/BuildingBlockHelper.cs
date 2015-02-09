@@ -21,5 +21,14 @@ namespace GorillaDocs.Word
             range.LanguageID = cultureID;
             return range;
         }
+
+        public static void InsertBuildingBlock(this IList<Wd.HeaderFooter> headers, string Name)
+        {
+            foreach (Wd.HeaderFooter header in headers)
+            {
+                Wd.Template template = header.Range.Document.get_AttachedTemplate();
+                template.BuildingBlockEntries.Item(Name).Insert(header.Range.CollapseStart(), true);
+            }
+        }
     }
 }

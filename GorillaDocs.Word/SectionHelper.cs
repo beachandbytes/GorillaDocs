@@ -406,5 +406,17 @@ namespace GorillaDocs.Word
         {
             return range.End + 1 == range.Document.Range().End;
         }
+
+        public static void DeleteSection(this IList<Wd.ContentControl> controls)
+        {
+            foreach (Wd.ContentControl control in controls)
+                control.Range.Sections[1].Delete();
+        }
+        public static void DeleteSection(this IList<Wd.TableOfContents> tocs)
+        {
+            foreach (Wd.TableOfContents toc in tocs)
+                toc.Range.Sections[1].Delete();
+        }
+
     }
 }
