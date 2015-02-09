@@ -39,14 +39,14 @@ namespace GorillaDocs.Word
         public static void Update(this List<Wd.InlineShape> shapes)
         {
             foreach (Wd.InlineShape shape in shapes)
-                if (!shape.IsBrokenChart())
+                if (shape.CanUpdateChart())
                     shape.LinkFormat.Update();
         }
 
         public static void Update(this List<Wd.Shape> shapes)
         {
             foreach (Wd.Shape shape in shapes)
-                if (!shape.IsBrokenChart())
+                if (shape.CanUpdateChart())
                     shape.LinkFormat.Update();
         }
 
@@ -92,6 +92,15 @@ namespace GorillaDocs.Word
                 if (shape.IsBrokenChart())
                     return true;
             return false;
+        }
+
+        public static bool CanUpdateChart(this Wd.Shape shape)
+        {
+            return shape.Type == O.MsoShapeType.msoChart && shape.LinkFormat != null && File.Exists(shape.LinkFormat.SourceFullName);
+        }
+        public static bool CanUpdateChart(this Wd.InlineShape shape)
+        {
+            return shape.Type == Wd.WdInlineShapeType.wdInlineShapeChart && shape.LinkFormat != null && File.Exists(shape.LinkFormat.SourceFullName);
         }
 
         public static bool IsBrokenChart(this Wd.Shape shape)
