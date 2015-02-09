@@ -66,7 +66,7 @@ namespace GorillaDocs.Word
         {
             var brokenLinks = new List<string>();
             foreach (Wd.Shape shape in shapes)
-                if (shape.Type == O.MsoShapeType.msoChart && !File.Exists(shape.LinkFormat.SourceFullName))
+                if (shape.Type == O.MsoShapeType.msoChart && !string.IsNullOrEmpty(shape.LinkFormat.SourceFullName) && !File.Exists(shape.LinkFormat.SourceFullName))
                     brokenLinks.Add(shape.LinkFormat.SourceFullName);
             return brokenLinks;
         }
@@ -74,7 +74,7 @@ namespace GorillaDocs.Word
         {
             var brokenLinks = new List<string>();
             foreach (Wd.InlineShape shape in shapes)
-                if (shape.Type == Wd.WdInlineShapeType.wdInlineShapeChart && !File.Exists(shape.LinkFormat.SourceFullName))
+                if (shape.Type == Wd.WdInlineShapeType.wdInlineShapeChart && !string.IsNullOrEmpty(shape.LinkFormat.SourceFullName) && !File.Exists(shape.LinkFormat.SourceFullName))
                     brokenLinks.Add(shape.LinkFormat.SourceFullName);
             return brokenLinks;
         }
@@ -82,16 +82,17 @@ namespace GorillaDocs.Word
         public static bool HasBrokenLinks(this List<Wd.Shape> shapes)
         {
             foreach (Wd.Shape shape in shapes)
-                if (shape.Type == O.MsoShapeType.msoChart && !File.Exists(shape.LinkFormat.SourceFullName))
+                if (shape.Type == O.MsoShapeType.msoChart && !string.IsNullOrEmpty(shape.LinkFormat.SourceFullName) && !File.Exists(shape.LinkFormat.SourceFullName))
                     return true;
             return false;
         }
         public static bool HasBrokenLinks(this List<Wd.InlineShape> shapes)
         {
             foreach (Wd.InlineShape shape in shapes)
-                if (shape.Type == Wd.WdInlineShapeType.wdInlineShapeChart && !File.Exists(shape.LinkFormat.SourceFullName))
+                if (shape.Type == Wd.WdInlineShapeType.wdInlineShapeChart && !string.IsNullOrEmpty(shape.LinkFormat.SourceFullName) && !File.Exists(shape.LinkFormat.SourceFullName))
                     return true;
             return false;
         }
+
     }
 }
