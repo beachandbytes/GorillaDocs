@@ -152,7 +152,7 @@ namespace GorillaDocs.Word
         {
             toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\b ""{0}"" \o ""1-4"" \h \z ", Bookmark_TOCRange), false);
         }
-        static void UpdateTocBookmark(Wd.TablesOfContents tocs)
+        public static void UpdateTocBookmark(Wd.TablesOfContents tocs)
         {
             var doc = (Wd.Document)tocs.Parent;
             if (tocs.Count > 0)
@@ -175,7 +175,6 @@ namespace GorillaDocs.Word
             result = FindFirstAttachmentStyleByName(doc, range, result, Schedule_Style);
             return result == null || !result.Find.Found ? null : result;
         }
-
         static Wd.Range FindFirstAttachmentStyleByName(Wd.Document doc, Wd.Range range, Wd.Range result, string style)
         {
             if (doc.Styles.Exists(style))
@@ -230,18 +229,51 @@ namespace GorillaDocs.Word
             }
         }
 
-        public static void Update(this IList<Wd.TableOfContents> tocs)
-        {
-            foreach (Wd.TableOfContents toc in tocs)
-                toc.Update();
-        }
-
         public static IList<Wd.TableOfContents> TablesOfContents(this Wd.Document doc)
         {
             var tocs = new List<Wd.TableOfContents>();
             foreach (Wd.TableOfContents toc in doc.TablesOfContents)
                 tocs.Add(toc);
             return tocs;
+        }
+
+        public static void Update(this IList<Wd.TableOfContents> tocs, bool UpdateBookmarks = false)
+        {
+            if (UpdateBookmarks && tocs.Count > 0)
+                UpdateTocBookmark(tocs[tocs.Count - 1]);
+            foreach (Wd.TableOfContents toc in tocs)
+                if (UpdateBookmarks && !toc.ContainsTocBookmark())
+                    toc.UseTocBookmark();
+                else
+                    toc.Update();
+        }
+
+        public static bool ContainsTocBookmark(this Wd.TableOfContents toc)
+        {
+            var field = toc.Range.Fields[1];
+            if (field.Type == Wd.WdFieldType.wdFieldTOC)
+                if (field.Code.Text.Contains(string.Format(@"\b ""{0}""", Bookmark_TOCRange)))
+                    return true;
+            return false;
+        }
+
+        public static void UseTocBookmark(this Wd.TableOfContents toc)
+        {
+            var field = toc.Range.Fields[1];
+            if (field.Type == Wd.WdFieldType.wdFieldTOC)
+                toc.Range.Fields.Add(toc.Range, Wd.WdFieldType.wdFieldEmpty, string.Format(@"{0} \b ""{1}""", field.Code.Text, Bookmark_TOCRange), false);
+        }
+
+        public static void UpdateTocBookmark(this Wd.TableOfContents toc)
+        {
+            Wd.Range range = toc.Range.CollapseEnd();
+            Wd.Document doc = range.Document;
+            Wd.Range attachment = FindFirstAttachmentStyle(doc, range);
+            if (attachment != null && attachment.Find.Found)
+                range.End = attachment.CollapseStart().Start - 2; // In case the Appendix starts with a content control
+            else
+                range.End = doc.Range().End;
+            doc.Bookmarks.Add(Bookmark_TOCRange, range);
         }
     }
 }

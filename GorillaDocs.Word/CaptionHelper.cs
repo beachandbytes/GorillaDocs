@@ -7,8 +7,9 @@ namespace GorillaDocs.Word
 {
     public static class CaptionHelper
     {
-        public static void AddCaption(this Wd.Range range, string Label = "Figure", string PlaceholderText = "Enter caption here.")
+        public static void AddCaption(this Wd.Range range, string Label = "Figure", string PlaceholderText = "Enter caption here.", bool IncludeChapterNumber = false)
         {
+            range.Application.CaptionLabels[Label].IncludeChapterNumber = IncludeChapterNumber;
             range.InsertCaption(Label);
             range.MoveToEndOfParagraph().TypeText(": ");
             var contentControl = range.MoveToEndOfParagraph().ContentControls.Add_Safely();
