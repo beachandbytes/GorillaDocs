@@ -96,7 +96,7 @@
     <Compile Include="libs\PostSharp\QuietRibbonExceptionHandlerAttribute.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Models\Favourites.cs" />
-    <Compile Include="Models\FileInfoWithCategory.cs" />
+    <Compile Include="Models\FileWithCategory.cs" />
     <Compile Include="Models\FileWithCategoryCollection.cs" />
     <Compile Include="Models\MicrosoftApplication.cs" />
     <Compile Include="Models\MicrosoftPowerPointApplication.cs" />
