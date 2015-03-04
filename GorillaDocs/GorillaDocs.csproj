@@ -98,6 +98,8 @@
     <Compile Include="Models\Favourites.cs" />
     <Compile Include="Models\FileWithCategory.cs" />
     <Compile Include="Models\FileWithCategoryCollection.cs" />
+    <Compile Include="Models\IOffice.cs" />
+    <Compile Include="Models\IUserSettings.cs" />
     <Compile Include="Models\MicrosoftApplication.cs" />
     <Compile Include="Models\MicrosoftPowerPointApplication.cs" />
     <Compile Include="Models\MicrosoftWordApplication.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="Models\RecentFilesCollection.cs" />
     <Compile Include="ObjectHelper.cs" />
     <Compile Include="ObservableSortedList.cs" />
+    <Compile Include="OfficeHelper.cs" />
     <Compile Include="OptionalCondition.cs" />
     <Compile Include="Pdf.cs" />
     <Compile Include="PictureConverter.cs">
@@ -135,13 +138,16 @@
     <Compile Include="UriHelper.cs" />
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ChangeOfficeViewModel.cs" />
     <Compile Include="ViewModels\Contact.cs" />
     <Compile Include="ViewModels\ContactCollection.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
+    <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\GenericCommand.cs" />
     <Compile Include="ViewModels\ListBoxContact.cs" />
     <Compile Include="ViewModels\ListBoxContacts.cs" />
     <Compile Include="ViewModels\Notify.cs" />
+    <Compile Include="ViewModels\SelectTemplateViewModel.cs" />
     <Compile Include="ViewModels\SenderViewModel.cs" />
     <Compile Include="Views\AddTableView.xaml.cs">
       <DependentUpon>AddTableView.xaml</DependentUpon>

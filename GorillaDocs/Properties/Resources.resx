@@ -322,4 +322,163 @@
   <data name="Portrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Portrait.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AddFavouriteTooltip" xml:space="preserve">
+    <value>Add the current contact information to your list of Favourite contacts</value>
+  </data>
+  <data name="ContactAddress" xml:space="preserve">
+    <value>_Address:</value>
+  </data>
+  <data name="ContactCompany" xml:space="preserve">
+    <value>_Company:</value>
+  </data>
+  <data name="ContactDelivery" xml:space="preserve">
+    <value>_Delivery:</value>
+  </data>
+  <data name="ContactDepartment" xml:space="preserve">
+    <value>_Department:</value>
+  </data>
+  <data name="ContactEmail" xml:space="preserve">
+    <value>_Email:</value>
+  </data>
+  <data name="ContactFax" xml:space="preserve">
+    <value>_Fax:</value>
+  </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>_Name:</value>
+  </data>
+  <data name="ContactSalutation" xml:space="preserve">
+    <value>_Salutation:</value>
+  </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>_Title:</value>
+  </data>
+  <data name="ContentControl_CC" xml:space="preserve">
+    <value>CC</value>
+  </data>
+  <data name="ContentControl_DeliveryEnding" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="ContentControl_Recipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="frmChangeOffice_Caption" xml:space="preserve">
+    <value>Change Office</value>
+  </data>
+  <data name="frmNewDocument_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="frmNewDocument_AllTemplates" xml:space="preserve">
+    <value>_All Templates</value>
+  </data>
+  <data name="frmNewDocument_Caption" xml:space="preserve">
+    <value>Select Template</value>
+  </data>
+  <data name="frmNewDocument_Categories" xml:space="preserve">
+    <value>_Categories</value>
+  </data>
+  <data name="frmNewDocument_DocumentType" xml:space="preserve">
+    <value>_Document Type</value>
+  </data>
+  <data name="frmNewDocument_MyRecent" xml:space="preserve">
+    <value>My _Recent</value>
+  </data>
+  <data name="LetterDetailsView_Attention" xml:space="preserve">
+    <value>_Attention:</value>
+  </data>
+  <data name="LetterDetailsView_Caption" xml:space="preserve">
+    <value>Letter</value>
+  </data>
+  <data name="LetterDetailsView_Caption1" xml:space="preserve">
+    <value>Letter</value>
+  </data>
+  <data name="LetterDetailsView_CC" xml:space="preserve">
+    <value>_CC</value>
+  </data>
+  <data name="LetterDetailsView_Date" xml:space="preserve">
+    <value>_Date:</value>
+  </data>
+  <data name="LetterDetailsView_Enclosure" xml:space="preserve">
+    <value>_Enclosure</value>
+  </data>
+  <data name="LetterDetailsView_LegalNotice" xml:space="preserve">
+    <value>_Legal notice:</value>
+  </data>
+  <data name="LetterDetailsView_LegalNotices" xml:space="preserve">
+    <value>_Legal notice:</value>
+  </data>
+  <data name="LetterDetailsView_OtherContact" xml:space="preserve">
+    <value>_Other contact</value>
+  </data>
+  <data name="LetterDetailsView_OtherContactEmail" xml:space="preserve">
+    <value>_Email address:</value>
+  </data>
+  <data name="LetterDetailsView_OtherContactName" xml:space="preserve">
+    <value>_Name:</value>
+  </data>
+  <data name="LetterDetailsView_OtherContactPhone" xml:space="preserve">
+    <value>_Direct number:</value>
+  </data>
+  <data name="LetterDetailsView_OtherContactTitle" xml:space="preserve">
+    <value>_Title:</value>
+  </data>
+  <data name="LetterDetailsView_OurRef" xml:space="preserve">
+    <value>_Our ref:</value>
+  </data>
+  <data name="LetterDetailsView_Recipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="LetterDetailsView_Salutation" xml:space="preserve">
+    <value>_Salutation:</value>
+  </data>
+  <data name="LetterDetailsView_Signoff" xml:space="preserve">
+    <value>_Signoff:</value>
+  </data>
+  <data name="LetterDetailsView_Signoff1" xml:space="preserve">
+    <value>Sender _1</value>
+  </data>
+  <data name="LetterDetailsView_Signoff2" xml:space="preserve">
+    <value>Sender _2</value>
+  </data>
+  <data name="LetterDetailsView_Signoff2Email" xml:space="preserve">
+    <value>_Email address:</value>
+  </data>
+  <data name="LetterDetailsView_Signoff2Name" xml:space="preserve">
+    <value>_Name:</value>
+  </data>
+  <data name="LetterDetailsView_Signoff2Phone" xml:space="preserve">
+    <value>_Direct number:</value>
+  </data>
+  <data name="LetterDetailsView_Signoff2Title" xml:space="preserve">
+    <value>_Title:</value>
+  </data>
+  <data name="LetterDetailsView_Subject" xml:space="preserve">
+    <value>_Subject:</value>
+  </data>
+  <data name="LetterDetailsView_YourRef" xml:space="preserve">
+    <value>_Your ref:</value>
+  </data>
+  <data name="RemoveFavouriteTooltip" xml:space="preserve">
+    <value>Remove the current contact information to your list of Favourite contacts</value>
+  </data>
+  <data name="SenderEmail" xml:space="preserve">
+    <value>_Email address:</value>
+  </data>
+  <data name="SenderName" xml:space="preserve">
+    <value>_Name:</value>
+  </data>
+  <data name="SenderPhone" xml:space="preserve">
+    <value>_Direct number:</value>
+  </data>
+  <data name="SenderTitle" xml:space="preserve">
+    <value>_Title:</value>
+  </data>
+  <data name="Signoff_By" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="Signoff_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Signoff_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
 </root>

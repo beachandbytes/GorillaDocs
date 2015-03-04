@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>GorillaDocs</id>
-        <version>1.0.32.0</version>
+        <version>1.0.35.0</version>
         <title>GorillaDocs</title>
         <authors>Matthew Fitzmaurice</authors>
         <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
@@ -22,11 +22,18 @@ Specifically:
             <dependency id="log4net" version="2.0.3" />
             <dependency id="Fluent.Ribbon" version="3.0.3" />
         </dependencies>
+      <frameworkAssemblies>
+        <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework3.5, .NETFramework4.0" />
+        <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework3.5, .NETFramework4.0" />
+        <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework3.5, .NETFramework4.0" />
+        <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5, .NETFramework4.0" />
+        <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0" />
+      </frameworkAssemblies>
     </metadata>
     <files>
+        <file src="app.config.transform" target="content\app.config.transform" />
         <file src="bin\Release\zh-CHS\GorillaDocs.resources.dll" target="lib\net40\zh-CHS\GorillaDocs.resources.dll" />
         <file src="bin\Release\zh-CHT\GorillaDocs.resources.dll" target="lib\net40\zh-CHT\GorillaDocs.resources.dll" />
         <file src="bin\Release\GorillaDocs.dll" target="lib\net40\GorillaDocs.dll" />
-        <file src="app.config.transform" target="content\app.config.transform" />
     </files>
 </package>

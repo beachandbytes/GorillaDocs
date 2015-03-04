@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace GorillaDocs.Models
 {
@@ -13,6 +15,9 @@ namespace GorillaDocs.Models
         public int GetHashCode(Contact obj) { return obj.FullName.GetHashCode(); }
     }
 
+    [Serializable]
+    [SettingsSerializeAs(SettingsSerializeAs.Xml)]
+    [XmlRoot("Favourites")]
     public class Favourites : ObservableCollection<Contact>
     {
         //TODO: Should I use OnCollectionChanged or OnPropertyChanged instead of my own NotifyPropertyChanged?

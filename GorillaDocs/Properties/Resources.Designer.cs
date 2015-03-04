@@ -125,6 +125,15 @@ namespace GorillaDocs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add the current contact information to your list of Favourite contacts.
+        /// </summary>
+        public static string AddFavouriteTooltip {
+            get {
+                return ResourceManager.GetString("AddFavouriteTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Table.
         /// </summary>
         public static string AddTableView_Caption {
@@ -250,6 +259,114 @@ namespace GorillaDocs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Address:.
+        /// </summary>
+        public static string ContactAddress {
+            get {
+                return ResourceManager.GetString("ContactAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Company:.
+        /// </summary>
+        public static string ContactCompany {
+            get {
+                return ResourceManager.GetString("ContactCompany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Delivery:.
+        /// </summary>
+        public static string ContactDelivery {
+            get {
+                return ResourceManager.GetString("ContactDelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Department:.
+        /// </summary>
+        public static string ContactDepartment {
+            get {
+                return ResourceManager.GetString("ContactDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Email:.
+        /// </summary>
+        public static string ContactEmail {
+            get {
+                return ResourceManager.GetString("ContactEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Fax:.
+        /// </summary>
+        public static string ContactFax {
+            get {
+                return ResourceManager.GetString("ContactFax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Name:.
+        /// </summary>
+        public static string ContactName {
+            get {
+                return ResourceManager.GetString("ContactName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Salutation:.
+        /// </summary>
+        public static string ContactSalutation {
+            get {
+                return ResourceManager.GetString("ContactSalutation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Title:.
+        /// </summary>
+        public static string ContactTitle {
+            get {
+                return ResourceManager.GetString("ContactTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CC.
+        /// </summary>
+        public static string ContentControl_CC {
+            get {
+                return ResourceManager.GetString("ContentControl_CC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery.
+        /// </summary>
+        public static string ContentControl_DeliveryEnding {
+            get {
+                return ResourceManager.GetString("ContentControl_DeliveryEnding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipient.
+        /// </summary>
+        public static string ContentControl_Recipient {
+            get {
+                return ResourceManager.GetString("ContentControl_Recipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap D {
@@ -353,6 +470,69 @@ namespace GorillaDocs.Properties {
             get {
                 object obj = ResourceManager.GetObject("EditDocument", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Office.
+        /// </summary>
+        public static string frmChangeOffice_Caption {
+            get {
+                return ResourceManager.GetString("frmChangeOffice_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string frmNewDocument_All {
+            get {
+                return ResourceManager.GetString("frmNewDocument_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _All Templates.
+        /// </summary>
+        public static string frmNewDocument_AllTemplates {
+            get {
+                return ResourceManager.GetString("frmNewDocument_AllTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Template.
+        /// </summary>
+        public static string frmNewDocument_Caption {
+            get {
+                return ResourceManager.GetString("frmNewDocument_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Categories.
+        /// </summary>
+        public static string frmNewDocument_Categories {
+            get {
+                return ResourceManager.GetString("frmNewDocument_Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Document Type.
+        /// </summary>
+        public static string frmNewDocument_DocumentType {
+            get {
+                return ResourceManager.GetString("frmNewDocument_DocumentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My _Recent.
+        /// </summary>
+        public static string frmNewDocument_MyRecent {
+            get {
+                return ResourceManager.GetString("frmNewDocument_MyRecent", resourceCulture);
             }
         }
         
@@ -517,6 +697,231 @@ namespace GorillaDocs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Attention:.
+        /// </summary>
+        public static string LetterDetailsView_Attention {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letter.
+        /// </summary>
+        public static string LetterDetailsView_Caption {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letter.
+        /// </summary>
+        public static string LetterDetailsView_Caption1 {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Caption1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _CC.
+        /// </summary>
+        public static string LetterDetailsView_CC {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_CC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Date:.
+        /// </summary>
+        public static string LetterDetailsView_Date {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Enclosure.
+        /// </summary>
+        public static string LetterDetailsView_Enclosure {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Enclosure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Legal notice:.
+        /// </summary>
+        public static string LetterDetailsView_LegalNotice {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_LegalNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Legal notice:.
+        /// </summary>
+        public static string LetterDetailsView_LegalNotices {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_LegalNotices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Other contact.
+        /// </summary>
+        public static string LetterDetailsView_OtherContact {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_OtherContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Email address:.
+        /// </summary>
+        public static string LetterDetailsView_OtherContactEmail {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_OtherContactEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Name:.
+        /// </summary>
+        public static string LetterDetailsView_OtherContactName {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_OtherContactName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Direct number:.
+        /// </summary>
+        public static string LetterDetailsView_OtherContactPhone {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_OtherContactPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Title:.
+        /// </summary>
+        public static string LetterDetailsView_OtherContactTitle {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_OtherContactTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Our ref:.
+        /// </summary>
+        public static string LetterDetailsView_OurRef {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_OurRef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipient.
+        /// </summary>
+        public static string LetterDetailsView_Recipient {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Recipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Salutation:.
+        /// </summary>
+        public static string LetterDetailsView_Salutation {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Salutation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Signoff:.
+        /// </summary>
+        public static string LetterDetailsView_Signoff {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Signoff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sender _1.
+        /// </summary>
+        public static string LetterDetailsView_Signoff1 {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Signoff1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sender _2.
+        /// </summary>
+        public static string LetterDetailsView_Signoff2 {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Signoff2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Email address:.
+        /// </summary>
+        public static string LetterDetailsView_Signoff2Email {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Signoff2Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Name:.
+        /// </summary>
+        public static string LetterDetailsView_Signoff2Name {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Signoff2Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Direct number:.
+        /// </summary>
+        public static string LetterDetailsView_Signoff2Phone {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Signoff2Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Title:.
+        /// </summary>
+        public static string LetterDetailsView_Signoff2Title {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Signoff2Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Subject:.
+        /// </summary>
+        public static string LetterDetailsView_Subject {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Your ref:.
+        /// </summary>
+        public static string LetterDetailsView_YourRef {
+            get {
+                return ResourceManager.GetString("LetterDetailsView_YourRef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Office1 {
@@ -553,6 +958,15 @@ namespace GorillaDocs.Properties {
             get {
                 object obj = ResourceManager.GetObject("PowerPointTemplate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove the current contact information to your list of Favourite contacts.
+        /// </summary>
+        public static string RemoveFavouriteTooltip {
+            get {
+                return ResourceManager.GetString("RemoveFavouriteTooltip", resourceCulture);
             }
         }
         
@@ -627,6 +1041,42 @@ namespace GorillaDocs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Email address:.
+        /// </summary>
+        public static string SenderEmail {
+            get {
+                return ResourceManager.GetString("SenderEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Name:.
+        /// </summary>
+        public static string SenderName {
+            get {
+                return ResourceManager.GetString("SenderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Direct number:.
+        /// </summary>
+        public static string SenderPhone {
+            get {
+                return ResourceManager.GetString("SenderPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Title:.
+        /// </summary>
+        public static string SenderTitle {
+            get {
+                return ResourceManager.GetString("SenderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap SH {
@@ -653,6 +1103,33 @@ namespace GorillaDocs.Properties {
             get {
                 object obj = ResourceManager.GetObject("sharepointfoundation16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By.
+        /// </summary>
+        public static string Signoff_By {
+            get {
+                return ResourceManager.GetString("Signoff_By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Signoff_Name {
+            get {
+                return ResourceManager.GetString("Signoff_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Signoff_Title {
+            get {
+                return ResourceManager.GetString("Signoff_Title", resourceCulture);
             }
         }
         

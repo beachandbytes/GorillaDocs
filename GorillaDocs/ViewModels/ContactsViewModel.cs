@@ -22,8 +22,8 @@ namespace GorillaDocs.ViewModels
 
         public ContactsViewModel(ObservableCollection<Contact> contacts, List<string> deliveryItems, Outlook outlook, int maxContacts, Favourites favourites)
         {
-            Favourites = new Favourites(new ObservableCollection<Contact>());
-            //Favourites = favourites;
+            //Favourites = new Favourites(new ObservableCollection<Contact>());
+            Favourites = favourites;
             Favourites.PropertyChanged += Favourites_PropertyChanged;
             MaxContacts = maxContacts;
             Contacts = contacts;
@@ -37,7 +37,10 @@ namespace GorillaDocs.ViewModels
             RemoveFavouriteCommand = new GenericCommand(RemoveFavouritePressed);
 
             DeliveryItems = deliveryItems;
-            Contact = favourites.FirstOrPassedIn(Contacts.FirstOrCreateIfEmpty());
+            if (favourites == null)
+                Contact = new Contact();
+            else
+                Contact = favourites.FirstOrPassedIn(Contacts.FirstOrCreateIfEmpty());
         }
 
         public List<string> DeliveryItems { get; private set; }
@@ -170,8 +173,8 @@ namespace GorillaDocs.ViewModels
         public ICommand AddFavouriteCommand { get; set; }
         public bool CanAddFavourite()
         {
-            return false;
-            //return this.Contact != null && !string.IsNullOrEmpty(this.Contact.FullName);
+            //return false;
+            return this.Contact != null && !string.IsNullOrEmpty(this.Contact.FullName);
         }
         public void AddFavouritePressed()
         {
@@ -204,8 +207,8 @@ namespace GorillaDocs.ViewModels
         {
             try
             {
-                Properties.Settings.Default.Favourites = new ContactCollection(Favourites);
-                Properties.Settings.Default.Save();
+                //Properties.Settings.Default.Favourites = new ContactCollection(Favourites);
+                //Properties.Settings.Default.Save();
                 NotifyPropertyChanged("IsEnabled");
                 NotifyPropertyChanged("AddFavouriteVisibility");
                 NotifyPropertyChanged("RemoveFavouriteVisibility");

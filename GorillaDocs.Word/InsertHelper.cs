@@ -82,12 +82,6 @@ namespace GorillaDocs.Word
             return range;
         }
        
-        public static void DeleteIfExists(this Wd.Bookmarks bookmarks, string Name)
-        {
-            if (bookmarks.Exists(Name))
-                bookmarks[Name].Delete();
-        }
-
         /// <summary>
         /// Inserts a file at the given range.
         /// Note: 

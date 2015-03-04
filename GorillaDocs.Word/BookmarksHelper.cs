@@ -48,6 +48,12 @@ namespace GorillaDocs.Word
                 return null;
         }
 
+        public static void DeleteIfExists(this Wd.Bookmarks bookmarks, string Name)
+        {
+            if (bookmarks.Exists(Name))
+                bookmarks[Name].Delete();
+        }
+
 
     }
 }

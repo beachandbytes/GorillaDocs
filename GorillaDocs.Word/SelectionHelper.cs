@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
@@ -64,5 +65,20 @@ namespace GorillaDocs.Word
             range.MoveStart(Wd.WdUnits.wdCharacter, 1);
             range.Delete();
         }
+
+        public static void DeleteSection(this Wd.Selection selection)
+        {
+            var doc = selection.Document;
+
+            if (doc.Sections.Count == 1)
+                throw new InvalidOperationException("This document only has one section. You can not delete it.");
+
+            if (MessageBox.Show("Click 'OK' to remove the current section and its contents.\nOtherwise choose 'Cancel'", "Remove Section?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+            {
+                selection.Sections[1].Delete();
+                doc.UpdateAllFields();
+            }
+        }
+
     }
 }
