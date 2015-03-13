@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Wd = Microsoft.Office.Interop.Word;
+using System.Linq;
 
 namespace GorillaDocs.Word
 {
@@ -545,6 +546,300 @@ namespace GorillaDocs.Word
                     control.Range.Paragraphs[1].Range.Delete();
         }
 
+        public static Wd.Range InsertOrRemove(this IList<Wd.ContentControl> controls, ref Wd.Range range, bool KeepControl, string ControlTag, Wd.WdCollapseDirection CollapseDirection = Wd.WdCollapseDirection.wdCollapseEnd)
+        {
+            var bookmark = "EditDetails_" + ControlTag.Replace(' ', '_');
+            if (controls.Count == 0 && KeepControl)
+            {
+                range = range.InsertFile_Safe1(range.Document.Template().FullName, bookmark);
+                range.Collapse(CollapseDirection);
+            }
+            foreach (Wd.ContentControl control in controls)
+                if (KeepControl)
+                    range = control.CollapsePastRowOrParagraph(CollapseDirection);
+                else
+                    control.DelteRowOrParagraphOrRepeater();
+            range.Document.Bookmarks.DeleteIfExists(bookmark);
+            return range;
+        }
+
+        public static void InsertOrRemove(this string[] controlTags, ref Wd.Range range, bool KeepControls, Wd.WdCollapseDirection CollapseDirection = Wd.WdCollapseDirection.wdCollapseEnd)
+        {
+            Wd.Document doc = range.Document;
+            var bookmark = "EditDetails_" + controlTags.First().Replace(' ', '_');
+
+            if (!doc.ContentControls().AllExist(controlTags))
+            {
+                doc.ContentControls(x => StringArray.Contains(controlTags, x.Tag)).DelteRowOrParagraph();
+                if (KeepControls)
+                {
+                    range = range.InsertFile_Safe1(doc.Template().FullName, bookmark);
+                    range.Collapse(CollapseDirection);
+                }
+            }
+
+            if (KeepControls)
+            {
+                range = doc.ContentControls(x => x.Tag == controlTags.First()).First().CollapsePastRowOrParagraph(CollapseDirection);
+                doc.ContentControls(x => StringArray.Contains(controlTags, x.Tag) && x.ShowingPlaceholderText).DeleteWithTrailingWhiteSpaceOrParagraphIfEmpty();
+            }
+            else
+                doc.ContentControls(x => StringArray.Contains(controlTags, x.Tag)).DelteRowOrParagraph();
+
+            range.Document.Bookmarks.DeleteIfExists(bookmark);
+        }
+
+        //TODO: Consolidate InsertFile_Safe1
+        public static Wd.Range InsertFile_Safe1(this Wd.Range range, string FileName, string Bookmark = "")
+        {
+            ((Wd.Document)range.Parent).Bookmarks.DeleteIfExists(Bookmark);
+            range.Text = ".";
+            range.Delete();
+
+            if (range.Information[Wd.WdInformation.wdWithInTable])
+            {
+                range.Select();
+                Wd.Selection selection = range.Application.Selection;
+                selection.SplitTable();
+                range = selection.Range;
+            }
+
+            var para = range.Paragraphs[1]; // Empty paragraph get inserted if we are at the start of a Parent Content Control 
+            range.InsertFile(FileName, Bookmark);
+            range = range.Bookmarks[Bookmark].Range;
+            range.Bookmarks.Delete(Bookmark);
+            if (para.IsEmpty())
+                para.Range.Delete();
+            return range;
+        }
+
+        public static void DeleteWithTrailingWhiteSpaceOrParagraphIfEmpty(this IList<Wd.ContentControl> controls)
+        {
+            foreach (Wd.ContentControl control in controls)
+            {
+                var range = control.Range;
+                control.Delete(true);
+                if (range.Paragraphs[1].IsEmpty())
+                    range.Paragraphs[1].Range.Delete();
+                else
+                {
+                    range.MoveStart(Wd.WdUnits.wdCharacter, -1);
+                    range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
+                    if (range.Characters.First.Text == " " && range.Characters.Last.Text == " ")
+                        range.Characters.First.Delete();
+                }
+            }
+        }
+
+        static Wd.Range CollapsePastRowOrParagraph(this Wd.ContentControl control, Wd.WdCollapseDirection Collapse)
+        {
+            Wd.Range range;
+            if (control.Range.Information[Wd.WdInformation.wdWithInTable])
+                range = control.Range.Rows[1].Range;
+            else if (Collapse == Wd.WdCollapseDirection.wdCollapseStart)
+                range = control.Range.Paragraphs[1].Range;
+            else
+            {
+                range = control.Range.Paragraphs.Last.Range;
+                range.Collapse(Collapse);
+                if (range.Characters.Last.Text == "\r")
+                {
+                    range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
+                }
+            }
+            range.Collapse(Collapse);
+            return range;
+        }
+
+        static void DelteRowOrParagraphOrRepeater(this Wd.ContentControl control)
+        {
+            // Order matters
+            if (control.Range.Information[Wd.WdInformation.wdWithInTable])
+                control.DeleteRow();
+            else if ((int)control.Type == 9 /*Wd.WdContentControlType.wdContentControlRepeatingSection*/)
+            {
+                var range = control.Range;
+                control.Delete(true);
+                range.Delete();
+            }
+            else
+                control.DeleteParagraph1();
+        }
+
+        public static void DelteRowOrParagraph(this IList<Wd.ContentControl> controls)
+        {
+            foreach (Wd.ContentControl control in controls)
+                if (control.Exists())
+                    if (control.Range.Information[Wd.WdInformation.wdWithInTable])
+                        control.DeleteRow();
+                    else
+                        control.DeleteParagraph1();
+        }
+        public static void DeleteParagraph1(this Wd.ContentControl control)
+        {
+            if (control != null)
+            {
+                var range = control.Range.Paragraphs[1].Range;
+                if (range.Paragraphs.Last.Next().Range.Information[Wd.WdInformation.wdWithInTable])
+                    range.Delete();
+                range.Delete();
+            }
+        }
+
+        public static bool Exists(this Wd.ContentControl control) { return control.Tag != null; }
+
+        public static Wd.Range ReplaceRow(this Wd.Range range, string[] ControlNames, Wd.WdCollapseDirection Collapse = Wd.WdCollapseDirection.wdCollapseEnd)
+        {
+            var control = range.Document.ContentControls(x => StringArray.Contains(ControlNames, x.Tag)).FirstOrDefault();
+            var bookmark = "EditDetails_" + ControlNames[0].Replace(' ', '_');
+
+            if (control != null)
+                control.DeleteRow();
+
+            if (Collapse == Wd.WdCollapseDirection.wdCollapseEnd)
+                range = range.InsertFile_Safe(range.Document.Template().FullName, bookmark).CollapseEnd();
+            else
+                range = range.InsertFile_Safe(range.Document.Template().FullName, bookmark).CollapseStart();
+
+            range.Document.Bookmarks.DeleteIfExists(bookmark);
+            return range;
+        }
+
+        public static IList<Wd.ContentControlListEntries> DropdownListEntries(this IList<Wd.ContentControl> controls)
+        {
+            var listEntries = new List<Wd.ContentControlListEntries>();
+            foreach (Wd.ContentControl control in controls)
+                listEntries.Add(control.DropdownListEntries);
+            return listEntries;
+        }
+
+        public static void Add(this IList<Wd.ContentControlListEntries> listEntriesCollection, IList<string> values)
+        {
+            foreach (Wd.ContentControlListEntries listEntries in listEntriesCollection)
+                listEntries.Add(values);
+        }
+
+        public static void SetDateDisplayFormat(this IList<Wd.ContentControl> controls, string Format)
+        {
+            foreach (Wd.ContentControl control in controls)
+                control.DateDisplayFormat = Format;
+        }
+
+        public static bool AllExist(this IList<Wd.ContentControl> controls, string[] ControlTags)
+        {
+            if (controls.Count == 0)
+                return false;
+            foreach (string tag in ControlTags)
+                if (!controls.Any(x => x.Tag == tag))
+                    return false;
+            return true;
+        }
+
+        //public static void DeleteEmptyParagraphs(this Wd.RepeatingSectionItemColl repeater)
+        //{
+        //    foreach (Wd.RepeatingSectionItem item in repeater)
+        //        item.Range.ContentControls(x => x.ShowingPlaceholderText).DeleteParagraph();
+        //}
+
+        public static void DeleteIfExists(this Wd.Bookmarks bookmarks, IList<string> Names)
+        {
+            foreach (string Name in Names)
+                if (bookmarks.Exists(Name))
+                    bookmarks[Name].Delete();
+        }
+
+        public static Wd.Range Collapse(this Wd.ContentControl control, Wd.WdCollapseDirection CollapseDirection = Wd.WdCollapseDirection.wdCollapseEnd)
+        {
+            Wd.Range range = CollapseDirection == Wd.WdCollapseDirection.wdCollapseStart ? control.Range.CollapseStart() : control.Range.CollapseEnd();
+            if ((int)control.Type == 9 /*Wd.WdContentControlType.wdContentControlRepeatingSection*/ && range.Next(Wd.WdUnits.wdCharacter).Text == "\r")
+                range = range.Paragraphs[1].Next().Range.CollapseStart();
+            return range;
+        }
+
+        public static Wd.Range MoveOutOfTable1(this Wd.Range value, Wd.WdCollapseDirection collapse = Wd.WdCollapseDirection.wdCollapseStart)
+        {
+            Wd.Range range = value.Duplicate;
+            if (collapse == Wd.WdCollapseDirection.wdCollapseStart)
+            {
+                if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
+                {
+                    range = range.Tables[1].Range;
+                    range.Collapse(Wd.WdCollapseDirection.wdCollapseStart);
+                }
+                if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
+                    range.Move(Wd.WdUnits.wdCharacter, -1);
+                if ((bool)range.Information[Wd.WdInformation.wdWithInTable])
+                {
+                    range.Select();
+                    Wd.Selection selection = range.Application.Selection;
+                    selection.SplitTable();
+                    range = selection.Range;
+                }
+                return range;
+            }
+            else
+                throw new NotImplementedException();
+        }
+
+        public static void Delete1(this IList<Wd.ContentControl> controls, bool DeleteContents = true)
+        {
+            foreach (Wd.ContentControl control in controls)
+                control.Delete(DeleteContents);
+        }
+
+        public static IList<Wd.Field> UdnReferences(this IList<Wd.HeaderFooter> headerFooters)
+        {
+            var fields = new List<Wd.Field>();
+            foreach (Wd.HeaderFooter headerFooter in headerFooters)
+                foreach (Wd.Field field in headerFooter.Range.Fields)
+                    if (field.Code.Text.Contains("mvRef"))
+                        fields.Add(field);
+            return fields;
+        }
+
+        public static bool Exists(this IList<Wd.Field> fields) { return fields.Count > 0; }
+
+        [System.Diagnostics.DebuggerStepThrough]
+        public static void Delete(this IList<Wd.Field> fields)
+        {
+            foreach (Wd.Field field in fields)
+                try { field.Delete(); }
+                catch { /* I think it's possible that the same field is in the collection twice. Perhaps when header/footers are linked? */ }
+        }
+
+        public static void InsertReference(this Wd.Section section)
+        {
+            var doc = (Wd.Document)section.Parent;
+            if (doc.IsUdnDoc() && doc.Sections.Footers().UdnReferences().Exists())
+                section.Footers().InsertReference();
+        }
+
+        public static void InsertReference(this IList<Wd.HeaderFooter> headerFooters)
+        {
+            foreach (Wd.HeaderFooter headerFooter in headerFooters)
+            {
+                var range = headerFooter.Range.CollapseEnd();
+                range.Fields.Add(range, Wd.WdFieldType.wdFieldDocProperty, "mvRef");
+            }
+        }
+
+        public static bool IsUdnDoc(this Wd.Document doc) { return doc.Path.ToLower().StartsWith("http") && !string.IsNullOrEmpty(doc.GetDocProp("mvRef")); }
+
+        public static IList<Wd.HeaderFooter> Footers(this Wd.Section section)
+        {
+            var footers = new List<Wd.HeaderFooter>();
+            foreach (Wd.HeaderFooter footer in section.Footers)
+                footers.Add(footer);
+            return footers;
+        }
+
+        public static bool AreFootersEmpty1(this Wd.Section section)
+        {
+            foreach (Wd.HeaderFooter footer in section.Footers)
+                if (footer.Range.Characters.Count != 1)
+                    return false;
+            return true;
+        }
 
     }
 }

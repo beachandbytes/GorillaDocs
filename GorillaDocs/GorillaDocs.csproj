@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="SchemaHelper.cs" />
     <Compile Include="Serializer.cs" />
+    <Compile Include="StringArray.cs" />
     <Compile Include="StringCollectionEnumerable.cs" />
     <Compile Include="StringEnumeratorWrapper.cs" />
     <Compile Include="StringHelper.cs" />
@@ -360,6 +361,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Portrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\book_Open_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\database_32xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\magnifier_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Office_Outlook_Application_32xMD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Office_Outlook_Application_32xSM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddWebUserControl_379.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Actor_16xLG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

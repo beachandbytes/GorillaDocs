@@ -125,6 +125,16 @@ namespace GorillaDocs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Actor_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("Actor_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add the current contact information to your list of Favourite contacts.
         /// </summary>
         public static string AddFavouriteTooltip {
@@ -175,6 +185,16 @@ namespace GorillaDocs.Properties {
         public static string AddTableView_TableSource {
             get {
                 return ResourceManager.GetString("AddTableView_TableSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap AddWebUserControl_379 {
+            get {
+                object obj = ResourceManager.GetObject("AddWebUserControl_379", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -234,6 +254,16 @@ namespace GorillaDocs.Properties {
         public static System.Drawing.Bitmap B3 {
             get {
                 object obj = ResourceManager.GetObject("B3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap book_Open_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("book_Open_16xLG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -412,6 +442,16 @@ namespace GorillaDocs.Properties {
         public static System.Drawing.Bitmap D3 {
             get {
                 object obj = ResourceManager.GetObject("D3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap database_32xLG {
+            get {
+                object obj = ResourceManager.GetObject("database_32xLG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -918,6 +958,36 @@ namespace GorillaDocs.Properties {
         public static string LetterDetailsView_YourRef {
             get {
                 return ResourceManager.GetString("LetterDetailsView_YourRef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap magnifier_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("magnifier_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Office_Outlook_Application_32xMD {
+            get {
+                object obj = ResourceManager.GetObject("Office_Outlook_Application_32xMD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Office_Outlook_Application_32xSM {
+            get {
+                object obj = ResourceManager.GetObject("Office_Outlook_Application_32xSM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
