@@ -9,7 +9,7 @@ namespace GorillaDocs.Excel
     {
         public static void InsertChart(this Xl.Worksheet Sheet, string FullName)
         {
-            Sheet.Shapes.AddChart2(201, Xl.XlChartType.xlColumnClustered).Select();
+            Sheet.Shapes.AddChart(201, Xl.XlChartType.xlColumnClustered).Select();
             Sheet.Application.ActiveChart.ApplyChartTemplate(FullName);
         }
     }

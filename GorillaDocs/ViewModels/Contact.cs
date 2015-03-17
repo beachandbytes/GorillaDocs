@@ -15,13 +15,14 @@ namespace GorillaDocs.ViewModels
         //http://www.codeproject.com/Articles/38865/INotifyPropertyChanged-auto-wiring-or-how-to-get-rid-of-redundant-code.aspx
         //http://stackoverflow.com/questions/1315621/implementing-inotifypropertychanged-does-a-better-way-exist
         //https://github.com/Fody/PropertyChanged
+        string _Title;
         string _Initials;
         string _FullName;
         string _FirstName;
         string _LastName;
         string _Salutation;
         string _Qualifications;
-        string _Title;
+        string _Position;
         string _CompanyName;
         string _Department;
         string _PhoneNumber;
@@ -31,6 +32,15 @@ namespace GorillaDocs.ViewModels
         string _Country;
         string _Delivery;
 
+        public string Title
+        {
+            get { return _Title; }
+            set
+            {
+                _Title = value;
+                NotifyPropertyChanged("Title");
+            }
+        }
         public string Initials
         {
             get { return _Initials; }
@@ -85,13 +95,13 @@ namespace GorillaDocs.ViewModels
                 NotifyPropertyChanged("Qualifications");
             }
         }
-        public string Title
+        public string Position
         {
-            get { return _Title; }
+            get { return _Position; }
             set
             {
-                _Title = value;
-                NotifyPropertyChanged("Title");
+                _Position = value;
+                NotifyPropertyChanged("Position");
             }
         }
         public string CompanyName
@@ -207,6 +217,8 @@ namespace GorillaDocs.ViewModels
 
         public bool IsEmpty()
         {
+            if (!string.IsNullOrEmpty(Title))
+                return false;
             if (!string.IsNullOrEmpty(Initials))
                 return false;
             if (!string.IsNullOrEmpty(FullName))
@@ -219,7 +231,7 @@ namespace GorillaDocs.ViewModels
                 return false;
             if (!string.IsNullOrEmpty(Qualifications))
                 return false;
-            if (!string.IsNullOrEmpty(Title))
+            if (!string.IsNullOrEmpty(Position))
                 return false;
             if (!string.IsNullOrEmpty(CompanyName))
                 return false;
@@ -242,13 +254,14 @@ namespace GorillaDocs.ViewModels
 
         public void Clear()
         {
+            Title = string.Empty;
             Initials = string.Empty;
             FullName = string.Empty;
             FirstName = string.Empty;
             LastName = string.Empty;
             Salutation = string.Empty;
             Qualifications = string.Empty;
-            Title = string.Empty;
+            Position = string.Empty;
             CompanyName = string.Empty;
             Department = string.Empty;
             PhoneNumber = string.Empty;
@@ -260,13 +273,14 @@ namespace GorillaDocs.ViewModels
         }
         public void Copy(Contact from)
         {
+            Title = from.Title;
             Initials = from.Initials;
             FullName = from.FullName;
             FirstName = from.FirstName;
             LastName = from.LastName;
             Salutation = from.Salutation;
             Qualifications = from.Qualifications;
-            Title = from.Title;
+            Position = from.Position;
             CompanyName = from.CompanyName;
             Department = from.Department;
             PhoneNumber = from.PhoneNumber;
