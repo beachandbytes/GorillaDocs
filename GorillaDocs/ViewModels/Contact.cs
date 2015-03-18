@@ -29,16 +29,37 @@ namespace GorillaDocs.ViewModels
         string _FaxNumber;
         string _EmailAddress;
         string _Address;
+        string _StreetAddress1;
+        string _StreetAddress2;
+        string _StreetCity;
+        string _StreetState;
+        string _StreetPostalCode;
+        string _StreetCountry;
+        string _PostalAddress1;
+        string _PostalAddress2;
+        string _PostalCity;
+        string _PostalState;
+        string _PostalPostalCode;
+        string _PostalCountry;
         string _Country;
         string _Delivery;
+        List<string> _States;
+        List<string> _Titles;
 
+        bool CanUpdateSalutation()
+        {
+            return string.IsNullOrEmpty(Salutation) || Salutation == Title || Salutation == LastName || Salutation == String.Format("{0} {1}", _Title, LastName).Trim();
+        }
         public string Title
         {
             get { return _Title; }
             set
             {
+                if (CanUpdateSalutation())
+                    Salutation = String.Format("{0} {1}", value, LastName).Trim();
                 _Title = value;
                 NotifyPropertyChanged("Title");
+                NotifyPropertyChanged("Salutation");
             }
         }
         public string Initials
@@ -73,8 +94,11 @@ namespace GorillaDocs.ViewModels
             get { return _LastName; }
             set
             {
+                if (CanUpdateSalutation())
+                    Salutation = String.Format("{0} {1}", Title, value).Trim();
                 _LastName = value;
                 NotifyPropertyChanged("LastName");
+                NotifyPropertyChanged("Salutation");
             }
         }
         public string Salutation
@@ -161,6 +185,115 @@ namespace GorillaDocs.ViewModels
                 NotifyPropertyChanged("Address");
             }
         }
+        public string StreetAddress1
+        {
+            get { return _StreetAddress1; }
+            set
+            {
+                _StreetAddress1 = value;
+                NotifyPropertyChanged("StreetAddress1");
+            }
+        }
+        public string StreetAddress2
+        {
+            get { return _StreetAddress2; }
+            set
+            {
+                _StreetAddress2 = value;
+                NotifyPropertyChanged("StreetAddress2");
+            }
+        }
+        public string StreetCity
+        {
+            get { return _StreetCity; }
+            set
+            {
+                _StreetCity = value;
+                NotifyPropertyChanged("StreetCity");
+            }
+        }
+        public string StreetState
+        {
+            get { return _StreetState; }
+            set
+            {
+                _StreetState = value;
+                NotifyPropertyChanged("StreetState");
+            }
+        }
+        public string StreetPostalCode
+        {
+            get { return _StreetPostalCode; }
+            set
+            {
+                _StreetPostalCode = value;
+                NotifyPropertyChanged("StreetPostalCode");
+            }
+        }
+        public string StreetCountry
+        {
+            get { return _StreetCountry; }
+            set
+            {
+                _StreetCountry = value;
+                NotifyPropertyChanged("StreetCountry");
+            }
+        }
+        public string PostalAddress1
+        {
+            get { return _PostalAddress1; }
+            set
+            {
+                _PostalAddress1 = value;
+                NotifyPropertyChanged("PostalAddress1");
+            }
+        }
+        public string PostalAddress2
+        {
+            get { return _PostalAddress2; }
+            set
+            {
+                _PostalAddress2 = value;
+                NotifyPropertyChanged("PostalAddress2");
+            }
+        }
+        public string PostalCity
+        {
+            get { return _PostalCity; }
+            set
+            {
+                _PostalCity = value;
+                NotifyPropertyChanged("PostalCity");
+            }
+        }
+        public string PostalState
+        {
+            get { return _PostalState; }
+            set
+            {
+                _PostalState = value;
+                NotifyPropertyChanged("PostalState");
+            }
+        }
+        public string PostalPostalCode
+        {
+            get { return _PostalPostalCode; }
+            set
+            {
+                _PostalPostalCode = value;
+                NotifyPropertyChanged("PostalPostalCode");
+            }
+        }
+        public string PostalCountry
+        {
+            get { return _PostalCountry; }
+            set
+            {
+                _PostalCountry = value;
+                NotifyPropertyChanged("PostalCountry");
+            }
+        }
+
         public string Country
         {
             get { return _Country; }
@@ -183,37 +316,34 @@ namespace GorillaDocs.ViewModels
             }
         }
 
-        public bool IsDeliveryByEmail { get { return Delivery != null && Delivery.Contains(Resources.Delivery_Email); } }
-        public bool IsDeliveryByFax { get { return Delivery != null && Delivery.Contains(Resources.Delivery_Facsimile); } }
-        public bool IsDeliveryByOther { get { return Delivery != null && Delivery.Contains(Resources.Delivery_Other); } }
+        public List<string> States
+        {
+            get
+            {
+                if (_States == null)
+                    _States = new List<string>() { "ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA" };
+                return _States;
+            }
+            set { _States = value; }
+        }
+        public List<string> Titles
+        {
+            get
+            {
+                if (_Titles == null)
+                    _Titles = new List<string>() { "Dr", "Miss", "Mr", "Mrs", "Ms", "Prof" };
+                return _Titles;
+            }
+            set { _Titles = value; }
+        }
 
-        public Visibility EmailVisibility
-        {
-            get
-            {
-                if (Delivery != null && Delivery.Contains(Resources.Delivery_Email))
-                    return Visibility.Visible;
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility FaxVisibility
-        {
-            get
-            {
-                if (Delivery != null && Delivery.Contains(Resources.Delivery_Facsimile))
-                    return Visibility.Visible;
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility AddressVisibility
-        {
-            get
-            {
-                if (Delivery != null && Delivery.Contains(Resources.Delivery_Other))
-                    return Visibility.Visible;
-                return Visibility.Collapsed;
-            }
-        }
+        public bool IsDeliveryByEmail { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Email.ToLower()); } }
+        public bool IsDeliveryByFax { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Facsimile.ToLower()); } }
+        public bool IsDeliveryByOther { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Other.ToLower()); } }
+
+        public Visibility EmailVisibility { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Email.ToLower()) ? Visibility.Visible : Visibility.Collapsed; } }
+        public Visibility FaxVisibility { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Facsimile.ToLower()) ? Visibility.Visible : Visibility.Collapsed; } }
+        public Visibility AddressVisibility { get { return EmailVisibility == Visibility.Collapsed && FaxVisibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed; } }
 
         public bool IsEmpty()
         {
@@ -249,6 +379,30 @@ namespace GorillaDocs.ViewModels
                 return false;
             if (!string.IsNullOrEmpty(Delivery))
                 return false;
+            if (!string.IsNullOrEmpty(_StreetAddress1))
+                return false;
+            if (!string.IsNullOrEmpty(_StreetAddress2))
+                return false;
+            if (!string.IsNullOrEmpty(_StreetCity))
+                return false;
+            if (!string.IsNullOrEmpty(_StreetState))
+                return false;
+            if (!string.IsNullOrEmpty(_StreetPostalCode))
+                return false;
+            if (!string.IsNullOrEmpty(_StreetCountry))
+                return false;
+            if (!string.IsNullOrEmpty(_PostalAddress1))
+                return false;
+            if (!string.IsNullOrEmpty(_PostalAddress2))
+                return false;
+            if (!string.IsNullOrEmpty(_PostalCity))
+                return false;
+            if (!string.IsNullOrEmpty(_PostalState))
+                return false;
+            if (!string.IsNullOrEmpty(_PostalPostalCode))
+                return false;
+            if (!string.IsNullOrEmpty(_PostalCountry))
+                return false;
             return true;
         }
 
@@ -268,6 +422,18 @@ namespace GorillaDocs.ViewModels
             FaxNumber = string.Empty;
             EmailAddress = string.Empty;
             Address = string.Empty;
+            StreetAddress1 = string.Empty;
+            StreetAddress2 = string.Empty;
+            StreetCity = string.Empty;
+            StreetState = string.Empty;
+            StreetPostalCode = string.Empty;
+            StreetCountry = string.Empty;
+            PostalAddress1 = string.Empty;
+            PostalAddress2 = string.Empty;
+            PostalCity = string.Empty;
+            PostalState = string.Empty;
+            PostalPostalCode = string.Empty;
+            PostalCountry = string.Empty;
             Country = string.Empty;
             Delivery = string.Empty;
         }
@@ -287,6 +453,18 @@ namespace GorillaDocs.ViewModels
             FaxNumber = from.FaxNumber;
             EmailAddress = from.EmailAddress;
             Address = from.Address;
+            StreetAddress1 = from.StreetAddress1;
+            StreetAddress2 = from.StreetAddress2;
+            StreetCity = from.StreetCity;
+            StreetState = from.StreetState;
+            StreetPostalCode = from.StreetPostalCode;
+            StreetCountry = from.StreetCountry;
+            PostalAddress1 = from.PostalAddress1;
+            PostalAddress2 = from.PostalAddress2;
+            PostalCity = from.PostalCity;
+            PostalState = from.PostalState;
+            PostalPostalCode = from.PostalPostalCode;
+            PostalCountry = from.PostalCountry;
             Country = from.Country;
             Delivery = from.Delivery;
         }

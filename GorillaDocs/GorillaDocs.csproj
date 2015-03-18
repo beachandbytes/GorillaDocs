@@ -157,6 +157,7 @@
     <Compile Include="Views\Behaviours\ExpanderStates.cs" />
     <Compile Include="Views\Behaviours\PersistGroupExpandedStateBehavior.cs" />
     <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
+    <Compile Include="Views\Controls\NewLine.cs" />
     <Compile Include="Views\DialogCloser.cs" />
     <Compile Include="Views\FocusExtension.cs" />
     <Compile Include="Views\OfficeHelper.cs" />

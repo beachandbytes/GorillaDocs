@@ -679,7 +679,10 @@ namespace GorillaDocs.Word
         {
             if (control != null)
             {
-                var range = control.Range.Paragraphs[1].Range;
+                //var range = control.Range.Paragraphs.Count == 1 ? control.Range.Paragraphs[1].Range : control.Range;
+                var range = control.Range;
+                range.Expand(Wd.WdUnits.wdParagraph);
+
                 if (range.Paragraphs.Last.Next().Range.Information[Wd.WdInformation.wdWithInTable])
                     range.Delete();
                 range.Delete();

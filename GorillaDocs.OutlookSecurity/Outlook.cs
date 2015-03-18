@@ -113,11 +113,21 @@ namespace GorillaDocs.Word
             contact.Position = item.JobTitle;
             contact.CompanyName = item.CompanyName;
             contact.PhoneNumber = GetOutlookPhoneNumber(item);
-            contact.FaxNumber = GetOutlookFaxNumber(item);
+            contact.FaxNumber = string.IsNullOrEmpty(item.BusinessFaxNumber) ? item.BusinessFaxNumber : item.HomeFaxNumber;
             contact.EmailAddress = GetOutlookEmail(item);
-            contact.Address = GetOutlookAddress(item);
-            //contact.OfficeLocation = item.OfficeLocation;
-            contact.Country = GetOutlookCountry(item);
+            contact.Address = string.IsNullOrEmpty(item.BusinessAddress) ? item.BusinessAddress : item.HomeAddress;
+            contact.StreetAddress1 = string.IsNullOrEmpty(item.BusinessAddressStreet) ? item.BusinessAddressStreet : item.MailingAddressStreet;
+            contact.StreetCity = string.IsNullOrEmpty(item.BusinessAddressCity) ? item.BusinessAddressCity : item.MailingAddressCity;
+            contact.StreetState = string.IsNullOrEmpty(item.BusinessAddressState) ? item.BusinessAddressState : item.MailingAddressState;
+            contact.StreetPostalCode = string.IsNullOrEmpty(item.BusinessAddressPostalCode) ? item.BusinessAddressPostalCode : item.MailingAddressPostalCode;
+            contact.StreetCountry = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.BusinessAddressCountry : item.MailingAddressCountry;
+            contact.PostalAddress1 = string.IsNullOrEmpty(item.BusinessAddressPostOfficeBox) ? item.BusinessAddressPostOfficeBox : item.MailingAddressPostOfficeBox;
+            contact.PostalCity = string.IsNullOrEmpty(item.BusinessAddressCity) ? item.BusinessAddressCity : item.MailingAddressCity;
+            contact.PostalState = string.IsNullOrEmpty(item.BusinessAddressState) ? item.BusinessAddressState : item.MailingAddressState;
+            contact.PostalPostalCode = string.IsNullOrEmpty(item.BusinessAddressPostalCode) ? item.BusinessAddressPostalCode : item.MailingAddressPostalCode;
+            contact.PostalCountry = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.BusinessAddressCountry : item.MailingAddressCountry;
+            contact.Country = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.BusinessAddressCountry : item.MailingAddressCountry;
+
             return contact;
         }
 
@@ -141,6 +151,16 @@ namespace GorillaDocs.Word
             contact.FaxNumber = GetGALProperty(user, PR_PRIMARY_FAX_NUMBER);
             contact.EmailAddress = user.PrimarySmtpAddress;
             contact.Address = GetGALAddress(user);
+            contact.StreetAddress1 = user.StreetAddress;
+            contact.StreetCity = user.City;
+            contact.StreetState = user.StateOrProvince;
+            contact.StreetPostalCode = user.PostalCode;
+            contact.StreetCountry = GetGALProperty(user, PR_COUNTRY);
+            contact.PostalAddress1 = user.StreetAddress;
+            contact.PostalCity = user.City;
+            contact.PostalState = user.StateOrProvince;
+            contact.PostalPostalCode = user.PostalCode;
+            contact.PostalCountry = GetGALProperty(user, PR_COUNTRY);
             contact.Country = GetGALProperty(user, PR_COUNTRY);
             return contact;
         }
@@ -157,14 +177,6 @@ namespace GorillaDocs.Word
             return value;
         }
 
-        static string GetOutlookFaxNumber(Ol.ContactItem item)
-        {
-            string value = item.BusinessFaxNumber;
-            if (string.IsNullOrEmpty(value))
-                value = item.HomeFaxNumber;
-            return value;
-        }
-
         static string GetOutlookEmail(Ol.ContactItem item)
         {
             string value = item.Email1Address;
@@ -172,22 +184,6 @@ namespace GorillaDocs.Word
                 value = item.Email2Address;
             if (string.IsNullOrEmpty(value))
                 value = item.Email3Address;
-            return value;
-        }
-
-        static string GetOutlookAddress(Ol.ContactItem item)
-        {
-            string value = item.BusinessAddress;
-            if (string.IsNullOrEmpty(value))
-                value = item.HomeAddress;
-            return value;
-        }
-
-        static string GetOutlookCountry(Ol.ContactItem item)
-        {
-            string value = item.BusinessAddressCountry;
-            if (string.IsNullOrEmpty(value))
-                value = item.HomeAddressCountry;
             return value;
         }
 
