@@ -89,7 +89,7 @@ namespace GorillaDocs.Word
 
         static Contact CreateContact(Ol.Recipient recipient)
         {
-            if (recipient.DisplayType != Ol.OlDisplayType.olUser)
+            if (recipient.DisplayType != Ol.OlDisplayType.olUser && recipient.DisplayType != Ol.OlDisplayType.olRemoteUser)
                 throw new InvalidOperationException("The recipient must be an individual.");
 
             var OutlookContact = recipient.AddressEntry.GetContact(); // Does not include GAL contacts.

@@ -352,6 +352,15 @@ namespace GorillaDocs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Position:.
+        /// </summary>
+        public static string ContactPosition {
+            get {
+                return ResourceManager.GetString("ContactPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Salutation:.
         /// </summary>
         public static string ContactSalutation {

@@ -32,9 +32,8 @@ namespace GorillaDocs.Models
         public Contact FirstOrPassedIn(Contact contact)
         {
             if (Contains(contact))
-                return this.First(x => x.FullName == contact.FullName);
-            else
-                return contact;
+                Replace(contact);
+            return contact;
         }
 
         public new void Add(Contact contact)
@@ -54,6 +53,14 @@ namespace GorillaDocs.Models
         public new bool Contains(Contact contact)
         {
             return this.Any(x => contact != null && x.FullName == contact.FullName);
+        }
+
+        public void Replace(Contact contact)
+        {
+            var temp = this.First(x => x.FullName == contact.FullName);
+            var i = this.IndexOf(temp);
+            this.RemoveAt(i);
+            this.Insert(i, contact);
         }
 
         public new event PropertyChangedEventHandler PropertyChanged;

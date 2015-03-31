@@ -39,6 +39,7 @@ namespace GorillaDocs.ViewModels
         Contact contact;
         public Contact Contact
         {
+            //TODO: Merge the ContactViewModel and SenderViewModel code
             get { return contact; }
             set
             {
@@ -47,8 +48,13 @@ namespace GorillaDocs.ViewModels
 
                 if (value == null)
                     contact = new Contact();
-                else
+                else if (contact == null)
                     contact = value;
+                else
+                    contact.Copy(value);
+                if (string.IsNullOrEmpty(contact.Delivery))
+                    contact.Delivery = DeliveryItems.FirstOrDefault();
+
                 NotifyPropertyChanged("Contact");
             }
         }
@@ -61,7 +67,7 @@ namespace GorillaDocs.ViewModels
             if (ol != null)
             {
                 ClearPressed();
-                Contact.Copy(ol);
+                Contact = ol;
             }
         }
 

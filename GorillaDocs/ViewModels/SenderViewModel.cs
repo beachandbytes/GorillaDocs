@@ -20,6 +20,7 @@ namespace GorillaDocs.ViewModels
 
             Favourites = favourites;
             Favourites.PropertyChanged += Favourites_PropertyChanged;
+            _Contact = contact; // Ensure that the passed in contact is remembered
             Contact = favourites.FirstOrPassedIn(contact);
             Outlook = outlook;
 
@@ -34,14 +35,18 @@ namespace GorillaDocs.ViewModels
             get { return _Contact; }
             set
             {
-                _Contact = value == null ? new Contact() : value;
+                // Do not replace the contact object because the calling code loses it. Just replace the values.
+                if (value == null)
+                    _Contact.Clear();
+                else
+                    _Contact.Copy(value);
                 NotifyPropertyChanged("Contact");
                 NotifyPropertyChanged("IsEnabled");
                 NotifyPropertyChanged("AddFavouriteVisibility");
                 NotifyPropertyChanged("RemoveFavouriteVisibility");
             }
         }
-        Contact _Contact;
+        readonly Contact _Contact;
         readonly Outlook Outlook;
 
         public Favourites Favourites { get; private set; }
@@ -129,7 +134,13 @@ namespace GorillaDocs.ViewModels
             }
         }
 
-        public bool IsEnabled { get { return !Favourites.Contains(Contact); } }
+        public bool IsEnabled
+        {
+            get
+            {
+                return !Favourites.Contains(Contact);
+            }
+        }
         public Visibility AddFavouriteVisibility { get { return IsEnabled ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility RemoveFavouriteVisibility { get { return IsEnabled ? Visibility.Collapsed : Visibility.Visible; } }
     }

@@ -158,6 +158,9 @@
     <Compile Include="Views\Behaviours\PersistGroupExpandedStateBehavior.cs" />
     <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
     <Compile Include="Views\Controls\NewLine.cs" />
+    <Compile Include="Views\Controls\SenderWithFavouritesControl.xaml.cs">
+      <DependentUpon>SenderWithFavouritesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogCloser.cs" />
     <Compile Include="Views\FocusExtension.cs" />
     <Compile Include="Views\OfficeHelper.cs" />
@@ -165,6 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AddTableView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\SenderWithFavouritesControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
