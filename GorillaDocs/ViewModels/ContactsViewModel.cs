@@ -20,7 +20,7 @@ namespace GorillaDocs.ViewModels
         public ObservableCollection<Contact> Contacts { get; set; }
         readonly Outlook Outlook;
 
-        public ContactsViewModel(ObservableCollection<Contact> contacts, List<string> deliveryItems, Outlook outlook, int maxContacts, Favourites favourites)
+        public ContactsViewModel(ObservableCollection<Contact> contacts, List<string> deliveryItems, Outlook outlook, int maxContacts, Favourites favourites, IList<Contact> SharePointUsers = null)
         {
             //Favourites = new Favourites(new ObservableCollection<Contact>());
             Favourites = favourites;
@@ -28,6 +28,7 @@ namespace GorillaDocs.ViewModels
             MaxContacts = maxContacts;
             Contacts = contacts;
             Outlook = outlook;
+            this.SharePointUsers = SharePointUsers; // TODO: Find a way of getting rid of this list.
 
             AddressBookCommand = new GenericCommand(AddressBookPressed);
             ClearCommand = new GenericCommand(ClearPressed, CanClear);
@@ -44,6 +45,7 @@ namespace GorillaDocs.ViewModels
         }
 
         public List<string> DeliveryItems { get; private set; }
+        public IList<Contact> SharePointUsers { get; set; }
 
         public Favourites Favourites { get; private set; }
         Contact contact;

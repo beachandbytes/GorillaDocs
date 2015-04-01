@@ -11,13 +11,14 @@ namespace GorillaDocs.ViewModels
     [Log]
     public class SenderViewModel : Notify
     {
-        public SenderViewModel(Contact contact, Outlook outlook, Favourites favourites)
+        public SenderViewModel(Contact contact, Outlook outlook, Favourites favourites, IList<Contact> SharePointUsers = null)
         {
             if (contact == null)
                 throw new ArgumentNullException("Contact");
             if (outlook == null)
                 throw new ArgumentNullException("Outlook");
 
+            this.SharePointUsers = SharePointUsers; // TODO: Find a way of getting rid of this list.
             Favourites = favourites;
             Favourites.PropertyChanged += Favourites_PropertyChanged;
             _Contact = contact; // Ensure that the passed in contact is remembered
@@ -50,6 +51,7 @@ namespace GorillaDocs.ViewModels
         readonly Outlook Outlook;
 
         public Favourites Favourites { get; private set; }
+        public IList<Contact> SharePointUsers { get; set; }
 
         public ICommand AddressBookCommand { get; set; }
         public void AddressBookPressed()

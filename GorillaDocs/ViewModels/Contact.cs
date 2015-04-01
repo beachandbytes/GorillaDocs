@@ -1,7 +1,9 @@
 ﻿using GorillaDocs.libs.PostSharp;
+using GorillaDocs.Models;
 using GorillaDocs.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows;
 using System.Xml.Serialization;
@@ -166,11 +168,13 @@ namespace GorillaDocs.ViewModels
             }
         }
         [XmlElement(IsNullable = true)]
+        //[StringLength(5)]
         public string EmailAddress
         {
             get { return _EmailAddress; }
             set
             {
+                //ValidateProperty("EmailAddress", value);
                 _EmailAddress = value;
                 NotifyPropertyChanged("EmailAddress");
             }

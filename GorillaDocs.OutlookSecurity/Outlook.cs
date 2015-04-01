@@ -113,20 +113,20 @@ namespace GorillaDocs.Word
             contact.Position = item.JobTitle;
             contact.CompanyName = item.CompanyName;
             contact.PhoneNumber = GetOutlookPhoneNumber(item);
-            contact.FaxNumber = string.IsNullOrEmpty(item.BusinessFaxNumber) ? item.BusinessFaxNumber : item.HomeFaxNumber;
+            contact.FaxNumber = string.IsNullOrEmpty(item.BusinessFaxNumber) ? item.HomeFaxNumber : item.BusinessFaxNumber;
             contact.EmailAddress = GetOutlookEmail(item);
-            contact.Address = string.IsNullOrEmpty(item.BusinessAddress) ? item.BusinessAddress : item.HomeAddress;
-            contact.StreetAddress1 = string.IsNullOrEmpty(item.BusinessAddressStreet) ? item.BusinessAddressStreet : item.MailingAddressStreet;
-            contact.StreetCity = string.IsNullOrEmpty(item.BusinessAddressCity) ? item.BusinessAddressCity : item.MailingAddressCity;
-            contact.StreetState = string.IsNullOrEmpty(item.BusinessAddressState) ? item.BusinessAddressState : item.MailingAddressState;
-            contact.StreetPostalCode = string.IsNullOrEmpty(item.BusinessAddressPostalCode) ? item.BusinessAddressPostalCode : item.MailingAddressPostalCode;
-            contact.StreetCountry = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.BusinessAddressCountry : item.MailingAddressCountry;
-            contact.PostalAddress1 = string.IsNullOrEmpty(item.BusinessAddressPostOfficeBox) ? item.BusinessAddressPostOfficeBox : item.MailingAddressPostOfficeBox;
-            contact.PostalCity = string.IsNullOrEmpty(item.BusinessAddressCity) ? item.BusinessAddressCity : item.MailingAddressCity;
-            contact.PostalState = string.IsNullOrEmpty(item.BusinessAddressState) ? item.BusinessAddressState : item.MailingAddressState;
-            contact.PostalPostalCode = string.IsNullOrEmpty(item.BusinessAddressPostalCode) ? item.BusinessAddressPostalCode : item.MailingAddressPostalCode;
-            contact.PostalCountry = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.BusinessAddressCountry : item.MailingAddressCountry;
-            contact.Country = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.BusinessAddressCountry : item.MailingAddressCountry;
+            contact.Address = string.IsNullOrEmpty(item.BusinessAddress) ? item.HomeAddress : item.BusinessAddress;
+            contact.StreetAddress1 = string.IsNullOrEmpty(item.BusinessAddressStreet) ? item.MailingAddressStreet : item.BusinessAddressStreet;
+            contact.StreetCity = string.IsNullOrEmpty(item.BusinessAddressCity) ? item.MailingAddressCity : item.BusinessAddressCity;
+            contact.StreetState = string.IsNullOrEmpty(item.BusinessAddressState) ? item.MailingAddressState : item.BusinessAddressState;
+            contact.StreetPostalCode = string.IsNullOrEmpty(item.BusinessAddressPostalCode) ? item.MailingAddressPostalCode : item.BusinessAddressPostalCode;
+            contact.StreetCountry = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.MailingAddressCountry : item.BusinessAddressCountry;
+            contact.PostalAddress1 = string.IsNullOrEmpty(item.BusinessAddressPostOfficeBox) ? item.MailingAddressPostOfficeBox : item.BusinessAddressPostOfficeBox;
+            contact.PostalCity = string.IsNullOrEmpty(item.BusinessAddressCity) ? item.MailingAddressCity : item.BusinessAddressCity;
+            contact.PostalState = string.IsNullOrEmpty(item.BusinessAddressState) ? item.MailingAddressState : item.BusinessAddressState;
+            contact.PostalPostalCode = string.IsNullOrEmpty(item.BusinessAddressPostalCode) ? item.MailingAddressPostalCode : item.BusinessAddressPostalCode;
+            contact.PostalCountry = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.MailingAddressCountry : item.BusinessAddressCountry;
+            contact.Country = string.IsNullOrEmpty(item.BusinessAddressCountry) ? item.MailingAddressCountry : item.BusinessAddressCountry;
 
             return contact;
         }
