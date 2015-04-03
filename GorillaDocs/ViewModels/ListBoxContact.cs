@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -12,8 +13,8 @@ namespace GorillaDocs.ViewModels
         public ListBoxContact(ListBoxContacts parent)
         {
             _Parent = parent;
-            EditCommand = new GenericCommand(EditPressed);
-            RemoveCommand = new GenericCommand(RemovePressed);
+            EditCommand = new RelayCommand(EditPressed);
+            RemoveCommand = new RelayCommand(RemovePressed);
         }
 
         bool _IsEditMode;

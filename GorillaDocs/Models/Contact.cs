@@ -1,22 +1,16 @@
-﻿using GorillaDocs.libs.PostSharp;
-using GorillaDocs.Models;
+﻿using DataAnnotationsExtensions;
+using GorillaDocs.libs.PostSharp;
 using GorillaDocs.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Windows;
 using System.Xml.Serialization;
 
-namespace GorillaDocs.ViewModels
+namespace GorillaDocs.Models
 {
     [Log]
-    public class Contact : Notify, IEquatable<Contact>
+    public class Contact : EntityBase, IEquatable<Contact>
     {
-        //TODO: Tidy INotifyPropertyChanged code
-        //http://www.codeproject.com/Articles/38865/INotifyPropertyChanged-auto-wiring-or-how-to-get-rid-of-redundant-code.aspx
-        //http://stackoverflow.com/questions/1315621/implementing-inotifypropertychanged-does-a-better-way-exist
-        //https://github.com/Fody/PropertyChanged
         string _Title;
         string _Initials;
         string _FullName;
@@ -163,18 +157,19 @@ namespace GorillaDocs.ViewModels
             get { return _FaxNumber; }
             set
             {
+                ValidatePhone(value);
                 _FaxNumber = value;
                 NotifyPropertyChanged("FaxNumber");
             }
         }
+        [Email(ErrorMessage = "Invalid email address. eg. john@sample.com")]
         [XmlElement(IsNullable = true)]
-        //[StringLength(5)]
         public string EmailAddress
         {
             get { return _EmailAddress; }
             set
             {
-                //ValidateProperty("EmailAddress", value);
+                ValidateProperty("EmailAddress", value);
                 _EmailAddress = value;
                 NotifyPropertyChanged("EmailAddress");
             }
@@ -339,6 +334,23 @@ namespace GorillaDocs.ViewModels
                 return _Titles;
             }
             set { _Titles = value; }
+        }
+
+        void ValidatePhone(string value)
+        {
+            //if (string.IsNullOrEmpty(value))
+            //    return;
+            //var regex = new Regex(@"^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$");
+            //if (regex.Match(value) == Match.Empty)
+            //    throw new ArgumentException("Invalid phone format");
+        }
+        void ValidateEmail(string value)
+        {
+            //if (string.IsNullOrEmpty(value))
+            //    return;
+            //var regex = new Regex(@"^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$");
+            //if (regex.Match(value) == Match.Empty)
+            //    throw new ArgumentException("Invalid email format");
         }
 
         public bool IsDeliveryByEmail { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Email.ToLower()); } }

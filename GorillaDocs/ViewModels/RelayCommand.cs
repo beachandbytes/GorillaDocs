@@ -7,14 +7,12 @@ using System.Windows.Input;
 namespace GorillaDocs.ViewModels
 {
     [Log]
-    public class GenericCommand : ICommand
+    public class RelayCommand : ICommand
     {
-        public delegate void ExecuteMethod();
-        public delegate bool CanExecuteMethod();
-        readonly ExecuteMethod executeMethod;
-        readonly CanExecuteMethod canExecuteMethod;
+        readonly Action executeMethod;
+        readonly Func<bool> canExecuteMethod;
 
-        public GenericCommand(ExecuteMethod executeMethod, CanExecuteMethod canExecuteMethod = null)
+        public RelayCommand(Action executeMethod, Func<bool> canExecuteMethod = null)
         {
             this.executeMethod = executeMethod;
             this.canExecuteMethod = canExecuteMethod;
@@ -27,10 +25,7 @@ namespace GorillaDocs.ViewModels
             return canExecuteMethod();
         }
 
-        public void Execute(object parameter)
-        {
-            executeMethod();
-        }
+        public void Execute(object parameter) { executeMethod(); }
 
         public event EventHandler CanExecuteChanged
         {

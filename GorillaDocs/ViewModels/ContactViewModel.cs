@@ -18,8 +18,8 @@ namespace GorillaDocs.ViewModels
             Outlook = outlook;
             ExamplePhoneNumber = examplePhoneNumber;
 
-            AddressBookCommand = new GenericCommand(AddressBookPressed);
-            ClearCommand = new GenericCommand(ClearPressed, CanClear);
+            AddressBookCommand = new RelayCommand(AddressBookPressed);
+            ClearCommand = new RelayCommand(ClearPressed, CanClear);
 
             DeliveryItems = deliveryItems;
         }

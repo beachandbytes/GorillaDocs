@@ -13,7 +13,7 @@ namespace GorillaDocs.ViewModels
         public ChangeOfficeViewModel(IUserSettings settings)
         {
             this.settings = settings;
-            OKCommand = new GenericCommand(OKPressed, CanPressOK);
+            OKCommand = new RelayCommand(OKPressed, CanPressOK);
         }
 
         List<IOffice> offices = new List<IOffice>();

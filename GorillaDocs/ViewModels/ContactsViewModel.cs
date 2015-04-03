@@ -30,12 +30,12 @@ namespace GorillaDocs.ViewModels
             Outlook = outlook;
             this.SharePointUsers = SharePointUsers; // TODO: Find a way of getting rid of this list.
 
-            AddressBookCommand = new GenericCommand(AddressBookPressed);
-            ClearCommand = new GenericCommand(ClearPressed, CanClear);
-            NextCommand = new GenericCommand(NextPressed, CanPressNext);
-            PrevCommand = new GenericCommand(PrevPressed, CanPressPrev);
-            AddFavouriteCommand = new GenericCommand(AddFavouritePressed, CanAddFavourite);
-            RemoveFavouriteCommand = new GenericCommand(RemoveFavouritePressed);
+            AddressBookCommand = new RelayCommand(AddressBookPressed);
+            ClearCommand = new RelayCommand(ClearPressed, CanClear);
+            NextCommand = new RelayCommand(NextPressed, CanPressNext);
+            PrevCommand = new RelayCommand(PrevPressed, CanPressPrev);
+            AddFavouriteCommand = new RelayCommand(AddFavouritePressed, CanAddFavourite);
+            RemoveFavouriteCommand = new RelayCommand(RemoveFavouritePressed);
 
             DeliveryItems = deliveryItems;
             if (favourites == null)

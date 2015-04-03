@@ -9,26 +9,25 @@ using System.Windows.Input;
 namespace GorillaDocs.ViewModels
 {
     [Log]
-    public class SenderViewModel : Notify
+    public class ContactWithFavouritesViewModel : Notify
     {
-        public SenderViewModel(Contact contact, Outlook outlook, Favourites favourites, IList<Contact> SharePointUsers = null)
+        public ContactWithFavouritesViewModel(Contact contact, Outlook outlook, Favourites favourites)
         {
             if (contact == null)
                 throw new ArgumentNullException("Contact");
             if (outlook == null)
                 throw new ArgumentNullException("Outlook");
 
-            this.SharePointUsers = SharePointUsers; // TODO: Find a way of getting rid of this list.
             Favourites = favourites;
             Favourites.PropertyChanged += Favourites_PropertyChanged;
             _Contact = contact; // Ensure that the passed in contact is remembered
             Contact = favourites.FirstOrPassedIn(contact);
             Outlook = outlook;
 
-            AddressBookCommand = new GenericCommand(AddressBookPressed);
-            ClearCommand = new GenericCommand(ClearPressed, CanClear);
-            AddFavouriteCommand = new GenericCommand(AddFavouritePressed, CanAddFavourite);
-            RemoveFavouriteCommand = new GenericCommand(RemoveFavouritePressed);
+            AddressBookCommand = new RelayCommand(AddressBookPressed);
+            ClearCommand = new RelayCommand(ClearPressed, CanClear);
+            AddFavouriteCommand = new RelayCommand(AddFavouritePressed, CanAddFavourite);
+            RemoveFavouriteCommand = new RelayCommand(RemoveFavouritePressed);
         }
 
         public Contact Contact
@@ -51,7 +50,6 @@ namespace GorillaDocs.ViewModels
         readonly Outlook Outlook;
 
         public Favourites Favourites { get; private set; }
-        public IList<Contact> SharePointUsers { get; set; }
 
         public ICommand AddressBookCommand { get; set; }
         public void AddressBookPressed()

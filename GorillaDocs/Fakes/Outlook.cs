@@ -1,4 +1,4 @@
-﻿using GorillaDocs.ViewModels;
+﻿using GorillaDocs.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

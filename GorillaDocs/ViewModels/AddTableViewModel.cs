@@ -13,7 +13,7 @@ namespace GorillaDocs.ViewModels
         {
             NumberOfColumns = 5;
             NumberOfRows = 2;
-            this.OKCommand = new GenericCommand(OKPressed);
+            this.OKCommand = new RelayCommand(OKPressed);
         }
 
         public int NumberOfColumns { get; set; }

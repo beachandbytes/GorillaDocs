@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaDocs.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace GorillaDocs.ViewModels
         {
             Title = "Recipients";
             Contacts = new ObservableCollection<Contact>();
-            AddCommand = new GenericCommand(AddPressed);
+            AddCommand = new RelayCommand(AddPressed);
 
             Contacts.Add(new ListBoxContact(this) { FirstName = "Matthew", LastName = "Fitzmaurice", FullName = "Matthew Fitzmaurice" });
             Contacts.Add(new ListBoxContact(this) { FirstName = "Marcia", LastName = "Fitzmaurice", FullName = "Marcia Fitzmaurice" });

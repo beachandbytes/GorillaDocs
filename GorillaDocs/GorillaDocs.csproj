@@ -37,6 +37,9 @@
     <AssemblyOriginatorKeyFile>GorillaDocs.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\packages\DataAnnotationsExtensions.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Fluent">
       <HintPath>..\packages\Fluent.Ribbon.3.0.3\lib\net40\Fluent.dll</HintPath>
     </Reference>
@@ -142,16 +145,16 @@
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ChangeOfficeViewModel.cs" />
-    <Compile Include="ViewModels\Contact.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="ViewModels\ContactCollection.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
-    <Compile Include="ViewModels\GenericCommand.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\ListBoxContact.cs" />
     <Compile Include="ViewModels\ListBoxContacts.cs" />
     <Compile Include="ViewModels\Notify.cs" />
     <Compile Include="ViewModels\SelectTemplateViewModel.cs" />
-    <Compile Include="ViewModels\SenderViewModel.cs" />
+    <Compile Include="ViewModels\ContactWithFavouritesViewModel.cs" />
     <Compile Include="Views\AddTableView.xaml.cs">
       <DependentUpon>AddTableView.xaml</DependentUpon>
     </Compile>
@@ -395,10 +398,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
+    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.50.0\lib\net40\GorillaDocs.dll" /Y
+
+REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
 REM If you see this in Visual Studio's Error List window, check the Output window's Build tab for the actual error.
 ECHO Creating NuGet package in Post-Build event...
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)_CreateNewNuGetPackage\DoNotModify\CreateNuGetPackage.ps1' -ProjectFilePath '$(ProjectPath)' -OutputDirectory '$(TargetDir)' -BuildConfiguration '$(ConfigurationName)' -BuildPlatform '$(PlatformName)'"</PostBuildEvent>
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)_CreateNewNuGetPackage\DoNotModify\CreateNuGetPackage.ps1' -ProjectFilePath '$(ProjectPath)' -OutputDirectory '$(TargetDir)' -BuildConfiguration '$(ConfigurationName)' -BuildPlatform '$(PlatformName)'"
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\PostSharp.3.1.49\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.3.1.49\tools\PostSharp.targets')" />
   <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
