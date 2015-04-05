@@ -14,4 +14,10 @@
         <Setter Property="Width" Value="100"/>
     </Style>
 
+    <Style TargetType="RadioButton">
+        <Setter Property="Margin" Value="105,0,5,5"/>
+        <Setter Property="Width" Value="100"/>
+    </Style>
+
+
 </ResourceDictionary>

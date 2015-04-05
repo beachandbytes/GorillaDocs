@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="GorillaDocs.Views.Controls.SalutationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             x:Name="thisUserControl"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="FormStyles.xaml" />
+    </UserControl.Resources>
+    <DockPanel Margin="5">
+        <Label Target="{Binding ElementName=ComboInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
+        <Grid>
+            <ComboBox Name="TitleComboInput" 
+                  ItemsSource="{Binding ElementName=thisUserControl, Path=ItemsSource}" 
+                  SelectedItem="{Binding ElementName=thisUserControl, Path=SelectedItem, Mode=TwoWay}" 
+                  IsEditable="True"
+                  Width="70"/>
+            <TextBlock IsHitTestVisible="False" Text="eg. Mr" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TitleComboInput}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <Grid>
+            <TextBox Name="TextInput" Text="{Binding ElementName=thisUserControl, Path=Text, Mode=TwoWay}"/>
+            <TextBlock IsHitTestVisible="False" Text="eg. Surname" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TextInput}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+    </DockPanel>
+</UserControl>

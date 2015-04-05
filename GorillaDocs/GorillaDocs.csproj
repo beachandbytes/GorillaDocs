@@ -162,12 +162,21 @@
     <Compile Include="Views\Behaviours\ExpanderStates.cs" />
     <Compile Include="Views\Behaviours\PersistGroupExpandedStateBehavior.cs" />
     <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
+    <Compile Include="Views\Controls\CheckboxControl.xaml.cs">
+      <DependentUpon>CheckboxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SalutationControl.xaml.cs">
+      <DependentUpon>SalutationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\NewLine.cs" />
     <Compile Include="Views\Controls\SenderWithFavouritesControl.xaml.cs">
       <DependentUpon>SenderWithFavouritesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\DateControl.xaml.cs">
       <DependentUpon>DateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ComboControl.xaml.cs">
+      <DependentUpon>ComboControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\TextControl.xaml.cs">
       <DependentUpon>TextControl.xaml</DependentUpon>
@@ -182,6 +191,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Controls\CheckboxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\SalutationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\SenderWithFavouritesControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -191,6 +208,10 @@
       <SubType>Designer</SubType>
     </Resource>
     <Page Include="Views\Controls\DateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ComboControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
