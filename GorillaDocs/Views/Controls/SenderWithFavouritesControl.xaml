@@ -6,9 +6,7 @@
              xmlns:gprop="clr-namespace:GorillaDocs.Properties"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Style TargetType="Label">
-            <Setter Property="Width" Value="100"/>
-        </Style>
+        <ResourceDictionary Source="FormStyles.xaml" />
     </UserControl.Resources>
     <Grid>
         <StackPanel>

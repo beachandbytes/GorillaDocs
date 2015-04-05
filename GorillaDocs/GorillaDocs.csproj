@@ -166,6 +166,9 @@
     <Compile Include="Views\Controls\SenderWithFavouritesControl.xaml.cs">
       <DependentUpon>SenderWithFavouritesControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\DateControl.xaml.cs">
+      <DependentUpon>DateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\TextControl.xaml.cs">
       <DependentUpon>TextControl.xaml</DependentUpon>
     </Compile>
@@ -183,10 +186,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <None Include="Views\FormStyles.xaml">
+    <Resource Include="Views\Controls\FormStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </None>
+    </Resource>
+    <Page Include="Views\Controls\DateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\TextControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
