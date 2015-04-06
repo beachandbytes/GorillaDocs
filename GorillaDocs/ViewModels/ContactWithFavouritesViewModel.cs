@@ -20,8 +20,8 @@ namespace GorillaDocs.ViewModels
 
             Favourites = favourites;
             Favourites.PropertyChanged += Favourites_PropertyChanged;
-            _Contact = contact; // Ensure that the passed in contact is remembered
-            Contact = favourites.FirstOrPassedIn(contact);
+            ParentContact = contact;
+            Contact = favourites.FirstOrDefault(x => x.FullName == contact.FullName);
             Outlook = outlook;
 
             AddressBookCommand = new RelayCommand(AddressBookPressed);
@@ -29,24 +29,27 @@ namespace GorillaDocs.ViewModels
             AddFavouriteCommand = new RelayCommand(AddFavouritePressed, CanAddFavourite);
             RemoveFavouriteCommand = new RelayCommand(RemoveFavouritePressed);
         }
-
+        readonly Contact ParentContact; // Need to maintain a separate contact so that Favourites list doesn't reset it
         public Contact Contact
         {
             get { return _Contact; }
             set
             {
-                // Do not replace the contact object because the calling code loses it. Just replace the values.
                 if (value == null)
-                    _Contact.Clear();
+                    ClearPressed();
                 else
-                    _Contact.Copy(value);
+                {
+                    _Contact = value;
+                    ParentContact.Copy(value);
+                }
+
                 NotifyPropertyChanged("Contact");
                 NotifyPropertyChanged("IsEnabled");
                 NotifyPropertyChanged("AddFavouriteVisibility");
                 NotifyPropertyChanged("RemoveFavouriteVisibility");
             }
         }
-        readonly Contact _Contact;
+        Contact _Contact = new Contact();
         readonly Outlook Outlook;
 
         public Favourites Favourites { get; private set; }
@@ -56,10 +59,12 @@ namespace GorillaDocs.ViewModels
         {
             try
             {
-                ClearPressed();
                 Contact ol = this.Outlook.GetContact();
                 if (ol != null)
-                    Contact.Copy(ol);
+                {
+                    ClearPressed();
+                    Contact = ol;
+                }
             }
             catch (Exception ex)
             {
@@ -68,17 +73,17 @@ namespace GorillaDocs.ViewModels
         }
 
         public ICommand ClearCommand { get; set; }
-        public bool CanClear()
-        {
-            return !Contact.IsNullOrEmpty();
-        }
+        public bool CanClear() { return !Contact.IsNullOrEmpty(); }
         public void ClearPressed()
         {
             try
             {
                 if (Favourites.Contains(Contact))
                     Contact = new Contact();
-                Contact.Clear();
+                else
+                    Contact.Clear();
+                ParentContact.Clear();
+
             }
             catch (Exception ex)
             {
@@ -87,15 +92,14 @@ namespace GorillaDocs.ViewModels
         }
 
         public ICommand AddFavouriteCommand { get; set; }
-        public bool CanAddFavourite()
-        {
-            return Contact != null && !string.IsNullOrEmpty(Contact.FullName);
-        }
+        public bool CanAddFavourite() { return Contact != null && !string.IsNullOrEmpty(Contact.FullName); }
         public void AddFavouritePressed()
         {
             try
             {
-                Favourites.Add(Contact);
+                var name = Contact.FullName;
+                Favourites.Add(Contact); // Adding the contact clears the controls
+                Contact = Favourites.First(x => x.FullName == name);
             }
             catch (Exception ex)
             {
@@ -108,8 +112,9 @@ namespace GorillaDocs.ViewModels
         {
             try
             {
-                var temp = Contact;
-                Favourites.Remove(Contact); // binding causes Contact to become null
+                var temp = new Contact();
+                temp.Copy(Contact);
+                Favourites.RemoveAll(x => x.FullName == Contact.FullName); // Removing contact clears the controls
                 Contact = temp;
             }
             catch (Exception ex)
@@ -134,13 +139,7 @@ namespace GorillaDocs.ViewModels
             }
         }
 
-        public bool IsEnabled
-        {
-            get
-            {
-                return !Favourites.Contains(Contact);
-            }
-        }
+        public bool IsEnabled { get { return !Favourites.Contains(Contact); } }
         public Visibility AddFavouriteVisibility { get { return IsEnabled ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility RemoveFavouriteVisibility { get { return IsEnabled ? Visibility.Collapsed : Visibility.Visible; } }
     }

@@ -58,11 +58,18 @@ namespace GorillaDocs.ViewModels
         [LoudRibbonExceptionHandler]
         public void AddressBookPressed()
         {
-            Contact ol = Outlook.GetContact();
-            if (ol != null)
+            try
             {
-                ClearPressed();
-                Contact = ol;
+                Contact ol = Outlook.GetContact();
+                if (ol != null)
+                {
+                    ClearPressed();
+                    Contact = ol;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message.ShowError(ex);
             }
         }
 
