@@ -12,16 +12,16 @@ namespace GorillaDocs.ViewModels
         string _ExamplePhoneNumber;
         readonly Outlook Outlook;
 
-        public ContactViewModel(Contact contact, List<string> deliveryItems, Outlook outlook, string examplePhoneNumber = "")
+        public ContactViewModel(Contact contact, Outlook outlook, string examplePhoneNumber = "", List<string> deliveryItems = null)
         {
-            Contact = contact;
+            this.contact = contact;
             Outlook = outlook;
             ExamplePhoneNumber = examplePhoneNumber;
 
             AddressBookCommand = new RelayCommand(AddressBookPressed);
             ClearCommand = new RelayCommand(ClearPressed, CanClear);
 
-            DeliveryItems = deliveryItems;
+            DeliveryItems = deliveryItems ?? new List<string>();
         }
 
         public string ExamplePhoneNumber
@@ -36,22 +36,17 @@ namespace GorillaDocs.ViewModels
 
         public List<string> DeliveryItems { get; private set; }
 
-        Contact contact;
+        readonly Contact contact;
         public Contact Contact
         {
-            //TODO: Merge the ContactViewModel and SenderViewModel code
             get { return contact; }
             set
             {
-                if (contact != null && value != null && contact.FullName == value.FullName)
-                    return;
-
                 if (value == null)
-                    contact = new Contact();
-                else if (contact == null)
-                    contact = value;
+                    contact.Clear();
                 else
                     contact.Copy(value);
+
                 if (string.IsNullOrEmpty(contact.Delivery))
                     contact.Delivery = DeliveryItems.FirstOrDefault();
 
@@ -72,10 +67,7 @@ namespace GorillaDocs.ViewModels
         }
 
         public ICommand ClearCommand { get; set; }
-        public bool CanClear()
-        {
-            return !Contact.IsNullOrEmpty();
-        }
+        public bool CanClear() { return !Contact.IsNullOrEmpty(); }
         [LoudRibbonExceptionHandler]
         public void ClearPressed() { Contact.Clear(); }
     }

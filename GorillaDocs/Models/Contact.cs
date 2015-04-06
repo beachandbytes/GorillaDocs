@@ -169,7 +169,8 @@ namespace GorillaDocs.Models
             get { return _EmailAddress; }
             set
             {
-                ValidateProperty("EmailAddress", value);
+                if (!string.IsNullOrEmpty(value))
+                    ValidateProperty("EmailAddress", value);
                 _EmailAddress = value;
                 NotifyPropertyChanged("EmailAddress");
             }
