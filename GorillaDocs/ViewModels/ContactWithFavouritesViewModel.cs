@@ -24,6 +24,7 @@ namespace GorillaDocs.ViewModels
             ParentContact = contact;
             if (Contact.IsEmpty() && !ParentContact.IsEmpty())
                 Contact.Copy(ParentContact);
+            Contact.PropertyChanged += Contact_PropertyChanged;
 
             Outlook = outlook;
 
@@ -32,6 +33,9 @@ namespace GorillaDocs.ViewModels
             AddFavouriteCommand = new RelayCommand(AddFavouritePressed, CanAddFavourite);
             RemoveFavouriteCommand = new RelayCommand(RemoveFavouritePressed);
         }
+
+        void Contact_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) { ParentContact.Copy(Contact); }
+
         readonly Contact ParentContact; // Need to maintain a separate contact so that Favourites list doesn't reset it
         Contact _Contact = new Contact();
         public Contact Contact

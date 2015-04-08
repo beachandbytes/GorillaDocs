@@ -67,6 +67,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDocument.cs" />
     <Compile Include="BookmarksHelper.cs" />
     <Compile Include="BuildingBlockHelper.cs" />
     <Compile Include="CaptionHelper.cs" />
