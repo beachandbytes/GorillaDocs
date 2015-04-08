@@ -24,10 +24,10 @@ namespace GorillaDocs.ViewModels
         {
             get
             {
-                if (office == null)
-                    office = Offices.LastSelected(settings);
+                if (office == null && !string.IsNullOrEmpty(settings.Last_Selected_Office))
+                    Office = Offices.FirstOrDefault(x => x.Name == settings.Last_Selected_Office);
                 if (office == null && Offices.Count > 0)
-                    office = Offices[0];
+                    Office = Offices[0];
                 return office;
             }
             set

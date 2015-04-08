@@ -39,6 +39,8 @@ namespace GorillaDocs.Models
         string _PostalCountry;
         string _Country;
         string _Delivery;
+        string _SignatureLine1;
+        string _SignatureLine2;
         List<string> _States;
         List<string> _Titles;
 
@@ -157,7 +159,6 @@ namespace GorillaDocs.Models
             get { return _FaxNumber; }
             set
             {
-                ValidatePhone(value);
                 _FaxNumber = value;
                 NotifyPropertyChanged("FaxNumber");
             }
@@ -293,7 +294,6 @@ namespace GorillaDocs.Models
                 NotifyPropertyChanged("PostalCountry");
             }
         }
-
         public string Country
         {
             get { return _Country; }
@@ -315,6 +315,25 @@ namespace GorillaDocs.Models
                 NotifyPropertyChanged("AddressVisibility");
             }
         }
+        public string SignatureLine1
+        {
+            get { return _SignatureLine1; }
+            set
+            {
+                _SignatureLine1 = value;
+                NotifyPropertyChanged("SignatureLine1");
+            }
+        }
+        public string SignatureLine2
+        {
+            get { return _SignatureLine2; }
+            set
+            {
+                _SignatureLine2 = value;
+                NotifyPropertyChanged("SignatureLine2");
+            }
+        }
+
 
         public List<string> States
         {
@@ -335,23 +354,6 @@ namespace GorillaDocs.Models
                 return _Titles;
             }
             set { _Titles = value; }
-        }
-
-        void ValidatePhone(string value)
-        {
-            //if (string.IsNullOrEmpty(value))
-            //    return;
-            //var regex = new Regex(@"^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$");
-            //if (regex.Match(value) == Match.Empty)
-            //    throw new ArgumentException("Invalid phone format");
-        }
-        void ValidateEmail(string value)
-        {
-            //if (string.IsNullOrEmpty(value))
-            //    return;
-            //var regex = new Regex(@"^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$");
-            //if (regex.Match(value) == Match.Empty)
-            //    throw new ArgumentException("Invalid email format");
         }
 
         public bool IsDeliveryByEmail { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Email.ToLower()); } }
@@ -420,6 +422,10 @@ namespace GorillaDocs.Models
                 return false;
             if (!string.IsNullOrEmpty(_PostalCountry))
                 return false;
+            if (!string.IsNullOrEmpty(_SignatureLine1))
+                return false;
+            if (!string.IsNullOrEmpty(_SignatureLine2))
+                return false;
             return true;
         }
 
@@ -453,6 +459,8 @@ namespace GorillaDocs.Models
             PostalCountry = string.Empty;
             Country = string.Empty;
             Delivery = string.Empty;
+            SignatureLine1 = string.Empty;
+            SignatureLine2 = string.Empty;
         }
         public void Copy(Contact from)
         {
@@ -484,6 +492,8 @@ namespace GorillaDocs.Models
             PostalCountry = from.PostalCountry;
             Country = from.Country;
             Delivery = from.Delivery;
+            SignatureLine1 = from.SignatureLine1;
+            SignatureLine2 = from.SignatureLine2;
         }
         public bool Equals(Contact other)
         {

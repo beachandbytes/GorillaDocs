@@ -20,8 +20,11 @@ namespace GorillaDocs.ViewModels
 
             Favourites = favourites;
             Favourites.PropertyChanged += Favourites_PropertyChanged;
-            ParentContact = contact;
             Contact = favourites.FirstOrDefault(x => x.FullName == contact.FullName);
+            ParentContact = contact;
+            if (Contact.IsEmpty() && !ParentContact.IsEmpty())
+                Contact.Copy(ParentContact);
+
             Outlook = outlook;
 
             AddressBookCommand = new RelayCommand(AddressBookPressed);
@@ -30,6 +33,7 @@ namespace GorillaDocs.ViewModels
             RemoveFavouriteCommand = new RelayCommand(RemoveFavouritePressed);
         }
         readonly Contact ParentContact; // Need to maintain a separate contact so that Favourites list doesn't reset it
+        Contact _Contact = new Contact();
         public Contact Contact
         {
             get { return _Contact; }
@@ -49,7 +53,6 @@ namespace GorillaDocs.ViewModels
                 NotifyPropertyChanged("RemoveFavouriteVisibility");
             }
         }
-        Contact _Contact = new Contact();
         readonly Outlook Outlook;
 
         public Favourites Favourites { get; private set; }
@@ -82,8 +85,8 @@ namespace GorillaDocs.ViewModels
                     Contact = new Contact();
                 else
                     Contact.Clear();
-                ParentContact.Clear();
-
+                if (ParentContact != null)
+                    ParentContact.Clear();
             }
             catch (Exception ex)
             {

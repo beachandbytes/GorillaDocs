@@ -10,12 +10,27 @@
     </UserControl.Resources>
     <DockPanel Margin="5">
         <Label Target="{Binding ElementName=TextInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
-        <TextBox Name="TextInput" 
-                 Text="{Binding ElementName=thisUserControl, Path=Text, Mode=TwoWay}" 
+        <Grid>
+            <TextBox Name="TextInput" 
+                 Text="{Binding ElementName=thisUserControl, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Height="{Binding ElementName=thisUserControl, Path=TextBoxHeight}" 
                  VerticalScrollBarVisibility="Auto" 
                  AcceptsReturn="{Binding ElementName=thisUserControl, Path=AcceptsReturn}" 
                  TextWrapping="{Binding ElementName=thisUserControl, Path=TextWrapping}"
                  SpellCheck.IsEnabled="{Binding ElementName=thisUserControl, Path=SpellCheckEnabled}"/>
+            <TextBlock IsHitTestVisible="False" Text="{Binding ElementName=thisUserControl, Path=PlaceholderText}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TextInput}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
     </DockPanel>
 </UserControl>
