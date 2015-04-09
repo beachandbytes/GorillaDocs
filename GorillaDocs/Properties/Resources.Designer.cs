@@ -289,6 +289,16 @@ namespace GorillaDocs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap clear_thumb {
+            get {
+                object obj = ResourceManager.GetObject("clear_thumb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Address:.
         /// </summary>
         public static string ContactAddress {
@@ -1115,6 +1125,16 @@ namespace GorillaDocs.Properties {
         public static System.Drawing.Bitmap save_16xLG {
             get {
                 object obj = ResourceManager.GetObject("save_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap search_thumb {
+            get {
+                object obj = ResourceManager.GetObject("search_thumb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
