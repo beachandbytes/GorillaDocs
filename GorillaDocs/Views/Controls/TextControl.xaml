@@ -12,13 +12,27 @@
         <Label Target="{Binding ElementName=TextInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
         <Grid>
             <TextBox Name="TextInput" 
-                 Text="{Binding ElementName=thisUserControl, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Text="{Binding ElementName=thisUserControl, 
+                                Path=Text, 
+                                Mode=TwoWay, 
+                                UpdateSourceTrigger=PropertyChanged,
+                                ValidatesOnExceptions=True, 
+                                NotifyOnValidationError=True}" 
                  Height="{Binding ElementName=thisUserControl, Path=TextBoxHeight}" 
                  VerticalScrollBarVisibility="Auto" 
                  AcceptsReturn="{Binding ElementName=thisUserControl, Path=AcceptsReturn}" 
                  TextWrapping="{Binding ElementName=thisUserControl, Path=TextWrapping}"
-                 SpellCheck.IsEnabled="{Binding ElementName=thisUserControl, Path=SpellCheckEnabled}"/>
-            <TextBlock IsHitTestVisible="False" Text="{Binding ElementName=thisUserControl, Path=PlaceholderText}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                 SpellCheck.IsEnabled="{Binding ElementName=thisUserControl, Path=SpellCheckEnabled}"
+                 VerticalAlignment="Center" 
+                 Padding="0,4"
+                 />
+            <!--Style="{StaticResource ErrorStyle}"-->
+            <TextBlock IsHitTestVisible="False" 
+                       Text="{Binding ElementName=thisUserControl, Path=PlaceholderText}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Left" 
+                       Margin="4" 
+                       Foreground="DarkGray">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>

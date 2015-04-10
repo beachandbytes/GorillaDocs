@@ -170,8 +170,8 @@ namespace GorillaDocs.Models
             get { return _EmailAddress; }
             set
             {
-                if (!string.IsNullOrEmpty(value))
-                    ValidateProperty("EmailAddress", value);
+                //if (!string.IsNullOrEmpty(value))
+                //    ValidateProperty("EmailAddress", value);
                 _EmailAddress = value;
                 NotifyPropertyChanged("EmailAddress");
             }
@@ -343,7 +343,11 @@ namespace GorillaDocs.Models
                     _States = new List<string>() { "ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA" };
                 return _States;
             }
-            set { _States = value; }
+            set
+            {
+                _States = value;
+                NotifyPropertyChanged("States");
+            }
         }
         public List<string> Titles
         {
@@ -353,7 +357,11 @@ namespace GorillaDocs.Models
                     _Titles = new List<string>() { "Dr", "Miss", "Mr", "Mrs", "Ms", "Prof" };
                 return _Titles;
             }
-            set { _Titles = value; }
+            set
+            {
+                _Titles = value;
+                NotifyPropertyChanged("Titles");
+            }
         }
 
         public bool IsDeliveryByEmail { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Email.ToLower()); } }

@@ -28,5 +28,14 @@
         <Setter Property="Width" Value="100"/>
     </Style>
 
+    <Style TargetType="ComboBox">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="2,4"/>
+    </Style>
 
-</ResourceDictionary>
+    <Style TargetType="TextBox">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0,4"/>
+    </Style>
+
+    </ResourceDictionary>
