@@ -1,128 +1,128 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Windows;
-//using System.Windows.Controls;
-//using System.Windows.Interactivity;
-//using System.Windows.Media;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Interactivity;
+using System.Windows.Media;
 
-//namespace GorillaDocs.Views
-//{
-//    public class PersistGroupExpandedStateBehavior : Behavior<Expander>
-//    {
-//        #region Static Fields
+namespace GorillaDocs.Views
+{
+    public class PersistGroupExpandedStateBehavior : Behavior<Expander>
+    {
+        #region Static Fields
 
-//        public static readonly DependencyProperty GroupNameProperty = DependencyProperty.Register(
-//            "GroupName",
-//            typeof(object),
-//            typeof(PersistGroupExpandedStateBehavior),
-//            new PropertyMetadata(default(object)));
+        public static readonly DependencyProperty GroupNameProperty = DependencyProperty.Register(
+            "GroupName",
+            typeof(object),
+            typeof(PersistGroupExpandedStateBehavior),
+            new PropertyMetadata(default(object)));
 
-//        static readonly DependencyProperty ExpandedStateStoreProperty =
-//            DependencyProperty.RegisterAttached(
-//                "ExpandedStateStore",
-//                typeof(IDictionary<object, bool>),
-//                typeof(PersistGroupExpandedStateBehavior),
-//                new PropertyMetadata(default(IDictionary<object, bool>)));
+        static readonly DependencyProperty ExpandedStateStoreProperty =
+            DependencyProperty.RegisterAttached(
+                "ExpandedStateStore",
+                typeof(IDictionary<object, bool>),
+                typeof(PersistGroupExpandedStateBehavior),
+                new PropertyMetadata(default(IDictionary<object, bool>)));
 
-//        #endregion
+        #endregion
 
-//        #region Public Properties
+        #region Public Properties
 
-//        public object GroupName
-//        {
-//            get { return (object)GetValue(GroupNameProperty); }
-//            set { SetValue(GroupNameProperty, value); }
-//        }
+        public object GroupName
+        {
+            get { return (object)GetValue(GroupNameProperty); }
+            set { SetValue(GroupNameProperty, value); }
+        }
 
-//        #endregion
+        #endregion
 
-//        #region Methods
+        #region Methods
 
-//        protected override void OnAttached()
-//        {
-//            base.OnAttached();
+        protected override void OnAttached()
+        {
+            base.OnAttached();
 
-//            bool? expanded = GetExpandedState();
+            bool? expanded = GetExpandedState();
 
-//            if (expanded != null)
-//                AssociatedObject.IsExpanded = expanded.Value;
+            if (expanded != null)
+                AssociatedObject.IsExpanded = expanded.Value;
 
-//            AssociatedObject.Expanded += OnExpanded;
-//            AssociatedObject.Collapsed += OnCollapsed;
-//        }
+            AssociatedObject.Expanded += OnExpanded;
+            AssociatedObject.Collapsed += OnCollapsed;
+        }
 
-//        protected override void OnDetaching()
-//        {
-//            AssociatedObject.Expanded -= OnExpanded;
-//            AssociatedObject.Collapsed -= OnCollapsed;
+        protected override void OnDetaching()
+        {
+            AssociatedObject.Expanded -= OnExpanded;
+            AssociatedObject.Collapsed -= OnCollapsed;
 
-//            base.OnDetaching();
-//        }
+            base.OnDetaching();
+        }
 
-//        ItemsControl FindItemsControl()
-//        {
-//            DependencyObject current = AssociatedObject;
+        ItemsControl FindItemsControl()
+        {
+            DependencyObject current = AssociatedObject;
 
-//            while (current != null && !(current is ItemsControl))
-//                current = VisualTreeHelper.GetParent(current);
+            while (current != null && !(current is ItemsControl))
+                current = VisualTreeHelper.GetParent(current);
 
-//            if (current == null)
-//                return null;
+            if (current == null)
+                return null;
 
-//            return current as ItemsControl;
-//        }
+            return current as ItemsControl;
+        }
 
-//        bool? GetExpandedState()
-//        {
-//            var dict = GetExpandedStateStore();
+        bool? GetExpandedState()
+        {
+            var dict = GetExpandedStateStore();
 
-//            if (!dict.ContainsKey(GroupName))
-//                return null;
+            if (!dict.ContainsKey(GroupName))
+                return null;
 
-//            return dict[GroupName];
-//        }
+            return dict[GroupName];
+        }
 
-//        IDictionary<object, bool> GetExpandedStateStore()
-//        {
-//            ItemsControl itemsControl = FindItemsControl();
+        IDictionary<object, bool> GetExpandedStateStore()
+        {
+            ItemsControl itemsControl = FindItemsControl();
 
-//            if (itemsControl == null)
-//                throw new Exception("Behavior needs to be attached to an Expander that is contained inside an ItemsControl");
+            if (itemsControl == null)
+                throw new Exception("Behavior needs to be attached to an Expander that is contained inside an ItemsControl");
 
-//            var dict = (IDictionary<object, bool>)itemsControl.GetValue(ExpandedStateStoreProperty);
+            var dict = (IDictionary<object, bool>)itemsControl.GetValue(ExpandedStateStoreProperty);
 
-//            if (dict == null)
-//            {
-//                dict = new Dictionary<object, bool>();
-//                var states = ExpanderStates.Get();
-//                foreach (dynamic group in itemsControl.Items.Groups)
-//                    dict.Add(group.Name, states.Get(group.Name));
-//                itemsControl.SetValue(ExpandedStateStoreProperty, dict);
-//            }
+            if (dict == null)
+            {
+                dict = new Dictionary<object, bool>();
+                var states = ExpanderStates.Get();
+                foreach (dynamic group in itemsControl.Items.Groups)
+                    dict.Add(group.Name, states.Get(group.Name));
+                itemsControl.SetValue(ExpandedStateStoreProperty, dict);
+            }
 
-//            return dict;
-//        }
+            return dict;
+        }
 
-//        void OnCollapsed(object sender, RoutedEventArgs e)
-//        {
-//            SetExpanded(false);
-//        }
+        void OnCollapsed(object sender, RoutedEventArgs e)
+        {
+            SetExpanded(false);
+        }
 
-//        void OnExpanded(object sender, RoutedEventArgs e)
-//        {
-//            SetExpanded(true);
-//        }
+        void OnExpanded(object sender, RoutedEventArgs e)
+        {
+            SetExpanded(true);
+        }
 
-//        void SetExpanded(bool expanded)
-//        {
-//            var dict = GetExpandedStateStore();
-//            dict[GroupName] = expanded;
+        void SetExpanded(bool expanded)
+        {
+            var dict = GetExpandedStateStore();
+            dict[GroupName] = expanded;
 
-//            var states = ExpanderStates.Get();
-//            states.Set(GroupName.ToString(), expanded);
-//        }
+            var states = ExpanderStates.Get();
+            states.Set(GroupName.ToString(), expanded);
+        }
 
-//        #endregion
-//    }
-//}
+        #endregion
+    }
+}

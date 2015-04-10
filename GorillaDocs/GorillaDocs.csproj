@@ -43,6 +43,9 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="PostSharp, Version=3.1.49.9, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PostSharp.3.1.49\lib\net20\PostSharp.dll</HintPath>
@@ -62,6 +65,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -458,8 +464,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.55.0\lib\net40\GorillaDocs.dll" /Y
-COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.1.0.55.0\lib\net40\GorillaDocs.dll" /Y
+    <PostBuildEvent>REM COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.56.0\lib\net40\GorillaDocs.dll" /Y
+COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.1.0.56.0\lib\net40\GorillaDocs.dll" /Y
 
 
 REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
