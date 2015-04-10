@@ -141,6 +141,6 @@
         
     </UserControl.Resources>
     <Grid>
-        <Controls:SearchTextBox x:Name="SearchInput" Height="21" Text="{Binding Path=FilterString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Controls:SearchTextBox x:Name="SearchInput" Height="21" Text="{Binding Path=FilterString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SearchMode="{Binding SearchMode}"/>
     </Grid>
 </UserControl>

@@ -48,7 +48,8 @@ namespace GorillaDocs.ViewModels
                 else
                 {
                     _Contact = value;
-                    ParentContact.Copy(value);
+                    if (ParentContact != null)
+                        ParentContact.Copy(value);
                 }
 
                 NotifyPropertyChanged("Contact");

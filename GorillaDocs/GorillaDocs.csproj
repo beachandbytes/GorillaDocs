@@ -464,7 +464,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.56.0\lib\net40\GorillaDocs.dll" /Y
+    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.56.0\lib\net40\GorillaDocs.dll" /Y
 COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.1.0.56.0\lib\net40\GorillaDocs.dll" /Y
 
 
