@@ -149,22 +149,44 @@ namespace GorillaDocs.IntegrationTests
         [Test]
         public void Get_the_Term_Stores()
         {
-            var termStores = TaxonomyHelper.GetTaxonomyTermStores("http://mvuatsp13.macroview.com.au/");
+            var termStores = TaxonomyHelper.GetTermStores("http://mvuatsp13.macroview.com.au/");
             Assert.That(termStores != null);
         }
 
         [Test]
         public void Get_the_Term_Groups()
         {
-            var termGroups = TaxonomyHelper.GetTaxonomyTermGroups("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"));
+            var termGroups = TaxonomyHelper.GetTermGroups("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"));
             Assert.That(termGroups != null);
         }
 
         [Test]
         public void Get_the_Term_Sets()
         {
-            var termSets = TaxonomyHelper.GetTaxonomyTermSets("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"), new Guid("edde64cc-6116-4e86-b509-2b9a05aeb57d"));
+            var termSets = TaxonomyHelper.GetTermSets("http://mvuatsp13.macroview.com.au/", new Guid("2a09029f-199e-4013-9289-e4b00fb0ea14"), new Guid("edde64cc-6116-4e86-b509-2b9a05aeb57d"));
             Assert.That(termSets != null);
+        }
+
+        [Test]
+        public void Get_term_id()
+        {
+            var id = TaxonomyHelper.GetTermId(new Uri("http://tests2012sp2013.macroview.com.au/sites/caseandmatter/Atlas%20Funds%20Management"), "Letter");
+        }
+
+        [Test]
+        public void Get_Users()
+        {
+            //var users = SPUsers.GetUsers("http://mvuatsp13.macroview.com.au/");
+            var users = SPUsers.GetUsers(new Uri("http://tests2012sp2013.macroview.com.au/sites/caseandmatter/Atlas%20Funds%20Management"));
+            //var users = SPUsers.GetUsers("http://tests2012sp2013.macroview.com.au/sites/caseandmatter/");
+            Assert.That(users != null);
+        }
+
+        [Test]
+        public void Get_filtered_Users()
+        {
+            var users = SPUsers.GetUsers(new Uri("http://mvuatsp13.macroview.com.au/"), "Matt");
+            Assert.That(users != null);
         }
     }
 

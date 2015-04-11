@@ -62,7 +62,11 @@ namespace GorillaDocs.Views.Controls
                 RoutingStrategy.Bubble,
                 typeof(RoutedEventHandler),
                 typeof(SearchTextBox));
-
+        public static DependencyProperty SearchCommandProperty =
+            DependencyProperty.Register(
+                "SearchCommand",
+                typeof(ICommand),
+                typeof(SearchTextBox));
 
         public event RoutedEventHandler Search
         {
@@ -164,13 +168,14 @@ namespace GorillaDocs.Views.Controls
             }
         }
 
-        private void RaiseSearchEvent()
+        void RaiseSearchEvent()
         {
             RoutedEventArgs args = new RoutedEventArgs(SearchEvent);
             RaiseEvent(args);
+            SearchCommand.Execute(args);
         }
 
-        private DispatcherTimer searchEventDelayTimer;
+        DispatcherTimer searchEventDelayTimer;
         public SearchTextBox()
             : base()
         {
@@ -192,6 +197,12 @@ namespace GorillaDocs.Views.Controls
                 RaiseSearchEvent();
             else
                 base.OnKeyDown(e);
+        }
+
+        public ICommand SearchCommand
+        {
+            get { return (ICommand)GetValue(SearchCommandProperty); }
+            set { SetValue(SearchCommandProperty, value); }
         }
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Controls="clr-namespace:GorillaDocs.Views.Controls"
+             xmlns:GDC="clr-namespace:GorillaDocs.Views.Controls"
              x:Name="thisUserControl"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -43,7 +43,7 @@
         </LinearGradientBrush>
         <SolidColorBrush x:Key="SearchTextBox_LabelTextColor" Color="Gray" />
 
-        <Style x:Key="{x:Type Controls:SearchTextBox}" TargetType="{x:Type Controls:SearchTextBox}">
+        <Style x:Key="{x:Type GDC:SearchTextBox}" TargetType="{x:Type GDC:SearchTextBox}">
             <Setter Property="Background" Value="{StaticResource SearchTextBox_Background}" />
             <Setter Property="BorderBrush" Value="{StaticResource SearchTextBox_Border}" />
             <Setter Property="Foreground" Value="{StaticResource SearchTextBox_Foreground}" />
@@ -54,7 +54,7 @@
             <Setter Property="LabelTextColor" Value="{StaticResource SearchTextBox_LabelTextColor}" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Controls:SearchTextBox}">
+                    <ControlTemplate TargetType="{x:Type GDC:SearchTextBox}">
                         <Border x:Name="Border"
                                     Padding="2"
                                     Background="{TemplateBinding Background}"
@@ -141,6 +141,15 @@
         
     </UserControl.Resources>
     <Grid>
-        <Controls:SearchTextBox x:Name="SearchInput" Height="21" Text="{Binding Path=FilterString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SearchMode="{Binding SearchMode}"/>
+        <GDC:SearchTextBox x:Name="SearchInput" 
+                            Height="21" 
+                            Text="{Binding ElementName=thisUserControl,
+                                            Path=Text, 
+                                            Mode=TwoWay, 
+                                            UpdateSourceTrigger=PropertyChanged}" 
+                            SearchMode="{Binding ElementName=thisUserControl,
+                                            Path=SearchMode}"
+                            SearchCommand="{Binding ElementName=thisUserControl,
+                                            Path=SearchCommand}"/>
     </Grid>
 </UserControl>

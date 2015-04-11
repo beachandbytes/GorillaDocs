@@ -18,7 +18,9 @@ namespace GorillaDocs.Views.Controls
             set { SetValue(ItemsSourceProperty, value); }
         }
         public object SelectedItem { get; set; }
+        public int SelectedIndex { get; set; }
         public bool IsEditable { get; set; }
+        public string DisplayMemberPath { get; set; }
 
         public void Focus() { ComboInput.Focus(); }
 
@@ -26,7 +28,9 @@ namespace GorillaDocs.Views.Controls
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(ComboControl));
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ComboControl), new PropertyMetadata(OnItemsSourcePropertyChanged));
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(ComboControl));
+        public static readonly DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(ComboControl));
         public static readonly DependencyProperty IsEditableProperty = DependencyProperty.Register("IsEditable", typeof(bool), typeof(ComboControl));
+        public static readonly DependencyProperty DisplayMemberPathProperty = DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(ComboControl));
 
         static void OnItemsSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {

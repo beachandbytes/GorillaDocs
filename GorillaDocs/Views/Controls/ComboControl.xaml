@@ -13,6 +13,8 @@
         <ComboBox Name="ComboInput" 
                   ItemsSource="{Binding ElementName=thisUserControl, Path=ItemsSource}" 
                   SelectedItem="{Binding ElementName=thisUserControl, Path=SelectedItem, Mode=TwoWay}" 
-                  IsEditable="{Binding ElementName=thisUserControl, Path=IsEditable}"/>
+                  SelectedIndex="{Binding ElementName=thisUserControl, Path=SelectedIndex, Mode=TwoWay}"
+                  IsEditable="{Binding ElementName=thisUserControl, Path=IsEditable}"
+                  DisplayMemberPath="{Binding ElementName=thisUserControl, Path=DisplayMemberPath}"/>
     </DockPanel>
 </UserControl>
