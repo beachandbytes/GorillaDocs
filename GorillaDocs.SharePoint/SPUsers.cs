@@ -1,5 +1,6 @@
 ﻿using GorillaDocs.Models;
 using Microsoft.SharePoint.Client;
+using Microsoft.SharePoint.Client.UserProfiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,14 +38,28 @@ namespace GorillaDocs.SharePoint
                     //}
                     context.ExecuteQuery();
 
+                    var peopleManager = new PeopleManager(context);
+
                     foreach (var user in siteUsers)
                         if (user.PrincipalType == Microsoft.SharePoint.Client.Utilities.PrincipalType.User)
                             if (user.Title.ToLower().Contains(Filter.ToLower()) && !users.Any(x => x.FullName == user.Title))
-                                users.Add(new Contact()
+                            {
+                                var userProfile = peopleManager.GetPropertiesFor(user.LoginName);
+                                context.Load(userProfile);
+                                context.ExecuteQuery();
+
+                                if (userProfile.IsPropertyAvailable("DisplayName"))
                                 {
-                                    FullName = user.Title,
-                                    EmailAddress = user.Email
-                                });
+                                    var contact = new Contact() { FullName = userProfile.DisplayName };
+                                    if (userProfile.IsPropertyAvailable("Title"))
+                                        contact.Position = userProfile.Title;
+                                    if (userProfile.IsPropertyAvailable("Email"))
+                                        contact.EmailAddress = userProfile.Email;
+                                    if (userProfile.IsPropertyAvailable("UserProfileProperties") && userProfile.UserProfileProperties.ContainsKey("WorkPhone"))
+                                        contact.PhoneNumber = userProfile.UserProfileProperties["WorkPhone"];
+                                    users.Add(contact);
+                                }
+                            }
                 }
             }
             return users;
@@ -69,7 +84,7 @@ namespace GorillaDocs.SharePoint
                 }
             });
         }
-   
+
 
     }
 }

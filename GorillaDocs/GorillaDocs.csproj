@@ -464,8 +464,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.56.0\lib\net40\GorillaDocs.dll" /Y
-COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.1.0.56.0\lib\net40\GorillaDocs.dll" /Y
+    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.57.0\lib\net40\GorillaDocs.dll" /Y
+COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.1.0.57.0\lib\net40\GorillaDocs.dll" /Y
 
 
 REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.

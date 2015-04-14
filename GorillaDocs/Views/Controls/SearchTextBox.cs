@@ -172,7 +172,8 @@ namespace GorillaDocs.Views.Controls
         {
             RoutedEventArgs args = new RoutedEventArgs(SearchEvent);
             RaiseEvent(args);
-            SearchCommand.Execute(args);
+            if (SearchCommand != null)
+                SearchCommand.Execute(args);
         }
 
         DispatcherTimer searchEventDelayTimer;

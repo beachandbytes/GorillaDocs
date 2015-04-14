@@ -50,6 +50,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Microsoft\Microsoft.SharePoint.Client.Taxonomy.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.UserProfiles, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Microsoft\Microsoft.SharePoint.Client.UserProfiles.dll</HintPath>
+    </Reference>
     <Reference Include="PostSharp, Version=3.1.49.9, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PostSharp.3.1.49\lib\net20\PostSharp.dll</HintPath>
