@@ -19,5 +19,7 @@ namespace GorillaDocs.ViewModels
                 NotifyPropertyChanged("DialogResult");
             }
         }
+
+        public static int Errors { get; set; }
     }
 }

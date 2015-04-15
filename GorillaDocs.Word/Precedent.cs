@@ -15,11 +15,12 @@ namespace GorillaDocs.Word
         readonly Dispatcher dispatcher = null;
         bool DisableEvents = false;
 
-        public Precedent(Wd.Document Doc, string NameSpace)
+        public Precedent(Wd.Document Doc, string NameSpace, bool MonitorContentControlEvents = true)
         {
             this.Doc = Doc;
             this.NameSpace = NameSpace;
-            this.Doc.ContentControlBeforeContentUpdate += Doc_ContentControlBeforeContentUpdate;
+            if (MonitorContentControlEvents)
+                this.Doc.ContentControlBeforeContentUpdate += Doc_ContentControlBeforeContentUpdate;
             dispatcher = Dispatcher.CurrentDispatcher;
             SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
             taskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
@@ -49,7 +50,7 @@ namespace GorillaDocs.Word
                             // Changing this combo usually causes other mapped controls to update 
                             // so multiple Doc_ContentControlBeforeContentUpdate event may be running 
                             // If this combo causes a control to be deleted then errors may occur in other events
-                            ProcessControls(Doc.ContentControls, Doc.CustomXmlPart(NameSpace).AsXDocument());
+                            ProcessControls(Doc.ContentControls);
                             control.Delete();
                         }
                     }
@@ -65,8 +66,13 @@ namespace GorillaDocs.Word
             }, taskScheduler);
         }
 
-        static void ProcessControls(Wd.ContentControls controls, XDocument data)
+        XDocument Data { get { return Doc.CustomXmlPart(NameSpace).AsXDocument(); } }
+
+        public void ProcessControls() { ProcessControls(Doc.ContentControls); }
+
+        public void ProcessControls(Wd.ContentControls controls)
         {
+            var data = Data;
             for (int i = controls.Count; i > 0; i--)
             {
                 var control = controls.SelectOrDefault(i);
@@ -105,7 +111,7 @@ namespace GorillaDocs.Word
             try
             {
                 foreach (Wd.ContentControl item in control.Range.ContentControls)
-                    if (item.Title.ToLower() == "instruction")
+                    if (!string.IsNullOrEmpty(item.Title) && item.Title.ToLower() == "instruction")
                         item.DeleteParagraphIfEmpty();
             }
             catch (Exception ex)

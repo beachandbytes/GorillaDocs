@@ -15,6 +15,7 @@ namespace GorillaDocs.SharePoint
         /// <param name="context"></param>
         /// <param name="credentials"></param>
         /// <returns></returns>
+        [System.Diagnostics.DebuggerStepThrough]
         public static bool TryResolveClientContext(Uri requestUri, out ClientContext context, ICredentials credentials = null)
         {
             context = null;

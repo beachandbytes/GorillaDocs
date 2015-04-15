@@ -41,6 +41,7 @@ namespace GorillaDocs.Models
         string _Delivery;
         string _SignatureLine1;
         string _SignatureLine2;
+        string _ExternalId;
         List<string> _States;
         List<string> _Titles;
 
@@ -333,7 +334,15 @@ namespace GorillaDocs.Models
                 NotifyPropertyChanged("SignatureLine2");
             }
         }
-
+        public string ExternalId
+        {
+            get { return _ExternalId; }
+            set
+            {
+                _ExternalId = value;
+                NotifyPropertyChanged("ExternalId");
+            }
+        }
 
         public List<string> States
         {
@@ -434,6 +443,8 @@ namespace GorillaDocs.Models
                 return false;
             if (!string.IsNullOrEmpty(_SignatureLine2))
                 return false;
+            if (!string.IsNullOrEmpty(_ExternalId))
+                return false;
             return true;
         }
 
@@ -469,6 +480,7 @@ namespace GorillaDocs.Models
             Delivery = string.Empty;
             SignatureLine1 = string.Empty;
             SignatureLine2 = string.Empty;
+            ExternalId = string.Empty;
         }
         public void Copy(Contact from)
         {
@@ -502,6 +514,7 @@ namespace GorillaDocs.Models
             Delivery = from.Delivery;
             SignatureLine1 = from.SignatureLine1;
             SignatureLine2 = from.SignatureLine2;
+            ExternalId = from.ExternalId;
         }
         public bool Equals(Contact other)
         {
