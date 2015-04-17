@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>GorillaDocs.SharePoint</id>
-    <version>1.0.5.0</version>
+    <version>1.0.6.0</version>
     <title>GorillaDocs.SharePoint</title>
     <authors>Matthew Fitzmaurice</authors>
     <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
@@ -18,7 +18,7 @@
     </description>
     <tags>VSTO Microsoft Office SharePoint CSOM</tags>
     <dependencies>
-      <dependency id="GorillaDocs" version="1.0.58" />
+      <dependency id="GorillaDocs" version="1.0.59" />
     </dependencies>
   </metadata>
   <files>

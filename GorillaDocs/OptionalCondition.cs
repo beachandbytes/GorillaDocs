@@ -5,6 +5,7 @@ using System.Xml.Linq;
 
 namespace GorillaDocs
 {
+    [Obsolete]
     public class OptionalCondition
     {
         //TODO: Implement AND & NOT

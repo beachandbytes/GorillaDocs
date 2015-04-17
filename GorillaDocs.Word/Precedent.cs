@@ -2,12 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
-using System.Xml.Linq;
 using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
-    public class Precedent
+    public class Precedent<D>
     {
         readonly Wd.Document Doc;
         readonly string NameSpace;
@@ -66,19 +65,19 @@ namespace GorillaDocs.Word
             }, taskScheduler);
         }
 
-        XDocument Data { get { return Doc.CustomXmlPart(NameSpace).AsXDocument(); } }
+        public D Data { get; set; }
+        public string VariableNameUsedInExpression { get; set; }
 
         public void ProcessControls() { ProcessControls(Doc.ContentControls); }
 
         public void ProcessControls(Wd.ContentControls controls)
         {
-            var data = Data;
             for (int i = controls.Count; i > 0; i--)
             {
                 var control = controls.SelectOrDefault(i);
                 if (control != null && IsOptional(control))
                 {
-                    var result = new OptionalCondition(control.Tag, data).Evaluate();
+                    var result = PrecedentExpression.Resolve(control.Tag, Data, VariableNameUsedInExpression);
                     if (result == true)
                     {
                         try

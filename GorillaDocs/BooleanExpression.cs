@@ -5,6 +5,7 @@ using System.Xml.Linq;
 
 namespace GorillaDocs
 {
+    [Obsolete]
     public class BooleanExpression
     {
         enum OperatorType { NoOperator, Equals, NotEquals, GreaterThan, LessThan, GreaterThanOrEqual, LessThanOrEqual }
@@ -61,9 +62,9 @@ namespace GorillaDocs
         {
             var args = expression.Split(new string[] { operatorValue }, StringSplitOptions.RemoveEmptyEntries);
             ExpandArguments(args, data);
-            LHS = args[0].Trim();
+            LHS = args[0].Trim().Trim('\"');
             if (operatorType != OperatorType.NoOperator)
-                RHS = args[1].Trim();
+                RHS = args[1].Trim().Trim('\"');
         }
 
         static void ExpandArguments(string[] args, XDocument data)

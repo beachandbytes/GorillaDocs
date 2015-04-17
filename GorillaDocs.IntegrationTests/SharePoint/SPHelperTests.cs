@@ -176,9 +176,9 @@ namespace GorillaDocs.IntegrationTests
         [Test]
         public void Get_Users()
         {
-            var users = SPUsers.GetUsersWithProperties(new Uri("https://portal.macroview.com.au/"));
-            //var users = SPUsers.GetUsers(new Uri("http://mvuatsp13.macroview.com.au/"));
-            //var users = SPUsers.GetUsersWithProperties(new Uri("http://tests2012sp2013.macroview.com.au/sites/caseandmatter/Atlas%20Funds%20Management"));
+            //var users = SPUsers.GetUsers(new Uri("https://portal.macroview.com.au/"));
+            var users = SPUsers.GetUsers(new Uri("http://mvuatsp13.macroview.com.au/"));
+            //var users = SPUsers.GetUsers(new Uri("http://tests2012sp2013.macroview.com.au/sites/caseandmatter/Atlas%20Funds%20Management"));
             //var users = SPUsers.GetUsers("http://tests2012sp2013.macroview.com.au/sites/caseandmatter/");
             Assert.That(users != null);
         }

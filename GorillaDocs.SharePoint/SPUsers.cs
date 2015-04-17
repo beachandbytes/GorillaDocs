@@ -21,28 +21,6 @@ namespace GorillaDocs.SharePoint
             var users = new List<Contact>();
             if (ClientContextUtilities.TryResolveClientContext(requestUri, out context, null))
             {
-                using (context)
-                {
-                    var web = context.Web;
-                    context.Load(web, w => w.Title, w => w.Description, w => w.SiteUsers);
-                    var siteUsers = web.SiteUsers;
-                    context.ExecuteQuery();
-
-                    foreach (var user in siteUsers)
-                        if (user.PrincipalType == Microsoft.SharePoint.Client.Utilities.PrincipalType.User)
-                            if (user.Title.ToLower().Contains(Filter.ToLower()) && !users.Any(x => x.FullName == user.Title))
-                                users.Add(new Contact() { ExternalId = user.Id.ToString(), FullName = user.Title, EmailAddress = user.Email });
-                }
-            }
-            return users;
-        }
-
-        public static List<Contact> GetUsersWithProperties(Uri requestUri, string Filter = "")
-        {
-            ClientContext context;
-            var users = new List<Contact>();
-            if (ClientContextUtilities.TryResolveClientContext(requestUri, out context, null))
-            {
                 var userProfilesResult = new List<PersonProperties>();
                 using (context)
                 {

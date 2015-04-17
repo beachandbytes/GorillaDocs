@@ -63,6 +63,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -87,6 +90,7 @@
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="DateTimeHelper.cs" />
     <Compile Include="DrawingHelper.cs" />
+    <Compile Include="PrecedentExpression.cs" />
     <Compile Include="Fakes\Outlook.cs" />
     <Compile Include="IconHelper.cs" />
     <Compile Include="ImageHelper.cs" />
@@ -473,5 +477,11 @@ REM If you see this in Visual Studio's Error List window, check the Output windo
 ECHO Creating NuGet package in Post-Build event...
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)_CreateNewNuGetPackage\DoNotModify\CreateNuGetPackage.ps1' -ProjectFilePath '$(ProjectPath)' -OutputDirectory '$(TargetDir)' -BuildConfiguration '$(ConfigurationName)' -BuildPlatform '$(PlatformName)'"
 </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\ildasm" /all /out=System.Linq.Dynamic.il "C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll"
+Del "C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll"
+"C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm" /dll /key=C:\Repos\GorillaDocs\GorillaDocs\GorillaDocs.snk System.Linq.Dynamic.il /Output="C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll"
+</PreBuildEvent>
   </PropertyGroup>
 </Project>

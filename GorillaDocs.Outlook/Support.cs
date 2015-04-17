@@ -15,5 +15,12 @@ namespace GorillaDocs.Outlook
             Email.Send(To, Subject, Body, LogFileFullName);
         }
         public static void SendEmail(FileInfo logfile, string To = null) { SendEmail(To, null, null, logfile.FullName); }
+
+        public static void SendEmail(IList<FileInfo> attachments, string To = null, string Subject = null, string Body = null)
+        {
+            Subject = string.IsNullOrEmpty(Subject) ? "Template Support: " : Subject;
+            Body = string.IsNullOrEmpty(Body) ? "Please enter a relevant subject and a detailed description of your support item below (include screenshots and outline the steps to reproduce the issue where possible):" : Body;
+            Email.Send(To, Subject, Body, attachments);
+        }
     }
 }
