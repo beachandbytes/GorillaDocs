@@ -100,8 +100,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.SharePoint.1.0.5.0\lib\net40\GorillaDocs.SharePoint.dll" /Y
-COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.SharePoint.1.0.5.0\lib\net40\GorillaDocs.SharePoint.dll" /Y
+    <PostBuildEvent>REM COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.SharePoint.1.0.5.0\lib\net40\GorillaDocs.SharePoint.dll" /Y
+REM COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.SharePoint.1.0.5.0\lib\net40\GorillaDocs.SharePoint.dll" /Y
 
 
 REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.

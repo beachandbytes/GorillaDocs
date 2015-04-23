@@ -76,8 +76,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.Outlook.1.0.3.0\lib\net40\GorillaDocs.Outlook.dll" /Y
-COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.Outlook.1.0.3.0\lib\net40\GorillaDocs.Outlook.dll" /Y
+    <PostBuildEvent>REM COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.Outlook.1.0.3.0\lib\net40\GorillaDocs.Outlook.dll" /Y
+REM COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.Outlook.1.0.3.0\lib\net40\GorillaDocs.Outlook.dll" /Y
 
 
 

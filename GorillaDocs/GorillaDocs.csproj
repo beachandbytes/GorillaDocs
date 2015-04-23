@@ -37,6 +37,12 @@
     <AssemblyOriginatorKeyFile>GorillaDocs.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="DataAnnotationsExtensions">
       <HintPath>..\packages\DataAnnotationsExtensions.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
     </Reference>
@@ -90,6 +96,7 @@
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="DateTimeHelper.cs" />
     <Compile Include="DrawingHelper.cs" />
+    <Compile Include="ObjectMapper.cs" />
     <Compile Include="PrecedentExpression.cs" />
     <Compile Include="Fakes\Outlook.cs" />
     <Compile Include="IconHelper.cs" />
@@ -468,8 +475,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.58.0\lib\net40\GorillaDocs.dll" /Y
-COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.1.0.58.0\lib\net40\GorillaDocs.dll" /Y
+    <PostBuildEvent>REM COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.1.0.58.0\lib\net40\GorillaDocs.dll" /Y
+REM COPY "$(TargetPath)" "C:\Repos\All Client Projects\Environment NSW\Environment NSW Templates\packages\GorillaDocs.1.0.58.0\lib\net40\GorillaDocs.dll" /Y
 
 
 REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
@@ -484,4 +491,5 @@ Del "C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Li
 "C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm" /dll /key=C:\Repos\GorillaDocs\GorillaDocs\GorillaDocs.snk System.Linq.Dynamic.il /Output="C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll"
 </PreBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
 </Project>

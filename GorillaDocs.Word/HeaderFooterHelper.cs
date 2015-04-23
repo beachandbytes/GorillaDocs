@@ -9,14 +9,15 @@ namespace GorillaDocs.Word
     [Log]
     public static class HeaderFooterHelper
     {
-        public static IList<Wd.Shape> GetShapes(this Wd.HeaderFooter headerfooter)
+        public static IList<Wd.Shape> GetShapes(this Wd.HeaderFooter headerfooter, Func<dynamic, bool> predicate = null)
         {
             var shapes = new List<Wd.Shape>();
             for (int i = 1; i < headerfooter.Shapes.Count + 1; i++)
             {
                 var shape = headerfooter.Shapes[i];
                 if (shape.Anchor.InRange(headerfooter.Range))
-                    shapes.Add(shape);
+                    if (predicate == null || predicate(shape))
+                        shapes.Add(shape);
             }
             return shapes;
         }
