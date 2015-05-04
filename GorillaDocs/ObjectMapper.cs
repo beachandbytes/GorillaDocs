@@ -9,7 +9,13 @@ namespace GorillaDocs
     {
         public static void MergeNulls<T>(T Source, T Destination)
         {
-            Mapper.CreateMap<T, T>().ForAllMembers(opt => opt.Condition(t => t.DestinationValue == null));
+            Mapper.CreateMap<T, T>().ForAllMembers(opt => opt.Condition(t => t.DestinationValue == null || t.DestinationValue == ""));
+            //Mapper.CreateMap<T, T>().ForAllMembers(opt =>
+            //    {
+            //        opt.Condition(t => t.DestinationValue == null || t.DestinationValue == "" );
+            //    });
+            //opt.Condition(t => (t.DestinationType == typeof(string) && t.DestinationValue == ""));
+            //(t.DestinationType == typeof(string) && t.DestinationValue == string.Empty)));
             Mapper.Map(Source, Destination);
         }
 
@@ -17,6 +23,15 @@ namespace GorillaDocs
         {
             Mapper.CreateMap<T, T>();
             Mapper.Map(Source, Destination);
+        }
+
+        public static void MergeCollections<T>(IList<T> Source, IList<T> Destination)
+        {
+            for (int i = 0; i < Source.Count; i++)
+                if (i < Destination.Count)
+                    ObjectMapper.MergeNulls(Source[i], Destination[i]);
+                else
+                    Destination.Add(Source[i]);
         }
     }
 }

@@ -39,15 +39,20 @@ namespace GorillaDocs.Models
         string _PostalCountry;
         string _Country;
         string _Delivery;
-        string _SignatureLine1;
-        string _SignatureLine2;
         string _ExternalId;
         List<string> _States;
         List<string> _Titles;
+        string _Assistant;
+        string _ExtensionAttribute3;
+        string _ExtensionAttribute4;
 
         bool CanUpdateSalutation()
         {
-            return string.IsNullOrEmpty(Salutation) || Salutation == Title || Salutation == LastName || Salutation == String.Format("{0} {1}", _Title, LastName).Trim();
+            return string.IsNullOrEmpty(Salutation) || Salutation == ExpandTitle(Title) || Salutation == LastName || Salutation == String.Format("{0} {1}", ExpandTitle(_Title), LastName).Trim();
+        }
+        static string ExpandTitle(string value)
+        {
+            return string.IsNullOrEmpty(value) ? value : value.Replace("Cr", "Councillor").Replace("Prof", "Professor");
         }
         public string Title
         {
@@ -55,7 +60,7 @@ namespace GorillaDocs.Models
             set
             {
                 if (CanUpdateSalutation())
-                    Salutation = String.Format("{0} {1}", value, LastName).Trim();
+                    Salutation = String.Format("{0} {1}", ExpandTitle(value), LastName).Trim();
                 _Title = value;
                 NotifyPropertyChanged("Title");
                 NotifyPropertyChanged("Salutation");
@@ -94,7 +99,7 @@ namespace GorillaDocs.Models
             set
             {
                 if (CanUpdateSalutation())
-                    Salutation = String.Format("{0} {1}", Title, value).Trim();
+                    Salutation = String.Format("{0} {1}", ExpandTitle(Title), value).Trim();
                 _LastName = value;
                 NotifyPropertyChanged("LastName");
                 NotifyPropertyChanged("Salutation");
@@ -316,24 +321,6 @@ namespace GorillaDocs.Models
                 NotifyPropertyChanged("AddressVisibility");
             }
         }
-        public string SignatureLine1
-        {
-            get { return _SignatureLine1; }
-            set
-            {
-                _SignatureLine1 = value;
-                NotifyPropertyChanged("SignatureLine1");
-            }
-        }
-        public string SignatureLine2
-        {
-            get { return _SignatureLine2; }
-            set
-            {
-                _SignatureLine2 = value;
-                NotifyPropertyChanged("SignatureLine2");
-            }
-        }
         public string ExternalId
         {
             get { return _ExternalId; }
@@ -341,6 +328,33 @@ namespace GorillaDocs.Models
             {
                 _ExternalId = value;
                 NotifyPropertyChanged("ExternalId");
+            }
+        }
+        public string Assistant
+        {
+            get { return _Assistant; }
+            set
+            {
+                _Assistant = value;
+                NotifyPropertyChanged("Assistant");
+            }
+        }
+        public string ExtensionAttribute3
+        {
+            get { return _ExtensionAttribute3; }
+            set
+            {
+                _ExtensionAttribute3 = value;
+                NotifyPropertyChanged("ExtensionAttribute3");
+            }
+        }
+        public string ExtensionAttribute4
+        {
+            get { return _ExtensionAttribute4; }
+            set
+            {
+                _ExtensionAttribute4 = value;
+                NotifyPropertyChanged("ExtensionAttribute4");
             }
         }
 
@@ -381,71 +395,76 @@ namespace GorillaDocs.Models
         public Visibility FaxVisibility { get { return Delivery != null && Delivery.ToLower().Contains(Resources.Delivery_Facsimile.ToLower()) ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility AddressVisibility { get { return EmailVisibility == Visibility.Collapsed && FaxVisibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed; } }
 
-        public bool IsEmpty()
+        public bool IsEmpty
         {
-            if (!string.IsNullOrEmpty(Title))
-                return false;
-            if (!string.IsNullOrEmpty(Initials))
-                return false;
-            if (!string.IsNullOrEmpty(FullName))
-                return false;
-            if (!string.IsNullOrEmpty(FirstName))
-                return false;
-            if (!string.IsNullOrEmpty(LastName))
-                return false;
-            if (!string.IsNullOrEmpty(Salutation))
-                return false;
-            if (!string.IsNullOrEmpty(Qualifications))
-                return false;
-            if (!string.IsNullOrEmpty(Position))
-                return false;
-            if (!string.IsNullOrEmpty(CompanyName))
-                return false;
-            if (!string.IsNullOrEmpty(Department))
-                return false;
-            if (!string.IsNullOrEmpty(PhoneNumber))
-                return false;
-            if (!string.IsNullOrEmpty(FaxNumber))
-                return false;
-            if (!string.IsNullOrEmpty(EmailAddress))
-                return false;
-            if (!string.IsNullOrEmpty(Address))
-                return false;
-            if (!string.IsNullOrEmpty(Country))
-                return false;
-            if (!string.IsNullOrEmpty(Delivery))
-                return false;
-            if (!string.IsNullOrEmpty(_StreetAddress1))
-                return false;
-            if (!string.IsNullOrEmpty(_StreetAddress2))
-                return false;
-            if (!string.IsNullOrEmpty(_StreetCity))
-                return false;
-            if (!string.IsNullOrEmpty(_StreetState))
-                return false;
-            if (!string.IsNullOrEmpty(_StreetPostalCode))
-                return false;
-            if (!string.IsNullOrEmpty(_StreetCountry))
-                return false;
-            if (!string.IsNullOrEmpty(_PostalAddress1))
-                return false;
-            if (!string.IsNullOrEmpty(_PostalAddress2))
-                return false;
-            if (!string.IsNullOrEmpty(_PostalCity))
-                return false;
-            if (!string.IsNullOrEmpty(_PostalState))
-                return false;
-            if (!string.IsNullOrEmpty(_PostalPostalCode))
-                return false;
-            if (!string.IsNullOrEmpty(_PostalCountry))
-                return false;
-            if (!string.IsNullOrEmpty(_SignatureLine1))
-                return false;
-            if (!string.IsNullOrEmpty(_SignatureLine2))
-                return false;
-            if (!string.IsNullOrEmpty(_ExternalId))
-                return false;
-            return true;
+            get
+            {
+                if (!string.IsNullOrEmpty(Title))
+                    return false;
+                if (!string.IsNullOrEmpty(Initials))
+                    return false;
+                if (!string.IsNullOrEmpty(FullName))
+                    return false;
+                if (!string.IsNullOrEmpty(FirstName))
+                    return false;
+                if (!string.IsNullOrEmpty(LastName))
+                    return false;
+                if (!string.IsNullOrEmpty(Salutation))
+                    return false;
+                if (!string.IsNullOrEmpty(Qualifications))
+                    return false;
+                if (!string.IsNullOrEmpty(Position))
+                    return false;
+                if (!string.IsNullOrEmpty(CompanyName))
+                    return false;
+                if (!string.IsNullOrEmpty(Department))
+                    return false;
+                if (!string.IsNullOrEmpty(PhoneNumber))
+                    return false;
+                if (!string.IsNullOrEmpty(FaxNumber))
+                    return false;
+                if (!string.IsNullOrEmpty(EmailAddress))
+                    return false;
+                if (!string.IsNullOrEmpty(Address))
+                    return false;
+                if (!string.IsNullOrEmpty(Country))
+                    return false;
+                if (!string.IsNullOrEmpty(Delivery))
+                    return false;
+                if (!string.IsNullOrEmpty(_StreetAddress1))
+                    return false;
+                if (!string.IsNullOrEmpty(_StreetAddress2))
+                    return false;
+                if (!string.IsNullOrEmpty(_StreetCity))
+                    return false;
+                if (!string.IsNullOrEmpty(_StreetState))
+                    return false;
+                if (!string.IsNullOrEmpty(_StreetPostalCode))
+                    return false;
+                if (!string.IsNullOrEmpty(_StreetCountry))
+                    return false;
+                if (!string.IsNullOrEmpty(_PostalAddress1))
+                    return false;
+                if (!string.IsNullOrEmpty(_PostalAddress2))
+                    return false;
+                if (!string.IsNullOrEmpty(_PostalCity))
+                    return false;
+                if (!string.IsNullOrEmpty(_PostalState))
+                    return false;
+                if (!string.IsNullOrEmpty(_PostalPostalCode))
+                    return false;
+                if (!string.IsNullOrEmpty(_PostalCountry))
+                    return false;
+                if (!string.IsNullOrEmpty(_ExternalId))
+                    return false;
+                if (!string.IsNullOrEmpty(_Assistant))
+                    return false;
+                if (!string.IsNullOrEmpty(_ExtensionAttribute3))
+                    return false;
+                if (!string.IsNullOrEmpty(_ExtensionAttribute4))
+                    return false;
+                return true;
+            }
         }
 
         public void Clear()
@@ -478,9 +497,10 @@ namespace GorillaDocs.Models
             PostalCountry = string.Empty;
             Country = string.Empty;
             Delivery = string.Empty;
-            SignatureLine1 = string.Empty;
-            SignatureLine2 = string.Empty;
             ExternalId = string.Empty;
+            Assistant = string.Empty;
+            ExtensionAttribute3 = string.Empty;
+            ExtensionAttribute4 = string.Empty;
         }
         public void Copy(Contact from)
         {
@@ -512,9 +532,11 @@ namespace GorillaDocs.Models
             PostalCountry = from.PostalCountry;
             Country = from.Country;
             Delivery = from.Delivery;
-            SignatureLine1 = from.SignatureLine1;
-            SignatureLine2 = from.SignatureLine2;
             ExternalId = from.ExternalId;
+            Assistant = from.Assistant;
+            ExtensionAttribute3 = from.ExtensionAttribute3;
+            ExtensionAttribute4 = from.ExtensionAttribute4;
+
         }
         public bool Equals(Contact other)
         {

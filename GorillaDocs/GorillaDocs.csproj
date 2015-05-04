@@ -154,6 +154,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ChangeOfficeViewModel.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="ViewModels\EnumerationExtension.cs" />
     <Compile Include="ViewModels\ContactCollection.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
@@ -170,6 +171,9 @@
     <Compile Include="Views\Behaviours\ExpanderState.cs" />
     <Compile Include="Views\Behaviours\ExpanderStates.cs" />
     <Compile Include="Views\Behaviours\PersistGroupExpandedStateBehavior.cs" />
+    <Compile Include="Views\Controls\ListBoxControl.xaml.cs">
+      <DependentUpon>ListBoxControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
@@ -208,6 +212,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\CheckboxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ListBoxControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

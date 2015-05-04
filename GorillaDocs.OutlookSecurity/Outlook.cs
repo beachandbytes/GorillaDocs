@@ -1,6 +1,7 @@
 ﻿using GorillaDocs.Models;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Ol = Microsoft.Office.Interop.Outlook;
@@ -10,20 +11,21 @@ namespace GorillaDocs.Word
 {
     public class Outlook : GorillaDocs.Models.Outlook
     {
-        readonly Wd.Application app;
 
         const string PR_INITIALS = "0x3A0A001F";
         const string PR_SMTP_ADDRESS = "0x39FE001E";
         const string PR_PRIMARY_FAX_NUMBER = "0x3A23001F";
         const string PR_COUNTRY = "0x3A26001F";
 
-        public Outlook(Wd.Application app) { this.app = app; }
+        public Outlook() { }
+        public Wd.Application WordApplication { get; set; }
+        public string LDAPpath { get; set; }
 
         public Contact GetContact()
         {
             try
             {
-                string value = app.GetAddress(Type.Missing, "<PR_EMAIL_ADDRESS>");
+                string value = WordApplication.GetAddress(Type.Missing, "<PR_EMAIL_ADDRESS>");
                 if (string.IsNullOrEmpty(value))
                     return null;
                 return Resolve(value);
@@ -36,7 +38,7 @@ namespace GorillaDocs.Word
             }
         }
 
-        static Contact Resolve(string fullname)
+        public Contact Resolve(string fullname)
         {
             var app = GetApp();
             if (string.IsNullOrEmpty(app.Name)) throw new InvalidOperationException("Unable to create Outlook session.");
@@ -54,7 +56,7 @@ namespace GorillaDocs.Word
             }
             try
             {
-                return SecureResolve(app, fullname);
+                return SecureResolve(app, fullname, LDAPpath);
             }
             finally
             {
@@ -77,24 +79,24 @@ namespace GorillaDocs.Word
                 throw;
             }
         }
-        static Contact SecureResolve(Ol.Application app, string fullname)
+        static Contact SecureResolve(Ol.Application app, string fullname, string LDAPpath)
         {
             var ns = app.GetNamespace("MAPI");
             var recipient = ns.CreateRecipient(fullname);
             recipient.Resolve();
             if (!recipient.Resolved)
                 throw new InvalidOperationException(string.Format("Unable to resolve '{0}'", fullname));
-            return CreateContact(recipient);
+            return CreateContact(recipient, LDAPpath);
         }
 
-        static Contact CreateContact(Ol.Recipient recipient)
+        static Contact CreateContact(Ol.Recipient recipient, string LDAPpath)
         {
             if (recipient.DisplayType != Ol.OlDisplayType.olUser && recipient.DisplayType != Ol.OlDisplayType.olRemoteUser)
                 throw new InvalidOperationException("The recipient must be an individual.");
 
             var OutlookContact = recipient.AddressEntry.GetContact(); // Does not include GAL contacts.
             if (OutlookContact == null)
-                return CreateGALContact(recipient);
+                return CreateGALContact(recipient, LDAPpath);
             else
                 return CreateOutlookContact(OutlookContact);
         }
@@ -131,7 +133,7 @@ namespace GorillaDocs.Word
             return contact;
         }
 
-        static Contact CreateGALContact(Ol.Recipient recipient)
+        static Contact CreateGALContact(Ol.Recipient recipient, string LDAPpath)
         {
             var contact = new Contact();
             //contact.Office = this.office;
@@ -140,9 +142,9 @@ namespace GorillaDocs.Word
                 throw new NullReferenceException("Unable to find address entry in Exchange for user " + recipient.Name);
             //contact.Title = user.;
             contact.Initials = GetGALProperty(user, PR_INITIALS);
-            contact.FullName = user.Name;
-            if (contact.FullName.Contains(','))
-                contact.FullName = string.Format("{0} {1}", user.FirstName, user.LastName);
+            //contact.FullName = user.Name;
+            //if (contact.FullName.Contains(',')) // It's possible that Fullname is set up incorrectly..
+            contact.FullName = string.Format("{0} {1}", user.FirstName, user.LastName);
             contact.FirstName = user.FirstName;
             contact.LastName = user.LastName;
             contact.Position = user.JobTitle;
@@ -162,6 +164,12 @@ namespace GorillaDocs.Word
             contact.PostalPostalCode = user.PostalCode;
             contact.PostalCountry = GetGALProperty(user, PR_COUNTRY);
             contact.Country = GetGALProperty(user, PR_COUNTRY);
+            contact.Assistant = user.AssistantName;
+
+            PopulateExtensionAttributes(recipient, contact, LDAPpath);
+            //contact.Assistant = GetGALProperty(user, PR_ASSISTANT);
+            //contact.ExtensionAttribute3 = GetGALProperty(user, PR_ExtensionAttribute3);
+            //contact.ExtensionAttribute4 = GetGALProperty(user, PR_ExtensionAttribute4);
             return contact;
         }
 
@@ -199,12 +207,48 @@ namespace GorillaDocs.Word
         {
             try
             {
-                return user.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/" + property) as string;
+                if (property.Contains("schemas"))
+                    return user.PropertyAccessor.GetProperty(property) as string;
+                else
+                    return user.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/" + property) as string;
             }
             catch
             {
                 return string.Empty;
             }
+        }
+
+        static void PopulateExtensionAttributes(Ol.Recipient recipient, Contact contact, string LDAPpath)
+        {
+            try
+            {
+                string legacyExchangeDN = recipient.Address;
+                if (!string.IsNullOrEmpty(LDAPpath))
+                    using (var dir = new DirectoryEntry(LDAPpath))
+                    {
+                        dir.RefreshCache();
+                        var adSearch = new DirectorySearcher(dir)
+                        {
+                            Filter = string.Format("(&(objectClass=user)(legacyExchangeDN={0}))", legacyExchangeDN)
+                        };
+                        SearchResult result = adSearch.FindOne();
+                        contact.ExtensionAttribute3 = GetActiveDirectoryProperty(result, "extensionAttribute3").Trim((char)10, (char)13);
+                        contact.ExtensionAttribute4 = GetActiveDirectoryProperty(result, "extensionAttribute4").Trim((char)10, (char)13);
+                    }
+            }
+            catch (Exception ex)
+            {
+                Message.LogError(ex);
+            }
+        }
+
+        static string GetActiveDirectoryProperty(SearchResult result, string value)
+        {
+            ResultPropertyValueCollection resultProperties = result.Properties[value];
+            if (resultProperties.Count == 1)
+                return resultProperties[0] as string;
+            else
+                return string.Empty;
         }
     }
 }

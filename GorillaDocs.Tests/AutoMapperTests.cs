@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using GorillaDocs.Models;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,16 @@ namespace GorillaDocs.Tests
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public int? Age { get; set; }
-            public string Address { get; set; }
+            public Address Address { get; set; }
+            public Contact Friend { get; set; }
+        }
+
+        public class Address
+        {
+            public string Street { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public int PostCode { get; set; }
         }
 
         Person source = null;
@@ -26,7 +36,8 @@ namespace GorillaDocs.Tests
                 FirstName = "Bill",
                 LastName = "Smith",
                 Age = 43,
-                Address = "123 Some Street"
+                Address = new Address() { Street = "123 Some Street", City = "OurTown", State = "State", PostCode = 1000 },
+                Friend = new Contact() { FullName = "Someone", StreetAddress1 = "SA1", PhoneNumber = "234" }
             };
         }
 
@@ -37,11 +48,13 @@ namespace GorillaDocs.Tests
             {
                 FirstName = "Barbara",
                 LastName = null,
-                Age = 41,
-                Address = null
+                Age = null,
+                Address = null,
+                Friend = new Contact()
             };
 
-            ObjectMapper.MergeNulls(source,destination);
+            ObjectMapper.MergeNulls(source, destination);
+            ObjectMapper.MergeNulls(source.Friend, destination.Friend);
             Assert.That(destination, Is.Not.Null);
         }
 

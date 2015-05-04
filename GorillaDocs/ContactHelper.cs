@@ -7,6 +7,6 @@ namespace GorillaDocs
 {
     public static class ContactHelper
     {
-        public static bool IsNullOrEmpty(this Contact contact) { return contact == null || contact.IsEmpty(); }
+        public static bool IsNullOrEmpty(this Contact contact) { return contact == null || contact.IsEmpty; }
     }
 }

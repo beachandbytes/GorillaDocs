@@ -70,8 +70,10 @@
   <ItemGroup>
     <Compile Include="CheckInHelper.cs" />
     <Compile Include="ClientContextUtilities.cs" />
+    <Compile Include="ContentTypes.cs" />
     <Compile Include="Helpers\FieldValuesHelper.cs" />
     <Compile Include="Helpers\SPFileHelper.cs" />
+    <Compile Include="SPContentType.cs" />
     <Compile Include="SPFile.cs" />
     <Compile Include="SPHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

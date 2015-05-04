@@ -18,15 +18,18 @@ namespace GorillaDocs.ViewModels
             if (outlook == null)
                 throw new ArgumentNullException("Outlook");
 
-            Favourites = favourites;
-            Favourites.PropertyChanged += Favourites_PropertyChanged;
-            Contact = favourites.FirstOrDefault(x => x.FullName == contact.FullName);
-            ParentContact = contact;
-            if (Contact.IsEmpty() && !ParentContact.IsEmpty())
-                Contact.Copy(ParentContact);
+            Outlook = outlook;
+
+            Contact = contact;
             Contact.PropertyChanged += Contact_PropertyChanged;
 
-            Outlook = outlook;
+            Favourites = favourites;
+            Favourites.PropertyChanged += Favourites_PropertyChanged;
+            //Contact = favourites.FirstOrDefault(x => x.FullName == contact.FullName);
+            //ParentContact = contact;
+            //if (Contact.IsEmpty() && !ParentContact.IsEmpty())
+            //    Contact.Copy(ParentContact);
+            //Contact.PropertyChanged += Contact_PropertyChanged;
 
             AddressBookCommand = new RelayCommand(AddressBookPressed);
             ClearCommand = new RelayCommand(ClearPressed, CanClear);
@@ -34,30 +37,46 @@ namespace GorillaDocs.ViewModels
             RemoveFavouriteCommand = new RelayCommand(RemoveFavouritePressed);
         }
 
-        void Contact_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) { ParentContact.Copy(Contact); }
-
-        readonly Contact ParentContact; // Need to maintain a separate contact so that Favourites list doesn't reset it
-        Contact _Contact = new Contact();
-        public Contact Contact
+        bool disablePropertyChangedEvent = false;
+        void Contact_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            get { return _Contact; }
-            set
+            if (!disablePropertyChangedEvent && e.PropertyName == "FullName" && Favourites != null && Favourites.Any(x => x.FullName == Contact.FullName))
             {
-                if (value == null)
-                    ClearPressed();
-                else
+                try
                 {
-                    _Contact = value;
-                    if (ParentContact != null)
-                        ParentContact.Copy(value);
+                    disablePropertyChangedEvent = true;
+                    var user = Favourites.First(x => x.FullName == Contact.FullName);
+                    Contact.Copy(user);
                 }
-
-                NotifyPropertyChanged("Contact");
-                NotifyPropertyChanged("IsEnabled");
-                NotifyPropertyChanged("AddFavouriteVisibility");
-                NotifyPropertyChanged("RemoveFavouriteVisibility");
+                finally
+                {
+                    disablePropertyChangedEvent = false;
+                }
             }
         }
+
+        //readonly Contact ParentContact; // Need to maintain a separate contact so that Favourites list doesn't reset it
+        readonly Contact Contact;
+        //public Contact Contact
+        //{
+        //    get { return _Contact; }
+        //    set
+        //    {
+        //        if (value == null)
+        //            ClearPressed();
+        //        else
+        //        {
+        //            _Contact = value;
+        //            if (ParentContact != null)
+        //                ParentContact.Copy(value);
+        //        }
+
+        //        NotifyPropertyChanged("Contact");
+        //        NotifyPropertyChanged("IsEnabled");
+        //        NotifyPropertyChanged("AddFavouriteVisibility");
+        //        NotifyPropertyChanged("RemoveFavouriteVisibility");
+        //    }
+        //}
         readonly Outlook Outlook;
 
         public Favourites Favourites { get; private set; }
@@ -71,7 +90,7 @@ namespace GorillaDocs.ViewModels
                 if (ol != null)
                 {
                     ClearPressed();
-                    Contact = ol;
+                    Contact.Copy(ol);
                 }
             }
             catch (Exception ex)
@@ -86,12 +105,13 @@ namespace GorillaDocs.ViewModels
         {
             try
             {
-                if (Favourites.Contains(Contact))
-                    Contact = new Contact();
-                else
-                    Contact.Clear();
-                if (ParentContact != null)
-                    ParentContact.Clear();
+                //if (Favourites.Contains(Contact))
+                //    Contact = new Contact();
+                //else
+                //    Contact.Clear();
+                //if (ParentContact != null)
+                //ParentContact.Clear();
+                Contact.Clear();
             }
             catch (Exception ex)
             {
@@ -105,9 +125,9 @@ namespace GorillaDocs.ViewModels
         {
             try
             {
-                var name = Contact.FullName;
-                Favourites.Add(Contact); // Adding the contact clears the controls
-                Contact = Favourites.First(x => x.FullName == name);
+                var temp = new Contact();
+                temp.Copy(Contact);
+                Favourites.Add(temp);
             }
             catch (Exception ex)
             {
@@ -120,10 +140,7 @@ namespace GorillaDocs.ViewModels
         {
             try
             {
-                var temp = new Contact();
-                temp.Copy(Contact);
-                Favourites.RemoveAll(x => x.FullName == Contact.FullName); // Removing contact clears the controls
-                Contact = temp;
+                Favourites.RemoveAll(x => x.FullName == Contact.FullName);
             }
             catch (Exception ex)
             {
@@ -147,7 +164,7 @@ namespace GorillaDocs.ViewModels
             }
         }
 
-        public bool IsEnabled { get { return !Favourites.Contains(Contact); } }
+        public bool IsEnabled { get { return !Favourites.Any(x => x.FullName == Contact.FullName); } }
         public Visibility AddFavouriteVisibility { get { return IsEnabled ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility RemoveFavouriteVisibility { get { return IsEnabled ? Visibility.Collapsed : Visibility.Visible; } }
     }

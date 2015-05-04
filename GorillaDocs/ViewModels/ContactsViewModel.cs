@@ -27,6 +27,7 @@ namespace GorillaDocs.ViewModels
             Favourites.PropertyChanged += Favourites_PropertyChanged;
             MaxContacts = maxContacts;
             Contacts = contacts;
+            Contacts.CollectionChanged += Contacts_CollectionChanged;
             Outlook = outlook;
             this.SharePointUsers = SharePointUsers; // TODO: Find a way of getting rid of this list.
 
@@ -42,6 +43,11 @@ namespace GorillaDocs.ViewModels
                 Contact = new Contact();
             else
                 Contact = favourites.FirstOrPassedIn(Contacts.FirstOrCreateIfEmpty());
+        }
+
+        void Contacts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            NotifyPropertyChanged("Count");
         }
 
         public List<string> DeliveryItems { get; private set; }
@@ -76,7 +82,7 @@ namespace GorillaDocs.ViewModels
             get
             {
                 var list = Contacts.ToList();
-                list.RemoveAll(x => x.IsEmpty());
+                list.RemoveAll(x => x.IsEmpty);
                 int current = list.FindIndex(x => x.FullName == Contact.FullName) + 1;
                 int count = list.Count();
                 if (current == 0)

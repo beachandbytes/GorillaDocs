@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>GorillaDocs.OutlookSecurity</id>
-        <version>1.0.10.0</version>
+        <version>1.0.11.0</version>
         <title>GorillaDocs.OutlookSecurity</title>
         <authors>Matthew Fitzmaurice</authors>
         <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
@@ -17,7 +17,7 @@ Specifically:
 </description>
         <tags>VSTO Microsoft Office Outlook</tags>
         <dependencies>
-          <dependency id="GorillaDocs" version="1.0.52" />
+          <dependency id="GorillaDocs" version="1.0.64" />
         </dependencies>
     </metadata>
     <files>

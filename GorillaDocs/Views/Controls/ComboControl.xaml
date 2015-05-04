@@ -10,12 +10,15 @@
     </UserControl.Resources>
     <DockPanel Margin="5">
         <Label Target="{Binding ElementName=ComboInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
+        <!--TODO: Need to prevent SelectedIndex from defaulting to 0 when sourceItems change.-->
         <ComboBox Name="ComboInput" 
+                  Text="{Binding ElementName=thisUserControl, Path=Text, Mode=TwoWay}"
                   ItemsSource="{Binding ElementName=thisUserControl, Path=ItemsSource}" 
                   SelectedItem="{Binding ElementName=thisUserControl, Path=SelectedItem, Mode=TwoWay}" 
                   SelectedValue="{Binding ElementName=thisUserControl, Path=SelectedValue, Mode=TwoWay}" 
                   SelectedIndex="{Binding ElementName=thisUserControl, Path=SelectedIndex, Mode=TwoWay}"
                   IsEditable="{Binding ElementName=thisUserControl, Path=IsEditable}"
+                  IsTextSearchEnabled="{Binding ElementName=thisUserControl, Path=IsTextSearchEnabled}"
                   DisplayMemberPath="{Binding ElementName=thisUserControl, Path=DisplayMemberPath}"/>
     </DockPanel>
 </UserControl>

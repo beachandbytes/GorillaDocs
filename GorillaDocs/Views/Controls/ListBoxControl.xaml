@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="GorillaDocs.Views.Controls.ListBoxControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             x:Name="thisUserControl"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="FormStyles.xaml" />
+    </UserControl.Resources>
+    <DockPanel Margin="5">
+        <Label Target="{Binding ElementName=ListBoxInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
+        <ListBox Name="ListBoxInput" 
+                 ItemsSource="{Binding ElementName=thisUserControl, Path=ItemsSource}" 
+                 SelectionMode="{Binding ElementName=thisUserControl, Path=SelectionMode, Mode=TwoWay}"
+                 Height="{Binding ElementName=thisUserControl, Path=Height, Mode=TwoWay}"
+                 DisplayMemberPath="{Binding ElementName=thisUserControl, Path=DisplayMemberPath}"
+                 SelectionChanged="ListBoxInput_SelectionChanged"/>
+        <!--SelectedItem="{Binding ElementName=thisUserControl, Path=SelectedItem, Mode=TwoWay}" 
+                 SelectedValue="{Binding ElementName=thisUserControl, Path=SelectedValue, Mode=TwoWay}" 
+                 SelectedIndex="{Binding ElementName=thisUserControl, Path=SelectedIndex, Mode=TwoWay}"-->
+
+    </DockPanel>
+</UserControl>

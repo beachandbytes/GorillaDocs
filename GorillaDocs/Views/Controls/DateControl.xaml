@@ -9,7 +9,13 @@
         <ResourceDictionary Source="FormStyles.xaml" />
     </UserControl.Resources>
     <DockPanel Margin="5">
-        <Label Target="{Binding ElementName=DateInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
+        <Label Target="{Binding ElementName=DateInput}" Content="{Binding ElementName=thisUserControl, Path=Label}">
+            <Label.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </Label.Resources>
+        </Label>
         <DatePicker Name="DateInput" 
                     SelectedDateFormat="Long"
                     SelectedDate="{Binding ElementName=thisUserControl, Path=Value, Mode=TwoWay}" />
