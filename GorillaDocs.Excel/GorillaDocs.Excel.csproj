@@ -66,6 +66,7 @@
     <Compile Include="DocPropVarHelper.cs" />
     <Compile Include="ExcelApplicationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GorillaDocs.Excel.nuspec">

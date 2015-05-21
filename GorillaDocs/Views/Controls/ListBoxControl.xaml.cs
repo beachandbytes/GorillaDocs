@@ -56,10 +56,25 @@ namespace GorillaDocs.Views.Controls
             get { return (int)GetValue(HeightProperty); }
             set { SetValue(HeightProperty, value); }
         }
+        public int? LabelWidth
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Label))
+                    return 0;
+                else
+                    return null;
+            }
+        }
         public string DisplayMemberPath
         {
             get { return (string)GetValue(DisplayMemberPathProperty); }
             set { SetValue(DisplayMemberPathProperty, value); }
+        }
+        public int? MaxNumberSelected
+        {
+            get { return (int?)GetValue(MaxNumberSelectedProperty); }
+            set { SetValue(MaxNumberSelectedProperty, value); }
         }
 
         public void Focus() { ListBoxInput.Focus(); }
@@ -74,6 +89,7 @@ namespace GorillaDocs.Views.Controls
         public static readonly DependencyProperty SelectionModeProperty = DependencyProperty.Register("SelectionMode", typeof(SelectionMode), typeof(ListBoxControl));
         public static readonly DependencyProperty HeightProperty = DependencyProperty.Register("Height", typeof(int), typeof(ListBoxControl));
         public static readonly DependencyProperty DisplayMemberPathProperty = DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(ListBoxControl));
+        public static readonly DependencyProperty MaxNumberSelectedProperty = DependencyProperty.Register("MaxNumberSelected", typeof(int?), typeof(ListBoxControl));
 
         static void OnItemsSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
@@ -102,7 +118,10 @@ namespace GorillaDocs.Views.Controls
             foreach (string item in e.RemovedItems)
                 SelectedItems.Remove(item);
             foreach (string item in e.AddedItems)
-                SelectedItems.Add(item);
+                if (MaxNumberSelected == null || SelectedItems.Count < MaxNumberSelected)
+                    SelectedItems.Add(item);
+                else
+                    ListBoxInput.SelectedItems.Remove(item);
         }
     }
 }

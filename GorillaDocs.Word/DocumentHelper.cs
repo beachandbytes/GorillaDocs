@@ -6,6 +6,7 @@ using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
+    [Log]
     public static class DocumentHelper
     {
         public static bool ActiveDocumentExists(this Wd.Application application)

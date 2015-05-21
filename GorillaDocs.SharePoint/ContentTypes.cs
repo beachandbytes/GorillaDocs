@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace GorillaDocs.SharePoint
@@ -12,11 +13,11 @@ namespace GorillaDocs.SharePoint
         public delegate void ContentTypeExistsSuccessCallback(bool result);
         public delegate void FailureCallback(AggregateException ae);
 
-        public static List<SPContentType> GetContentTypes(Uri requestUri, string ListTitle)
+        public static List<SPContentType> GetContentTypes(Uri requestUri, string ListTitle, ICredentials credentials = null)
         {
             ClientContext context;
             var contentTypes = new List<SPContentType>();
-            if (ClientContextUtilities.TryResolveClientContext(requestUri, out context, null))
+            if (ClientContextUtilities.TryResolveClientContext(requestUri, out context, credentials))
             {
                 using (context)
                 {

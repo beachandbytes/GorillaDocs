@@ -21,9 +21,50 @@ namespace GorillaDocs.IntegrationTests.SharePoint
         [Test]
         public void Get_Content_Types_on_mvuatsp13()
         {
-            const string webUrl = "http://mvuatsp13.macroview.com.au/sites/mvcm1/CMLibrary/Forms/All%20Matters.aspx";
+            //const string webUrl = "http://mvuatsp13.macroview.com.au/sites/mvcm1/";
+            const string webUrl = "http://mvuatsp2010.macroview.com.au/";
+            //const string listTitle = "CMLibrary - CM Library";
+            const string listTitle = "Documents";
+            var credentials = new System.Net.NetworkCredential("MacroView\\mjf", "timnmvid&");
+            var result = ContentTypes.GetContentTypes(new Uri(webUrl), listTitle, credentials);
+            Assert.That(result != null);
+        }
+
+        [Test]
+        public void Get_Users_mvuatsp13()
+        {
+            const string webUrl = "http://mvuatsp13.macroview.com.au/sites/mvcm1/";
             const string listTitle = "CMLibrary - CM Library";
-            var result = ContentTypes.GetContentTypes(new Uri(webUrl), listTitle);
+            var credentials = new System.Net.NetworkCredential("MacroView\\mjf", "timnmvid&");
+            var result = SPUsers.GetUsers(new Uri(webUrl), "", credentials);
+            Assert.That(result != null);
+        }
+
+        [Test]
+        public void Get_Users_mvuatsp2010()
+        {
+            const string webUrl = "http://mvuatsp2010.macroview.com.au/";
+            const string listTitle = "Documents";
+            var credentials = new System.Net.NetworkCredential("MacroView\\mjf", "timnmvid&");
+            var result = SPUsers.GetUsers(new Uri(webUrl), "", credentials);
+            Assert.That(result != null);
+        }
+
+        [Test]
+        public void Get_Taxonomy_mvuatsp13()
+        {
+            const string webUrl = "http://mvuatsp13.macroview.com.au/sites/mvcm1/";
+            var credentials = new System.Net.NetworkCredential("MacroView\\mjf", "timnmvid&");
+            var result = TaxonomyHelper.GetTermStores(webUrl, credentials);
+            Assert.That(result != null);
+        }
+
+        [Test]
+        public void Get_Taxonomy_mvuatsp2010()
+        {
+            const string webUrl = "http://mvuatsp2010.macroview.com.au/";
+            var credentials = new System.Net.NetworkCredential("MacroView\\mjf", "timnmvid&");
+            var result = TaxonomyHelper.GetTermStores(webUrl, credentials);
             Assert.That(result != null);
         }
 

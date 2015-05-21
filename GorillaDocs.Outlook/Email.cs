@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,6 +38,27 @@ namespace GorillaDocs.Outlook
                 mail.Body = Body;
             foreach (FileInfo attachment in Attachments)
                 mail.Attachments.Add(attachment.FullName);
+            mail.Display(false);
+        }
+
+        public static void Send(string TemplatePath, string To = null, string Subject = null, string Body = null, string AttachmentPath = null, string BCC = null, Dictionary<string, string> BodyReplacements = null)
+        {
+            OL.Application app = new OL.Application();
+            OL.MailItem mail = app.CreateItemFromTemplate(TemplatePath) as OL.MailItem;
+
+            if (!string.IsNullOrEmpty(To))
+                mail.To = To;
+            if (!string.IsNullOrEmpty(BCC))
+                mail.BCC = BCC;
+            if (!string.IsNullOrEmpty(Subject))
+                mail.Subject = Subject;
+            if (!string.IsNullOrEmpty(Body))
+                mail.Body = Body;
+            if (BodyReplacements != null)
+                foreach (KeyValuePair<string, string> item in BodyReplacements)
+                    mail.HTMLBody = mail.HTMLBody.Replace(item.Key, item.Value);
+            if (!string.IsNullOrEmpty(AttachmentPath))
+                mail.Attachments.Add(AttachmentPath);
             mail.Display(false);
         }
     }

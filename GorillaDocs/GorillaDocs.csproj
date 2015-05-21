@@ -89,6 +89,7 @@
     <Compile Include="AppConfig.cs" />
     <Compile Include="AssemblyHelper.cs" />
     <Compile Include="BooleanExpression.cs" />
+    <Compile Include="ProblemStepsRecorder.cs" />
     <Compile Include="ContactHelper.cs" />
     <Compile Include="CultureHelpers.cs" />
     <Compile Include="DecimalHelper.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Views\Controls\SearchTextBox.cs" />
     <Compile Include="Views\Converters\BooleanConverter.cs" />
     <Compile Include="Views\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Views\Converters\IsNullOrEmptyConverter.cs" />
     <Compile Include="Views\Converters\EnumBooleanConverter.cs" />
     <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
     <Compile Include="Views\Controls\CheckboxControl.xaml.cs">

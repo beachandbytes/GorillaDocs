@@ -9,7 +9,7 @@
         <ResourceDictionary Source="FormStyles.xaml" />
     </UserControl.Resources>
     <DockPanel Margin="5">
-        <Label Target="{Binding ElementName=ListBoxInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
+        <Label Target="{Binding ElementName=ListBoxInput}" Content="{Binding ElementName=thisUserControl, Path=Label}" Width="{Binding ElementName=LabelWidth}"/>
         <ListBox Name="ListBoxInput" 
                  ItemsSource="{Binding ElementName=thisUserControl, Path=ItemsSource}" 
                  SelectionMode="{Binding ElementName=thisUserControl, Path=SelectionMode, Mode=TwoWay}"

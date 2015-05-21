@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Converters="clr-namespace:GorillaDocs.Views.Converters"
              x:Name="thisUserControl"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -11,7 +12,8 @@
     <DockPanel Margin="5">
         <Label Target="{Binding ElementName=ComboInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
         <!--TODO: Need to prevent SelectedIndex from defaulting to 0 when sourceItems change.-->
-        <ComboBox Name="ComboInput" 
+        <Grid>
+            <ComboBox Name="ComboInput" 
                   Text="{Binding ElementName=thisUserControl, Path=Text, Mode=TwoWay}"
                   ItemsSource="{Binding ElementName=thisUserControl, Path=ItemsSource}" 
                   SelectedItem="{Binding ElementName=thisUserControl, Path=SelectedItem, Mode=TwoWay}" 
@@ -20,5 +22,26 @@
                   IsEditable="{Binding ElementName=thisUserControl, Path=IsEditable}"
                   IsTextSearchEnabled="{Binding ElementName=thisUserControl, Path=IsTextSearchEnabled}"
                   DisplayMemberPath="{Binding ElementName=thisUserControl, Path=DisplayMemberPath}"/>
+            <TextBlock IsHitTestVisible="False" 
+                       Text="{Binding ElementName=thisUserControl, Path=PlaceholderText}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Left" 
+                       Margin="4" 
+                       Foreground="DarkGray">
+                <TextBlock.Resources>
+                    <Converters:IsNullOrEmptyConverter x:Key="isNullOrEmptyConverter"/>
+                </TextBlock.Resources>
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=ComboInput, Converter={StaticResource isNullOrEmptyConverter}}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
     </DockPanel>
 </UserControl>

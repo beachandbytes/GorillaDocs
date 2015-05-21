@@ -3,15 +3,18 @@ using Microsoft.SharePoint.Client.Taxonomy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace GorillaDocs.SharePoint
 {
     public class TaxonomyHelper
     {
-        public static TermStoreCollection GetTermStores(string webUrl)
+        public static TermStoreCollection GetTermStores(string webUrl, ICredentials credentials = null)
         {
             var context = new ClientContext(webUrl);
+            if (credentials != null)
+                context.Credentials = credentials;
             var termStores = TaxonomySession.GetTaxonomySession(context).TermStores;
             context.Load(termStores);
             context.ExecuteQuery();

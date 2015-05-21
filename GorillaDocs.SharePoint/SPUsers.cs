@@ -4,6 +4,7 @@ using Microsoft.SharePoint.Client.UserProfiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace GorillaDocs.SharePoint
@@ -15,11 +16,11 @@ namespace GorillaDocs.SharePoint
         public delegate void GetUserSuccessCallback(Contact user);
         public delegate void FailureCallback(AggregateException ae);
 
-        public static List<Contact> GetUsers(Uri requestUri, string Filter = "")
+        public static List<Contact> GetUsers(Uri requestUri, string Filter = "", ICredentials credentials = null)
         {
             ClientContext context;
             var users = new List<Contact>();
-            if (ClientContextUtilities.TryResolveClientContext(requestUri, out context, null))
+            if (ClientContextUtilities.TryResolveClientContext(requestUri, out context, credentials))
             {
                 var userProfilesResult = new List<PersonProperties>();
                 using (context)
@@ -34,14 +35,12 @@ namespace GorillaDocs.SharePoint
                     context.ExecuteQuery();
 
                     foreach (var user in usersResult)
-                    {
                         if (user.Title.ToLower().Contains(Filter.ToLower()) && !users.Any(x => x.FullName == user.Title))
                         {
                             var userProfile = peopleManager.GetPropertiesFor(user.LoginName);
                             context.Load(userProfile);
                             userProfilesResult.Add(userProfile);
                         }
-                    }
                     context.ExecuteQuery();
 
                     foreach (var user in usersResult)
@@ -114,6 +113,7 @@ namespace GorillaDocs.SharePoint
 
         public static void GetUsers_Async(Uri requestUri, GetUsersSuccessCallback SuccessCallback, FailureCallback FailureCallback, string Filter = "")
         {
+            //TODO: Implement cancel logic
             Task<List<Contact>> T = Task.Factory.StartNew(() =>
             {
                 return GetUsers(requestUri, Filter);
@@ -121,14 +121,10 @@ namespace GorillaDocs.SharePoint
 
             T.ContinueWith((antecedent) =>
             {
-                try
-                {
+                if (antecedent.IsFaulted)
+                    FailureCallback(antecedent.Exception);
+                else if (!antecedent.IsCanceled)
                     SuccessCallback(antecedent.Result);
-                }
-                catch (AggregateException ae)
-                {
-                    FailureCallback(ae);
-                }
             });
         }
 
@@ -141,14 +137,10 @@ namespace GorillaDocs.SharePoint
 
             T.ContinueWith((antecedent) =>
             {
-                try
-                {
+                if (antecedent.IsFaulted)
+                    FailureCallback(antecedent.Exception);
+                else if (!antecedent.IsCanceled)
                     SuccessCallback(antecedent.Result);
-                }
-                catch (AggregateException ae)
-                {
-                    FailureCallback(ae);
-                }
             });
         }
 
