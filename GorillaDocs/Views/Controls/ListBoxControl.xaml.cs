@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -9,7 +11,10 @@ namespace GorillaDocs.Views.Controls
 {
     public partial class ListBoxControl : UserControl
     {
-        public ListBoxControl() { InitializeComponent(); }
+        public ListBoxControl()
+        {
+            InitializeComponent();
+        }
 
         public string Label
         {
@@ -31,6 +36,7 @@ namespace GorillaDocs.Views.Controls
             get { return (ObservableCollection<string>)GetValue(SelectedItemsProperty); }
             set { SetValue(SelectedItemsProperty, value); }
         }
+
         public object SelectedItem
         {
             get { return GetValue(SelectedItemProperty); }
@@ -66,6 +72,16 @@ namespace GorillaDocs.Views.Controls
                     return null;
             }
         }
+        public int? DocPanelWidth
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Label))
+                    return 230;
+                else
+                    return null;
+            }
+        }
         public string DisplayMemberPath
         {
             get { return (string)GetValue(DisplayMemberPathProperty); }
@@ -82,7 +98,7 @@ namespace GorillaDocs.Views.Controls
         public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(string), typeof(ListBoxControl));
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(ListBoxControl));
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ListBoxControl), new PropertyMetadata(OnItemsSourcePropertyChanged));
-        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(ObservableCollection<string>), typeof(ListBoxControl));
+        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(ObservableCollection<string>), typeof(ListBoxControl), new PropertyMetadata(OnSelectedItemsPropertyChanged));
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(ListBoxControl));
         public static readonly DependencyProperty SelectedValueProperty = DependencyProperty.Register("SelectedValue", typeof(string), typeof(ListBoxControl));
         public static readonly DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(ListBoxControl));
@@ -97,6 +113,19 @@ namespace GorillaDocs.Views.Controls
             if (control != null)
                 control.OnItemsSourceChanged((IEnumerable)e.OldValue, (IEnumerable)e.NewValue);
         }
+        static void OnSelectedItemsPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var control = sender as ListBoxControl;
+            if (control != null)
+                if (e.NewValue != null)
+                {
+                    var eNewValue = new List<string>((IEnumerable<string>)e.NewValue);
+                    foreach (string item in eNewValue)
+                        control.ListBoxInput.SelectedItems.Add(item);
+                }
+        }
+
+
         void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
         {
             // Remove handler for oldValue.CollectionChanged
@@ -118,8 +147,11 @@ namespace GorillaDocs.Views.Controls
             foreach (string item in e.RemovedItems)
                 SelectedItems.Remove(item);
             foreach (string item in e.AddedItems)
-                if (MaxNumberSelected == null || SelectedItems.Count < MaxNumberSelected)
-                    SelectedItems.Add(item);
+                if (MaxNumberSelected == null || ListBoxInput.SelectedItems.Count <= MaxNumberSelected)
+                {
+                    if (!SelectedItems.Any(x => x == item))
+                        SelectedItems.Add(item);
+                }
                 else
                     ListBoxInput.SelectedItems.Remove(item);
         }

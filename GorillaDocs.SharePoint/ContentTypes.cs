@@ -37,13 +37,11 @@ namespace GorillaDocs.SharePoint
         public static bool ContentTypeExists(Uri requestUri, string ListTitle, string ListContentTypeField)
         {
             ClientContext context;
-            var contentTypes = new List<SPContentType>();
             if (ClientContextUtilities.TryResolveClientContext(requestUri, out context, null))
             {
                 using (context)
                 {
                     var list = context.Web.Lists.GetByTitle(ListTitle);
-
                     var contentTypeCol = list.ContentTypes;
                     context.Load(contentTypeCol, lstc => lstc.Include(lc => lc.Name).Where(lc => lc.Name == ListContentTypeField));
                     context.ExecuteQuery();

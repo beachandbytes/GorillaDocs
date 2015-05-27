@@ -10,6 +10,24 @@ namespace GorillaDocs.IntegrationTests.SharePoint
     public class ContentTypeTests
     {
         [Test]
+        public void Get_Content_Types_on_tests2012sp2013()
+        {
+            const string webUrl = "http://tests2012sp2013.macroview.com.au/sites/caseandmatter";
+            const string listTitle = "Atlas Funds Management";
+            var result = ContentTypes.GetContentTypes(new Uri(webUrl), listTitle);
+            Assert.That(result != null);
+        }
+
+        [Test]
+        public void Get_Content_Types_Exists_on_tests2012sp2013()
+        {
+            const string webUrl = "http://tests2012sp2013.macroview.com.au/sites/caseandmatter";
+            const string listTitle = "Atlas Funds Management";
+            var result = ContentTypes.ContentTypeExists(new Uri(webUrl), listTitle, "Matter Document Set");
+            Assert.That(result != null);
+        }
+
+        [Test]
         public void Get_Content_Types_on_portal()
         {
             const string webUrl = "https://portal.macroview.com.au/Documents";

@@ -25,6 +25,7 @@
                  SpellCheck.IsEnabled="{Binding ElementName=thisUserControl, Path=SpellCheckEnabled}"
                  VerticalAlignment="Center" 
                  Padding="0,4"
+                 CharacterCasing="{Binding ElementName=thisUserControl, Path=CharacterCasing}"
                  />
             <!--Style="{StaticResource ErrorStyle}"-->
             <TextBlock IsHitTestVisible="False" 

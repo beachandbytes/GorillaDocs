@@ -11,6 +11,10 @@ namespace GorillaDocs.Word
 {
     public class Outlook : GorillaDocs.Models.Outlook
     {
+        [DllImport("user32.dll")]
+        static extern IntPtr GetActiveWindow();
+        [DllImport("user32.dll")]
+        static extern IntPtr SetActiveWindow(IntPtr handle);
 
         const string PR_INITIALS = "0x3A0A001F";
         const string PR_SMTP_ADDRESS = "0x39FE001E";
@@ -25,7 +29,10 @@ namespace GorillaDocs.Word
         {
             try
             {
+                IntPtr handle = GetActiveWindow();
                 string value = WordApplication.GetAddress(Type.Missing, "<PR_EMAIL_ADDRESS>");
+                SetActiveWindow(handle);
+
                 if (string.IsNullOrEmpty(value))
                     return null;
                 return Resolve(value);
