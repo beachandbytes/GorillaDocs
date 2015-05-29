@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>GorillaDocs.SharePoint</id>
-    <version>1.0.10.0</version>
+    <version>1.0.11.0</version>
     <title>GorillaDocs.SharePoint</title>
     <authors>Matthew Fitzmaurice</authors>
     <projectUrl>https://github.com/matthewfitzmaurice/GorillaDocs</projectUrl>
@@ -19,13 +19,10 @@
     <tags>VSTO Microsoft Office SharePoint CSOM</tags>
     <dependencies>
       <dependency id="GorillaDocs" version="1.0.66" />
+      <dependency id="Microsoft.SharePointOnline.CSOM" version="16.1.3912.1204" />
     </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\GorillaDocs.SharePoint.dll" target="lib\net40\GorillaDocs.SharePoint.dll" />
-    <file src="..\libs\Microsoft\Microsoft.SharePoint.Client.dll" target="lib\net40\Microsoft.SharePoint.Client.dll" />
-    <file src="..\libs\Microsoft\Microsoft.SharePoint.Client.Runtime.dll" target="lib\net40\Microsoft.SharePoint.Client.Runtime.dll" />
-    <file src="..\libs\Microsoft\Microsoft.SharePoint.Client.Taxonomy.dll" target="lib\net40\Microsoft.SharePoint.Client.Taxonomy.dll" />
-    <file src="..\libs\Microsoft\Microsoft.SharePoint.Client.UserProfiles.dll" target="lib\net40\Microsoft.SharePoint.Client.UserProfiles.dll" />
   </files>
 </package>
