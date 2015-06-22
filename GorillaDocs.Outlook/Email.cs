@@ -41,13 +41,15 @@ namespace GorillaDocs.Outlook
             mail.Display(false);
         }
 
-        public static void Send(string TemplatePath, string To = null, string Subject = null, string Body = null, string AttachmentPath = null, string BCC = null, Dictionary<string, string> BodyReplacements = null)
+        public static void Send(string TemplatePath, string To = null, string Subject = null, string Body = null, string AttachmentPath = null, string BCC = null, Dictionary<string, string> BodyReplacements = null, string From = null)
         {
             OL.Application app = new OL.Application();
             OL.MailItem mail = app.CreateItemFromTemplate(TemplatePath) as OL.MailItem;
 
             if (!string.IsNullOrEmpty(To))
                 mail.To = To;
+            if (!string.IsNullOrEmpty(From))
+                mail.SentOnBehalfOfName = From;
             if (!string.IsNullOrEmpty(BCC))
                 mail.BCC = BCC;
             if (!string.IsNullOrEmpty(Subject))

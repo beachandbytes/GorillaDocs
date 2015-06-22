@@ -844,5 +844,17 @@ namespace GorillaDocs.Word
             return true;
         }
 
+        public static void DeleteColumnAndAutoFit(this Wd.ContentControl control)
+        {
+            var table = control.Range.Tables[1];
+            control.Range.Columns[1].Delete();
+            table.AutoFitBehavior(Wd.WdAutoFitBehavior.wdAutoFitWindow);
+        }
+
+        public static void ClearCell(this Wd.ContentControl control)
+        {
+            var cells = control.Range.Cells[1];
+            cells.Range.Delete();
+        }
     }
 }

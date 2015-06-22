@@ -1,0 +1,107 @@
+﻿<GDV:OfficeDialog x:Class="GorillaDocs.Views.SelectTemplateView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:GDV="clr-namespace:GorillaDocs.Views"
+        xmlns:gprop="clr-namespace:GorillaDocs.Properties"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        GDV:DialogCloser.DialogResult="{Binding Path=DialogResult, Mode=TwoWay}"
+        FocusManager.FocusedElement="{Binding ElementName=cboOffice}"
+        Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" 
+        Title="Select Template" 
+        SizeToContent="WidthAndHeight" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize"
+        MinHeight="400" MaxHeight="600" MinWidth="550" MaxWidth="900" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+
+    <Window.Resources>
+
+        <Style x:Key="ContainerStyle" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <Expander Header="{Binding Name}" IsExpanded="True">
+                            <!--<i:Interaction.Behaviors>
+                                <GDV:PersistGroupExpandedStateBehavior GroupName="{Binding Name}" />
+                            </i:Interaction.Behaviors>-->
+                            <ItemsPresenter/>
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="FileDataTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,0">
+                <Image Source="{Binding Image}" Width="20" Height="20"/>
+                <TextBlock Text="{Binding NameWithoutExtension}" VerticalAlignment="Center" Margin="2,0" Width="250" TextWrapping="Wrap"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="templates" Source="{Binding Templates}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Category"/>
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="ColLeftRegion" Width="*" MinWidth="230"/>
+            <ColumnDefinition Name="ColRightRegion" Width="{Binding ElementName=RightRegion, Path=Width}" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Margin="5,5,5,5">
+            <Label Content="{Binding Source={x:Static gprop:Resources._Office}}" Target="{Binding ElementName=cboOffice}"/>
+            <ComboBox Name="cboOffice" ItemsSource="{Binding Offices}" SelectedItem="{Binding Path=Office, Mode=TwoWay}"/>
+        </DockPanel>
+        <TabControl SelectedIndex="{Binding Path=SelectedTab, Mode=TwoWay}" Margin="5,5,5,5" Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1" Grid.Column="0">
+            <TabItem Header="_All Templates" >
+                <DockPanel>
+                    <ListBox ItemsSource="{Binding Source={StaticResource templates}}" 
+                             ItemTemplate="{StaticResource FileDataTemplate}"
+                             SelectedItem="{Binding Path=SelectedTemplate, Mode=TwoWay}" >
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel MaxWidth="400"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.GroupStyle>
+                            <GroupStyle ContainerStyle="{StaticResource ContainerStyle}"/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <EventSetter Event="MouseDoubleClick" Handler="lstAllTemplates_MouseDoubleClick"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="My _Recent">
+                <DockPanel >
+                    <ListBox Name="lstRecentTemplates" 
+                             ItemsSource="{Binding RecentTemplates}" 
+                             ItemTemplate="{StaticResource FileDataTemplate}"
+                             SelectedItem="{Binding Path=SelectedRecentTemplate, Mode=TwoWay}" 
+                             MinHeight="50">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <EventSetter Event="MouseDoubleClick" Handler="lstAllTemplates_MouseDoubleClick"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel Name="RightRegion" Grid.Column="1" Grid.RowSpan="2">
+            <Button Width="75" Height="23" Margin="5" Command="{Binding OKCommand}" IsDefault="True" HorizontalAlignment="Right" Content="{Binding Source={x:Static gprop:Resources._OK}}"></Button>
+            <Button Width="75" Height="23" Margin="5" IsCancel="True" HorizontalAlignment="Right" Content="{Binding Source={x:Static gprop:Resources._Cancel}}"></Button>
+        </StackPanel>
+
+    </Grid>
+</GDV:OfficeDialog>

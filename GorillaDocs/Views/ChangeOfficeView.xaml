@@ -1,0 +1,35 @@
+﻿<GDV:OfficeDialog x:Class="GorillaDocs.Views.ChangeOfficeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:GDV="clr-namespace:GorillaDocs.Views"
+        xmlns:gprop="clr-namespace:GorillaDocs.Properties"
+        GDV:DialogCloser.DialogResult="{Binding Path=DialogResult, Mode=TwoWay}"
+        FocusManager.FocusedElement="{Binding ElementName=cboOffice}"
+        Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" 
+        Title="{Binding Source={x:Static gprop:Resources.frmChangeOffice_Caption}}" 
+        SizeToContent="WidthAndHeight" 
+        WindowStartupLocation="CenterScreen" 
+        MinHeight="100" 
+        MinWidth="250" 
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="ColLeftRegion" Width="*" MinWidth="230"/>
+            <ColumnDefinition Name="ColRightRegion" Width="{Binding ElementName=RightRegion, Path=Width}" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <DockPanel Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" VerticalAlignment="Top">
+            <Label Content="{Binding Source={x:Static gprop:Resources._Office}}" Target="{Binding ElementName=cboOffice}" />
+            <ComboBox Name="cboOffice" ItemsSource="{Binding Path=Offices}" SelectedItem="{Binding Path=Office, Mode=TwoWay}"/>
+        </DockPanel>
+
+        <StackPanel Grid.Column="1">
+            <Button Width="75" Height="23" Margin="5" Command="{Binding OKCommand}" IsDefault="True" HorizontalAlignment="Right" Content="{Binding Source={x:Static gprop:Resources._OK}}"></Button>
+            <Button Width="75" Height="23" Margin="5" IsCancel="True" HorizontalAlignment="Right" Content="{Binding Source={x:Static gprop:Resources._Cancel}}"></Button>
+        </StackPanel>
+
+    </Grid>
+</GDV:OfficeDialog>

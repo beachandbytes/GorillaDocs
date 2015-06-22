@@ -41,6 +41,8 @@ namespace GorillaDocs
                     return PictureConverter.ImageToPictureDisp(Properties.Resources.D2);
                 case "D3":
                     return PictureConverter.ImageToPictureDisp(Properties.Resources.D3);
+                case "DMFLogo32":
+                    return PictureConverter.ImageToPictureDisp(Properties.Resources.DMFLogo32);
                 case "S1":
                     return PictureConverter.ImageToPictureDisp(Properties.Resources.S1);
                 case "S2":

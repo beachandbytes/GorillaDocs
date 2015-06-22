@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,6 +54,7 @@
     </Reference>
     <Reference Include="SecurityManager.2005">
       <HintPath>..\libs\Aspose\SecurityManager.2005.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,9 +98,7 @@
     <Error Condition="Exists('..\packages\PostSharp.3.1.49\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "C:\Repos\All MacroView Projects\MacroView.Office\packages\GorillaDocs.OutlookSecurity.1.0.9.0\lib\net40\GorillaDocs.OutlookSecurity.dll" /Y
-
-REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
+    <PostBuildEvent>REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
 REM If you see this in Visual Studio's Error List window, check the Output window's Build tab for the actual error.
 ECHO Creating NuGet package in Post-Build event...
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)_CreateNewNuGetPackage\DoNotModify\CreateNuGetPackage.ps1' -ProjectFilePath '$(ProjectPath)' -OutputDirectory '$(TargetDir)' -BuildConfiguration '$(ConfigurationName)' -BuildPlatform '$(PlatformName)'"</PostBuildEvent>

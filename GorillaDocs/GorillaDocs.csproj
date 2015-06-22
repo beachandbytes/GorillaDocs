@@ -89,6 +89,8 @@
     <Compile Include="AppConfig.cs" />
     <Compile Include="AssemblyHelper.cs" />
     <Compile Include="BooleanExpression.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Party.cs" />
     <Compile Include="ProblemStepsRecorder.cs" />
     <Compile Include="ContactHelper.cs" />
     <Compile Include="CultureHelpers.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="ViewModels\ListBoxContact.cs" />
     <Compile Include="ViewModels\ListBoxContacts.cs" />
     <Compile Include="ViewModels\Notify.cs" />
+    <Compile Include="ViewModels\SectionsViewModel.cs" />
     <Compile Include="ViewModels\SelectTemplateViewModel.cs" />
     <Compile Include="ViewModels\ContactWithFavouritesViewModel.cs" />
     <Compile Include="Views\AddTableView.xaml.cs">
@@ -172,13 +175,25 @@
     <Compile Include="Views\Behaviours\ExpanderState.cs" />
     <Compile Include="Views\Behaviours\ExpanderStates.cs" />
     <Compile Include="Views\Behaviours\PersistGroupExpandedStateBehavior.cs" />
+    <Compile Include="Views\ChangeOfficeView.xaml.cs">
+      <DependentUpon>ChangeOfficeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CcControl.xaml.cs">
+      <DependentUpon>CcControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\ListBoxControl.xaml.cs">
       <DependentUpon>ListBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\RecipientsControl.xaml.cs">
+      <DependentUpon>RecipientsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\SearchTextBox.cs" />
+    <Compile Include="Views\Controls\SenderControl.xaml.cs">
+      <DependentUpon>SenderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Converters\BooleanConverter.cs" />
     <Compile Include="Views\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Views\Converters\IsNullOrEmptyConverter.cs" />
@@ -206,10 +221,24 @@
     <Compile Include="Views\DialogCloser.cs" />
     <Compile Include="Views\FocusExtension.cs" />
     <Compile Include="Views\OfficeHelper.cs" />
+    <Compile Include="Views\SelectTemplateView.xaml.cs">
+      <DependentUpon>SelectTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WaitingView.xaml.cs">
+      <DependentUpon>WaitingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XmlHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AddTableView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChangeOfficeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CcControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -221,11 +250,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Controls\RecipientsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\SalutationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Controls\SenderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\SenderWithFavouritesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SelectTemplateView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WaitingView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -470,6 +515,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\search-thumb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DMFLogo32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\PostSharp.3.1.49\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.3.1.49\tools\PostSharp.targets')" />

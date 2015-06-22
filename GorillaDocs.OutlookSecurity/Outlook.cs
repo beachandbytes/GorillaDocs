@@ -63,6 +63,8 @@ namespace GorillaDocs.Word
             }
             try
             {
+                OutlookSecurityManager.securityManager.ConnectTo(app);
+                OutlookSecurityManager.securityManager.DisableOOMWarnings = true;
                 return SecureResolve(app, fullname, LDAPpath);
             }
             finally

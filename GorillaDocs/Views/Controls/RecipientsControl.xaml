@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="GorillaDocs.Views.Controls.RecipientsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:gprop="clr-namespace:GorillaDocs.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/GorillaDocs;component/views/controls/FormStyles.xaml" />
+    </UserControl.Resources>
+    <TabControl>
+        <TabItem Header="{Binding Source={x:Static gprop:Resources.LetterDetailsView_Recipient}}">
+            <StackPanel>
+                <DockPanel Margin="5">
+                    <Label Target="{Binding ElementName=Name}" Content="{Binding Source={x:Static gprop:Resources.ContactName}}"/>
+                    <TextBox Name="Name" Text="{Binding Path=Contact.FullName, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label Target="{Binding ElementName=Position}" Content="{Binding Source={x:Static gprop:Resources.ContactPosition}}"/>
+                    <TextBox Name="Position" Text="{Binding Path=Contact.Position, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label Target="{Binding ElementName=Company}" Content="{Binding Source={x:Static gprop:Resources.ContactCompany}}"/>
+                    <TextBox Name="Company" Text="{Binding Path=Contact.CompanyName, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label Target="{Binding ElementName=Address}" Content="{Binding Source={x:Static gprop:Resources.ContactAddress}}"/>
+                    <Grid>
+                        <TextBox Name="Address" Text="{Binding Path=Contact.Address, UpdateSourceTrigger=PropertyChanged}" Height="60" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
+                        <StackPanel>
+                            <TextBlock Text="eg. 1 Sample Place" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=Address}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock Text="Sample Town NSW 2000" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=Address}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock IsHitTestVisible="False" Text="Australia" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=Address}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label Target="{Binding ElementName=Delivery}" Content="{Binding Source={x:Static gprop:Resources.ContactDelivery}}"/>
+                    <ComboBox Name="Delivery" ItemsSource="{Binding DeliveryItems}" Text="{Binding Path=Contact.Delivery}" IsEditable="True"/>
+                </DockPanel>
+                <DockPanel Margin="5" Visibility="{Binding Contact.FaxVisibility}">
+                    <Label Target="{Binding ElementName=Fax}" Content="{Binding Source={x:Static gprop:Resources.ContactFax}}"/>
+                    <Grid>
+                        <TextBox Name="Fax" Text="{Binding Path=Contact.FaxNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock IsHitTestVisible="False" Text="eg. +61 X XXXX XXXX" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=Fax}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                </DockPanel>
+                <DockPanel Margin="5" Visibility="{Binding Contact.EmailVisibility}">
+                    <Label Target="{Binding ElementName=Email}" Content="{Binding Source={x:Static gprop:Resources.ContactEmail}}"/>
+                    <Grid>
+                        <TextBox Name="Email" Text="{Binding Path=Contact.EmailAddress, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Style="{StaticResource ErrorStyle}"/>
+                        <TextBlock IsHitTestVisible="False" Text="eg. john@sample.com" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=Email}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                </DockPanel>
+                <StackPanel Orientation="Horizontal" Margin="105,0,0,0">
+                    <Button Width="25" Height="25" Command="{Binding AddressBookCommand}">
+                        <Image Source="/GorillaDocs;component/Resources/Office_Outlook_Application_32xMD.png"/>
+                    </Button>
+                    <Button Width="25" Height="25" Command="{Binding ClearCommand}">
+                        <Image Source="/GorillaDocs;component/Resources/Symbols_Critical_32xLG.png"/>
+                    </Button>
+                    <Button Width="60" Height="25" Command="{Binding PrevCommand}">
+                        <Image Source="/GorillaDocs;component/Resources/arrow_back_16xLG.png"/>
+                    </Button>
+                    <Button Width="60" Height="25" Command="{Binding NextCommand}">
+                        <Image Source="/GorillaDocs;component/Resources/arrow_Forward_16xLG.png"/>
+                    </Button>
+                </StackPanel>
+                <Label Content="{Binding Count}"/>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>
