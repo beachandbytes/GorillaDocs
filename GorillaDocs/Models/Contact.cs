@@ -2,6 +2,7 @@
 using GorillaDocs.libs.PostSharp;
 using GorillaDocs.Properties;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Windows;
 using System.Xml.Serialization;
@@ -40,11 +41,11 @@ namespace GorillaDocs.Models
         string _Country;
         string _Delivery;
         string _ExternalId;
-        List<string> _States;
-        List<string> _Titles;
         string _Assistant;
         string _ExtensionAttribute3;
         string _ExtensionAttribute4;
+        List<string> _States;
+        List<string> _Titles;
 
         bool CanUpdateSalutation()
         {
@@ -176,8 +177,6 @@ namespace GorillaDocs.Models
             get { return _EmailAddress; }
             set
             {
-                //if (!string.IsNullOrEmpty(value))
-                //    ValidateProperty("EmailAddress", value);
                 _EmailAddress = value;
                 NotifyPropertyChanged("EmailAddress");
             }

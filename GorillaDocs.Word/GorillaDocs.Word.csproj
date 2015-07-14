@@ -62,6 +62,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, PublicKeyToken=918a6c969fa86c76, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -79,6 +83,34 @@
     <Compile Include="CaptionHelper.cs" />
     <Compile Include="CCs.cs" />
     <Compile Include="ChartHelper.cs" />
+    <Compile Include="BuildingBlocks.cs" />
+    <Compile Include="ColourHelper.cs" />
+    <Compile Include="ControlManagers\ControlManager_EndDocument.cs" />
+    <Compile Include="ControlManagers\ControlManager_StartDocument.cs" />
+    <Compile Include="ControlManagers\ControlManager_Table.cs" />
+    <Compile Include="Precedent\Controls\ClearCellIf.cs" />
+    <Compile Include="Precedent\Controls\ContactDelivery.cs" />
+    <Compile Include="Precedent\Controls\DeleteColumnIf.cs" />
+    <Compile Include="Precedent\Controls\DeleteControlIf.cs" />
+    <Compile Include="Precedent\Controls\DeleteLineIf.cs" />
+    <Compile Include="Precedent\Controls\DeleteRowIf.cs" />
+    <Compile Include="Precedent\Controls\DeleteRowIf_RemoveControl.cs" />
+    <Compile Include="Precedent\Controls\Optional.cs" />
+    <Compile Include="Precedent\Controls\PrecedentControl.cs" />
+    <Compile Include="Precedent\Controls\RepeatingContact.cs" />
+    <Compile Include="Precedent\Delivery\CcDelivery.cs" />
+    <Compile Include="Precedent\Delivery\Delivery.cs" />
+    <Compile Include="Precedent\Delivery\DeliveryHelpers.cs" />
+    <Compile Include="Precedent\Delivery\RecipientDelivery.cs" />
+    <Compile Include="Precedent\Precedent.cs" />
+    <Compile Include="Precedent\PrecedentExpression.cs" />
+    <Compile Include="Precedent\PrecedentHelper.cs" />
+    <Compile Include="Precedent\PrecedentInstruction.cs" />
+    <Compile Include="Precedent\ViewModels\PrecedentInstructionViewModel.cs" />
+    <Compile Include="Precedent\Views\PrecedentInstructionView.xaml.cs">
+      <DependentUpon>PrecedentInstructionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToggleHeaderFooterHelper.cs" />
     <Compile Include="CloneHelper.cs" />
     <Compile Include="ContentControlHelper.cs" />
     <Compile Include="ColumnsHelper.cs" />
@@ -144,6 +176,13 @@
   <ItemGroup>
     <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Precedent\Views\PrecedentInstructionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
@@ -156,6 +195,12 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)_Cre
     <Error Condition="!Exists('..\packages\PostSharp.3.1.49\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
     <Error Condition="Exists('..\packages\PostSharp.3.1.49\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\ildasm" /all /out=System.Linq.Dynamic.il "C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll"
+Del "C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll"
+"C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm" /dll /key=C:\Repos\GorillaDocs\GorillaDocs\GorillaDocs.snk System.Linq.Dynamic.il /Output="C:\Repos\GorillaDocs\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll"
+</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

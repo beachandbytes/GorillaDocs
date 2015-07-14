@@ -11,6 +11,15 @@ namespace GorillaDocs.Word
     [Log]
     public static class TableHelper
     {
+        public static IList<Wd.Table> Tables(this Wd.Document doc, Func<dynamic, bool> predicate = null)
+        {
+            var tables = new List<Wd.Table>();
+            foreach (Wd.Table table in doc.Tables)
+                if (predicate == null || predicate(table))
+                    tables.Add(table);
+            return tables;
+        }
+
         public static void InsertTableHorizontal(this Wd.Range range)
         {
             InsertTable(range, FormatHorizontalTable);

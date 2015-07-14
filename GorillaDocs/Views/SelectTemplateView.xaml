@@ -45,7 +45,7 @@
 
     </Window.Resources>
 
-    <Grid>
+    <Grid IsVisibleChanged="Grid_SetInitialFocus">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Name="ColLeftRegion" Width="*" MinWidth="230"/>
             <ColumnDefinition Name="ColRightRegion" Width="{Binding ElementName=RightRegion, Path=Width}" />
@@ -59,10 +59,10 @@
             <Label Content="{Binding Source={x:Static gprop:Resources._Office}}" Target="{Binding ElementName=cboOffice}"/>
             <ComboBox Name="cboOffice" ItemsSource="{Binding Offices}" SelectedItem="{Binding Path=Office, Mode=TwoWay}"/>
         </DockPanel>
-        <TabControl SelectedIndex="{Binding Path=SelectedTab, Mode=TwoWay}" Margin="5,5,5,5" Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1" Grid.Column="0">
-            <TabItem Header="_All Templates" >
+        <TabControl Name="Tabs" SelectedIndex="{Binding Path=SelectedTab, Mode=TwoWay}" Margin="5,5,5,5" Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1" Grid.Column="0">
+            <TabItem Header="_All Templates" Margin="-2,-3,-1.667,1" >
                 <DockPanel>
-                    <ListBox ItemsSource="{Binding Source={StaticResource templates}}" 
+                    <ListBox Name="AllTemplates" ItemsSource="{Binding Source={StaticResource templates}}" 
                              ItemTemplate="{StaticResource FileDataTemplate}"
                              SelectedItem="{Binding Path=SelectedTemplate, Mode=TwoWay}" >
                         <ListBox.ItemsPanel>

@@ -13,6 +13,7 @@ namespace GorillaDocs.Word
         const string Bookmark_TOCRange = "TOCRange";
         const string Annexure_Style = "Annexure";
         const string Appendix_Style = "Appendix";
+        const string Attachment_Style = "Attachment";
         const string Exhibit_Style = "Exhibit";
         const string Schedule_Style = "Schedule";
 
@@ -171,6 +172,7 @@ namespace GorillaDocs.Word
             Wd.Range result = null;
             result = FindFirstAttachmentStyleByName(doc, range, result, Annexure_Style);
             result = FindFirstAttachmentStyleByName(doc, range, result, Appendix_Style);
+            result = FindFirstAttachmentStyleByName(doc, range, result, Attachment_Style);
             result = FindFirstAttachmentStyleByName(doc, range, result, Exhibit_Style);
             result = FindFirstAttachmentStyleByName(doc, range, result, Schedule_Style);
             return result == null || !result.Find.Found ? null : result;
@@ -200,6 +202,7 @@ namespace GorillaDocs.Word
                 Wd.Field field = toc.Range.Fields[1];
                 if (field.Code.Text.Contains(Annexure_Style, StringComparison.OrdinalIgnoreCase) ||
                     field.Code.Text.Contains(Appendix_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Attachment_Style, StringComparison.OrdinalIgnoreCase) ||
                     field.Code.Text.Contains(Exhibit_Style, StringComparison.OrdinalIgnoreCase) ||
                     field.Code.Text.Contains(Schedule_Style, StringComparison.OrdinalIgnoreCase))
                     return true;
@@ -214,6 +217,7 @@ namespace GorillaDocs.Word
                 Wd.Field field = toc.Range.Fields[1];
                 if (field.Code.Text.Contains(Annexure_Style, StringComparison.OrdinalIgnoreCase) ||
                     field.Code.Text.Contains(Appendix_Style, StringComparison.OrdinalIgnoreCase) ||
+                    field.Code.Text.Contains(Attachment_Style, StringComparison.OrdinalIgnoreCase) ||
                     field.Code.Text.Contains(Exhibit_Style, StringComparison.OrdinalIgnoreCase) ||
                     field.Code.Text.Contains(Schedule_Style, StringComparison.OrdinalIgnoreCase))
                     toc.Delete();
@@ -225,7 +229,7 @@ namespace GorillaDocs.Word
             if (tocs.Count > 0)
             {
                 Wd.Range range = tocs.End();
-                range.Fields.Add(range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\h \z \t ""{0},1,{1},1,{2},1,{3},1""", Annexure_Style, Appendix_Style, Exhibit_Style, Schedule_Style), false);
+                range.Fields.Add(range, Wd.WdFieldType.wdFieldTOC, string.Format(@"\h \z \t ""{0},1,{1},1,{2},1,{3},1,{4},1""", Annexure_Style, Appendix_Style, Attachment_Style, Exhibit_Style, Schedule_Style), false);
             }
         }
 

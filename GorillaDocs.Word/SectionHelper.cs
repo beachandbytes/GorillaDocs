@@ -418,5 +418,13 @@ namespace GorillaDocs.Word
                 toc.Range.Sections[1].Delete();
         }
 
+        public static IList<Wd.Section> Sections(this Wd.Document doc, Func<dynamic, bool> predicate = null)
+        {
+            var sections = new List<Wd.Section>();
+            foreach (Wd.Section section in doc.Sections)
+                if (predicate == null || predicate(section))
+                    sections.Add(section);
+            return sections;
+        }
     }
 }

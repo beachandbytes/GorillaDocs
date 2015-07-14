@@ -8,7 +8,7 @@ using Wd = Microsoft.Office.Interop.Word;
 namespace GorillaDocs.Word
 {
     [Log]
-    public class Precedent<D>
+    public class Precedent_OLD<D>
     {
         public event EventHandler UpdateData;
 
@@ -18,7 +18,7 @@ namespace GorillaDocs.Word
         readonly Dispatcher dispatcher = null;
         bool DisableEvents = false;
 
-        public Precedent(Wd.Document Doc, string NameSpace, bool MonitorContentControlEvents = true)
+        public Precedent_OLD(Wd.Document Doc, string NameSpace, bool MonitorContentControlEvents = true)
         {
             this.Doc = Doc;
             this.NameSpace = NameSpace;

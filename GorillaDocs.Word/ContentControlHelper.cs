@@ -300,18 +300,26 @@ namespace GorillaDocs.Word
 
         public static void DeleteLine(this Wd.ContentControl control)
         {
-            var range = control.Range.Paragraphs[1].Range;
-            if (range.Text.Contains("\a"))
+            var range = control.Range;
+            range.MoveEndUntil("\a\v\r");
+            range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
+            range.MoveStartUntil("\a\v\r", Wd.WdConstants.wdBackward);
+            if (range.Start < range.Paragraphs[1].Range.Start)
+                range.Start = range.Paragraphs[1].Range.Start;
+
+            if (range.Characters.Last.Text == "\r")
+                if (range.Characters.First.Previous() != null && range.Characters.First.Previous().Text == "\v")
+                {
+                    range.MoveStart(Wd.WdUnits.wdCharacter, -1);
+                    range.MoveEnd(Wd.WdUnits.wdCharacter, -1);
+                }
+            if (range.Characters.Last.Text == "\a" || range.Characters.Last.Text == "\r\a")
             {
-                range = control.Range;
-                control.Delete(true);
-                range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
-                range.MoveStart(Wd.WdUnits.wdCharacter, -1);
-                if (range.Text != null && !range.Text.Contains("\a"))
-                    range.Delete();
+                if (range.Characters.First.Previous() != null && (range.Characters.First.Previous().Text == "\v" || range.Characters.First.Previous().Text == "\r"))
+                    range.MoveStart(Wd.WdUnits.wdCharacter, -1);
+                range.MoveEnd(Wd.WdUnits.wdCharacter, -1);
             }
-            else
-                range.Delete();
+            range.Delete();
         }
 
         public static void DeleteLine(this Wd.ContentControl control, string BookmarkName)
@@ -518,7 +526,7 @@ namespace GorillaDocs.Word
             var controls = new List<Wd.ContentControl>();
             foreach (Wd.ContentControl parent in parentControls)
                 foreach (Wd.ContentControl control in parent.Range.ContentControls)
-                    if (predicate == null || predicate(control))
+                    if (control.ID != parent.ID && (predicate == null || predicate(control)))
                         controls.Add(control);
             return controls;
         }
@@ -526,7 +534,7 @@ namespace GorillaDocs.Word
         {
             var controls = new List<Wd.ContentControl>();
             foreach (Wd.ContentControl control in parent.Range.ContentControls)
-                if (predicate == null || predicate(control))
+                if (control.ID != parent.ID && (predicate == null || predicate(control)))
                     controls.Add(control);
             return controls;
         }
@@ -631,7 +639,7 @@ namespace GorillaDocs.Word
             }
         }
 
-        static Wd.Range CollapsePastRowOrParagraph(this Wd.ContentControl control, Wd.WdCollapseDirection Collapse)
+        public static Wd.Range CollapsePastRowOrParagraph(this Wd.ContentControl control, Wd.WdCollapseDirection Collapse)
         {
             Wd.Range range;
             if (control.Range.Information[Wd.WdInformation.wdWithInTable])
@@ -855,6 +863,35 @@ namespace GorillaDocs.Word
         {
             var cells = control.Range.Cells[1];
             cells.Range.Delete();
+        }
+
+        public static void DeleteRowsOrParagraphs(this IList<Wd.ContentControl> controls)
+        {
+            foreach (Wd.ContentControl control in controls)
+                if (control.Exists())
+                {
+                    var range = control.Range;
+                    if (range.Information[Wd.WdInformation.wdWithInTable])
+                        range.Rows.Delete();
+                    else
+                    {
+                        range = range.ExpandParagraph();
+                        if (range.Characters.Last.Text == "\r\a")
+                            range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
+                        range.Delete();
+                        //control.Delete(true);
+                        //if (range.Paragraphs[1].IsEmpty())
+                        //    range.Paragraphs[1].Range.Delete();
+                    }
+                }
+        }
+    
+        public static Wd.ContentControl Add(this Wd.ContentControls controls, string PlaceholderText, Wd.WdContentControlType type = Wd.WdContentControlType.wdContentControlRichText, bool Temporary = true)
+        {
+            var control = controls.Add(type);
+            control.SetPlaceholderText(null, null, PlaceholderText);
+            control.Temporary = Temporary;
+            return control;
         }
     }
 }

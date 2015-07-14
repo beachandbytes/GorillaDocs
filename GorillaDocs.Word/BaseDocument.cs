@@ -49,7 +49,10 @@ namespace GorillaDocs.Word
                 }
             }
         }
-
-
+        public string CreatedVersion
+        {
+            get { return doc.GetDocVar("Version"); }
+            set { doc.SetDocVar("Version", value); }
+        }
     }
 }

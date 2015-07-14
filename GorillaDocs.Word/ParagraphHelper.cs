@@ -33,5 +33,11 @@ namespace GorillaDocs.Word
                 return range.Paragraphs.Last.Next().Range.CollapseEnd();
         }
 
+        public static Wd.Range ExpandParagraph(this Wd.Range range)
+        {
+            range.Expand(Wd.WdUnits.wdParagraph);
+            return range;
+        }
+
     }
 }

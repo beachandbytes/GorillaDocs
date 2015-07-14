@@ -9,7 +9,13 @@
         <ResourceDictionary Source="FormStyles.xaml" />
     </UserControl.Resources>
     <DockPanel Margin="5">
-        <Label Target="{Binding ElementName=TextInput}" Content="{Binding ElementName=thisUserControl, Path=Label}"/>
+        <Label Target="{Binding ElementName=TextInput}" Content="{Binding ElementName=thisUserControl, Path=Label}">
+            <Label.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </Label.Resources>
+        </Label>
         <Grid>
             <TextBox Name="TextInput" 
                  Text="{Binding ElementName=thisUserControl, 

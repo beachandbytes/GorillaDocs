@@ -1,0 +1,1 @@
+﻿Register for COM Interop so that Excel User Defined Function Add-In can reference this assembly

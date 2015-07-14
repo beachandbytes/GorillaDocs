@@ -13,6 +13,8 @@ namespace GorillaDocs.Excel
 
         public BaseWorkbook(XL.Workbook Wb) { workbook = Wb; }
 
+        public virtual void RegisterEvents() { }
+
         public O.CustomXMLPart CustomXmlPart
         {
             get

@@ -89,6 +89,7 @@
     <Compile Include="AppConfig.cs" />
     <Compile Include="AssemblyHelper.cs" />
     <Compile Include="BooleanExpression.cs" />
+    <Compile Include="DispatcherHelper.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Party.cs" />
     <Compile Include="ProblemStepsRecorder.cs" />
@@ -196,6 +197,7 @@
     </Compile>
     <Compile Include="Views\Converters\BooleanConverter.cs" />
     <Compile Include="Views\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Views\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Views\Converters\IsNullOrEmptyConverter.cs" />
     <Compile Include="Views\Converters\EnumBooleanConverter.cs" />
     <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />

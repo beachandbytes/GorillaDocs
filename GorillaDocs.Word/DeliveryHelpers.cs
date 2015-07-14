@@ -11,15 +11,18 @@ namespace GorillaDocs.Word
     {
         public static bool IsDelivery(this Wd.ContentControl control)
         {
-            return !string.IsNullOrEmpty(control.Tag) && control.Tag.EndsWith(GDP.Resources.ContentControl_DeliveryEnding);
+            return (!string.IsNullOrEmpty(control.Tag) && control.Tag.EndsWith(GDP.Resources.ContentControl_DeliveryEnding)) ||
+                (!string.IsNullOrEmpty(control.Title) && control.Title.EndsWith(GDP.Resources.ContentControl_DeliveryEnding));
         }
         public static bool IsRecipient(this Wd.ContentControl control)
         {
-            return !string.IsNullOrEmpty(control.Tag) && control.Tag.StartsWith(GDP.Resources.ContentControl_Recipient);
+            return (!string.IsNullOrEmpty(control.Tag) && control.Tag.StartsWith(GDP.Resources.ContentControl_Recipient)) ||
+                (!string.IsNullOrEmpty(control.Title) && control.Title.StartsWith(GDP.Resources.ContentControl_Recipient));
         }
         public static bool IsCC(this Wd.ContentControl control)
         {
-            return !string.IsNullOrEmpty(control.Tag) && control.Tag.StartsWith(GDP.Resources.ContentControl_CC);
+            return (!string.IsNullOrEmpty(control.Tag) && control.Tag.StartsWith(GDP.Resources.ContentControl_CC)) ||
+                (!string.IsNullOrEmpty(control.Title) && control.Title.StartsWith(GDP.Resources.ContentControl_CC));
         }
 
         public static Delivery AsDelivery(this Wd.ContentControl control)

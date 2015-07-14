@@ -1,0 +1,40 @@
+﻿<GDV:OfficeDialog x:Class="GorillaDocs.Word.Precedent.Views.PrecedentInstructionView"
+        xmlns:GDC="clr-namespace:GorillaDocs.Views.Controls;assembly=GorillaDocs"  
+        xmlns:GDConverters="clr-namespace:GorillaDocs.Views.Converters;assembly=GorillaDocs"  
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:GDV="clr-namespace:GorillaDocs.Views;assembly=GorillaDocs"
+        xmlns:gprop="clr-namespace:GorillaDocs.Properties;assembly=GorillaDocs"
+        GDV:DialogCloser.DialogResult="{Binding Path=DialogResult, Mode=TwoWay}"
+        Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" 
+        Title="Precedent Instruction" 
+        SizeToContent="WidthAndHeight" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize" MinHeight="100" MinWidth="250">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/GorillaDocs;component/views/controls/FormStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <GDConverters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" True="Visible" False="Collapsed" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Validation.Error="Grid_Error" IsVisibleChanged="Grid_SetInitialFocus">
+
+        <StackPanel Name="AllItems" Orientation="Horizontal">
+            <WrapPanel Height="200" Margin="5" Orientation="Vertical">
+                <GDC:TextControl x:Name="Command" Label="_Command" Text="{Binding Path=Details.Command, Mode=TwoWay}"/>
+                <GDC:TextControl x:Name="Expression" Label="_Expression" Text="{Binding Path=Details.Expression, Mode=TwoWay}"/>
+                <GDC:TextControl x:Name="ListItems" Label="_List Items" Text="{Binding Path=Details.ListItems, Mode=TwoWay}" Visibility="{Binding Path=IsComboBox, Converter={StaticResource BoolToVisConverter}}"/>
+                <GDC:TextControl x:Name="ObjectType" Label="_Object Type" Text="{Binding Path=Details.ExpressionObjectType, Mode=TwoWay}"/>
+                <GDC:ComboControl x:Name="Namespace" Label="_Namespace" ItemsSource="{Binding Namespaces}" SelectedItem="{Binding Path=Details.ExpressionObjectNamespace, Mode=TwoWay}"/>
+            </WrapPanel>
+
+            <StackPanel>
+                <Button Width="75" Height="23" Margin="5" Command="{Binding OKCommand}" IsDefault="True" HorizontalAlignment="Right" Content="{Binding Source={x:Static gprop:Resources._OK}}"></Button>
+                <Button Width="75" Height="23" Margin="5" IsCancel="True" HorizontalAlignment="Right" Content="{Binding Source={x:Static gprop:Resources._Cancel}}"></Button>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</GDV:OfficeDialog>
