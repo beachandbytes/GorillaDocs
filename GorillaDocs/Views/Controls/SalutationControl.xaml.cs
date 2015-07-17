@@ -17,14 +17,14 @@ namespace GorillaDocs.Views.Controls
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
-        public object SelectedItem { get; set; }
+        public string PrefixText { get; set; }
 
         public void Focus() { TitleComboInput.Focus(); }
 
         public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(string), typeof(SalutationControl));
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SalutationControl));
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(SalutationControl), new PropertyMetadata(OnItemsSourcePropertyChanged));
-        public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(SalutationControl));
+        public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.Register("PrefixText", typeof(string), typeof(SalutationControl));
 
         static void OnItemsSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {

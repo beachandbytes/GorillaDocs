@@ -1,6 +1,7 @@
 ﻿using GorillaDocs.libs.PostSharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Wd = Microsoft.Office.Interop.Word;
 
@@ -81,7 +82,7 @@ namespace GorillaDocs.Word
             range.Bookmarks.Delete(Bookmark);
             return range;
         }
-       
+
         /// <summary>
         /// Inserts a file at the given range.
         /// Note: 
@@ -108,18 +109,13 @@ namespace GorillaDocs.Word
             else
                 range = range.InsertSectionInMiddldOfSection(Path);
 
-            if (range.Document.Bookmarks.Exists("Section"))
-            {
-                range = range.Document.Bookmarks["Section"].Range;
-                range.Document.Bookmarks["Section"].Delete();
-            }
-
+            CopyAcrossAnyPrecedentInstructions(range.Document, Path);
             return range;
         }
 
         static Wd.Range InsertSectionAtStartOfSection(this Wd.Range range, string Path)
         {
-            range.InsertFile_Safe(Path, "Section");
+            range = range.InsertFile_Safe(Path, "Section");
             range.Sections[1].Delete();
             return range;
         }
@@ -127,7 +123,7 @@ namespace GorillaDocs.Word
         static Wd.Range InsertSectionInMiddldOfSection(this Wd.Range range, string Path)
         {
             var AddedSection = range.AddSection();
-            range.InsertFile(Path, "Section");
+            range = range.InsertFile_Safe(Path, "Section");
             AddedSection.Next().Delete();
             return range;
         }
@@ -136,7 +132,7 @@ namespace GorillaDocs.Word
         {
             var NextSection = range.Sections[1].Next();
             var AddedSection = range.AddSection();
-            range.InsertFile(Path, "Section");
+            range = range.InsertFile_Safe(Path, "Section");
             AddedSection.Next().Delete();
             NextSection.Previous().Delete();
             return range;
@@ -145,11 +141,18 @@ namespace GorillaDocs.Word
         static Wd.Range InsertSectionAtEndOfDocument(this Wd.Range range, string Path)
         {
             var AddedSection = range.AddSection();
-            range.InsertFile(Path, "Section");
+            range = range.InsertFile_Safe(Path, "Section");
             AddedSection.Next().Delete();
             range.Document.Sections.Last.Delete();
             return range;
         }
 
+        static void CopyAcrossAnyPrecedentInstructions(Wd.Document doc, string Path)
+        {
+            var OpenXmlDoc = new OpenXml.WordDocument(new FileInfo(Path));
+            foreach (var variable in OpenXmlDoc.Variables)
+                if (variable.Name.StartsWith("PrecedentInstruction_"))
+                    doc.SetDocVar(variable.Name, variable.Value.Replace("_x000d__x000a_",""));
+        }
     }
 }

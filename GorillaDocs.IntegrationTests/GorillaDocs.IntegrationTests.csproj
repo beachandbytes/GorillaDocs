@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OpenXml\OpenXmlTests.cs" />
     <Compile Include="Outlook\OutlookTests.cs" />
     <Compile Include="SharePoint\CheckInTests.cs" />
     <Compile Include="SharePoint\ContentTypeTests.cs" />
@@ -123,22 +124,55 @@
     <Compile Include="Word\SharePointSaveTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="OpenXml\SampleData\Agreement Front Cover.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
-    <None Include="Word\SampleData\Firm Address.docx" />
-    <None Include="Word\SampleData\Firm Address Test.docx" />
-    <None Include="Word\SampleData\Sections\Appendix.docx" />
-    <None Include="Word\SampleData\Sections\Back Cover.docx" />
-    <None Include="Word\SampleData\Sections\Blue Divider.docx" />
-    <None Include="Word\SampleData\ContentControls.docx" />
-    <None Include="Word\SampleData\Sections\Executive Summary.docx" />
-    <None Include="Word\SampleData\Sections\Front Cover.docx" />
-    <None Include="Word\SampleData\Sections\Landscape.docx" />
-    <None Include="Word\SampleData\Sections\Portrait.docx" />
-    <None Include="Word\SampleData\Empty Sections.docx" />
-    <None Include="Word\SampleData\Sections\Table of Contents.docx" />
-    <None Include="Word\SampleData\Sections\White Divider.docx" />
+    <None Include="Word\SampleData\Firm Address.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Firm Address Test.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Appendix.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Back Cover.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Blue Divider.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\ContentControls.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Executive Summary.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Front Cover.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Landscape.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Portrait.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Empty Sections.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\Table of Contents.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Word\SampleData\Sections\White Divider.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GorillaDocs.OpenXml\GorillaDocs.OpenXml.csproj">
+      <Project>{69a38feb-e2c6-4749-9138-376aad755e5b}</Project>
+      <Name>GorillaDocs.OpenXml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GorillaDocs.OutlookSecurity\GorillaDocs.OutlookSecurity.csproj">
       <Project>{b6d42e37-10ee-42ab-aaa5-33cf81aea598}</Project>
       <Name>GorillaDocs.OutlookSecurity</Name>

@@ -12,13 +12,17 @@ namespace GorillaDocs.Word.Precedent.Controls
 
         public static bool Test(Wd.ContentControl control)
         {
-            return control.PrecedentInstruction() != null &&
-                control.PrecedentInstruction().Command == "ContactDelivery";
+            return control.GetPrecedentInstruction() != null &&
+                control.GetPrecedentInstruction().Command == "ContactDelivery";
         }
 
         public override void Process()
         {
-            control.AsDelivery1().Update();
+            var result = PrecedentExpression1.Resolve(control.GetPrecedentInstruction().Expression, control.GetPrecedentInstruction().ExpressionData(control.Range.Document));
+            if (result)
+                control.DeleteLine();
+            else
+                control.AsDelivery1().Update();
         }
     }
 }

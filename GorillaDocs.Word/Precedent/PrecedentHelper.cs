@@ -18,10 +18,12 @@ namespace GorillaDocs.Word.Precedent
                 return new DeleteControlIf(control);
             else if (DeleteLineIf.Test(control))
                 return new DeleteLineIf(control);
+            else if (DeleteLineIf_OrRemoveControl.Test(control))
+                return new DeleteLineIf_OrRemoveControl(control);
             else if (DeleteRowIf.Test(control))
                 return new DeleteRowIf(control);
-            else if (DeleteRowIf_RemoveControl.Test(control))
-                return new DeleteRowIf_RemoveControl(control);
+            else if (DeleteRowIf_OrRemoveControl.Test(control))
+                return new DeleteRowIf_OrRemoveControl(control);
             else if (DeleteColumnIf.Test(control))
                 return new DeleteColumnIf(control);
             else if (ClearCellIf.Test(control))
@@ -39,14 +41,11 @@ namespace GorillaDocs.Word.Precedent
             try
             {
                 control.Range.Select();
+                var instruction = GetPrecedentInstruction(control);
+                if (instruction == null)
+                    instruction = new PrecedentInstruction();
 
-                PrecedentInstruction details = null;
-                if (string.IsNullOrEmpty(control.Tag))
-                    details = new PrecedentInstruction();
-                else
-                    details = Serializer.DeSerializeFromString<PrecedentInstruction>(control.Tag);
-
-                var viewModel = new PrecedentInstructionViewModel(details, control, control.Range.Document.CustomXMLParts.Namespaces());
+                var viewModel = new PrecedentInstructionViewModel(instruction, control, control.Range.Document.CustomXMLParts.Namespaces());
                 var view = new PrecedentInstructionView(viewModel);
                 view.ShowDialog();
                 if (view.DialogResult == true)
@@ -62,9 +61,29 @@ namespace GorillaDocs.Word.Precedent
             }
         }
 
+        public static PrecedentInstruction GetPrecedentInstruction(this Wd.ContentControl control)
+        {
+            // Precedent Instruction saved as DocVar instead of Control.Tag because Word2010 has a 64 character limit..
+            PrecedentInstruction details = null;
+            var xml = control.Range.Document.GetDocVar("PrecedentInstruction_" + control.ID);
+
+            if (!string.IsNullOrEmpty(xml))
+                details = Serializer.DeSerializeFromString<PrecedentInstruction>(xml);
+            else if (!string.IsNullOrEmpty(control.Tag) && control.Tag.StartsWith("PrecedentInstruction_"))
+                details = Serializer.DeSerializeFromString<PrecedentInstruction>(control.Range.Document.GetDocVar(control.Tag));
+            else if (!string.IsNullOrEmpty(control.Tag) && control.Tag.StartsWith("<") && control.Tag.EndsWith(">")) //TODO: Delete this case once working at Webb Henderson
+            {
+                details = Serializer.DeSerializeFromString<PrecedentInstruction>(control.Tag);
+                control.Tag = ""; 
+            }
+            return details;
+        }
+
         public static void SetPrecedentInstruction(this Wd.ContentControl control, PrecedentInstruction instruction)
         {
-            control.Tag = Serializer.SerializeToString<PrecedentInstruction>(instruction);
+            // Precedent Instruction saved as DocVar instead of Control.Tag because Word2010 has a 64 character limit..
+            control.Range.Document.SetDocVar("PrecedentInstruction_" + control.ID, Serializer.SerializeToString<PrecedentInstruction>(instruction));
+            control.Tag = "PrecedentInstruction_" + control.ID; // So that we can copy the Precedent Instruction when a Repeating Contact is added.
         }
 
         public static IList<string> Namespaces(this O.CustomXMLParts parts)
@@ -73,22 +92,6 @@ namespace GorillaDocs.Word.Precedent
             foreach (O.CustomXMLPart part in parts)
                 namespaces.Add(part.NamespaceURI);
             return namespaces;
-        }
-
-        [System.Diagnostics.DebuggerStepThrough]
-        public static PrecedentInstruction PrecedentInstruction(this Wd.ContentControl control)
-        {
-            try
-            {
-                if (!(control.Tag.StartsWith("<") && control.Tag.EndsWith(">")))
-                    return null;
-                else
-                    return Serializer.DeSerializeFromString<PrecedentInstruction>(control.Tag);
-            }
-            catch
-            {
-                return null;
-            }
         }
 
         public static Wd.ContentControl MoveToNextControl(this Wd.Range range, Wd.Range ProcessingRange)

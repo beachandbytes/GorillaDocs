@@ -12,8 +12,8 @@ namespace GorillaDocs.Word.Precedent.Controls
 
         public static bool Test(Wd.ContentControl control)
         {
-            return control.PrecedentInstruction() != null &&
-                control.PrecedentInstruction().Command == "RepeatingControl";
+            return control.GetPrecedentInstruction() != null &&
+                control.GetPrecedentInstruction().Command == "RepeatingControl";
         }
 
         public override void Process()
@@ -36,7 +36,7 @@ namespace GorillaDocs.Word.Precedent.Controls
                         range.InsertParagraphBefore();
                         range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
                         range.Paste();
-                        UpdateControls(range, controls.Count + 1, control.PrecedentInstruction().Expression);
+                        UpdateControls(range, controls.Count + 1, control.GetPrecedentInstruction().Expression);
                         range.Characters.Last.Delete();
                     }
                     else
@@ -60,8 +60,8 @@ namespace GorillaDocs.Word.Precedent.Controls
 
         dynamic GetCollection(Wd.ContentControl control)
         {
-            var expression = control.PrecedentInstruction().Expression;
-            var data = control.PrecedentInstruction().ExpressionData(control.Range.Document);
+            var expression = control.GetPrecedentInstruction().Expression;
+            var data = control.GetPrecedentInstruction().ExpressionData(control.Range.Document);
 
             var propertyInfo = data.GetType().GetProperty(expression);
             return propertyInfo.GetValue(data, null);
@@ -72,15 +72,11 @@ namespace GorillaDocs.Word.Precedent.Controls
             foreach (Wd.ContentControl control in range.ContentControls)
             {
                 if (control.XMLMapping != null && !string.IsNullOrEmpty(control.XMLMapping.XPath))
-                    if (!control.XMLMapping.SetMapping(UpdateContactIndex(control.XMLMapping.XPath, i)))
-                    {
-                        Message.LogWarning("Unable to set Mapping '{0}' for control '{1}'. This may be because no data was entered by user.", control.XMLMapping.XPath, control.Title);
-                        control.Delete(true);
-                    }
+                    control.XMLMapping.SetMapping(UpdateContactIndex(control.XMLMapping.XPath, i));
 
-                if (control.PrecedentInstruction() != null)
+                var instruction = control.GetPrecedentInstruction();
+                if (instruction != null)
                 {
-                    PrecedentInstruction instruction = control.PrecedentInstruction();
                     instruction.Expression = Regex.Replace(instruction.Expression, string.Format(@"{0}\[[\d]*\]", CollectionName), string.Format("{0}[{1}]", CollectionName, i - 1));
                     if (instruction.ListItems != null)
                         instruction.ListItems = Regex.Replace(instruction.ListItems, string.Format(@"{0}\[[\d]*\]", CollectionName), string.Format("{0}[{1}]", CollectionName, i - 1));

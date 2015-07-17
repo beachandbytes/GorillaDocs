@@ -58,3 +58,4 @@ $apiKey = ""
 # Do not specify the "-Source" or "-ApiKey" here; use the variables above.
 # NuGet Push options that can be specified: http://docs.nuget.org/docs/reference/command-line-reference#Push_Command_Options
 $pushOptions = ""
+	

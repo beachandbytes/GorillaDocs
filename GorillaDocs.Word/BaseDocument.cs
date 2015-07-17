@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Wd = Microsoft.Office.Interop.Word;
+﻿using GorillaDocs.Word.Precedent;
+using System.Globalization;
+using System.Xml.Linq;
 using O = Microsoft.Office.Core;
+using Wd = Microsoft.Office.Interop.Word;
 
 namespace GorillaDocs.Word
 {
@@ -13,13 +13,47 @@ namespace GorillaDocs.Word
 
         public BaseDocument(Wd.Document Doc) { doc = Doc; }
 
-        public O.CustomXMLPart CustomXmlPart
+        public virtual void NewDocument(ref bool Cancel) { }
+        public virtual void EditDetails(ref bool Cancel) { }
+
+        public virtual O.CustomXMLPart CustomXmlPart
         {
             get
             {
                 var parts = doc.CustomXMLParts.SelectByNamespace(NameSpace);
-                return parts.Count == 1 ? parts[1] : null;
+                if (parts.Count == 1)
+                    return parts[1];
+                else
+                {
+                    var OpenXmlDoc = new OpenXml.WordDocument(doc.get_AttachedTemplate());
+                    XElement xml = OpenXmlDoc.GetCustomXML(NameSpace);
+                    if (xml != null)
+                        return doc.CustomXMLParts.Add(xml.ToString());
+                }
+                return null;
             }
+        }
+
+        public void ProcessControls<T>(Wd.Range range = null)
+        {
+            var precedent = new Precedent<T>(doc);
+            precedent.ProcessControls(range);
+        }
+
+        protected void RemoveEditDetailsBookmarks()
+        {
+            foreach (Wd.Bookmark bookmark in Bookmarks)
+                if (bookmark.Name.StartsWith("EditDetails_"))
+                    bookmark.Delete();
+        }
+
+        public virtual void ReplaceLanguageStrings() { }
+
+        public void SetProofingLanguage(Wd.Range range, CultureInfo Culture)
+        {
+            var lcid = (Wd.WdLanguageID)Culture.LCID;
+            range.LanguageID = lcid;
+            range.ContentControls.UpdateLanguageId(lcid);
         }
 
         public Wd.Application Application { get { return this.doc.Application; } }
@@ -33,6 +67,8 @@ namespace GorillaDocs.Word
         public Wd.Bookmarks Bookmarks { get { return this.doc.Bookmarks; } }
         public Wd.Shapes Shapes { get { return this.doc.Shapes; } }
         public Wd.Styles Styles { get { return this.doc.Styles; } }
+        public Wd.Sections Sections { get { return this.doc.Sections; } }
+        public Wd.TablesOfContents TablesOfContents { get { return this.doc.TablesOfContents; } }
         public string FullName
         {
             [System.Diagnostics.DebuggerStepThrough]
@@ -54,5 +90,7 @@ namespace GorillaDocs.Word
             get { return doc.GetDocVar("Version"); }
             set { doc.SetDocVar("Version", value); }
         }
+
+        public virtual bool ProfileNewDocument() { return false; }
     }
 }

@@ -798,16 +798,6 @@ namespace GorillaDocs.Word
                 control.Delete(DeleteContents);
         }
 
-        public static IList<Wd.Field> UdnReferences(this IList<Wd.HeaderFooter> headerFooters)
-        {
-            var fields = new List<Wd.Field>();
-            foreach (Wd.HeaderFooter headerFooter in headerFooters)
-                foreach (Wd.Field field in headerFooter.Range.Fields)
-                    if (field.Code.Text.Contains("mvRef"))
-                        fields.Add(field);
-            return fields;
-        }
-
         public static bool Exists(this IList<Wd.Field> fields) { return fields.Count > 0; }
 
         [System.Diagnostics.DebuggerStepThrough]
@@ -817,24 +807,6 @@ namespace GorillaDocs.Word
                 try { field.Delete(); }
                 catch { /* I think it's possible that the same field is in the collection twice. Perhaps when header/footers are linked? */ }
         }
-
-        public static void InsertReference(this Wd.Section section)
-        {
-            var doc = (Wd.Document)section.Parent;
-            if (doc.IsUdnDoc() && doc.Sections.Footers().UdnReferences().Exists())
-                section.Footers().InsertReference();
-        }
-
-        public static void InsertReference(this IList<Wd.HeaderFooter> headerFooters)
-        {
-            foreach (Wd.HeaderFooter headerFooter in headerFooters)
-            {
-                var range = headerFooter.Range.CollapseEnd();
-                range.Fields.Add(range, Wd.WdFieldType.wdFieldDocProperty, "mvRef");
-            }
-        }
-
-        public static bool IsUdnDoc(this Wd.Document doc) { return doc.Path.ToLower().StartsWith("http") && !string.IsNullOrEmpty(doc.GetDocProp("mvRef")); }
 
         public static IList<Wd.HeaderFooter> Footers(this Wd.Section section)
         {
@@ -873,15 +845,16 @@ namespace GorillaDocs.Word
                     var range = control.Range;
                     if (range.Information[Wd.WdInformation.wdWithInTable])
                         range.Rows.Delete();
+                    else if (!range.Characters.First.Information[Wd.WdInformation.wdWithInTable] && range.Characters.Last.Information[Wd.WdInformation.wdWithInTable])
+                    {
+                        control.Delete();
+                        range.End = range.Characters.Last.Rows[1].Range.End;
+                        range.Delete();
+                    }
                     else
                     {
                         range = range.ExpandParagraph();
-                        if (range.Characters.Last.Text == "\r\a")
-                            range.MoveEnd(Wd.WdUnits.wdCharacter, 1);
                         range.Delete();
-                        //control.Delete(true);
-                        //if (range.Paragraphs[1].IsEmpty())
-                        //    range.Paragraphs[1].Range.Delete();
                     }
                 }
         }

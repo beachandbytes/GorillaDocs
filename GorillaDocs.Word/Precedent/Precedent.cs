@@ -78,8 +78,6 @@ namespace GorillaDocs.Word.Precedent
 
         #region Core
 
-        public void ProcessControls() { ProcessControls(Doc.Range()); }
-
         public void ProcessControls_AfterCurrentEventCompletes(Wd.Range range)
         {
             SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
@@ -105,15 +103,21 @@ namespace GorillaDocs.Word.Precedent
             }, taskScheduler);
         }
 
-        public void ProcessControls(Wd.Range ProcessingRange)
+        public void ProcessControls(Wd.Range ProcessingRange = null)
         {
-            var control = ProcessingRange.ContentControls.AsIList()[0];
-            while (control != null)
+            if (ProcessingRange == null)
+                ProcessingRange = Doc.Range();
+
+            var controls = ProcessingRange.ContentControls;
+            if (controls.Count > 0)
             {
-                var range = control.Range;
-                System.Diagnostics.Debug.WriteLine(control.Title + control.ID);
-                ProcessControl(control);
-                control = range.MoveToNextControl(ProcessingRange);
+                var control = controls.AsIList()[0];
+                while (control != null)
+                {
+                    var range = control.Range;
+                    ProcessControl(control);
+                    control = range.MoveToNextControl(ProcessingRange);
+                }
             }
         }
 
@@ -121,16 +125,21 @@ namespace GorillaDocs.Word.Precedent
         {
             var c = control.AsPrecedentControl();
             if (c != null)
+            {
                 c.Process();
-
-            if (IsComboBox(control))
-                control.DropdownListEntries.Add(control.PrecedentInstruction().GetListItems(Doc));
+                if (IsComboBox(control))
+                    control.DropdownListEntries.Add(control.GetPrecedentInstruction().GetListItems(Doc));
+            }
         }
 
         #endregion
+
+        #region Helpers
+
         static bool IsComboBox(Wd.ContentControl control)
         {
-            return control.Exists() && control.Type == Wd.WdContentControlType.wdContentControlComboBox && !string.IsNullOrEmpty(control.PrecedentInstruction().ListItems);
+            return control.Exists() && control.Type == Wd.WdContentControlType.wdContentControlComboBox && !string.IsNullOrEmpty(control.GetPrecedentInstruction().ListItems);
         }
+        #endregion
     }
 }

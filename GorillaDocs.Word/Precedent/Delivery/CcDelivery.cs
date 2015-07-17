@@ -5,6 +5,7 @@ namespace GorillaDocs.Word.Precedent.Delivery
 {
     public class CcDelivery1 : Delivery1
     {
+        const string spacer = ": ";
         public CcDelivery1(Wd.ContentControl control) : base(control) { }
 
         public override void Update()
@@ -21,17 +22,23 @@ namespace GorillaDocs.Word.Precedent.Delivery
 
         protected override void AddDetailsControl()
         {
-            Wd.Range range = control.Range;
-            range.MoveOutOfContentControl();
-            range.Text = ": ";
-            range.Collapse(Wd.WdCollapseDirection.wdCollapseEnd);
+            Wd.Range range = control.Range.CollapseEnd();
+            range.Move(Wd.WdUnits.wdCharacter, 1);
+            range.Text = spacer;
+            range = range.CollapseEnd();
             AddDetailsControl(range);
         }
 
         void RemoveDeliveryDetails()
         {
             if (DetailsControl != null)
+            {
+                var range = DetailsControl.Range;
                 DetailsControl.Delete(true);
+                range.MoveStart(Wd.WdUnits.wdCharacter, -2);
+                if (range.Text == spacer)
+                    range.Delete();
+            }
         }
 
         bool IsOther { get { return this.control.Range.Text.Contains(GDP.Resources.Delivery_Other); } }

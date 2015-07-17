@@ -22,23 +22,5 @@ namespace GorillaDocs.Word.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MacroView.DMF.Word")]
-        public string DMFWordAddin {
-            get {
-                return ((string)(this["DMFWordAddin"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MacroView.UDN.Word")]
-        public string UDNWordAddin {
-            get {
-                return ((string)(this["UDNWordAddin"]));
-            }
-        }
     }
 }

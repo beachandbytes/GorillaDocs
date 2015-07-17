@@ -5,7 +5,7 @@ namespace GorillaDocs.Word.Precedent.Delivery
 {
     public class RecipientDelivery1 : Delivery1
     {
-        private const string spacer = ": ";
+        const string spacer = ": ";
         public RecipientDelivery1(Wd.ContentControl control) : base(control) { }
 
         protected override Wd.ContentControl DetailsControl

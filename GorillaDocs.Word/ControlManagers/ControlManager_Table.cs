@@ -57,7 +57,8 @@ namespace GorillaDocs.Word.ControlManagers
                 if (!(ControlsFound(controls)))
                     range.InsertFile_Safe1(Doc.Template().FullName, bookmark);
 
-            range = range.Rows[1].Range.CollapseEnd();
+            if (range.Information[Wd.WdInformation.wdWithInTable])
+                range = range.Rows[1].Range.CollapseEnd();
         }
 
         static bool ControlsFound(IList<Wd.ContentControl> controls) { return controls.Count != 0; }

@@ -85,6 +85,7 @@
     <Compile Include="ChartHelper.cs" />
     <Compile Include="BuildingBlocks.cs" />
     <Compile Include="ColourHelper.cs" />
+    <Compile Include="ControlManagers\ControlFragment.cs" />
     <Compile Include="ControlManagers\ControlManager_EndDocument.cs" />
     <Compile Include="ControlManagers\ControlManager_StartDocument.cs" />
     <Compile Include="ControlManagers\ControlManager_Table.cs" />
@@ -92,12 +93,13 @@
     <Compile Include="Precedent\Controls\ContactDelivery.cs" />
     <Compile Include="Precedent\Controls\DeleteColumnIf.cs" />
     <Compile Include="Precedent\Controls\DeleteControlIf.cs" />
+    <Compile Include="Precedent\Controls\DeleteLineIf_OrRemoveControl.cs" />
     <Compile Include="Precedent\Controls\DeleteLineIf.cs" />
     <Compile Include="Precedent\Controls\DeleteRowIf.cs" />
-    <Compile Include="Precedent\Controls\DeleteRowIf_RemoveControl.cs" />
+    <Compile Include="Precedent\Controls\DeleteRowIf_OrRemoveControl.cs" />
     <Compile Include="Precedent\Controls\Optional.cs" />
     <Compile Include="Precedent\Controls\PrecedentControl.cs" />
-    <Compile Include="Precedent\Controls\RepeatingContact.cs" />
+    <Compile Include="Precedent\Controls\RepeatingControl.cs" />
     <Compile Include="Precedent\Delivery\CcDelivery.cs" />
     <Compile Include="Precedent\Delivery\Delivery.cs" />
     <Compile Include="Precedent\Delivery\DeliveryHelpers.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Precedent\Views\PrecedentInstructionView.xaml.cs">
       <DependentUpon>PrecedentInstructionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TocHelper.cs" />
     <Compile Include="ToggleHeaderFooterHelper.cs" />
     <Compile Include="CloneHelper.cs" />
     <Compile Include="ContentControlHelper.cs" />
@@ -118,7 +121,6 @@
     <Compile Include="CustomXmlHelper.cs" />
     <Compile Include="DeliveryHelpers.cs" />
     <Compile Include="DialogHelper.cs" />
-    <Compile Include="DmfHelper.cs" />
     <Compile Include="DocPropVarHelper.cs" />
     <Compile Include="DocumentHelper.cs" />
     <Compile Include="FieldsHelper.cs" />
@@ -153,6 +155,10 @@
     <Compile Include="WordApplicationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GorillaDocs.OpenXml\GorillaDocs.OpenXml.csproj">
+      <Project>{69a38feb-e2c6-4749-9138-376aad755e5b}</Project>
+      <Name>GorillaDocs.OpenXml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GorillaDocs\GorillaDocs.csproj">
       <Project>{1eb8b9cc-0d78-4b5c-8ae5-4ffe07914d69}</Project>
       <Name>GorillaDocs</Name>

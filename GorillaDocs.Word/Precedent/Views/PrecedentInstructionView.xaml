@@ -22,7 +22,7 @@
     <Grid Validation.Error="Grid_Error" IsVisibleChanged="Grid_SetInitialFocus">
 
         <StackPanel Name="AllItems" Orientation="Horizontal">
-            <WrapPanel Height="200" Margin="5" Orientation="Vertical">
+            <WrapPanel Margin="5" Orientation="Vertical">
                 <GDC:TextControl x:Name="Command" Label="_Command" Text="{Binding Path=Details.Command, Mode=TwoWay}"/>
                 <GDC:TextControl x:Name="Expression" Label="_Expression" Text="{Binding Path=Details.Expression, Mode=TwoWay}"/>
                 <GDC:TextControl x:Name="ListItems" Label="_List Items" Text="{Binding Path=Details.ListItems, Mode=TwoWay}" Visibility="{Binding Path=IsComboBox, Converter={StaticResource BoolToVisConverter}}"/>

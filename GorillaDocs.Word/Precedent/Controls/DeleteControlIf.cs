@@ -11,13 +11,13 @@ namespace GorillaDocs.Word.Precedent.Controls
 
         public static bool Test(Wd.ContentControl control)
         {
-            return control.PrecedentInstruction() != null &&
-                control.PrecedentInstruction().Command == "DeleteControlIf";
+            return control.GetPrecedentInstruction() != null &&
+                control.GetPrecedentInstruction().Command == "DeleteControlIf";
         }
 
         public override void Process()
         {
-            var result = PrecedentExpression1.Resolve(control.PrecedentInstruction().Expression, control.PrecedentInstruction().ExpressionData(control.Range.Document));
+            var result = PrecedentExpression1.Resolve(control.GetPrecedentInstruction().Expression, control.GetPrecedentInstruction().ExpressionData(control.Range.Document));
             if (result)
             {
                 var range = control.Range;

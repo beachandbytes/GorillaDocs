@@ -13,7 +13,7 @@
         <Grid>
             <ComboBox Name="TitleComboInput" 
                   ItemsSource="{Binding ElementName=thisUserControl, Path=ItemsSource}" 
-                  SelectedItem="{Binding ElementName=thisUserControl, Path=SelectedItem, Mode=TwoWay}" 
+                  Text="{Binding ElementName=thisUserControl, Path=PrefixText, Mode=TwoWay}" 
                   IsEditable="True"
                   Width="70"/>
             <TextBlock IsHitTestVisible="False" Text="eg. Mr" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" Foreground="DarkGray">

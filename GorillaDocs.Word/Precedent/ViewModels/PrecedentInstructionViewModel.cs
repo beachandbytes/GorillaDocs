@@ -13,11 +13,12 @@ namespace GorillaDocs.Word.Precedent.ViewModels
         public PrecedentInstructionViewModel() { }
         public PrecedentInstructionViewModel(PrecedentInstruction Details, Wd.ContentControl control, IList<string> Namespaces)
         {
-            //TODO: Enforce 'Date' content control data type. Ensure not 'Date and Time'
             this.Details = Details;
             this.Namespaces = Namespaces;
             if (control.Type == Wd.WdContentControlType.wdContentControlComboBox)
                 IsComboBox = true;
+            if (control.Type == Wd.WdContentControlType.wdContentControlDate && control.DateStorageFormat != Wd.WdContentControlDateStorageFormat.wdContentControlDateStorageDate)
+                control.DateStorageFormat = Wd.WdContentControlDateStorageFormat.wdContentControlDateStorageDate;
             OKCommand = new RelayCommand(OKPressed, CanPressOK);
         }
 

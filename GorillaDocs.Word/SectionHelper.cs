@@ -40,6 +40,18 @@ namespace GorillaDocs.Word
             range.Delete();
         }
 
+        /// <summary>
+        /// Prevents strange errors when selection is at the end of a document
+        /// </summary>
+        public static void InsertBreak_Safe(this Wd.Range range, Wd.WdBreakType BreakType = Wd.WdBreakType.wdSectionBreakNextPage)
+        {
+            range.Text = "[Temp]";
+            Wd.Range deleteRange = range.Duplicate;
+            range.InsertBreak(BreakType);
+            deleteRange.MoveStartWhile("\f");
+            deleteRange.Delete();
+        }
+
         public static bool IsStartOfSection(this Wd.Selection selection)
         {
             if (selection.Characters.First.Start == selection.Document.Characters.First.Start)

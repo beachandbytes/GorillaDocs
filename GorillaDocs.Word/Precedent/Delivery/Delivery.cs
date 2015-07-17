@@ -36,6 +36,7 @@ namespace GorillaDocs.Word.Precedent.Delivery
             if (DetailsControl == null)
                 AddDetailsControl();
             SetMapping("EmailAddress");
+            //ConvertToHyperlink();
         }
         protected void UpdateFacsimile()
         {
@@ -48,9 +49,16 @@ namespace GorillaDocs.Word.Precedent.Delivery
 
         protected Wd.ContentControl AddDetailsControl(Wd.Range range)
         {
-            var detailsControl = range.ContentControls.Add_Safely(Wd.WdContentControlType.wdContentControlText);
+            //TODO: Can not use a RichText control until figure out how to strip the Hyperlink XML markup from CustomXMLPart before loading it into the Edit Details dialog.
+            Wd.ContentControl detailsControl;
+            //if (doc.Application.Version.StartsWith("14"))
+            //{
+                detailsControl = range.ContentControls.Add_Safely(Wd.WdContentControlType.wdContentControlText);
+                detailsControl.MultiLine = true;
+            //}
+            //else
+            //    detailsControl = range.ContentControls.Add_Safely(Wd.WdContentControlType.wdContentControlRichText);
             detailsControl.Title = control.Title + " Details";
-            detailsControl.MultiLine = true;
             return detailsControl;
         }
 
@@ -59,5 +67,6 @@ namespace GorillaDocs.Word.Precedent.Delivery
             var xpath = control.XMLMapping.XPath;
             DetailsControl.XMLMapping.SetMapping(xpath.Substring(0, xpath.LastIndexOf(':')) + String.Format(":{0}[1]", value));
         }
+        void ConvertToHyperlink() { DetailsControl.Range.AutoFormat(); }
     }
 }
